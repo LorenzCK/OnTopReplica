@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E626BD6E-BF38-4EB7-A128-5CA6F40EF557}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OnTopReplica</RootNamespace>
+    <AssemblyName>OnTopReplica</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <GenerateManifests>true</GenerateManifests>
+    <TargetZone>Internet</TargetZone>
+    <StartupObject>OnTopReplica.Program</StartupObject>
+    <ExcludedPermissions>
+    </ExcludedPermissions>
+    <ApplicationManifest>Properties\OnTopReplica.exe.manifest</ApplicationManifest>
+    <SignAssembly>false</SignAssembly>
+    <ManifestCertificateThumbprint>EF37CC602CF25CE1023AEAAF8B200801D77452D5</ManifestCertificateThumbprint>
+    <ManifestKeyFile>OnTopReplica_TemporaryKey.pfx</ManifestKeyFile>
+    <SignManifests>true</SignManifests>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
+    <UpdateInterval>1</UpdateInterval>
+    <UpdateIntervalUnits>Weeks</UpdateIntervalUnits>
+    <UpdatePeriodically>true</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://www.klopfenstein.net/public/Uploads/ontopreplica/</InstallUrl>
+    <UpdateUrl>http://www.klopfenstein.net/public/Uploads/ontopreplica/</UpdateUrl>
+    <SupportUrl>http://www.klopfenstein.net/lorenz.aspx/ontopreplica</SupportUrl>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>OnTopReplica</ProductName>
+    <PublisherName>Lorenz Cuno Klopfenstein</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>2.6.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VistaControls, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\VistaControls\VistaControls\bin\Release\VistaControls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClickThroughLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CloneClickEventArgs.cs" />
+    <Compile Include="CloseRequestEventArgs.cs" />
+    <Compile Include="Strings.it.Designer.cs">
+      <DependentUpon>Strings.it.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FocusedTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FullscreenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FullscreenForm.Designer.cs">
+      <DependentUpon>FullscreenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="NativeToolStripRenderer.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.it.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.it.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FullscreenForm.resx">
+      <DependentUpon>FullscreenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegionBox.resx">
+      <DependentUpon>RegionBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RegionBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RegionBox.Designer.cs">
+      <DependentUpon>RegionBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StoredRegion.cs" />
+    <Compile Include="StoredRegionArray.cs" />
+    <Compile Include="Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ThumbnailPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Win32Helper.cs" />
+    <Compile Include="WindowHandle.cs" />
+    <Compile Include="WindowListHelper.cs" />
+    <Compile Include="WindowManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\windows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\window16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\window_border16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\window_opacity16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\window_multiple16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\close16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\reduce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\OnTopReplica.exe.manifest" />
+    <None Include="Assets\window_multiple16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Assets\back.png" />
+    <None Include="Assets\arrow_down.png" />
+    <None Include="Assets\arrow_up.png" />
+    <None Include="Assets\component.png" />
+    <None Include="Assets\about.html" />
+    <None Include="Assets\flag_usa.png" />
+    <None Include="Assets\flag_ita.png" />
+    <Content Include="Assets\icon.ico" />
+    <None Include="Assets\x-oblique.png" />
+    <None Include="Assets\xiao_up.png" />
+    <None Include="Assets\xiao_down.png" />
+    <None Include="Assets\thumbs_up.png" />
+    <None Include="Assets\ok.png" />
+    <None Include="Assets\pos_null.png" />
+    <None Include="Assets\pos_topright.png" />
+    <None Include="Assets\pos_topleft.png" />
+    <None Include="Assets\pos_bottomright.png" />
+    <None Include="Assets\pos_bottomleft.png" />
+    <None Include="Assets\window_switch.png" />
+    <None Include="Assets\icon.png" />
+    <None Include="OnTopReplica_TemporaryKey.pfx" />
+    <None Include="OnTopReplica_TemporaryKey_old.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
