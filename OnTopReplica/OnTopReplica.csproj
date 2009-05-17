@@ -84,7 +84,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="VistaControls, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libraries\VistaControls\VistaControls\bin\Release\VistaControls.dll</HintPath>
+      <HintPath>..\Lib\VistaControls.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
