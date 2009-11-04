@@ -2,13 +2,22 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using OnTopReplica.Properties;
 
 namespace OnTopReplica {
 	static class WindowListHelper {
 
-		const int cMaxWindowTitleLength = 60;
+        public class WindowSelectionData {
+            public WindowHandle Handle { get; set; }
+            public StoredRegion Region { get; set; }
+        }
 
-		public static void PopulateMenu(WindowManager windowManager, ToolStrip menu, WindowHandle currentHandle, EventHandler clickHandler){
+		const int cMaxWindowTitleLength = 55;
+
+		public static void PopulateMenu(WindowManager windowManager, ToolStrip menu,
+                                        WindowHandle currentHandle, EventHandler clickHandler) {
+            var regions = Settings.Default.SavedRegions;
+
 			//Clear
 			menu.Items.Clear();
 
@@ -19,22 +28,54 @@ namespace OnTopReplica {
 			nullTsi.Checked = (currentHandle == null);
 			menu.Items.Add(nullTsi);
 
-			//Add an item for each window, the tag stores the window index
-			int i = 0;
+			//Add an item for each window
 			foreach (WindowHandle h in windowManager.Windows) {
 				var tsi = new ToolStripMenuItem();
-				if (h.Title.Length > cMaxWindowTitleLength) {
+				
+                if (h.Title.Length > cMaxWindowTitleLength) {
 					tsi.Text = h.Title.Substring(0, cMaxWindowTitleLength) + "...";
 					tsi.ToolTipText = h.Title;
 				}
 				else
 					tsi.Text = h.Title;
-				tsi.Click += clickHandler;
-				tsi.Tag = i++;
+
+				//tsi.Click += clickHandler;
 				if (h.Icon != null) {
 					tsi.Image = h.Icon.ToBitmap();
 				}
 				tsi.Checked = h.Equals(currentHandle);
+
+                if (regions != null && regions.Count > 0) {
+                    //Add subitem for no region
+                    var nullRegionItem = new ToolStripMenuItem(Strings.MenuWindowsWholeRegion);
+                    nullRegionItem.Tag = new WindowSelectionData {
+                        Handle = h,
+                        Region = null
+                    };
+                    nullRegionItem.Image = Resources.regions;
+                    nullRegionItem.Click += clickHandler;
+
+                    tsi.DropDownItems.Add(nullRegionItem);
+                    
+                    foreach (StoredRegion region in regions) {
+                        var regionItem = new ToolStripMenuItem(region.Name);
+                        regionItem.Tag = new WindowSelectionData {
+                            Handle = h,
+                            Region = region
+                        };
+                        regionItem.Click += clickHandler;
+
+                        tsi.DropDownItems.Add(regionItem);
+                    }
+                }
+                else {
+                    //Add direct click if no stored regions
+                    tsi.Tag = new WindowSelectionData {
+                        Handle = h,
+                        Region = null
+                    };
+                    tsi.Click += clickHandler;
+                }
 
 				menu.Items.Add(tsi);
 			}

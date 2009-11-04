@@ -528,4 +528,7 @@ a:hover {
 	&lt;/body&gt;
 &lt;/html&gt;</value>
   </data>
+  <data name="MenuWindowsWholeRegion" xml:space="preserve">
+    <value>- whole -</value>
+  </data>
 </root>

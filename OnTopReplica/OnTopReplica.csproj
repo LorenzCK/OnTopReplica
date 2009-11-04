@@ -49,8 +49,8 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>2.7.2.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.8.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -218,7 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\OnTopReplica.exe.manifest" />
-    <None Include="Assets\window_multiple16.ico" />
+    <Content Include="Assets\window_multiple16.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -257,6 +257,7 @@
     <None Include="Assets\flag_usa.png" />
     <None Include="Assets\flag_ita.png" />
     <Content Include="Assets\icon.ico" />
+    <None Include="Assets\regions.png" />
     <None Include="OnTopReplica_TemporaryKey.pfx" />
     <None Include="Assets\x-oblique.png" />
     <None Include="Assets\xiao_up.png" />

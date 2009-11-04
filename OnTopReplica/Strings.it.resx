@@ -278,7 +278,7 @@ Per farlo, clicca col tasto destro del mouse sul desktop e poi su Personalizza.<
     <value>Ripristina posizione e grandezza</value>
   </data>
   <data name="MenuRecallTT" xml:space="preserve">
-    <value>Imposta se, al prossimo avvio di OnTopReplica, debbano essere ripristinate i valori di grandezza e posizione della finestra alla chiusura.</value>
+    <value>Imposta se, al prossimo avvio di OnTopReplica, debbano essere ripristinati i valori di grandezza e posizione della finestra alla chiusura.</value>
   </data>
   <data name="MenuReduce" xml:space="preserve">
     <value>Riduci ad icona</value>
@@ -395,7 +395,7 @@ Per tornare alla modalità normale in qualsiasi momento, fai doppio clic sull'ic
     <value>Click-Through</value>
   </data>
   <data name="MenuResizeClickThroughTT" xml:space="preserve">
-    <value>Se la finestra non è completamente opaca quando passa a tutto schermo, farà in modo che tutti i clic le passano attraverso (come una maschera semitrasparente).</value>
+    <value>Se la finestra non è completamente opaca quando passa a tutto schermo, i clic le passeranno attraverso (come una maschera semitrasparente).</value>
   </data>
   <data name="InfoClickThroughNo" xml:space="preserve">
     <value>No, tutto schermo normale
@@ -527,5 +527,8 @@ a:hover {
 	
 	&lt;/body&gt;
 &lt;/html&gt;</value>
+  </data>
+  <data name="MenuWindowsWholeRegion" xml:space="preserve">
+    <value>- intera -</value>
   </data>
 </root>

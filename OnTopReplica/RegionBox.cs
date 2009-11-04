@@ -17,10 +17,6 @@ namespace OnTopReplica {
 			}
 		}
 
-		void Default_SettingsLoaded(object sender, System.Configuration.SettingsLoadedEventArgs e) {
-			
-		}
-
 		bool _glassMode = true;
 
 		public bool GlassMode {
@@ -33,6 +29,20 @@ namespace OnTopReplica {
 				_glassMode = value;
 			}
 		}
+
+        public void SetRegion(StoredRegion region) {
+            if (region == null) {
+                Reset();
+                return;
+            }
+
+            SetRegion(region.Rect);
+
+            //Select right combobox
+            if (comboBox1.Items.Contains(region)) {
+                comboBox1.SelectedItem = region;
+            }
+        }
 
 		public void SetRegion(Rectangle region) {
 			try {
@@ -148,9 +158,13 @@ namespace OnTopReplica {
 			buttonSave.Enabled = true;
 		}
 
-		/// <summary>Used to signal to the value change handler that all events should be temporarily ignored.</summary>
-		/// <remarks>Must be used if the RegionBox is updating the values of the NumericUpDown controls internally and the handler
-		/// should not raise any event.</remarks>
+		/// <summary>
+        /// Used to signal to the value change handler that all events should be temporarily ignored.
+        /// </summary>
+		/// <remarks>
+        /// Must be used if the RegionBox is updating the values of the NumericUpDown controls
+        /// internally and the handler should not raise any event.
+        /// </remarks>
 		bool _ignoreValueChanges = false;
 
 		private void RegionValueChanged(object sender, EventArgs e) {

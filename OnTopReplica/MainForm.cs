@@ -140,13 +140,10 @@ namespace OnTopReplica
 					//Enable region drawing on thumbnail
 					_thumbnailPanel.DrawMouseRegions = value;
 
-                    //Disable aspect ratio keeping
-                    MaintainAspectRatio = !value;
-
 					//Resize and move to fit region panel
 					ClientSize = new Size {
 						Width = ClientSize.Width + ((value) ? _regionBox.Width : -_regionBox.Width),
-						Height = Math.Max(ClientSize.Height, _regionBox.Height)
+						Height = Math.Max(ClientSize.Height, _regionBox.ClientSize.Height)
 					};
 					_thumbnailPanel.Size = new Size {
 						Width = (value) ? (ClientSize.Width - _regionBox.Width) : ClientSize.Width,
@@ -156,6 +153,9 @@ namespace OnTopReplica
 						X = (value) ? (ClientSize.Width - _regionBox.Width) : ClientSize.Width,
 						Y = 0
 					};
+
+                    //Disable aspect ratio keeping
+                    KeepAspectRatio = !value;
 
 					//Set new glass margins
 					this.GlassMargins = (value) ?
@@ -448,10 +448,10 @@ namespace OnTopReplica
 				return;
 			}
 
-            int index = (int)tsi.Tag;
+            var selectionData = (WindowListHelper.WindowSelectionData)tsi.Tag;
 
             if (_windowManager != null) {
-                ThumbnailSet(index);
+                ThumbnailSet(selectionData.Handle, selectionData.Region);
             }
         }
 
@@ -720,21 +720,24 @@ namespace OnTopReplica
 
 		#region Thumbnail operation
 
-        private void ThumbnailSet(int index) {
+        private void ThumbnailSet(WindowHandle handle, StoredRegion region) {
             try {
-				_lastWindowHandle = _windowManager.Windows[index];
+				_lastWindowHandle = handle;
 
-				_thumbnailPanel.SetThumbnailHandle(_lastWindowHandle);
+				_thumbnailPanel.SetThumbnailHandle(handle);
             }
             catch (Exception ex) {
                 ThumbnailError(ex, false, Strings.ErrorUnableToCreateThumbnail);
             }
 
+            //Update region to show
+            if (region == null)
+                _regionBox.Reset();
+            else
+                _regionBox.SetRegion(region);
+
             //Set aspect ratio (this will resize the form)
             SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
-
-            //Reset regions
-			_regionBox.Reset();
 
 			//GUI
 			selectRegionToolStripMenuItem.Enabled = true;
@@ -742,10 +745,15 @@ namespace OnTopReplica
         }
 
         private void ThumbnailUnset(){
+            //Unset handle
 			_lastWindowHandle = null;
-
 			_thumbnailPanel.UnsetThumbnail();
+
+            //Reset regions
 			_regionBox.Reset();
+
+            //Disable aspect ratio
+            KeepAspectRatio = false;
         }
 
         private void ThumbnailError(Exception ex, bool suppress, string title){
