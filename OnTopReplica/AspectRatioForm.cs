@@ -17,13 +17,13 @@ namespace OnTopReplica {
             AspectRatio = 1.0;
         }
 
-        bool _maintainAspectRatio = true;
-        public bool MaintainAspectRatio {
+        bool _keepAspectRatio = true;
+        public bool KeepAspectRatio {
             get {
-                return _maintainAspectRatio;
+                return _keepAspectRatio;
             }
             set {
-                _maintainAspectRatio = value;
+                _keepAspectRatio = value;
                 
                 if (value)
                     RefreshAspectRatio();
@@ -54,6 +54,7 @@ namespace OnTopReplica {
         /// Updates the aspect ratio of the form and refreshes it.
         /// </summary>
         public void SetAspectRatio(Size aspectRatioSource) {
+            _keepAspectRatio = true; //set without updating
             AspectRatio = (aspectRatioSource.Width / (double)aspectRatioSource.Height);
             RefreshAspectRatio();
         }
@@ -63,7 +64,7 @@ namespace OnTopReplica {
         /// Taken from: http://www.vcskicks.com/maintain-aspect-ratio.php
         /// </summary>
         protected override void WndProc(ref Message m) {
-            if (MaintainAspectRatio && m.Msg == NativeMethods.WM_SIZING) {
+            if (KeepAspectRatio && m.Msg == NativeMethods.WM_SIZING) {
                 var rc = (NativeMethods.Rectangle)Marshal.PtrToStructure(m.LParam, typeof(NativeMethods.Rectangle));
                 int res = m.WParam.ToInt32();
 
