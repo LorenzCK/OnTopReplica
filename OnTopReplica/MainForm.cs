@@ -529,7 +529,7 @@ namespace OnTopReplica
 			if (!_thumbnailPanel.IsShowingThumbnail)
 				e.Cancel = true;
 
-			autofitOnResizeToolStripMenuItem.Checked = Settings.Default.AutoFitOnResize;
+			//autofitOnResizeToolStripMenuItem.Checked = Settings.Default.AutoFitOnResize;
 			recallLastPositionAndSizeToolStripMenuItem.Checked = Settings.Default.StoreWindowPosition;
 			clickThroughToolStripMenuItem.Checked = Settings.Default.ClickThrough;
 		}
@@ -558,9 +558,9 @@ namespace OnTopReplica
 			Settings.Default.ClickThrough = !Settings.Default.ClickThrough;
 		}
 
-		private void Menu_Resize_Autofit_click(object sender, EventArgs e) {
+		/*private void Menu_Resize_Autofit_click(object sender, EventArgs e) {
 			Settings.Default.AutoFitOnResize = !Settings.Default.AutoFitOnResize;
-		}
+		}*/
 
 		private void Menu_Position_Recall_click(object sender, EventArgs e) {
 			Settings.Default.StoreWindowPosition = !Settings.Default.StoreWindowPosition;

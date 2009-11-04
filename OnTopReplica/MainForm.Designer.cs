@@ -51,8 +51,6 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.fullscreenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.clickThroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.autofitOnResizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topLeftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topRightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -246,12 +244,10 @@
             this.quarterToolStripMenuItem1,
             this.toolStripSeparator3,
             this.fullscreenToolStripMenuItem1,
-            this.clickThroughToolStripMenuItem,
-            this.toolStripSeparator5,
-            this.autofitOnResizeToolStripMenuItem});
+            this.clickThroughToolStripMenuItem});
             this.menuResize.Name = "menuResize";
             this.menuResize.OwnerItem = this.resizeToolStripMenuItem;
-            this.menuResize.Size = new System.Drawing.Size(165, 170);
+            this.menuResize.Size = new System.Drawing.Size(165, 164);
             this.menuResize.Opening += new System.ComponentModel.CancelEventHandler(this.Menu_Resize_opening);
             // 
             // doubleToolStripMenuItem1
@@ -303,19 +299,6 @@
             this.clickThroughToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuResizeClickThrough;
             this.clickThroughToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuResizeClickThroughTT;
             this.clickThroughToolStripMenuItem.Click += new System.EventHandler(this.Menu_Resize_ClickThrough);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(161, 6);
-            // 
-            // autofitOnResizeToolStripMenuItem
-            // 
-            this.autofitOnResizeToolStripMenuItem.Name = "autofitOnResizeToolStripMenuItem";
-            this.autofitOnResizeToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.autofitOnResizeToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuAutofit;
-            this.autofitOnResizeToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuAutofitTT;
-            this.autofitOnResizeToolStripMenuItem.Click += new System.EventHandler(this.Menu_Resize_Autofit_click);
             // 
             // dockToolStripMenuItem
             // 
@@ -546,9 +529,7 @@
 		private System.Windows.Forms.ToolStripMenuItem fitToWindowToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem halfToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem quarterToolStripMenuItem1;
-		private System.Windows.Forms.ToolStripMenuItem fullscreenToolStripMenuItem1;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-		private System.Windows.Forms.ToolStripMenuItem autofitOnResizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fullscreenToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripMenuItem clickThroughToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem forwardClicksToolStripMenuItem;
