@@ -19,7 +19,13 @@ namespace OnTopReplica {
 			Asztal.Szótár.NativeToolStripRenderer.SetToolStripRenderer(new Control[] {
 				menuContext, menuWindows
 			});
+
+            _cursorTimer = new Timer();
+            _cursorTimer.Interval = 1000;
+            _cursorTimer.Tick += new EventHandler(_cursorTimer_Tick);
 		}
+
+        Timer _cursorTimer;
 
 		WindowHandle _lastHandle;
 		WindowManager _manager = new WindowManager(WindowManager.EnumerationMode.TaskWindows);
@@ -66,6 +72,43 @@ namespace OnTopReplica {
 				CloseRequest(this, new CloseRequestEventArgs(_lastHandle));
 		}
 
+        protected override void OnActivated(EventArgs e) {
+            _cursorTimer.Start();
+
+            base.OnActivated(e);
+        }
+
+        protected override void OnDeactivate(EventArgs e) {
+            Cursor.Show();
+            _cursorTimer.Stop();
+
+            base.OnDeactivate(e);
+        }
+
+        Point? _lastPos = null;
+
+        protected override void OnMouseMove(MouseEventArgs e) {
+            if (_lastPos.HasValue) {
+                int distance = 0;
+                distance += Math.Abs(_lastPos.Value.X - e.X);
+                distance += Math.Abs(_lastPos.Value.Y - e.Y);
+
+                if (distance > 8) {
+                    Cursor.Show();
+                    _cursorTimer.Start();
+                }
+            }
+
+            _lastPos = e.Location;
+
+            base.OnMouseMove(e);
+        }
+
+        void _cursorTimer_Tick(object sender, EventArgs e) {
+            Cursor.Hide();
+            _cursorTimer.Stop();
+        }
+
 		protected override void OnDoubleClick(EventArgs e) {
 			OnCloseRequest();
 
@@ -75,9 +118,12 @@ namespace OnTopReplica {
 		protected override void OnKeyUp(KeyEventArgs e) {
 			if (e.KeyCode == Keys.Escape) {
 				e.Handled = true;
-
 				OnCloseRequest();
 			}
+            else if (e.KeyCode == Keys.Enter && e.Modifiers == Keys.Alt) {
+                e.Handled = true;
+                OnCloseRequest();
+            }
 
 			base.OnKeyUp(e);
 		}

@@ -202,17 +202,24 @@ namespace OnTopReplica {
 		/// <summary>Updates the thumbnail options and the right-click labels.</summary>
 		private void UpdateThubmnail() {
 			if (_thumbnail != null && !_thumbnail.IsInvalid){
-				Size sourceSize = (_regionEnabled) ? _regionCurrent.Size : _thumbnail.SourceSize;
+                try {
+                    Size sourceSize = (_regionEnabled) ? _regionCurrent.Size : _thumbnail.SourceSize;
 
-				thumbnailSize = ComputeIdealSize(sourceSize, Size);
+                    thumbnailSize = ComputeIdealSize(sourceSize, Size);
 
-				padWidth = (Size.Width - thumbnailSize.Width) / 2;
-				padHeight = (Size.Height - thumbnailSize.Height) / 2;
+                    padWidth = (Size.Width - thumbnailSize.Width) / 2;
+                    padHeight = (Size.Height - thumbnailSize.Height) / 2;
 
-				Rectangle target = new Rectangle(padWidth, padHeight, thumbnailSize.Width, thumbnailSize.Height);
-				Rectangle source = (_regionEnabled) ? _regionCurrent : new Rectangle(Point.Empty, _thumbnail.SourceSize);
+                    Rectangle target = new Rectangle(padWidth, padHeight, thumbnailSize.Width, thumbnailSize.Height);
+                    Rectangle source = (_regionEnabled) ? _regionCurrent : new Rectangle(Point.Empty, _thumbnail.SourceSize);
 
-				_thumbnail.Update(target, source, ThumbnailOpacity, true, true);
+                    _thumbnail.Update(target, source, ThumbnailOpacity, true, true);
+                }
+                catch {
+                    //Any error updating the thumbnail forces to unset (handle may be not valid)
+                    UnsetThumbnail();
+                    return;
+                }
 			}
 
 			UpdateRightClickLabels();
@@ -325,6 +332,11 @@ namespace OnTopReplica {
 
 				this.Invalidate();
 			}
+            else if(_drawMouseRegions && !_drawingRegion){
+                _regionLastPoint = e.Location;
+
+                this.Invalidate();
+            }
 
 			base.OnMouseMove(e);
 		}
@@ -340,6 +352,10 @@ namespace OnTopReplica {
 
 				e.Graphics.DrawRectangle(penRed, left, top, right - left, bottom - top);
 			}
+            else if (_drawMouseRegions) {
+                e.Graphics.DrawLine(penRed, new Point(0, _regionLastPoint.Y), new Point(ClientSize.Width, _regionLastPoint.Y));
+                e.Graphics.DrawLine(penRed, new Point(_regionLastPoint.X, 0), new Point(_regionLastPoint.X, ClientSize.Height));
+            }
 
 			base.OnPaint(e);
 		}

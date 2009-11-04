@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using OnTopReplica.Properties;
 using System.Threading;
 using System.Globalization;
+using System.Drawing;
 
 namespace OnTopReplica
 {
@@ -22,13 +23,27 @@ namespace OnTopReplica
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
+            bool reloadSettings = false;
+            Point reloadLocation = new Point();
+            Size reloadSize = new Size();
+
 			do {
 				//Update language settings
 				Thread.CurrentThread.CurrentUICulture = _languageChangeCode;
 				Settings.Default.Language = _languageChangeCode;
 				_languageChangeCode = null;
 
-				Application.Run(new MainForm());
+                Form form;
+                if (reloadSettings)
+                    form = new MainForm(reloadLocation, reloadSize);
+                else
+                    form = new MainForm();
+
+				Application.Run(form);
+
+                reloadSettings = true;
+                reloadLocation = form.Location;
+                reloadSize = form.Size;
 			}
 			while(_languageChangeCode != null);
 

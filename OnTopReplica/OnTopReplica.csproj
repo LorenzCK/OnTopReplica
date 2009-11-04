@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -21,11 +21,15 @@
     </ExcludedPermissions>
     <ApplicationManifest>Properties\OnTopReplica.exe.manifest</ApplicationManifest>
     <SignAssembly>false</SignAssembly>
-    <ManifestCertificateThumbprint>EF37CC602CF25CE1023AEAAF8B200801D77452D5</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>DB79D77572EF10838D6A2CECDDE738C6570E7995</ManifestCertificateThumbprint>
     <ManifestKeyFile>OnTopReplica_TemporaryKey.pfx</ManifestKeyFile>
     <SignManifests>true</SignManifests>
     <TargetFrameworkSubset>
     </TargetFrameworkSubset>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -45,8 +49,8 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>2.6.0.%2a</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>2.7.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -250,6 +254,8 @@
     <None Include="Assets\flag_usa.png" />
     <None Include="Assets\flag_ita.png" />
     <Content Include="Assets\icon.ico" />
+    <None Include="OnTopReplica_TemporaryKey.pfx" />
+    <None Include="Resources\25.png" />
     <None Include="Assets\x-oblique.png" />
     <None Include="Assets\xiao_up.png" />
     <None Include="Assets\xiao_down.png" />
@@ -262,8 +268,18 @@
     <None Include="Assets\pos_bottomleft.png" />
     <None Include="Assets\window_switch.png" />
     <None Include="Assets\icon.png" />
-    <None Include="OnTopReplica_TemporaryKey.pfx" />
-    <None Include="OnTopReplica_TemporaryKey_old.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="it\OnTopReplica.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
