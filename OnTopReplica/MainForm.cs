@@ -26,6 +26,17 @@ namespace OnTopReplica
         WindowManager _windowManager;
 		WindowHandle _lastWindowHandle = null;
 
+        //Override position and size on startup
+        bool _startOverride = false;
+        Point _startLocation;
+        Size _startSize;
+
+        public MainForm(Point location, Size size)
+            : this() {
+            _startOverride = true;
+            _startLocation = location;
+            _startSize = size;
+        }
 
         public MainForm() {
 			//Wheel handler
@@ -128,8 +139,6 @@ namespace OnTopReplica
 
 		#region Side Panels
 
-		/*const int cRegionBoxWidth = 190;
-		const int cRegionWithPadding = cRegionBoxWidth + 5;*/
 		const int cWindowBoundary = 10;
 
 		bool _regionBoxShowing = false;
@@ -209,6 +218,7 @@ namespace OnTopReplica
 			if (taskIcon != null) {
 				taskIcon.Visible = false;
 				taskIcon.Dispose();
+                taskIcon = null;
 			}
 
 			//Store settings
@@ -254,15 +264,17 @@ namespace OnTopReplica
 		}
 
 		protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+
 			//Do some checks in order to verify the presence of desktop composition
 			if (!VistaControls.OsSupport.IsVistaOrBetter) {
 				MessageBox.Show(Strings.ErrorNoDwm, Strings.ErrorNoDwmTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-				base.OnShown(e);
 				this.Close();
 
 				return;
 			}
+
 			if (!VistaControls.OsSupport.IsCompositionEnabled) {
 				VistaControls.TaskDialog.TaskDialog dlg = new VistaControls.TaskDialog.TaskDialog(Strings.ErrorDwmOff, Strings.ErrorGenericTitle, Strings.ErrorDwmOffContent);
 				dlg.ExpandedControlText = Strings.ErrorDetailsAero;
@@ -271,7 +283,6 @@ namespace OnTopReplica
 				dlg.CommonIcon = VistaControls.TaskDialog.TaskDialogIcon.Stop;
 				dlg.Show();
 
-				base.OnShown(e);
 				this.Close();
 
 				return;
@@ -283,13 +294,17 @@ namespace OnTopReplica
 			//Install NotifyIcon
 			taskIcon = new NotifyIcon();
 			taskIcon.Text = Strings.ApplicationName;
-			taskIcon.Icon = Properties.Resources.window_multiple161;
+			taskIcon.Icon = Properties.Resources.main_icon;
 			taskIcon.Visible = true;
 			taskIcon.ContextMenuStrip = menuIconContext;
 			taskIcon.DoubleClick += new EventHandler(Icon_doubleclick);
 
-			//Reload settings
-			if (Settings.Default.WindowPositionStored) {
+			//Reload position settings
+            if (_startOverride) {
+                Location = _startLocation;
+                Size = _startSize;
+            }
+			else if (Settings.Default.WindowPositionStored) {
 				Location = Settings.Default.LastLocation;
 				ClientSize = Settings.Default.LastSize;
 			}
@@ -297,13 +312,16 @@ namespace OnTopReplica
 			//Glassify window
 			this.GlassMargins = new VistaControls.Dwm.Margins(-1);
 			SetGlass(Settings.Default.UseGlass);
-
-			base.OnShown(e);
 		}
 
-		/*protected override void OnMouseDown(MouseEventArgs e) {
-			base.OnMouseDown(e);
-		}*/
+        protected override void OnKeyUp(KeyEventArgs e) {
+            if (e.KeyCode == Keys.Enter && e.Modifiers == Keys.Alt) {
+                e.Handled = true;
+                ToggleFullscreen();
+            }
+
+            base.OnKeyUp(e);
+        }
 
 		#endregion
 
@@ -562,8 +580,8 @@ namespace OnTopReplica
 			var screen = Screen.FromControl(this);
 
 			Location = new Point(
-				screen.WorkingArea.Left - SystemInformation.FrameBorderSize.Width,
-				screen.WorkingArea.Top - SystemInformation.FrameBorderSize.Height
+                screen.WorkingArea.Left - ChromeBorderHorizontal,
+                screen.WorkingArea.Top - ChromeBorderVertical
 			);
 		}
 
@@ -571,8 +589,8 @@ namespace OnTopReplica
 			var screen = Screen.FromControl(this);
 
 			Location = new Point(
-				screen.WorkingArea.Width - Size.Width + SystemInformation.FrameBorderSize.Width,
-				screen.WorkingArea.Top - SystemInformation.FrameBorderSize.Height
+                screen.WorkingArea.Width - Size.Width + ChromeBorderHorizontal,
+                screen.WorkingArea.Top - ChromeBorderVertical
 			);
 		}
 
@@ -580,8 +598,8 @@ namespace OnTopReplica
 			var screen = Screen.FromControl(this);
 
 			Location = new Point(
-				screen.WorkingArea.Left - SystemInformation.FrameBorderSize.Width,
-				screen.WorkingArea.Height - Size.Height + SystemInformation.FrameBorderSize.Height
+                screen.WorkingArea.Left - ChromeBorderHorizontal,
+                screen.WorkingArea.Height - Size.Height + ChromeBorderVertical
 			);
 		}
 
@@ -589,10 +607,28 @@ namespace OnTopReplica
 			var screen = Screen.FromControl(this);
 
 			Location = new Point(
-				screen.WorkingArea.Width - Size.Width + SystemInformation.FrameBorderSize.Width,
-				screen.WorkingArea.Height - Size.Height + SystemInformation.FrameBorderSize.Height
+				screen.WorkingArea.Width - Size.Width + ChromeBorderHorizontal,
+                screen.WorkingArea.Height - Size.Height + ChromeBorderVertical
 			);
 		}
+
+        private int ChromeBorderVertical {
+            get {
+                if (FormBorderStyle == FormBorderStyle.SizableToolWindow)
+                    return SystemInformation.FrameBorderSize.Height;
+                else
+                    return 0;
+            }
+        }
+
+        private int ChromeBorderHorizontal {
+            get {
+                if (FormBorderStyle == FormBorderStyle.SizableToolWindow)
+                    return SystemInformation.FrameBorderSize.Width;
+                else
+                    return 0;
+            }
+        }
 
         private void Menu_Reduce_click(object sender, EventArgs e) {
             //Hide form
@@ -607,10 +643,21 @@ namespace OnTopReplica
 		}
 
 		private void Menu_Chrome_click(object sender, EventArgs e) {
-			if (FormBorderStyle == FormBorderStyle.SizableToolWindow)
-				FormBorderStyle = FormBorderStyle.None;
-			else
-				FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            if (FormBorderStyle == FormBorderStyle.SizableToolWindow) {
+                FormBorderStyle = FormBorderStyle.None;
+                Location = new Point {
+                    X = Location.X + SystemInformation.FrameBorderSize.Width,
+                    Y = Location.Y + SystemInformation.FrameBorderSize.Height
+                };
+            }
+            else {
+                FormBorderStyle = FormBorderStyle.SizableToolWindow;
+                Location = new Point {
+                    X = Location.X - SystemInformation.FrameBorderSize.Width,
+                    Y = Location.Y - SystemInformation.FrameBorderSize.Height
+                };
+            }
+
 			Invalidate();
 		}
 

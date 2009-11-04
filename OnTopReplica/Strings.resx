@@ -450,8 +450,82 @@ You can enable click-through later</value>
     <value>Click forwarding</value>
   </data>
   <data name="InfoClickForwardingContent" xml:space="preserve">
-    <value>In this mode OnTopReplica will forward all left mouse clicks on it to the window that is being clones (this will allow you to do basic operations on the window without having to activate it).
+    <value>If this mode is enabled, OnTopReplica will forward all left mouse clicks to the window that is being cloned (this will allow you to do basic mouse operations on the cloned window without having to activate it).
 
 To exit this mode, right-click on OnTopReplica and disable "Click forwarding" from the menu.</value>
+  </data>
+  <data name="AskSettingReset" xml:space="preserve">
+    <value>Reset settings?</value>
+  </data>
+  <data name="AskSettingResetContent" xml:space="preserve">
+    <value>This will erase all settings of OnTopReplica, returning it to the original state right after installation (all saved information, like stored regions, will be lost).</value>
+  </data>
+  <data name="AskSettingResetTitle" xml:space="preserve">
+    <value>Reset settings</value>
+  </data>
+  <data name="AboutButtonCancelTT" xml:space="preserve">
+    <value>Abort update process.</value>
+  </data>
+  <data name="AboutButtonExpanderTT" xml:space="preserve">
+    <value>Show details about OnTopReplica.</value>
+  </data>
+  <data name="AboutButtonResetTT" xml:space="preserve">
+    <value>Reset all OnTopReplica settings.</value>
+  </data>
+  <data name="AboutButtonUpdateTT" xml:space="preserve">
+    <value>Update OnTopReplica now.</value>
+  </data>
+  <data name="AboutDetails" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+body {
+	font-family: Segoe UI, Arial, sans-serif;
+	font-size: 0.8em;
+	margin: 0;
+padding: 0.75em;
+}
+h1 {
+	font-size: 1.4em;
+	font-weight: bold;
+	
+	margin: 0 0 1em 0;
+	padding: 0;
+}
+p {
+	margin: 0.5em 0 0.5em 1em;
+	padding: 0;
+}
+a {
+	font-weight: bold;
+	color: blue;
+}
+a:hover {
+	color: red;
+}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	
+	&lt;body&gt;
+	
+		&lt;h1&gt;License&lt;/h1&gt;
+		
+		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; is licensed under the &lt;a href="http://opensource.org/licenses/ms-rl.html"&gt;Microsoft Reciprocal License (Ms-RL)&lt;/a&gt;.&lt;/p&gt;
+		&lt;p&gt;The original source code can be found on the &lt;a href="http://www.codeplex.com/ontopreplica"&gt;project's homepage on CodePlex&lt;/a&gt;.&lt;/p&gt;
+		
+		&lt;h1&gt;Credits&lt;/h1&gt;
+		
+		&lt;p&gt;OnTopReplica was inspired by &lt;a href="http://insentient.net"&gt;Switcher&lt;/a&gt; and other DWM based applications.&lt;/p&gt;
+
+		&lt;p&gt;All Vista controls are part of the &lt;a href="http://www.codeplex.com/windowsformsaero"&gt;WindowsFormsAero library&lt;/a&gt; for .NET.&lt;/p&gt;
+
+		&lt;p&gt;Some example code taken from &lt;a href="http://www.ookii.org"&gt;Ookii&lt;/a&gt; on Channel9.&lt;/p&gt;
+
+		&lt;p&gt;NativeToolstripRenderer class taken from &lt;a href="http://wp.asztal.net/2007/12/vista-style-menus-in-dotnet/"&gt;asztal.net&lt;/a&gt;.&lt;/p&gt;
+
+		&lt;p&gt;Some icons from &lt;a href="http://www.vistaico.com"&gt;VistaICO.com&lt;/a&gt; and the Xiao icon set.&lt;/p&gt;
+	
+	&lt;/body&gt;
+&lt;/html&gt;</value>
   </data>
 </root>

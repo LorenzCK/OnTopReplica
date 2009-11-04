@@ -1,9 +1,9 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <PublishUrlHistory>publish\</PublishUrlHistory>
-    <InstallUrlHistory>http://www.klopfenstein.net/download.aspx%3ffile=ontopreplica%252fsetup.exe/|http://www.klopfenstein.net/public/Uploads/ontopreplica/|http://www.klopfenstein.net/lorenz/programming/ontopreplica/|http://www.klopfenstein.net/lorenz/programming/|http://lorenz.klopfenstein.net/</InstallUrlHistory>
+    <InstallUrlHistory>http://www.klopfenstein.net/public/Uploads/ontopreplica/|http://www.klopfenstein.net/download.aspx%3ffile=ontopreplica%252fsetup.exe/|http://www.klopfenstein.net/lorenz/programming/ontopreplica/|http://www.klopfenstein.net/lorenz/programming/|http://lorenz.klopfenstein.net/</InstallUrlHistory>
     <SupportUrlHistory>http://www.klopfenstein.net/lorenz.aspx/ontopreplica|http://www.klopfenstein.net/loader.php%3fsection=lorenz&amp;page=on_top_replica|http://www.klopfenstein.net/loader.php%3fsection=lorenz&amp;page=programming_on_top_replica</SupportUrlHistory>
-    <UpdateUrlHistory>http://www.klopfenstein.net/lorenz/programming/ontopreplica/</UpdateUrlHistory>
+    <UpdateUrlHistory>http://www.klopfenstein.net/public/Uploads/ontopreplica/|http://www.klopfenstein.net/lorenz/programming/ontopreplica/</UpdateUrlHistory>
     <BootstrapperUrlHistory>
     </BootstrapperUrlHistory>
     <FallbackCulture>en-US</FallbackCulture>

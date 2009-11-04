@@ -15,6 +15,12 @@ namespace OnTopReplica {
 		public AboutForm() {
 			InitializeComponent();
 
+            //Tooltips
+            toolTip.SetToolTip(buttonCancel, Strings.AboutButtonCancelTT);
+            toolTip.SetToolTip(buttonExpander, Strings.AboutButtonExpanderTT);
+            toolTip.SetToolTip(buttonReset, Strings.AboutButtonResetTT);
+            toolTip.SetToolTip(buttonUpdate, Strings.AboutButtonUpdateTT);
+
 			//Add link areas (localized text)
 			linkLabel1.LinkArea = new LinkArea(linkLabel1.Text.IndexOf("Lorenz Cuno Klopfenstein"), "Lorenz Cuno Klopfenstein".Length);
 			int linkStart = linkLabel2.Text.IndexOf("www");
@@ -70,7 +76,7 @@ namespace OnTopReplica {
 			IsExpanded = !IsExpanded;
 
 			//Update icon
-			button1.Image = IsExpanded ? Resources.xiao_up : Resources.xiao_down;
+			buttonExpander.Image = IsExpanded ? Resources.xiao_up : Resources.xiao_down;
 		}
 
 		bool _isExpanded = false;
@@ -79,16 +85,16 @@ namespace OnTopReplica {
 			get { return _isExpanded; }
 			set {
 				if(_isExpanded != value)
-					Size = new Size(Size.Width, Size.Height + ((value) ? webBrowser1.Size.Height : -webBrowser1.Size.Height));
+					Size = new Size(Size.Width, Size.Height + ((value) ? webBrowser.Size.Height : -webBrowser.Size.Height));
 
 				_isExpanded = value;
 
 				if (value && _isFirstExpansion) {
 					//Load text from resources
-					webBrowser1.DocumentText = Resources.about;
+					webBrowser.DocumentText = Strings.AboutDetails;
 
 					//Register navigation events
-					webBrowser1.Navigating += new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
+					webBrowser.Navigating += new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
 
 					_isFirstExpansion = false;
 				}
@@ -149,10 +155,10 @@ namespace OnTopReplica {
 			deployment.CheckForUpdateCompleted += handlerProgressComplete;
 
 			//Update GUI
-			button2.Visible = false;
+			buttonUpdate.Visible = false;
 			progressBar1.Visible = true;
 			progressBar1.Value = 0;
-			button3.Visible = true;
+			buttonCancel.Visible = true;
 
 			_isChecking = true;
 
@@ -172,10 +178,10 @@ namespace OnTopReplica {
 			deployment.UpdateCompleted += handlerUpdateComplete;
 
 			//Update GUI
-			button2.Visible = false;
+			buttonUpdate.Visible = false;
 			progressBar1.Visible = true;
 			progressBar1.Value = 0;
-			button3.Visible = true;
+			buttonCancel.Visible = true;
 
 			_isUpdating = true;
 
@@ -192,8 +198,8 @@ namespace OnTopReplica {
 		void StopUpdate() {
 			//Reset UI
 			progressBar1.Visible = false;
-			button3.Visible = false;
-			button2.Visible = true;
+			buttonCancel.Visible = false;
+			buttonUpdate.Visible = true;
 
 			try {
 				ApplicationDeployment deployment = ApplicationDeployment.CurrentDeployment;
@@ -310,6 +316,16 @@ namespace OnTopReplica {
 		}
 
 		#endregion
+
+        private void ResetClick(object sender, EventArgs e) {
+            var dlg = new TaskDialog(Strings.AskSettingReset, Strings.AskSettingResetTitle,
+                Strings.AskSettingResetContent);
+            dlg.CommonButtons = TaskDialogButton.OK | TaskDialogButton.Cancel;
+
+            if (dlg.Show(this).CommonButton == Result.OK) {
+                Settings.Default.Reset();
+            }
+        }
 
 	}
 }
