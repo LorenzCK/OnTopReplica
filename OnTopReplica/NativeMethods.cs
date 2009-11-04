@@ -244,6 +244,12 @@ namespace OnTopReplica
 		public static extern IntPtr SendMessageTimeout(IntPtr hwnd, uint message, IntPtr wparam, IntPtr lparam, SendMessageTimeoutFlags flags, uint timeout, out IntPtr result);
 
 		public const uint WM_GETICON = 0x7f;
+        public const int WM_SIZING = 0x214;
+        
+        public const int WMSZ_LEFT = 1;
+        public const int WMSZ_RIGHT = 2;
+        public const int WMSZ_TOP = 3;
+        public const int WMSZ_BOTTOM = 6;
 
 		[Flags]
 		public enum SendMessageTimeoutFlags : uint {

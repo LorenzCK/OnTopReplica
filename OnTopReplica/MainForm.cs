@@ -8,7 +8,7 @@ using VistaControls.TaskDialog;
 
 namespace OnTopReplica
 {
-    public partial class MainForm : VistaControls.Dwm.Helpers.GlassForm
+    public partial class MainForm : AspectRatioForm
     {
         //Visualization status
         byte _lastOpacity = 255;
@@ -39,9 +39,6 @@ namespace OnTopReplica
         }
 
         public MainForm() {
-			//Wheel handler
-			//this.MouseWheel += new MouseEventHandler(Thumbnail_MouseWheel);
-
             InitializeComponent();
 
 			//Thumbnail panel
@@ -75,7 +72,9 @@ namespace OnTopReplica
 			});
         }
 
-		void FullscreenForm_CloseRequest(object sender, CloseRequestEventArgs e) {
+        #region Child forms & controls events
+
+        void FullscreenForm_CloseRequest(object sender, CloseRequestEventArgs e) {
 			if (_isFullscreen) {
 				//Update handle to match the one selected in fullscreen mode
 				if (_lastWindowHandle != e.CurrentWindowHandle) {
@@ -85,30 +84,6 @@ namespace OnTopReplica
 
 				ToggleFullscreen();
 			}
-		}
-
-		void Thumbnail_MouseWheel(object sender, MouseEventArgs e) {
-			/*int delta = (int)((double)e.Delta / (double)SystemInformation.MouseWheelScrollDelta) * SystemInformation.MouseWheelScrollLines;
-
-			byte nuValue = (byte)Math.Max(0, Math.Min(255, _lastOpacity + delta));
-
-			_lastOpacity = nuValue;
-
-			this.Opacity = (double)_lastOpacity / 255.0;*/
-
-			/*
-			 * ALTERNATIVE "Zoom" MouseWheel
-			 * 
-			Rectangle original;
-			if (_thumbnailPanel.ShowRegion)
-				original = _thumbnailPanel.ShownRegion;
-			else
-				original = new Rectangle(Point.Empty, _thumbnailPanel.ThumbnailOriginalSize);
-
-			Rectangle nuRegion = new Rectangle(original.Left + delta, original.Top + delta, original.Width - (delta * 2), original.Height - (delta * 2));
-
-			_thumbnailPanel.ShownRegion = nuRegion;
-			*/
 		}
 
 		void RegionBox_RegionChanged(object sender, Rectangle region) {
@@ -135,11 +110,13 @@ namespace OnTopReplica
 
 		void Thumbnail_IdealSizeChange(object sender, Size e) {
 			ClientSize = e;
-		}
+        }
 
-		#region Side Panels
+        #endregion
 
-		const int cWindowBoundary = 10;
+        #region Side "Region box" events
+
+        const int cWindowBoundary = 10;
 
 		bool _regionBoxShowing = false;
 		bool _regionBoxDidMoveForm = false;
@@ -163,7 +140,10 @@ namespace OnTopReplica
 					//Enable region drawing on thumbnail
 					_thumbnailPanel.DrawMouseRegions = value;
 
-					//Resize and move
+                    //Disable aspect ratio keeping
+                    MaintainAspectRatio = !value;
+
+					//Resize and move to fit region panel
 					ClientSize = new Size {
 						Width = ClientSize.Width + ((value) ? _regionBox.Width : -_regionBox.Width),
 						Height = Math.Max(ClientSize.Height, _regionBox.Height)
@@ -202,8 +182,8 @@ namespace OnTopReplica
 						}
 
 						//Resize automatically on region box closing
-						if (Settings.Default.AutoFitOnResize)
-							FitToThumbnail();
+						/*if (Settings.Default.AutoFitOnResize)
+							FitToThumbnail();*/
 					}
 				}
 			}
@@ -233,8 +213,18 @@ namespace OnTopReplica
             base.OnClosing(e);
         }
 
-		protected override void OnResize(EventArgs e) {
+        protected override void OnResizeBegin(EventArgs e) {
+            base.OnResizeBegin(e);
+
+            //Update aspect ratio if needed
+            if (_thumbnailPanel.IsShowingThumbnail) {
+                SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
+            }
+        }
+
+		/*protected override void OnResize(EventArgs e) {
 			if (RegionBoxShowing) {
+                //Adapt glass margins on region box
 				this.GlassMargins = new Margins(ClientSize.Width - _regionBox.Width, 0, 0, 0);
 			}
 
@@ -252,16 +242,16 @@ namespace OnTopReplica
 
 				this.GlassMargins = new Margins(-1);
 			}*/
-
+        /*
 			base.OnResize(e);
-		}
+		}*/
 
-		protected override void OnResizeEnd(EventArgs e) {
+		/*protected override void OnResizeEnd(EventArgs e) {
 			base.OnResizeEnd(e);
 
 			if (Settings.Default.AutoFitOnResize && !RegionBoxShowing)
 				FitToThumbnail();
-		}
+		}*/
 
 		protected override void OnShown(EventArgs e) {
             base.OnShown(e);
@@ -740,9 +730,10 @@ namespace OnTopReplica
                 ThumbnailError(ex, false, Strings.ErrorUnableToCreateThumbnail);
             }
 
-			if(Settings.Default.AutoFitOnResize)
-				FitToThumbnail();
+            //Set aspect ratio (this will resize the form)
+            SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
 
+            //Reset regions
 			_regionBox.Reset();
 
 			//GUI
@@ -765,6 +756,7 @@ namespace OnTopReplica
             ThumbnailUnset();
         }
 
+        
 		/// <summary>Automatically sizes the window in order to accomodate the thumbnail p times.</summary>
 		/// <param name="p">Scale of the thumbnail to consider.</param>
 		private void FitToThumbnail(double p) {
@@ -780,6 +772,7 @@ namespace OnTopReplica
 			}
 		}
 
+        /*
 		/// <summary>Automatically fits the window to the current thumbnail.</summary>
 		/// <remarks>Only adjusts height and corrects the window's position.</remarks>
 		private void FitToThumbnail() {
@@ -795,6 +788,7 @@ namespace OnTopReplica
 				Location = new Point(Location.X, Location.Y + diffHeight / 2);
 			}
 		}
+         * */
 
         #endregion
 

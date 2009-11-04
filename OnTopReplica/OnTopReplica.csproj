@@ -98,6 +98,9 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AspectRatioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ClickThroughLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -255,7 +258,6 @@
     <None Include="Assets\flag_ita.png" />
     <Content Include="Assets\icon.ico" />
     <None Include="OnTopReplica_TemporaryKey.pfx" />
-    <None Include="Resources\25.png" />
     <None Include="Assets\x-oblique.png" />
     <None Include="Assets\xiao_up.png" />
     <None Include="Assets\xiao_down.png" />
