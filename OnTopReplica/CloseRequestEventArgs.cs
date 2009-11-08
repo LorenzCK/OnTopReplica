@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
 
 namespace OnTopReplica {
 	public class CloseRequestEventArgs : EventArgs {
 
-		public CloseRequestEventArgs(WindowHandle lastHandle) {
-			CurrentWindowHandle = lastHandle;
-		}
-
-		public WindowHandle CurrentWindowHandle { get; set; }
+		public WindowHandle LastWindowHandle { get; set; }
+        public Rectangle? LastRegion { get; set; }
 
 	}
 }
