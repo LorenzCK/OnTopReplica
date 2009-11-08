@@ -9,7 +9,7 @@ using System.Drawing;
 namespace OnTopReplica {
 
     /// <summary>
-    /// Form that automatically keeps a certain aspect ratio and resizes withour flickering.
+    /// Form that automatically keeps a certain aspect ratio and resizes without flickering.
     /// </summary>
     public class AspectRatioForm : GlassForm {
 

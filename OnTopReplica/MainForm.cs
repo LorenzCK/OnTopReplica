@@ -76,11 +76,11 @@ namespace OnTopReplica
 
         void FullscreenForm_CloseRequest(object sender, CloseRequestEventArgs e) {
 			if (_isFullscreen) {
-				//Update handle to match the one selected in fullscreen mode
-				if (_lastWindowHandle != e.CurrentWindowHandle) {
-					_lastWindowHandle = e.CurrentWindowHandle;
-					_thumbnailPanel.SetThumbnailHandle(e.CurrentWindowHandle);
-				}
+                var regionContainer = (e.LastRegion != null) ?
+                    new StoredRegion { Rect = e.LastRegion.Value } : null;
+                
+                //Update handle to match the one selected in fullscreen mode
+                ThumbnailSet(e.LastWindowHandle, regionContainer);
 
 				ToggleFullscreen();
 			}
@@ -439,6 +439,9 @@ namespace OnTopReplica
 		}
 
         void Menu_Windows_itemclick(object sender, EventArgs e) {
+            //Insure the menu is closed
+            menuContext.Close();
+
             //Get clicked item and window index from tag
             ToolStripItem tsi = (ToolStripItem)sender;
 
@@ -629,7 +632,7 @@ namespace OnTopReplica
 			//Refresh window list
 			_windowManager.Refresh(WindowManager.EnumerationMode.TaskWindows);
 
-			WindowListHelper.PopulateMenu(_windowManager, menuWindows, _lastWindowHandle, new EventHandler(Menu_Windows_itemclick));
+			WindowListHelper.PopulateMenu(this, _windowManager, menuWindows, _lastWindowHandle, new EventHandler(Menu_Windows_itemclick));
 		}
 
 		private void Menu_Chrome_click(object sender, EventArgs e) {
