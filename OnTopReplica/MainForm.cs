@@ -70,6 +70,10 @@ namespace OnTopReplica
 			Asztal.Szótár.NativeToolStripRenderer.SetToolStripRenderer(new Control[] {
 				menuContext, menuWindows, menuOpacity, menuIconContext, menuResize, menuLanguages
 			});
+
+            //Hook keyboard handler
+            this.KeyUp += new KeyEventHandler(Common_Key);
+            this.KeyPreview = true;
         }
 
         #region Child forms & controls events
@@ -222,37 +226,6 @@ namespace OnTopReplica
             }
         }
 
-		/*protected override void OnResize(EventArgs e) {
-			if (RegionBoxShowing) {
-                //Adapt glass margins on region box
-				this.GlassMargins = new Margins(ClientSize.Width - _regionBox.Width, 0, 0, 0);
-			}
-
-			/*if (RegionBoxShowing) {
-				_thumbnailPanel.Size = new Size(ClientSize.Width - cRegionWithPadding, ClientSize.Height);
-				_regionBox.Size = new Size(cRegionBoxWidth, ClientSize.Height);
-				_regionBox.Location = new Point(ClientSize.Width - cRegionBoxWidth, 0);
-
-				this.GlassMargins = new Margins(ClientSize.Width - cRegionBoxWidth + _regionBox.Padding.Left, _regionBox.Padding.Right, _regionBox.Padding.Top, _regionBox.Padding.Bottom);
-			}
-			else {
-				//Fill client with thumbnail
-				_thumbnailPanel.Size = ClientSize;
-				_regionBox.Location = new Point(ClientSize.Width, 0);
-
-				this.GlassMargins = new Margins(-1);
-			}*/
-        /*
-			base.OnResize(e);
-		}*/
-
-		/*protected override void OnResizeEnd(EventArgs e) {
-			base.OnResizeEnd(e);
-
-			if (Settings.Default.AutoFitOnResize && !RegionBoxShowing)
-				FitToThumbnail();
-		}*/
-
 		protected override void OnShown(EventArgs e) {
             base.OnShown(e);
 
@@ -303,15 +276,6 @@ namespace OnTopReplica
 			this.GlassMargins = new VistaControls.Dwm.Margins(-1);
 			SetGlass(Settings.Default.UseGlass);
 		}
-
-        protected override void OnKeyUp(KeyEventArgs e) {
-            if (e.KeyCode == Keys.Enter && e.Modifiers == Keys.Alt) {
-                e.Handled = true;
-                ToggleFullscreen();
-            }
-
-            base.OnKeyUp(e);
-        }
 
 		#endregion
 
@@ -663,6 +627,31 @@ namespace OnTopReplica
 				ToggleFullscreen();
 		}
 
+        void Common_Key(object sender, KeyEventArgs e) {
+            if (e.Modifiers == Keys.Alt) {
+                if (e.KeyCode == Keys.Enter) {
+                    e.Handled = true;
+                    ToggleFullscreen();
+                }
+
+                else if (e.KeyCode == Keys.D1 || e.KeyCode == Keys.NumPad1) {
+                    FitToThumbnail(0.25);
+                }
+
+                else if (e.KeyCode == Keys.D2 || e.KeyCode == Keys.NumPad2) {
+                    FitToThumbnail(0.5);
+                }
+
+                else if (e.KeyCode == Keys.D3 || e.KeyCode == Keys.NumPad3 || e.KeyCode == Keys.D0 || e.KeyCode == Keys.NumPad0) {
+                    FitToThumbnail(1.0);
+                }
+
+                else if (e.KeyCode == Keys.D4 || e.KeyCode == Keys.NumPad4) {
+                    FitToThumbnail(2.0);
+                }
+            }
+        }
+
 		#endregion
 
 		#region Fullscreen
@@ -776,7 +765,7 @@ namespace OnTopReplica
 
 				Size fittedSize = new Size((int)(originalSize.Width * p), (int)(originalSize.Height * p));
 
-				ClientSize = fittedSize;
+				this.ClientSize = fittedSize;
 			}
 			catch (Exception ex) {
 				ThumbnailError(ex, false, Strings.ErrorUnableToFit);
