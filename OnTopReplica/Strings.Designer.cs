@@ -445,6 +445,24 @@ namespace OnTopReplica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keep always on top.
+        /// </summary>
+        internal static string FullscreenAlwaysOnTop {
+            get {
+                return ResourceManager.GetString("FullscreenAlwaysOnTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnTopReplica fullscreen.
+        /// </summary>
+        internal static string FullscreenTitle {
+            get {
+                return ResourceManager.GetString("FullscreenTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Homepage: www.codeplex.com/ontopreplica..
         /// </summary>
         internal static string Homepage {

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using VistaControls.TaskDialog;
+using OnTopReplica.Properties;
 
 namespace OnTopReplica {
 
@@ -15,6 +16,7 @@ namespace OnTopReplica {
             InitializeComponent();
 
             _thumbnail.GlassMode = true;
+            this.TopMost = Settings.Default.FullscreenAlwaysOnTop;
 
             //Set native renderer on context menu
             Asztal.Szótár.NativeToolStripRenderer.SetToolStripRenderer(new Control[] {
@@ -65,6 +67,8 @@ namespace OnTopReplica {
                 _thumbnail.ShowRegion = value;
             }
         }
+
+        #region Event handling
 
         public event EventHandler<CloseRequestEventArgs> CloseRequest;
 
@@ -132,6 +136,10 @@ namespace OnTopReplica {
             base.OnKeyUp(e);
         }
 
+        #endregion
+
+        #region Click through
+
         bool _clickThrough = false;
 
         public bool ClickThrough {
@@ -158,8 +166,12 @@ namespace OnTopReplica {
             base.WndProc(ref m);
         }
 
-        private void Menu_Quit_click(object sender, EventArgs e) {
-            OnCloseRequest();
+        #endregion
+
+        #region Menus
+
+        private void Menu_opening(object sender, CancelEventArgs e) {
+            alwaysOnTopToolStripMenuItem.Checked = Settings.Default.FullscreenAlwaysOnTop;
         }
 
         private void Menu_Windows_opening(object sender, EventArgs e) {
@@ -198,6 +210,18 @@ namespace OnTopReplica {
                 OnCloseRequest();
             }
         }
+
+        private void Menu_AlwaysOnTop_click(object sender, EventArgs e) {
+            //Switch topmost behavior and store
+            this.TopMost = Settings.Default.FullscreenAlwaysOnTop
+                = !Settings.Default.FullscreenAlwaysOnTop;
+        }
+
+        private void Menu_Quit_click(object sender, EventArgs e) {
+            OnCloseRequest();
+        }
+
+        #endregion
 
     }
 
