@@ -531,4 +531,10 @@ a:hover {
   <data name="MenuWindowsWholeRegion" xml:space="preserve">
     <value>- intera -</value>
   </data>
+  <data name="FullscreenAlwaysOnTop" xml:space="preserve">
+    <value>Mantieni in primo piano</value>
+  </data>
+  <data name="FullscreenTitle" xml:space="preserve">
+    <value>OnTopReplica a pieno schermo</value>
+  </data>
 </root>

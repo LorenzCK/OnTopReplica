@@ -31,6 +31,7 @@
             this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitFullscreenModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._thumbnail = new OnTopReplica.ThumbnailPanel();
+            this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContext.SuspendLayout();
             this.menuWindows.SuspendLayout();
             this.SuspendLayout();
@@ -39,9 +40,11 @@
             // 
             this.menuContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.windowsToolStripMenuItem,
+            this.alwaysOnTopToolStripMenuItem,
             this.quitFullscreenModeToolStripMenuItem});
             this.menuContext.Name = "contextMenuStrip1";
-            this.menuContext.Size = new System.Drawing.Size(186, 48);
+            this.menuContext.Size = new System.Drawing.Size(186, 92);
+            this.menuContext.Opening += new System.ComponentModel.CancelEventHandler(this.Menu_opening);
             // 
             // windowsToolStripMenuItem
             // 
@@ -91,6 +94,13 @@
             this._thumbnail.Size = new System.Drawing.Size(284, 264);
             this._thumbnail.TabIndex = 0;
             // 
+            // alwaysOnTopToolStripMenuItem
+            // 
+            this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
+            this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.alwaysOnTopToolStripMenuItem.Text = Strings.FullscreenAlwaysOnTop;
+            this.alwaysOnTopToolStripMenuItem.Click += new System.EventHandler(this.Menu_AlwaysOnTop_click);
+            // 
             // FullscreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -102,7 +112,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FullscreenForm";
-            this.Text = "OnTopReplica Fullscreen";
+            this.Text = Strings.FullscreenTitle;
             this.TransparencyKey = System.Drawing.Color.Black;
             this.menuContext.ResumeLayout(false);
             this.menuWindows.ResumeLayout(false);
@@ -118,5 +128,6 @@
 		private System.Windows.Forms.ToolStripMenuItem quitFullscreenModeToolStripMenuItem;
 		private System.Windows.Forms.ContextMenuStrip menuWindows;
 		private System.Windows.Forms.ToolStripMenuItem noneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem alwaysOnTopToolStripMenuItem;
 	}
 }
