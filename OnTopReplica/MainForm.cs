@@ -11,7 +11,6 @@ namespace OnTopReplica
     public partial class MainForm : AspectRatioForm
     {
         //Visualization status
-        byte _lastOpacity = 255;
 		bool _clickForwarding = false;
 
 		//GUI
@@ -80,13 +79,7 @@ namespace OnTopReplica
 
         void FullscreenForm_CloseRequest(object sender, CloseRequestEventArgs e) {
 			if (_isFullscreen) {
-                var regionContainer = (e.LastRegion != null) ?
-                    new StoredRegion { Rect = e.LastRegion.Value } : null;
-                
-                //Update handle to match the one selected in fullscreen mode
-                ThumbnailSet(e.LastWindowHandle, regionContainer);
-
-				ToggleFullscreen();
+                ToggleFullscreen();
 			}
 		}
 
@@ -320,6 +313,7 @@ namespace OnTopReplica
 				Size = MinimumSize;
 
 				Show();
+                _fullscreenForm.Hide();
 			}
 		}
 
@@ -458,7 +452,7 @@ namespace OnTopReplica
 			};
 
 			foreach (ToolStripMenuItem i in items) {
-				if ((int)i.Tag == _lastOpacity)
+				if ((double)i.Tag == this.Opacity)
 					i.Checked = true;
 				else
 					i.Checked = false;
@@ -474,13 +468,7 @@ namespace OnTopReplica
 
             if (tsi != null) {
                 //Get opacity from the tag
-                int op = (int)tsi.Tag;
-
-                //Store new opacity
-                _lastOpacity = (byte)op;
-
-                //Set the window's opacity
-                this.Opacity = (double)op / 255.0;
+                this.Opacity = (double)tsi.Tag;
             }
         }
 
@@ -496,9 +484,7 @@ namespace OnTopReplica
 			if (!_thumbnailPanel.IsShowingThumbnail)
 				e.Cancel = true;
 
-			//autofitOnResizeToolStripMenuItem.Checked = Settings.Default.AutoFitOnResize;
 			recallLastPositionAndSizeToolStripMenuItem.Checked = Settings.Default.StoreWindowPosition;
-			clickThroughToolStripMenuItem.Checked = Settings.Default.ClickThrough;
 		}
 
 		private void Menu_Resize_Double(object sender, EventArgs e) {
@@ -520,14 +506,6 @@ namespace OnTopReplica
 		private void Menu_Resize_Fullscreen(object sender, EventArgs e) {
 			ToggleFullscreen();
 		}
-
-		private void Menu_Resize_ClickThrough(object sender, EventArgs e) {
-			Settings.Default.ClickThrough = !Settings.Default.ClickThrough;
-		}
-
-		/*private void Menu_Resize_Autofit_click(object sender, EventArgs e) {
-			Settings.Default.AutoFitOnResize = !Settings.Default.AutoFitOnResize;
-		}*/
 
 		private void Menu_Position_Recall_click(object sender, EventArgs e) {
 			Settings.Default.StoreWindowPosition = !Settings.Default.StoreWindowPosition;
@@ -660,9 +638,22 @@ namespace OnTopReplica
 		
 		private void ToggleFullscreen() {
 			if (_isFullscreen) {
-				_fullscreenForm.Visible = false;
+                //Update thumbnail
+                if (_fullscreenForm.LastWindowHandle != null) {
+                    StoredRegion region = null;
+                    if(_fullscreenForm.ShowRegion)
+                        region = new StoredRegion { Rect = _fullscreenForm.ShownRegion };
 
-				this.Visible = true;
+                    ThumbnailSet(_fullscreenForm.LastWindowHandle, region);
+                }
+                else
+                    ThumbnailUnset();
+
+                //Update properties
+                this.Opacity = _fullscreenForm.Opacity;
+
+                _fullscreenForm.Hide();
+                this.Show();
 			}
 			else {
 				if (_lastWindowHandle == null) {
@@ -670,42 +661,16 @@ namespace OnTopReplica
 					return;
 				}
 
-				CheckFirstTimeClickThrough();
-
 				_fullscreenForm.DisplayFullscreen(Screen.FromControl(this), _lastWindowHandle);
 				_fullscreenForm.ShownRegion = _thumbnailPanel.ShownRegion;
 				_fullscreenForm.ShowRegion = _thumbnailPanel.ShowRegion;
 				_fullscreenForm.Opacity = this.Opacity;
 
-				//Enable click through if it is enabled and opacity is less than 255 (opaque)
-				_fullscreenForm.ClickThrough = (Settings.Default.ClickThrough && _lastOpacity < 255);
-
-				_fullscreenForm.Visible = true;
-
-				this.Visible = false;
+                _fullscreenForm.Show();
+                this.Hide();
 			}
 
 			_isFullscreen = !_isFullscreen;
-		}
-
-		/// <summary>Check if the user uses click-through for the first time and asks confirmation.</summary>
-		private void CheckFirstTimeClickThrough() {
-			if (Settings.Default.FirstTimeClickThrough && _lastOpacity < 255) {
-				//Alert the user about click through
-				TaskDialog dlg = new TaskDialog(Strings.InfoClickThrough, Strings.InfoClickThroughTitle, Strings.InfoClickThroughInformation);
-				dlg.CommonIcon = TaskDialogIcon.Information;
-				dlg.ExpandedControlText = Strings.ErrorDetailButton;
-				dlg.ExpandedInformation = Strings.InfoClickThroughDetails;
-				dlg.UseCommandLinks = true;
-				dlg.CustomButtons = new CustomButton[] {
-					new CustomButton(Result.Yes, Strings.InfoClickThroughOk),
-					new CustomButton(Result.No, Strings.InfoClickThroughNo)
-				};
-
-				Settings.Default.ClickThrough = (dlg.Show(this).CommonButton == Result.Yes);
-			}
-
-			Settings.Default.FirstTimeClickThrough = false;
 		}
 
 		#endregion
