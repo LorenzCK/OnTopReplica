@@ -10,25 +10,21 @@ using OnTopReplica.Properties;
 
 namespace OnTopReplica {
 
-    public partial class FullscreenForm : Form {
+    partial class FullscreenForm : Form {
 
         public FullscreenForm() {
             InitializeComponent();
 
             _thumbnail.GlassMode = true;
-            this.TopMost = Settings.Default.FullscreenAlwaysOnTop;
+
+            //Set mode
+            Mode = (Settings.Default.FullscreenAlwaysOnTop) ? FullscreenMode.AlwaysOnTop : FullscreenMode.Normal;
 
             //Set native renderer on context menu
             Asztal.Szótár.NativeToolStripRenderer.SetToolStripRenderer(new Control[] {
 				menuContext, menuWindows
 			});
-
-            /*_cursorTimer = new Timer();
-            _cursorTimer.Interval = 1000;
-            _cursorTimer.Tick += new EventHandler(_cursorTimer_Tick);*/
         }
-
-        //Timer _cursorTimer;
 
         WindowHandle _lastHandle;
         WindowManager _manager = new WindowManager(WindowManager.EnumerationMode.TaskWindows);
@@ -68,6 +64,12 @@ namespace OnTopReplica {
             }
         }
 
+        public WindowHandle LastWindowHandle {
+            get {
+                return _lastHandle;
+            }
+        }
+
         #region Event handling
 
         public event EventHandler<CloseRequestEventArgs> CloseRequest;
@@ -79,43 +81,6 @@ namespace OnTopReplica {
                     LastRegion = (_thumbnail.ShowRegion) ? (Rectangle?)_thumbnail.ShownRegion : null
                 });
         }
-
-        /*protected override void OnActivated(EventArgs e) {
-            _cursorTimer.Start();
-
-            base.OnActivated(e);
-        }
-
-        protected override void OnDeactivate(EventArgs e) {
-            Cursor.Show();
-            _cursorTimer.Stop();
-
-            base.OnDeactivate(e);
-        }
-
-        Point? _lastPos = null;
-
-        protected override void OnMouseMove(MouseEventArgs e) {
-            if (_lastPos.HasValue) {
-                int distance = 0;
-                distance += Math.Abs(_lastPos.Value.X - e.X);
-                distance += Math.Abs(_lastPos.Value.Y - e.Y);
-
-                if (distance > 8) {
-                    Cursor.Show();
-                    _cursorTimer.Start();
-                }
-            }
-
-            _lastPos = e.Location;
-
-            base.OnMouseMove(e);
-        }
-
-        void _cursorTimer_Tick(object sender, EventArgs e) {
-            Cursor.Hide();
-            _cursorTimer.Stop();
-        }*/
 
         protected override void OnDoubleClick(EventArgs e) {
             OnCloseRequest();
@@ -136,43 +101,48 @@ namespace OnTopReplica {
             base.OnKeyUp(e);
         }
 
-        #endregion
+        protected override void OnClosing(CancelEventArgs e) {
+            base.OnClosing(e);
 
-        #region Click through
-
-        bool _clickThrough = false;
-
-        public bool ClickThrough {
-            get {
-                return _clickThrough;
-            }
-            set {
-                _clickThrough = value;
-
-                this.TransparencyKey = (value) ? Color.Black : Color.White;
-                this.Invalidate();
-            }
+            //Never close
+            OnCloseRequest();
+            e.Cancel = true;
         }
 
-        const int WM_NCHITTEST = 0x0084;
-        const int HTTRANSPARENT = -1;
+        protected override void  OnActivated(EventArgs e) {
+            base.OnActivated(e);
 
-        protected override void WndProc(ref Message m) {
-            if (_clickThrough && m.Msg == WM_NCHITTEST) {
-                m.Result = new IntPtr(HTTRANSPARENT);
-                return;
+            //Disable "click through" on show: this prevents case in which the user
+            //cannot return to standard mode closing and re-opening the fullscreen mode
+            if (Mode == FullscreenMode.ClickThrough)
+                Mode = (Settings.Default.FullscreenAlwaysOnTop) ? FullscreenMode.AlwaysOnTop : FullscreenMode.Normal;
+        }
+
+        #endregion
+
+        #region Mode
+
+        FullscreenMode _mode;
+
+        public FullscreenMode Mode {
+            get {
+                return _mode;
             }
+            set {
+                _mode = value;
+                Settings.Default.FullscreenAlwaysOnTop = (value != FullscreenMode.Normal);
 
-            base.WndProc(ref m);
+                //Top most if always on top or click through
+                this.TopMost = (value != FullscreenMode.Normal);
+                this.TransparencyKey = (value == FullscreenMode.ClickThrough) ? Color.Black : Color.White;
+
+                this.Invalidate();
+            }
         }
 
         #endregion
 
         #region Menus
-
-        private void Menu_opening(object sender, CancelEventArgs e) {
-            alwaysOnTopToolStripMenuItem.Checked = Settings.Default.FullscreenAlwaysOnTop;
-        }
 
         private void Menu_Windows_opening(object sender, EventArgs e) {
             _manager.Refresh(WindowManager.EnumerationMode.TaskWindows);
@@ -211,10 +181,48 @@ namespace OnTopReplica {
             }
         }
 
-        private void Menu_AlwaysOnTop_click(object sender, EventArgs e) {
-            //Switch topmost behavior and store
-            this.TopMost = Settings.Default.FullscreenAlwaysOnTop
-                = !Settings.Default.FullscreenAlwaysOnTop;
+        private void Menu_Mode_opening(object sender, EventArgs e) {
+            menuModeStandard.Checked = (Mode == FullscreenMode.Normal);
+            menuModeOnTop.Checked = (Mode == FullscreenMode.AlwaysOnTop);
+            menuModeClickThrough.Checked = (Mode == FullscreenMode.ClickThrough);
+        }
+
+        private void Menu_Mode_standard(object sender, EventArgs e) {
+            Mode = FullscreenMode.Normal;
+        }
+
+        private void Menu_Mode_ontop(object sender, EventArgs e) {
+            Mode = FullscreenMode.AlwaysOnTop;
+        }
+
+        private void Menu_Mode_clickthrough(object sender, EventArgs e) {
+            if (!CheckFirstTimeClickThrough())
+                return;
+
+            Mode = FullscreenMode.ClickThrough;
+        }
+
+        private void Menu_Opacity_100(object sender, EventArgs e) {
+            this.Opacity = 1.0;
+        }
+
+        private void Menu_Opacity_75(object sender, EventArgs e) {
+            this.Opacity = 0.75;
+        }
+
+        private void Menu_Opacity_50(object sender, EventArgs e) {
+            this.Opacity = 0.5;
+        }
+
+        private void Menu_Opacity_25(object sender, EventArgs e) {
+            this.Opacity = 0.25;
+        }
+
+        private void Menu_Opacity_opening(object sender, EventArgs e) {
+            menuOpacity100.Checked = (Opacity == 1.0);
+            menuOpacity75.Checked = (Opacity == 0.75);
+            menuOpacity50.Checked = (Opacity == 0.5);
+            menuOpacity25.Checked = (Opacity == 0.25);
         }
 
         private void Menu_Quit_click(object sender, EventArgs e) {
@@ -222,6 +230,31 @@ namespace OnTopReplica {
         }
 
         #endregion
+
+        /// <summary>Check if the user uses click-through for the first time and asks confirmation.</summary>
+        /// <returns>Returns whether to switch to click through mode or not.</returns>
+        private bool CheckFirstTimeClickThrough() {
+            if (Settings.Default.FirstTimeClickThrough) {
+                //Alert the user about click through
+                TaskDialog dlg = new TaskDialog(Strings.InfoClickThrough, Strings.InfoClickThroughTitle, Strings.InfoClickThroughInformation);
+                dlg.CommonIcon = TaskDialogIcon.Information;
+                dlg.ExpandedControlText = Strings.ErrorDetailButton;
+                dlg.ExpandedInformation = Strings.InfoClickThroughDetails;
+                dlg.UseCommandLinks = true;
+                dlg.CustomButtons = new CustomButton[] {
+					new CustomButton(Result.Yes, Strings.InfoClickThroughOk),
+					new CustomButton(Result.No, Strings.InfoClickThroughNo)
+				};
+
+                var result = dlg.Show(this);
+                return result.CommonButton == Result.Yes;
+
+                //Settings.Default.ClickThrough = (dlg.Show(this).CommonButton == Result.Yes);
+            }
+
+            Settings.Default.FirstTimeClickThrough = false;
+            return true;
+        }
 
     }
 

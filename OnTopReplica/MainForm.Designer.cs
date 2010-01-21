@@ -50,7 +50,6 @@
             this.quarterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.fullscreenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.clickThroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topLeftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topRightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -171,7 +170,7 @@
             this.menuOpacity.OwnerItem = this.menuContextOpacity;
             this.menuOpacity.ShowCheckMargin = true;
             this.menuOpacity.ShowImageMargin = false;
-            this.menuOpacity.Size = new System.Drawing.Size(154, 120);
+            this.menuOpacity.Size = new System.Drawing.Size(154, 142);
             this.menuOpacity.Opening += new System.ComponentModel.CancelEventHandler(this.Menu_Opacity_opening);
             // 
             // toolStripMenuItem1
@@ -180,7 +179,7 @@
             this.toolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(153, 22);
-            this.toolStripMenuItem1.Tag = 255;
+            this.toolStripMenuItem1.Tag = 1.0;
             this.toolStripMenuItem1.Text = global::OnTopReplica.Strings.MenuOp100;
             this.toolStripMenuItem1.ToolTipText = global::OnTopReplica.Strings.MenuOp100TT;
             this.toolStripMenuItem1.Click += new System.EventHandler(this.Menu_Opacity_click);
@@ -189,7 +188,7 @@
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(153, 22);
-            this.toolStripMenuItem2.Tag = 190;
+            this.toolStripMenuItem2.Tag = 0.75;
             this.toolStripMenuItem2.Text = global::OnTopReplica.Strings.MenuOp75;
             this.toolStripMenuItem2.ToolTipText = global::OnTopReplica.Strings.MenuOp75TT;
             this.toolStripMenuItem2.Click += new System.EventHandler(this.Menu_Opacity_click);
@@ -198,7 +197,7 @@
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(153, 22);
-            this.toolStripMenuItem3.Tag = 128;
+            this.toolStripMenuItem3.Tag = 0.5;
             this.toolStripMenuItem3.Text = global::OnTopReplica.Strings.MenuOp50;
             this.toolStripMenuItem3.ToolTipText = global::OnTopReplica.Strings.MenuOp50TT;
             this.toolStripMenuItem3.Click += new System.EventHandler(this.Menu_Opacity_click);
@@ -207,7 +206,7 @@
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(153, 22);
-            this.toolStripMenuItem4.Tag = 64;
+            this.toolStripMenuItem4.Tag = 0.25;
             this.toolStripMenuItem4.Text = global::OnTopReplica.Strings.MenuOp25;
             this.toolStripMenuItem4.ToolTipText = global::OnTopReplica.Strings.MenuOp25TT;
             this.toolStripMenuItem4.Click += new System.EventHandler(this.Menu_Opacity_click);
@@ -243,11 +242,9 @@
             this.halfToolStripMenuItem1,
             this.quarterToolStripMenuItem1,
             this.toolStripSeparator3,
-            this.fullscreenToolStripMenuItem1,
-            this.clickThroughToolStripMenuItem});
+            this.fullscreenToolStripMenuItem1});
             this.menuResize.Name = "menuResize";
-            this.menuResize.OwnerItem = this.resizeToolStripMenuItem;
-            this.menuResize.Size = new System.Drawing.Size(165, 164);
+            this.menuResize.Size = new System.Drawing.Size(165, 120);
             this.menuResize.Opening += new System.ComponentModel.CancelEventHandler(this.Menu_Resize_opening);
             // 
             // doubleToolStripMenuItem1
@@ -289,16 +286,6 @@
             this.fullscreenToolStripMenuItem1.Size = new System.Drawing.Size(164, 22);
             this.fullscreenToolStripMenuItem1.Text = global::OnTopReplica.Strings.MenuFitFullscreen;
             this.fullscreenToolStripMenuItem1.Click += new System.EventHandler(this.Menu_Resize_Fullscreen);
-            // 
-            // clickThroughToolStripMenuItem
-            // 
-            this.clickThroughToolStripMenuItem.Checked = true;
-            this.clickThroughToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.clickThroughToolStripMenuItem.Name = "clickThroughToolStripMenuItem";
-            this.clickThroughToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.clickThroughToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuResizeClickThrough;
-            this.clickThroughToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuResizeClickThroughTT;
-            this.clickThroughToolStripMenuItem.Click += new System.EventHandler(this.Menu_Resize_ClickThrough);
             // 
             // dockToolStripMenuItem
             // 
@@ -530,8 +517,7 @@
 		private System.Windows.Forms.ToolStripMenuItem halfToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem quarterToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem fullscreenToolStripMenuItem1;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-		private System.Windows.Forms.ToolStripMenuItem clickThroughToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripMenuItem forwardClicksToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
 		private System.Windows.Forms.ContextMenuStrip menuLanguages;

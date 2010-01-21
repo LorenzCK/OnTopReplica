@@ -29,9 +29,17 @@
             this.windowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuWindows = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuModeStandard = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuModeOnTop = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuModeClickThrough = new System.Windows.Forms.ToolStripMenuItem();
+            this.opacityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOpacity100 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOpacity75 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOpacity50 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOpacity25 = new System.Windows.Forms.ToolStripMenuItem();
             this.quitFullscreenModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._thumbnail = new OnTopReplica.ThumbnailPanel();
-            this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContext.SuspendLayout();
             this.menuWindows.SuspendLayout();
             this.SuspendLayout();
@@ -40,11 +48,11 @@
             // 
             this.menuContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.windowsToolStripMenuItem,
-            this.alwaysOnTopToolStripMenuItem,
+            this.modeToolStripMenuItem,
+            this.opacityToolStripMenuItem,
             this.quitFullscreenModeToolStripMenuItem});
             this.menuContext.Name = "contextMenuStrip1";
-            this.menuContext.Size = new System.Drawing.Size(186, 92);
-            this.menuContext.Opening += new System.ComponentModel.CancelEventHandler(this.Menu_opening);
+            this.menuContext.Size = new System.Drawing.Size(186, 114);
             // 
             // windowsToolStripMenuItem
             // 
@@ -70,6 +78,79 @@
             this.noneToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.noneToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuWindowsNone;
             // 
+            // modeToolStripMenuItem
+            // 
+            this.modeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuModeStandard,
+            this.menuModeOnTop,
+            this.menuModeClickThrough});
+            this.modeToolStripMenuItem.Name = "modeToolStripMenuItem";
+            this.modeToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.modeToolStripMenuItem.Text = "Mode";
+            this.modeToolStripMenuItem.DropDownOpening += new System.EventHandler(this.Menu_Mode_opening);
+            // 
+            // menuModeStandard
+            // 
+            this.menuModeStandard.Name = "menuModeStandard";
+            this.menuModeStandard.Size = new System.Drawing.Size(152, 22);
+            this.menuModeStandard.Text = "Standard";
+            this.menuModeStandard.Click += new System.EventHandler(this.Menu_Mode_standard);
+            // 
+            // menuModeOnTop
+            // 
+            this.menuModeOnTop.Name = "menuModeOnTop";
+            this.menuModeOnTop.Size = new System.Drawing.Size(152, 22);
+            this.menuModeOnTop.Text = "Always on top";
+            this.menuModeOnTop.Click += new System.EventHandler(this.Menu_Mode_ontop);
+            // 
+            // menuModeClickThrough
+            // 
+            this.menuModeClickThrough.Name = "menuModeClickThrough";
+            this.menuModeClickThrough.Size = new System.Drawing.Size(152, 22);
+            this.menuModeClickThrough.Text = "Click through";
+            this.menuModeClickThrough.Click += new System.EventHandler(this.Menu_Mode_clickthrough);
+            // 
+            // opacityToolStripMenuItem
+            // 
+            this.opacityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuOpacity100,
+            this.menuOpacity75,
+            this.menuOpacity50,
+            this.menuOpacity25});
+            this.opacityToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.window_opacity16;
+            this.opacityToolStripMenuItem.Name = "opacityToolStripMenuItem";
+            this.opacityToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.opacityToolStripMenuItem.Text = "Opacity";
+            this.opacityToolStripMenuItem.DropDownOpening += new System.EventHandler(this.Menu_Opacity_opening);
+            // 
+            // menuOpacity100
+            // 
+            this.menuOpacity100.Name = "menuOpacity100";
+            this.menuOpacity100.Size = new System.Drawing.Size(153, 22);
+            this.menuOpacity100.Text = "100% (opaque)";
+            this.menuOpacity100.Click += new System.EventHandler(this.Menu_Opacity_100);
+            // 
+            // menuOpacity75
+            // 
+            this.menuOpacity75.Name = "menuOpacity75";
+            this.menuOpacity75.Size = new System.Drawing.Size(153, 22);
+            this.menuOpacity75.Text = "75%";
+            this.menuOpacity75.Click += new System.EventHandler(this.Menu_Opacity_75);
+            // 
+            // menuOpacity50
+            // 
+            this.menuOpacity50.Name = "menuOpacity50";
+            this.menuOpacity50.Size = new System.Drawing.Size(153, 22);
+            this.menuOpacity50.Text = "50%";
+            this.menuOpacity50.Click += new System.EventHandler(this.Menu_Opacity_50);
+            // 
+            // menuOpacity25
+            // 
+            this.menuOpacity25.Name = "menuOpacity25";
+            this.menuOpacity25.Size = new System.Drawing.Size(153, 22);
+            this.menuOpacity25.Text = "25%";
+            this.menuOpacity25.Click += new System.EventHandler(this.Menu_Opacity_25);
+            // 
             // quitFullscreenModeToolStripMenuItem
             // 
             this.quitFullscreenModeToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.close_new;
@@ -94,13 +175,6 @@
             this._thumbnail.Size = new System.Drawing.Size(284, 264);
             this._thumbnail.TabIndex = 0;
             // 
-            // alwaysOnTopToolStripMenuItem
-            // 
-            this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
-            this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.alwaysOnTopToolStripMenuItem.Text = Strings.FullscreenAlwaysOnTop;
-            this.alwaysOnTopToolStripMenuItem.Click += new System.EventHandler(this.Menu_AlwaysOnTop_click);
-            // 
             // FullscreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -112,8 +186,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FullscreenForm";
-            this.Text = Strings.FullscreenTitle;
-            this.TransparencyKey = System.Drawing.Color.Black;
+            this.Text = "OnTopReplica fullscreen";
             this.menuContext.ResumeLayout(false);
             this.menuWindows.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -127,7 +200,15 @@
 		private System.Windows.Forms.ToolStripMenuItem windowsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem quitFullscreenModeToolStripMenuItem;
 		private System.Windows.Forms.ContextMenuStrip menuWindows;
-		private System.Windows.Forms.ToolStripMenuItem noneToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem alwaysOnTopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem noneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuModeStandard;
+        private System.Windows.Forms.ToolStripMenuItem menuModeOnTop;
+        private System.Windows.Forms.ToolStripMenuItem menuModeClickThrough;
+        private System.Windows.Forms.ToolStripMenuItem opacityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuOpacity100;
+        private System.Windows.Forms.ToolStripMenuItem menuOpacity75;
+        private System.Windows.Forms.ToolStripMenuItem menuOpacity50;
+        private System.Windows.Forms.ToolStripMenuItem menuOpacity25;
 	}
 }
