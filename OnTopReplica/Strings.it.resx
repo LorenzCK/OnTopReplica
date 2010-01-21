@@ -531,10 +531,28 @@ a:hover {
   <data name="MenuWindowsWholeRegion" xml:space="preserve">
     <value>- intera -</value>
   </data>
-  <data name="FullscreenAlwaysOnTop" xml:space="preserve">
-    <value>Mantieni in primo piano</value>
-  </data>
   <data name="FullscreenTitle" xml:space="preserve">
     <value>OnTopReplica a pieno schermo</value>
+  </data>
+  <data name="FullscreenMode" xml:space="preserve">
+    <value>Modalità</value>
+  </data>
+  <data name="FullscreenModeAlwaysOnTop" xml:space="preserve">
+    <value>Sempre in cima</value>
+  </data>
+  <data name="FullscreenModeAlwaysOnTopTT" xml:space="preserve">
+    <value>OnTopReplica sarà sempre la finestra sopra a tutte le altre.</value>
+  </data>
+  <data name="FullscreenModeClickThrough" xml:space="preserve">
+    <value>Click through</value>
+  </data>
+  <data name="FullscreenModeClickThroughTT" xml:space="preserve">
+    <value>OnTopReplica si comporterà come uno schermo trasparente, che permette di cliccare sulle finestre al di sotto.</value>
+  </data>
+  <data name="FullscreenModeNormal" xml:space="preserve">
+    <value>Normale</value>
+  </data>
+  <data name="FullscreenModeNormalTT" xml:space="preserve">
+    <value>Si comporta come una finestra normale. Puoi portare altre finestre sopra OnTopReplica.</value>
   </data>
 </root>

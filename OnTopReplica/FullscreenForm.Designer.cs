@@ -86,28 +86,31 @@
             this.menuModeClickThrough});
             this.modeToolStripMenuItem.Name = "modeToolStripMenuItem";
             this.modeToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.modeToolStripMenuItem.Text = "Mode";
+            this.modeToolStripMenuItem.Text = Strings.FullscreenMode;
             this.modeToolStripMenuItem.DropDownOpening += new System.EventHandler(this.Menu_Mode_opening);
             // 
             // menuModeStandard
             // 
             this.menuModeStandard.Name = "menuModeStandard";
             this.menuModeStandard.Size = new System.Drawing.Size(152, 22);
-            this.menuModeStandard.Text = "Standard";
+            this.menuModeStandard.Text = Strings.FullscreenModeNormal;
+            this.menuModeStandard.ToolTipText = Strings.FullscreenModeNormalTT;
             this.menuModeStandard.Click += new System.EventHandler(this.Menu_Mode_standard);
             // 
             // menuModeOnTop
             // 
             this.menuModeOnTop.Name = "menuModeOnTop";
             this.menuModeOnTop.Size = new System.Drawing.Size(152, 22);
-            this.menuModeOnTop.Text = "Always on top";
+            this.menuModeOnTop.Text = Strings.FullscreenModeAlwaysOnTop;
+            this.menuModeOnTop.ToolTipText = Strings.FullscreenModeAlwaysOnTopTT;
             this.menuModeOnTop.Click += new System.EventHandler(this.Menu_Mode_ontop);
             // 
             // menuModeClickThrough
             // 
             this.menuModeClickThrough.Name = "menuModeClickThrough";
             this.menuModeClickThrough.Size = new System.Drawing.Size(152, 22);
-            this.menuModeClickThrough.Text = "Click through";
+            this.menuModeClickThrough.Text = Strings.FullscreenModeClickThrough;
+            this.menuModeClickThrough.ToolTipText = Strings.FullscreenModeClickThroughTT;
             this.menuModeClickThrough.Click += new System.EventHandler(this.Menu_Mode_clickthrough);
             // 
             // opacityToolStripMenuItem
@@ -120,35 +123,39 @@
             this.opacityToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.window_opacity16;
             this.opacityToolStripMenuItem.Name = "opacityToolStripMenuItem";
             this.opacityToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.opacityToolStripMenuItem.Text = "Opacity";
+            this.opacityToolStripMenuItem.Text = Strings.MenuOpacity;
             this.opacityToolStripMenuItem.DropDownOpening += new System.EventHandler(this.Menu_Opacity_opening);
             // 
             // menuOpacity100
             // 
             this.menuOpacity100.Name = "menuOpacity100";
             this.menuOpacity100.Size = new System.Drawing.Size(153, 22);
-            this.menuOpacity100.Text = "100% (opaque)";
+            this.menuOpacity100.Text = Strings.MenuOp100;
+            this.menuOpacity100.ToolTipText = Strings.MenuOp100TT;
             this.menuOpacity100.Click += new System.EventHandler(this.Menu_Opacity_100);
             // 
             // menuOpacity75
             // 
             this.menuOpacity75.Name = "menuOpacity75";
             this.menuOpacity75.Size = new System.Drawing.Size(153, 22);
-            this.menuOpacity75.Text = "75%";
+            this.menuOpacity75.Text = Strings.MenuOp75;
+            this.menuOpacity75.ToolTipText = Strings.MenuOp75TT;
             this.menuOpacity75.Click += new System.EventHandler(this.Menu_Opacity_75);
             // 
             // menuOpacity50
             // 
             this.menuOpacity50.Name = "menuOpacity50";
             this.menuOpacity50.Size = new System.Drawing.Size(153, 22);
-            this.menuOpacity50.Text = "50%";
+            this.menuOpacity50.Text = Strings.MenuOp50;
+            this.menuOpacity50.ToolTipText = Strings.MenuOp50TT;
             this.menuOpacity50.Click += new System.EventHandler(this.Menu_Opacity_50);
             // 
             // menuOpacity25
             // 
             this.menuOpacity25.Name = "menuOpacity25";
             this.menuOpacity25.Size = new System.Drawing.Size(153, 22);
-            this.menuOpacity25.Text = "25%";
+            this.menuOpacity25.Text = Strings.MenuOp25;
+            this.menuOpacity25.ToolTipText = Strings.MenuOp25TT;
             this.menuOpacity25.Click += new System.EventHandler(this.Menu_Opacity_25);
             // 
             // quitFullscreenModeToolStripMenuItem
