@@ -445,11 +445,65 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keep always on top.
+        ///   Looks up a localized string similar to Mode.
         /// </summary>
-        internal static string FullscreenAlwaysOnTop {
+        internal static string FullscreenMode {
             get {
-                return ResourceManager.GetString("FullscreenAlwaysOnTop", resourceCulture);
+                return ResourceManager.GetString("FullscreenMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Always on top.
+        /// </summary>
+        internal static string FullscreenModeAlwaysOnTop {
+            get {
+                return ResourceManager.GetString("FullscreenModeAlwaysOnTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forces OnTopReplica to stay always on top..
+        /// </summary>
+        internal static string FullscreenModeAlwaysOnTopTT {
+            get {
+                return ResourceManager.GetString("FullscreenModeAlwaysOnTopTT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click through.
+        /// </summary>
+        internal static string FullscreenModeClickThrough {
+            get {
+                return ResourceManager.GetString("FullscreenModeClickThrough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnTopReplica will behave like a transparent overlay that lets your clicks through to the windows below..
+        /// </summary>
+        internal static string FullscreenModeClickThroughTT {
+            get {
+                return ResourceManager.GetString("FullscreenModeClickThroughTT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard.
+        /// </summary>
+        internal static string FullscreenModeNormal {
+            get {
+                return ResourceManager.GetString("FullscreenModeNormal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behaves like an ordinary window. You can bring other windows above OnTopReplica..
+        /// </summary>
+        internal static string FullscreenModeNormalTT {
+            get {
+                return ResourceManager.GetString("FullscreenModeNormalTT", resourceCulture);
             }
         }
         
