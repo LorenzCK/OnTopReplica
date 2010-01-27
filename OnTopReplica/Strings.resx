@@ -281,10 +281,10 @@ You must run this application on Windows Vista Home Premium or better.</value>
     <value>Toggles whether OnTopReplica should store its last position and size and use them when it is restarted.</value>
   </data>
   <data name="MenuReduce" xml:space="preserve">
-    <value>Reduce to icon</value>
+    <value>Minimize to tray</value>
   </data>
   <data name="MenuReduceTT" xml:space="preserve">
-    <value>Reduces OnTopReplica to the icon in the tray.</value>
+    <value>Reduces OnTopReplica to an icon in the tray.</value>
   </data>
   <data name="MenuRegion" xml:space="preserve">
     <value>Select region...</value>
@@ -554,5 +554,11 @@ a:hover {
   </data>
   <data name="FullscreenModeNormalTT" xml:space="preserve">
     <value>Behaves like an ordinary window. You can bring other windows above OnTopReplica.</value>
+  </data>
+  <data name="MenuChrome" xml:space="preserve">
+    <value>Chrome</value>
+  </data>
+  <data name="MenuChromeTT" xml:space="preserve">
+    <value>Toggles the display of the window chrome.</value>
   </data>
 </root>

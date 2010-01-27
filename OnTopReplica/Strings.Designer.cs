@@ -702,6 +702,24 @@ namespace OnTopReplica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chrome.
+        /// </summary>
+        internal static string MenuChrome {
+            get {
+                return ResourceManager.GetString("MenuChrome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggles the display of the window chrome..
+        /// </summary>
+        internal static string MenuChromeTT {
+            get {
+                return ResourceManager.GetString("MenuChromeTT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click forwarding.
         /// </summary>
         internal static string MenuClickForwarding {
@@ -981,7 +999,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reduce to icon.
+        ///   Looks up a localized string similar to Minimize to tray.
         /// </summary>
         internal static string MenuReduce {
             get {
@@ -990,7 +1008,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reduces OnTopReplica to the icon in the tray..
+        ///   Looks up a localized string similar to Reduces OnTopReplica to an icon in the tray..
         /// </summary>
         internal static string MenuReduceTT {
             get {

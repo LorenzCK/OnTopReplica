@@ -555,4 +555,10 @@ a:hover {
   <data name="FullscreenModeNormalTT" xml:space="preserve">
     <value>Si comporta come una finestra normale. Puoi portare altre finestre sopra OnTopReplica.</value>
   </data>
+  <data name="MenuChrome" xml:space="preserve">
+    <value>Bordo</value>
+  </data>
+  <data name="MenuChromeTT" xml:space="preserve">
+    <value>Abilita o disabilita il bordo della finestra.</value>
+  </data>
 </root>
