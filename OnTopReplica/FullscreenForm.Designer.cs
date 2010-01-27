@@ -193,7 +193,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FullscreenForm";
-            this.Text = "OnTopReplica fullscreen";
+            this.Text = Strings.FullscreenTitle;
             this.menuContext.ResumeLayout(false);
             this.menuWindows.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -351,7 +351,8 @@
             // 
             this.chromeToolStripMenuItem.Name = "chromeToolStripMenuItem";
             this.chromeToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.chromeToolStripMenuItem.Text = "Chrome";
+            this.chromeToolStripMenuItem.Text = Strings.MenuChrome;
+            this.chromeToolStripMenuItem.ToolTipText = Strings.MenuChromeTT;
             this.chromeToolStripMenuItem.Click += new System.EventHandler(this.Menu_Chrome_click);
             // 
             // reduceToIconToolStripMenuItem
