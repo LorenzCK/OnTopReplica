@@ -204,13 +204,14 @@ namespace OnTopReplica {
 			if (_thumbnail != null && !_thumbnail.IsInvalid){
                 try {
                     Size sourceSize = (_regionEnabled) ? _regionCurrent.Size : _thumbnail.SourceSize;
-                    thumbnailSize = new Size(Size.Width, Size.Height * 2); //ComputeIdealSize(sourceSize, Size);
+                    thumbnailSize = ComputeIdealSize(sourceSize, Size);
+                    padHeight = (Size.Height - thumbnailSize.Height) / 2;
 
                     /*padWidth = (Size.Width - thumbnailSize.Width) / 2;
                     padHeight = (Size.Height - thumbnailSize.Height) / 2;
 
                     Rectangle target = new Rectangle(padWidth, padHeight, thumbnailSize.Width, thumbnailSize.Height);*/
-                    var target = new Rectangle(0, 0, thumbnailSize.Width, thumbnailSize.Height);
+                    var target = new Rectangle(0, padHeight, thumbnailSize.Width, thumbnailSize.Height);
                     Rectangle source = (_regionEnabled) ? _regionCurrent : new Rectangle(Point.Empty, _thumbnail.SourceSize);
 
                     //Console.WriteLine("Source " + sourceSize.ToString() + ", Target " + Size.ToString() + ", Fit " + thumbnailSize.ToString() + ", Padding " + padWidth + "," + padHeight);
@@ -235,10 +236,10 @@ namespace OnTopReplica {
 			double clientRatio = (double)clientSize.Width / (double)clientSize.Height;
 
 			Size ret;
-			if(sourceRatio >= clientRatio)
+			//if(sourceRatio >= clientRatio)
 				ret = new Size(clientSize.Width, (int)((double)clientSize.Width / sourceRatio));
-			else
-				ret = new Size((int)((double)clientSize.Height * sourceRatio), clientSize.Height);
+			/*else
+				ret = new Size((int)((double)clientSize.Height * sourceRatio), clientSize.Height);*/
 
 			return ret;
 		}
