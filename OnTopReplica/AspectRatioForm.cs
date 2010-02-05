@@ -47,7 +47,7 @@ namespace OnTopReplica {
         /// Forces the form to update its height based on the current aspect ratio setting.
         /// </summary>
         public void RefreshAspectRatio() {
-            this.Height = (int)(this.Width / AspectRatio);
+            ClientSize = new Size(ClientSize.Width, (int)(ClientSize.Width / AspectRatio));
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace OnTopReplica {
         /// </summary>
         public void SetAspectRatio(Size aspectRatioSource) {
             _keepAspectRatio = true; //set without updating
-            AspectRatio = (aspectRatioSource.Width / (double)aspectRatioSource.Height);
+            AspectRatio = ((double)aspectRatioSource.Width / (double)aspectRatioSource.Height);
             RefreshAspectRatio();
         }
 
@@ -70,7 +70,7 @@ namespace OnTopReplica {
 
                 if (res == NativeMethods.WMSZ_LEFT || res == NativeMethods.WMSZ_RIGHT) {
                     //Left or right resize -> adjust height (bottom)
-                    int targetHeight = (int)(this.Width / AspectRatio);
+                    int targetHeight = (int)Math.Ceiling(this.Width / AspectRatio);
                     int originalHeight = rc.Bottom - rc.Top;
                     int diffHeight = originalHeight - targetHeight;
 
@@ -79,7 +79,7 @@ namespace OnTopReplica {
                 }
                 else if (res == NativeMethods.WMSZ_TOP || res == NativeMethods.WMSZ_BOTTOM) {
                     //Up or down resize -> adjust width (right)
-                    int targetWidth = (int)(this.Height * AspectRatio);
+                    int targetWidth = (int)Math.Ceiling(this.Height * AspectRatio);
                     int originalWidth = rc.Right - rc.Left;
                     int diffWidth = originalWidth - targetWidth;
 
@@ -88,19 +88,19 @@ namespace OnTopReplica {
                 }
                 else if (res == NativeMethods.WMSZ_RIGHT + NativeMethods.WMSZ_BOTTOM) {
                     //Lower-right corner resize -> adjust height (could have been width)
-                    rc.Bottom = rc.Top + (int)(this.Width / AspectRatio);
+                    rc.Bottom = rc.Top + (int)Math.Ceiling(this.Width / AspectRatio);
                 }
                 else if (res == NativeMethods.WMSZ_LEFT + NativeMethods.WMSZ_BOTTOM) {
                     //Lower-left corner resize -> adjust height (could have been width)
-                    rc.Bottom = rc.Top + (int)(this.Width / AspectRatio);
+                    rc.Bottom = rc.Top + (int)Math.Ceiling(this.Width / AspectRatio);
                 }
                 else if (res == NativeMethods.WMSZ_LEFT + NativeMethods.WMSZ_TOP) {
                     //Upper-left corner -> adjust width (could have been height)
-                    rc.Left = rc.Right - (int)(this.Height * AspectRatio);
+                    rc.Left = rc.Right - (int)Math.Ceiling(this.Height * AspectRatio);
                 }
                 else if (res == NativeMethods.WMSZ_RIGHT + NativeMethods.WMSZ_TOP) {
                     //Upper-right corner -> adjust width (could have been height)
-                    rc.Right = rc.Left + (int)(this.Height * AspectRatio);
+                    rc.Right = rc.Left + (int)Math.Ceiling(this.Height * AspectRatio);
                 }
 
                 Marshal.StructureToPtr(rc, m.LParam, true);

@@ -105,10 +105,6 @@ namespace OnTopReplica
 			RegionBoxShowing = false;
 		}
 
-		void Thumbnail_IdealSizeChange(object sender, Size e) {
-			ClientSize = e;
-        }
-
         #endregion
 
         #region Side "Region box" events
@@ -225,7 +221,6 @@ namespace OnTopReplica
 			//Do some checks in order to verify the presence of desktop composition
 			if (!VistaControls.OsSupport.IsVistaOrBetter) {
 				MessageBox.Show(Strings.ErrorNoDwm, Strings.ErrorNoDwmTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
 				this.Close();
 
 				return;
@@ -324,6 +319,10 @@ namespace OnTopReplica
 		#endregion
 
         #region Menu Event Handling
+
+        private void Close_click(object sender, EventArgs e) {
+            this.Close();
+        }
 
 		private void Menu_opening(object sender, CancelEventArgs e) {
 			//Cancel if currently "fullscreen" mode

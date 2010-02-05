@@ -71,7 +71,7 @@ namespace OnTopReplica {
 				_glassMode = value;
 
 				//Set correct backcolor: black if glass is on
-				BackColor = (value || _fullscreenMode) ? Color.Black : SystemColors.Control;
+                BackColor = (value || _fullscreenMode) ? Color.Black : SystemColors.Control;
 
 				UpdateRightClickLabels();
 			}
@@ -136,7 +136,7 @@ namespace OnTopReplica {
 
 		private byte ThumbnailOpacity {
 			get {
-				return (_drawMouseRegions) ? (byte)130 : (byte)255;
+                return (_drawMouseRegions) ? (byte)130 : (byte)255;
 			}
 		}
 
@@ -204,14 +204,16 @@ namespace OnTopReplica {
 			if (_thumbnail != null && !_thumbnail.IsInvalid){
                 try {
                     Size sourceSize = (_regionEnabled) ? _regionCurrent.Size : _thumbnail.SourceSize;
+                    thumbnailSize = new Size(Size.Width, Size.Height * 2); //ComputeIdealSize(sourceSize, Size);
 
-                    thumbnailSize = ComputeIdealSize(sourceSize, Size);
-
-                    padWidth = (Size.Width - thumbnailSize.Width) / 2;
+                    /*padWidth = (Size.Width - thumbnailSize.Width) / 2;
                     padHeight = (Size.Height - thumbnailSize.Height) / 2;
 
-                    Rectangle target = new Rectangle(padWidth, padHeight, thumbnailSize.Width, thumbnailSize.Height);
+                    Rectangle target = new Rectangle(padWidth, padHeight, thumbnailSize.Width, thumbnailSize.Height);*/
+                    var target = new Rectangle(0, 0, thumbnailSize.Width, thumbnailSize.Height);
                     Rectangle source = (_regionEnabled) ? _regionCurrent : new Rectangle(Point.Empty, _thumbnail.SourceSize);
+
+                    //Console.WriteLine("Source " + sourceSize.ToString() + ", Target " + Size.ToString() + ", Fit " + thumbnailSize.ToString() + ", Padding " + padWidth + "," + padHeight);
 
                     _thumbnail.Update(target, source, ThumbnailOpacity, true, true);
                 }
@@ -225,7 +227,7 @@ namespace OnTopReplica {
 			UpdateRightClickLabels();
 		}
 
-		/// <summary>Computes ideal size given an original size and a target to fit.</summary>
+		/// <summary>Computes ideal thumbnail size given an original size and a target to fit.</summary>
 		/// <param name="sourceSize">Size of the original thumbnail.</param>
 		/// <param name="clientSize">Size of the client area to fit.</param>
 		private Size ComputeIdealSize(Size sourceSize, Size clientSize) {

@@ -95,7 +95,7 @@
             this.aboutToolStripMenuItem,
             this.menuContextClose});
             this.menuContext.Name = "menuContext";
-            this.menuContext.Size = new System.Drawing.Size(169, 296);
+            this.menuContext.Size = new System.Drawing.Size(169, 274);
             this.menuContext.Opening += new System.ComponentModel.CancelEventHandler(this.Menu_opening);
             // 
             // menuContextWindows
@@ -170,7 +170,7 @@
             this.menuOpacity.OwnerItem = this.menuContextOpacity;
             this.menuOpacity.ShowCheckMargin = true;
             this.menuOpacity.ShowImageMargin = false;
-            this.menuOpacity.Size = new System.Drawing.Size(154, 142);
+            this.menuOpacity.Size = new System.Drawing.Size(154, 120);
             this.menuOpacity.Opening += new System.ComponentModel.CancelEventHandler(this.Menu_Opacity_opening);
             // 
             // toolStripMenuItem1
@@ -244,6 +244,7 @@
             this.toolStripSeparator3,
             this.fullscreenToolStripMenuItem1});
             this.menuResize.Name = "menuResize";
+            this.menuResize.OwnerItem = this.resizeToolStripMenuItem;
             this.menuResize.Size = new System.Drawing.Size(165, 120);
             this.menuResize.Opening += new System.ComponentModel.CancelEventHandler(this.Menu_Resize_opening);
             // 
@@ -351,8 +352,8 @@
             // 
             this.chromeToolStripMenuItem.Name = "chromeToolStripMenuItem";
             this.chromeToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.chromeToolStripMenuItem.Text = Strings.MenuChrome;
-            this.chromeToolStripMenuItem.ToolTipText = Strings.MenuChromeTT;
+            this.chromeToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuChrome;
+            this.chromeToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuChromeTT;
             this.chromeToolStripMenuItem.Click += new System.EventHandler(this.Menu_Chrome_click);
             // 
             // reduceToIconToolStripMenuItem
@@ -524,7 +525,7 @@
 		private System.Windows.Forms.ContextMenuStrip menuLanguages;
 		private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem italianoToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem chromeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chromeToolStripMenuItem;
     }
 }
 
