@@ -40,6 +40,8 @@ namespace OnTopReplica
         public MainForm() {
             InitializeComponent();
 
+            KeepAspectRatio = false;
+
 			//Thumbnail panel
 			_thumbnailPanel = new ThumbnailPanel(Settings.Default.UseGlass);
 			_thumbnailPanel.RegionDrawn += new ThumbnailPanel.RegionDrawnHandler(Thumbnail_RegionDrawn);
@@ -85,6 +87,7 @@ namespace OnTopReplica
 
 		void RegionBox_RegionChanged(object sender, Rectangle region) {
 			_thumbnailPanel.ShownRegion = region;
+            SetAspectRatio(region.Size);
 		}
 
 		void RegionBox_RequestRegionReset(object sender, EventArgs e) {
@@ -120,65 +123,55 @@ namespace OnTopReplica
 				return _regionBoxShowing;
 			}
 			set {
-				if (_regionBoxShowing != value) {
-					_regionBoxShowing = value;
+                if (_regionBoxShowing != value) {
+                    //Show box
+                    _regionBoxShowing = value;
+                    _regionBox.Visible = value;
+                    _regionBox.Enabled = value;
 
-					//Show box
-					_regionBox.Visible = value;
-					_regionBox.Enabled = value;
+                    //Disable dragging
+                    HandleMouseMove = !value;
 
-					//Disable dragging
-					HandleMouseMove = !value;
+                    //Enable region drawing on thumbnail
+                    _thumbnailPanel.DrawMouseRegions = value;
 
-					//Enable region drawing on thumbnail
-					_thumbnailPanel.DrawMouseRegions = value;
+                    //Pad form and resize it
+                    ClientSize = new Size {
+                        Width = ClientSize.Width + ((value) ? _regionBox.Width : -_regionBox.Width),
+                        Height = Math.Max(ClientSize.Height, _regionBox.ClientSize.Height)
+                    };
+                    ExtraPadding = (value) ? new Padding(0, 0, _regionBox.Width, 0) : new Padding(0);
 
-					//Resize and move to fit region panel
-					ClientSize = new Size {
-						Width = ClientSize.Width + ((value) ? _regionBox.Width : -_regionBox.Width),
-						Height = Math.Max(ClientSize.Height, _regionBox.ClientSize.Height)
-					};
-					_thumbnailPanel.Size = new Size {
-						Width = (value) ? (ClientSize.Width - _regionBox.Width) : ClientSize.Width,
-						Height = ClientSize.Height
-					};
-					_regionBox.Location = new Point {
-						X = (value) ? (ClientSize.Width - _regionBox.Width) : ClientSize.Width,
-						Y = 0
-					};
+                    //Resize and move panels
+                    _thumbnailPanel.Size = new Size {
+                        Width = (value) ? (ClientSize.Width - _regionBox.Width) : ClientSize.Width,
+                        Height = ClientSize.Height
+                    };
+                    _regionBox.Location = new Point {
+                        X = (value) ? (ClientSize.Width - _regionBox.Width) : ClientSize.Width,
+                        Y = 0
+                    };
 
-                    //Disable aspect ratio keeping
-                    KeepAspectRatio = !value;
+                    //Check form boundaries and move form if necessary
+                    if (value) {
+                        var screenCurr = Screen.FromControl(this);
+                        int pRight = Location.X + Size.Width + cWindowBoundary;
+                        if (pRight >= screenCurr.Bounds.Width) {
+                            _regionBoxPrevFormLocation = Location;
+                            _regionBoxDidMoveForm = true;
 
-					//Set new glass margins
-					this.GlassMargins = (value) ?
-						new Margins(ClientSize.Width - _regionBox.Width, 0, 0, 0) :
-						new Margins(-1);
-
-					//Check form boundaries and move form if necessary
-					if (value) {
-						var screenCurr = Screen.FromControl(this);
-						int pRight = Location.X + Size.Width + cWindowBoundary;
-						if (pRight >= screenCurr.Bounds.Width) {
-							_regionBoxPrevFormLocation = Location;
-							_regionBoxDidMoveForm = true;
-
-							Location = new Point(screenCurr.WorkingArea.Width - Size.Width - cWindowBoundary, Location.Y);
-						}
-						else
-							_regionBoxDidMoveForm = false;
-					}
-					else {
-						if (_regionBoxDidMoveForm) {
-							Location = _regionBoxPrevFormLocation;
-							_regionBoxDidMoveForm = false;
-						}
-
-						//Resize automatically on region box closing
-						/*if (Settings.Default.AutoFitOnResize)
-							FitToThumbnail();*/
-					}
-				}
+                            Location = new Point(screenCurr.WorkingArea.Width - Size.Width - cWindowBoundary, Location.Y);
+                        }
+                        else
+                            _regionBoxDidMoveForm = false;
+                    }
+                    else {
+                        if (_regionBoxDidMoveForm) {
+                            Location = _regionBoxPrevFormLocation;
+                            _regionBoxDidMoveForm = false;
+                        }
+                    }
+                }
 			}
 		}
 
@@ -210,9 +203,16 @@ namespace OnTopReplica
             base.OnResizeBegin(e);
 
             //Update aspect ratio if needed
-            if (_thumbnailPanel.IsShowingThumbnail) {
+            /*if (_thumbnailPanel.IsShowingThumbnail) {
                 SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
-            }
+            }*/
+        }
+
+        protected override void OnResize(EventArgs e) {
+            base.OnResize(e);
+            this.GlassMargins = (_regionBoxShowing) ?
+                new Margins(ClientSize.Width - _regionBox.Width, 0, 0, 0) :
+                new Margins(-1);
         }
 
 		protected override void OnShown(EventArgs e) {
