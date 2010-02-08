@@ -92,6 +92,7 @@ namespace OnTopReplica
 
 		void RegionBox_RequestRegionReset(object sender, EventArgs e) {
 			_thumbnailPanel.ResetShownRegion();
+            SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
 		}
 
 		void Thumbnail_RegionDrawn(object sender, Rectangle region) {
@@ -151,6 +152,7 @@ namespace OnTopReplica
                         X = (value) ? (ClientSize.Width - _regionBox.Width) : ClientSize.Width,
                         Y = 0
                     };
+                    _regionBox.Size = new Size(_regionBox.Width, ClientSize.Height);
 
                     //Check form boundaries and move form if necessary
                     if (value) {

@@ -489,7 +489,7 @@ h1 {
 	font-size: 1.4em;
 	font-weight: bold;
 	
-	margin: 0 0 1em 0;
+	margin: 1em 0 0.4em 0;
 	padding: 0;
 }
 p {

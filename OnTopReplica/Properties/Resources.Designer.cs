@@ -60,49 +60,6 @@ namespace OnTopReplica.Properties {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;html&gt;
-        ///	&lt;head&gt;
-        ///		&lt;style type=&quot;text/css&quot;&gt;
-        ///body {
-        ///	font-family: Segoe UI, Arial, sans-serif;
-        ///	font-size: 0.8em;
-        ///	margin: 0;
-        ///  padding: 0.75em;
-        ///}
-        ///h1 {
-        ///	font-size: 1.4em;
-        ///	font-weight: bold;
-        ///	
-        ///	margin: 0 0 1em 0;
-        ///	padding: 0;
-        ///}
-        ///p {
-        ///	margin: 0.5em 0 0.5em 1em;
-        ///	padding: 0;
-        ///}
-        ///a {
-        ///	font-weight: bold;
-        ///	color: blue;
-        ///}
-        ///a:hover {
-        ///	color: red;
-        ///}
-        ///		&lt;/style&gt;
-        ///	&lt;/head&gt;
-        ///	
-        ///	&lt;body&gt;
-        ///	
-        ///		&lt;h1&gt;License&lt;/h1&gt;
-        ///		
-        ///		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; is licensed under the &lt;a href=&quot;http://opensource.org/licenses/m [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string about {
-            get {
-                return ResourceManager.GetString("about", resourceCulture);
-            }
-        }
-        
         internal static System.Drawing.Bitmap back {
             get {
                 object obj = ResourceManager.GetObject("back", resourceCulture);

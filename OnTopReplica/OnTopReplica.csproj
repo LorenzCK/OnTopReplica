@@ -49,8 +49,8 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>2.9.1.%2a</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>2.9.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -254,7 +254,6 @@
     <None Include="Assets\arrow_down.png" />
     <None Include="Assets\arrow_up.png" />
     <None Include="Assets\component.png" />
-    <None Include="Assets\about.html" />
     <None Include="Assets\flag_usa.png" />
     <None Include="Assets\flag_ita.png" />
     <Content Include="Assets\icon.ico" />
