@@ -60,7 +60,6 @@ namespace OnTopReplica {
         /// Forces the form to update its height based on the current aspect ratio setting.
         /// </summary>
         public void RefreshAspectRatio() {
-            Console.WriteLine("Refreshing, size " + ClientSize.ToString() + " padding " + ExtraPadding.ToString());
             ClientSize = new Size(ClientSize.Width,
                 (int)((ClientSize.Width - ExtraPadding.Horizontal) / AspectRatio) + ExtraPadding.Vertical);
         }
@@ -74,8 +73,20 @@ namespace OnTopReplica {
             RefreshAspectRatio();
         }
 
+        protected override void OnResizeEnd(EventArgs e) {
+            base.OnResizeEnd(e);
+
+            //Ensure that the ClientSize of the form is always respected (not ensured by the WM_SIZING message alone)
+            if (KeepAspectRatio) {
+                //Since WM_SIZING already fixes up the size almost correctly,
+                //simply set the height to the correct value
+                var newHeight = (int)((ClientSize.Width - ExtraPadding.Horizontal) / AspectRatio + ExtraPadding.Vertical);
+                ClientSize = new Size(ClientSize.Width, newHeight);
+            }
+        }
+
         /// <summary>
-        /// Override WM_SIZING message.
+        /// Override WM_SIZING message to restrict resizing.
         /// Taken from: http://www.vcskicks.com/maintain-aspect-ratio.php
         /// </summary>
         protected override void WndProc(ref Message m) {

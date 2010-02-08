@@ -110,7 +110,7 @@ namespace OnTopReplica {
         ///	font-size: 1.4em;
         ///	font-weight: bold;
         ///	
-        ///	margin: 0 0 1em 0;
+        ///	margin: 1em 0 0.4em 0;
         ///	padding: 0;
         ///}
         ///p {
@@ -131,7 +131,7 @@ namespace OnTopReplica {
         ///	
         ///		&lt;h1&gt;License&lt;/h1&gt;
         ///		
-        ///		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; is licensed under the &lt;a href=&quot;http://opensource.org/licenses/ms- [rest of string was truncated]&quot;;.
+        ///		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; is licensed under the &lt;a href=&quot;http://opensource.org/licenses [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string AboutDetails {
             get {
