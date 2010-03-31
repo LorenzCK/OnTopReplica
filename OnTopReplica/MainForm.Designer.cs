@@ -64,6 +64,7 @@
             this.menuLanguages = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.italianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cestinaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContextClose = new System.Windows.Forms.ToolStripMenuItem();
             this.menuIconContext = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -381,7 +382,8 @@
             // 
             this.menuLanguages.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.englishToolStripMenuItem,
-            this.italianoToolStripMenuItem});
+            this.italianoToolStripMenuItem,
+            this.cestinaToolStripMenuItem});
             this.menuLanguages.Name = "menuLanguages";
             this.menuLanguages.OwnerItem = this.languageToolStripMenuItem;
             this.menuLanguages.Size = new System.Drawing.Size(114, 48);
@@ -403,6 +405,15 @@
             this.italianoToolStripMenuItem.Tag = "it-IT";
             this.italianoToolStripMenuItem.Text = "Italiano";
             this.italianoToolStripMenuItem.Click += new System.EventHandler(this.Menu_Language_click);
+            // 
+            // cestinaToolStripMenuItem
+            // 
+            this.cestinaToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.flag_czech;
+            this.cestinaToolStripMenuItem.Name = "cestinaToolStripMenuItem";
+            this.cestinaToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.cestinaToolStripMenuItem.Tag = "cs-CZ";
+            this.cestinaToolStripMenuItem.Text = "Čeština";
+            this.cestinaToolStripMenuItem.Click += new System.EventHandler(this.Menu_Language_click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -525,6 +536,7 @@
 		private System.Windows.Forms.ContextMenuStrip menuLanguages;
 		private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem italianoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cestinaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chromeToolStripMenuItem;
     }
 }

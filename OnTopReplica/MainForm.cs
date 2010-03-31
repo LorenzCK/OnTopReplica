@@ -398,7 +398,7 @@ namespace OnTopReplica
 		}
 
         void Menu_Windows_itemclick(object sender, EventArgs e) {
-            //Insure the menu is closed
+            //Ensure the menu is closed
             menuContext.Close();
 
             //Get clicked item and window index from tag
@@ -411,7 +411,6 @@ namespace OnTopReplica
 			}
 
             var selectionData = (WindowListHelper.WindowSelectionData)tsi.Tag;
-
             if (_windowManager != null) {
                 ThumbnailSet(selectionData.Handle, selectionData.Region);
             }

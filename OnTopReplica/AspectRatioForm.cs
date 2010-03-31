@@ -60,8 +60,14 @@ namespace OnTopReplica {
         /// Forces the form to update its height based on the current aspect ratio setting.
         /// </summary>
         public void RefreshAspectRatio() {
-            ClientSize = new Size(ClientSize.Width,
-                (int)((ClientSize.Width - ExtraPadding.Horizontal) / AspectRatio) + ExtraPadding.Vertical);
+            int newWidth = ClientSize.Width;
+            int newHeight = (int)((ClientSize.Width - ExtraPadding.Horizontal) / AspectRatio) + ExtraPadding.Vertical;
+            if (newHeight < FromSizeToClientSize(MinimumSize).Height) {
+                newHeight = FromSizeToClientSize(MinimumSize).Height;
+                newWidth = (int)((newHeight - ExtraPadding.Vertical) * AspectRatio) + ExtraPadding.Horizontal;
+            }
+
+            ClientSize = new Size(newWidth, newHeight);
         }
 
         /// <summary>
@@ -127,6 +133,35 @@ namespace OnTopReplica {
             base.WndProc(ref m);
         }
 
+        #region ClientSize/Size conversion
+
+        //bool clientSizeConversionSet = false;
+        int clientSizeConversionWidth, clientSizeConversionHeight;
+
+        public Size FromClientSizeToSize(Size clientSize) {
+            return new Size(clientSize.Width + clientSizeConversionWidth, clientSize.Height + clientSizeConversionHeight);
+        }
+
+        public Size FromSizeToClientSize(Size size) {
+            return new Size(size.Width - clientSizeConversionWidth, size.Height - clientSizeConversionHeight);
+        }
+
+        /*private void ClientSizeInit() {
+            if (clientSizeConversionSet)
+                return;
+
+            clientSizeConversionWidth = this.Size.Width - this.ClientSize.Width;
+            clientSizeConversionHeight = this.ClientSize.Width - this.ClientSize.Height;
+        }*/
+
+        protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+
+            clientSizeConversionWidth = this.Size.Width - this.ClientSize.Width;
+            clientSizeConversionHeight = this.Size.Height - this.ClientSize.Height;
+        }
+
+        #endregion
 
     }
 

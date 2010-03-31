@@ -81,6 +81,13 @@ namespace OnTopReplica.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap flag_czech {
+            get {
+                object obj = ResourceManager.GetObject("flag_czech", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap flag_ita {
             get {
                 object obj = ResourceManager.GetObject("flag_ita", resourceCulture);
