@@ -135,6 +135,7 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings.cs.resx" />
     <EmbeddedResource Include="Strings.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.it.Designer.cs</LastGenOutput>
@@ -256,6 +257,7 @@
     <None Include="Assets\component.png" />
     <None Include="Assets\flag_usa.png" />
     <None Include="Assets\flag_ita.png" />
+    <None Include="Assets\flag_czech.png" />
     <Content Include="Assets\icon.ico" />
     <None Include="Assets\regions.png" />
     <None Include="OnTopReplica_TemporaryKey.pfx" />

@@ -131,6 +131,7 @@ namespace OnTopReplica {
 				Cursor = (value) ? Cursors.Cross : Cursors.Default;
 
 				UpdateThubmnail();
+                this.Invalidate();
 			}
 		}
 
@@ -207,14 +208,8 @@ namespace OnTopReplica {
                     thumbnailSize = ComputeIdealSize(sourceSize, Size);
                     padHeight = (Size.Height - thumbnailSize.Height) / 2;
 
-                    /*padWidth = (Size.Width - thumbnailSize.Width) / 2;
-                    padHeight = (Size.Height - thumbnailSize.Height) / 2;
-
-                    Rectangle target = new Rectangle(padWidth, padHeight, thumbnailSize.Width, thumbnailSize.Height);*/
                     var target = new Rectangle(0, padHeight, thumbnailSize.Width, thumbnailSize.Height);
                     Rectangle source = (_regionEnabled) ? _regionCurrent : new Rectangle(Point.Empty, _thumbnail.SourceSize);
-
-                    //Console.WriteLine("Source " + sourceSize.ToString() + ", Target " + Size.ToString() + ", Fit " + thumbnailSize.ToString() + ", Padding " + padWidth + "," + padHeight);
 
                     _thumbnail.Update(target, source, ThumbnailOpacity, true, true);
                 }
@@ -235,11 +230,7 @@ namespace OnTopReplica {
 			double sourceRatio = (double)sourceSize.Width / (double)sourceSize.Height;
 			double clientRatio = (double)clientSize.Width / (double)clientSize.Height;
 
-			Size ret;
-			//if(sourceRatio >= clientRatio)
-				ret = new Size(clientSize.Width, (int)((double)clientSize.Width / sourceRatio));
-			/*else
-				ret = new Size((int)((double)clientSize.Height * sourceRatio), clientSize.Height);*/
+			Size ret = new Size(clientSize.Width, (int)((double)clientSize.Width / sourceRatio));
 
 			return ret;
 		}
@@ -247,7 +238,7 @@ namespace OnTopReplica {
 		/// <summary>Updates the right-click labels.</summary>
 		/// <remarks>If a thumbnail is shown no label will be visible. If no thumbnail is active, the correct label will be visible.</remarks>
 		private void UpdateRightClickLabels(){
-			if (_thumbnail != null && !_thumbnail.IsInvalid /*&& !_drawMouseRegions*/) {
+			if (_thumbnail != null && !_thumbnail.IsInvalid) {
 				//Thumbnail active and no region drawing
 				_labelGlass.Visible = false;
 				_labelNoGlass.Visible = false;

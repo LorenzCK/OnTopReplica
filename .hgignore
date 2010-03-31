@@ -2,3 +2,4 @@ glob:OnTopReplica.suo
 glob:bin/*
 glob:obj/*
 glob:publish/*
+glob:OnTopReplica/Assets/Thumbs.db
