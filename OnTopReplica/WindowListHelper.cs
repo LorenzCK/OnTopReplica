@@ -16,7 +16,7 @@ namespace OnTopReplica {
 
 		public static void PopulateMenu(Form ownerForm, WindowManager windowManager, ToolStrip menu,
                                         WindowHandle currentHandle, EventHandler clickHandler) {
-            var regions = Settings.Default.SavedRegions;
+            var regions = GetRegions();
 
 			//Clear
 			menu.Items.Clear();
@@ -59,33 +59,54 @@ namespace OnTopReplica {
                 };
                 tsi.Click += clickHandler;
 
-                if (regions != null && regions.Count > 0) {
-                    //Add subitem for no region
-                    var nullRegionItem = new ToolStripMenuItem(Strings.MenuWindowsWholeRegion);
-                    nullRegionItem.Tag = new WindowSelectionData {
-                        Handle = h,
-                        Region = null
-                    };
-                    nullRegionItem.Image = Resources.regions;
-                    nullRegionItem.Click += clickHandler;
-
-                    tsi.DropDownItems.Add(nullRegionItem);
-                    
-                    foreach (StoredRegion region in regions) {
-                        var regionItem = new ToolStripMenuItem(region.Name);
-                        regionItem.Tag = new WindowSelectionData {
-                            Handle = h,
-                            Region = region
-                        };
-                        regionItem.Click += clickHandler;
-
-                        tsi.DropDownItems.Add(regionItem);
-                    }
-                }
+                PopulateRegions(tsi, h, clickHandler, regions);
 
 				menu.Items.Add(tsi);
 			}
+
 		}
+
+        private static void PopulateRegions(ToolStripMenuItem tsi, WindowHandle handle,
+                                            EventHandler clickHandler, IEnumerable<StoredRegion> regions) {
+
+            if (regions != null) {
+                //Add subitem for no region
+                var nullRegionItem = new ToolStripMenuItem(Strings.MenuWindowsWholeRegion);
+                nullRegionItem.Tag = new WindowSelectionData {
+                    Handle = handle,
+                    Region = null
+                };
+                nullRegionItem.Image = Resources.regions;
+                nullRegionItem.Click += clickHandler;
+
+                tsi.DropDownItems.Add(nullRegionItem);
+
+                foreach (StoredRegion region in regions) {
+                    var regionItem = new ToolStripMenuItem(region.Name);
+                    regionItem.Tag = new WindowSelectionData {
+                        Handle = handle,
+                        Region = region
+                    };
+                    regionItem.Click += clickHandler;
+
+                    tsi.DropDownItems.Add(regionItem);
+                }
+            }
+        }
+
+        private static IEnumerable<StoredRegion> GetRegions() {
+            if (Settings.Default.SavedRegions == null || Settings.Default.SavedRegions.Count == 0)
+                return null;
+
+            StoredRegion[] regions = new StoredRegion[Settings.Default.SavedRegions.Count];
+            Settings.Default.SavedRegions.CopyTo(regions);
+
+            Array.Sort<StoredRegion>(regions, new Comparison<StoredRegion>((a, b) => {
+                return a.Name.CompareTo(b.Name);
+            }));
+
+            return regions;
+        }
 
 	}
 }
