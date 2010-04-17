@@ -5,7 +5,7 @@ using System.Text;
 namespace OnTopReplica {
 	/// <summary>A helper class that allows you to easily build and keep a list of Windows (in the form of WindowHandle objects).</summary>
 	public class WindowManager {
-		IList<WindowHandle> _windows = null;
+        List<WindowHandle> _windows = null;
 
 		public enum EnumerationMode {
 			/// <summary>All windows with 'Visible' flag.</summary>
@@ -28,7 +28,7 @@ namespace OnTopReplica {
 
 		/// <summary>Refreshes the window list.</summary>
 		public void Refresh(EnumerationMode mode) {
-			_windows = new List<WindowHandle>();
+            _windows = new List<WindowHandle>();
 
 			NativeMethods.EnumWindowsProc proc = null;
 			switch (mode) {
@@ -49,9 +49,9 @@ namespace OnTopReplica {
 		}
 
 
-		public IList<WindowHandle> Windows {
+		public IEnumerable<WindowHandle> Windows {
 			get {
-				return _windows;
+                return _windows;
 			}
 		}
 
@@ -59,7 +59,8 @@ namespace OnTopReplica {
 
 		private bool EnumWindowProcAll(IntPtr hwnd, IntPtr lParam) {
 			if (NativeMethods.IsWindowVisible(hwnd)) {
-				_windows.Add(new WindowHandle(hwnd, GetWindowTitle(hwnd)));
+                string title = GetWindowTitle(hwnd);
+				_windows.Add( new WindowHandle(hwnd, title));
 			}
 			return true;
 		}
@@ -68,7 +69,8 @@ namespace OnTopReplica {
 			if (NativeMethods.IsWindowVisible(hwnd)) {
 				//Check if window has no parent
 				if ((long)NativeMethods.GetParent(hwnd) == 0 && NativeMethods.GetDesktopWindow() != hwnd) {
-					_windows.Add(new WindowHandle(hwnd, GetWindowTitle(hwnd)));
+                    string title = GetWindowTitle(hwnd);
+					_windows.Add( new WindowHandle(hwnd, title));
 				}
 			}
 			return true;
@@ -94,9 +96,8 @@ namespace OnTopReplica {
 					bool hasOwner = (long)NativeMethods.GetWindow(hwnd, NativeMethods.GetWindowMode.GW_OWNER) != 0;
 					NativeMethods.WindowExStyles exStyle = (NativeMethods.WindowExStyles)NativeMethods.GetWindowLong(hwnd, NativeMethods.WindowLong.ExStyle);
 
-					if (((exStyle & NativeMethods.WindowExStyles.ToolWindow) == 0 && !hasOwner) ||
-						((exStyle & NativeMethods.WindowExStyles.AppWindow) == NativeMethods.WindowExStyles.AppWindow && hasOwner)) {
-						//Accept
+					if (((exStyle & NativeMethods.WindowExStyles.ToolWindow) == 0 && !hasOwner) || //unowned non-tool window
+						((exStyle & NativeMethods.WindowExStyles.AppWindow) == NativeMethods.WindowExStyles.AppWindow && hasOwner)) { //owned application window
 						_windows.Add(new WindowHandle(hwnd, title));
 					}
 				}
