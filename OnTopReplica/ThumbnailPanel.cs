@@ -70,9 +70,7 @@ namespace OnTopReplica {
 			set {
 				_glassMode = value;
 
-				//Set correct backcolor: black if glass is on
-                BackColor = (value || _fullscreenMode) ? Color.Black : SystemColors.Control;
-
+                UpdateBackColor();
 				UpdateRightClickLabels();
 			}
 		}
@@ -85,14 +83,14 @@ namespace OnTopReplica {
 			}
 			set {
 				_fullscreenMode = value;
-
-				//Set correct backcolor: black if fullscreen is on
-				BackColor = (value || _glassMode) ? Color.Black : SystemColors.Control;
-
+                UpdateBackColor();
 				UpdateRightClickLabels();
 			}
 		}
 
+        /// <summary>
+        /// Gets or sets the region that is currently shown on the thumbnail. When set, enabled region showing.
+        /// </summary>
 		public Rectangle ShownRegion {
 			get {
 				return _regionCurrent;
@@ -105,6 +103,9 @@ namespace OnTopReplica {
 			}
 		}
 
+        /// <summary>
+        /// Gets or sets whether the thumbnail is constrained to a region or not.
+        /// </summary>
 		public bool ShowRegion {
 			get {
 				return _regionEnabled;
@@ -118,6 +119,9 @@ namespace OnTopReplica {
 
 		bool _drawMouseRegions = false;
 
+        /// <summary>
+        /// Gets or sets whether the thumbnail allows region drawing.
+        /// </summary>
 		public bool DrawMouseRegions {
 			get {
 				return _drawMouseRegions;
@@ -235,6 +239,13 @@ namespace OnTopReplica {
 			return ret;
 		}
 
+        /// <summary>
+        /// Updates the background color.
+        /// </summary>
+        private void UpdateBackColor() {
+            BackColor = (FullscreenMode || GlassMode) ? Color.Black : SystemColors.Control;
+        }
+
 		/// <summary>Updates the right-click labels.</summary>
 		/// <remarks>If a thumbnail is shown no label will be visible. If no thumbnail is active, the correct label will be visible.</remarks>
 		private void UpdateRightClickLabels(){
@@ -244,9 +255,6 @@ namespace OnTopReplica {
 				_labelNoGlass.Visible = false;
 			}
 			else {
-				//Update text (removed, can't draw regions behind non-transparent ThemedLabel control)
-				//_labelGlass.Text = _labelNoGlass.Text = (_drawMouseRegions) ? Strings.DrawRegions : Strings.RightClick;
-
 				//Update visibility
 				_labelGlass.Visible = _glassMode;
 				_labelNoGlass.Visible = !_glassMode;
@@ -272,6 +280,7 @@ namespace OnTopReplica {
 		}
 
 		protected override void OnMouseClick(MouseEventArgs e) {
+            //Raise clicking event to allow click forwarding
 			if (!_clickThrough && e.Button == MouseButtons.Left) {
 				if(_thumbnail != null)
 					OnCloneClick(ScreenToThumbnail(e.Location), false);
@@ -281,6 +290,7 @@ namespace OnTopReplica {
 		}
 
 		protected override void OnMouseDoubleClick(MouseEventArgs e) {
+            //Raise double clicking event to allow click forwarding
 			if (!_clickThrough && e.Button == MouseButtons.Left) {
 				if (_thumbnail != null)
 					OnCloneClick(ScreenToThumbnail(e.Location), true);
@@ -290,8 +300,10 @@ namespace OnTopReplica {
 		}
 
 		protected override void OnMouseDown(MouseEventArgs e) {
-			if (_drawMouseRegions && e.Button == MouseButtons.Left) {
+			if (DrawMouseRegions && e.Button == MouseButtons.Left) {
+                //Start new region drawing
 				_drawingRegion = true;
+                _drawingSuspended = false;
 				_regionStartPoint = _regionLastPoint = e.Location;
 
 				this.Invalidate();
@@ -302,8 +314,9 @@ namespace OnTopReplica {
 
 		protected override void OnMouseUp(MouseEventArgs e) {
 			if (_drawMouseRegions && e.Button == MouseButtons.Left) {
+                //Region completed
 				_drawingRegion = false;
-
+                _drawingSuspended = false;
 				HandleRegionDrawn(_regionStartPoint, _regionLastPoint);
 
 				this.Invalidate();
@@ -313,20 +326,30 @@ namespace OnTopReplica {
 		}
 
 		protected override void OnMouseLeave(EventArgs e) {
-			_drawingRegion = false;
+            _drawingSuspended = true;
 
 			this.Invalidate();
 
 			base.OnMouseLeave(e);
 		}
 
+        protected override void OnMouseEnter(EventArgs e) {
+            _drawingSuspended = false;
+
+            this.Invalidate();
+
+            base.OnMouseEnter(e);
+        }
+
 		protected override void OnMouseMove(MouseEventArgs e) {
 			if (_drawingRegion && e.Button == MouseButtons.Left) {
+                //Continue drawing
 				_regionLastPoint = e.Location;
 
 				this.Invalidate();
 			}
-            else if(_drawMouseRegions && !_drawingRegion){
+            else if(DrawMouseRegions && !_drawingRegion){
+                //Keep track of region start point
                 _regionLastPoint = e.Location;
 
                 this.Invalidate();
@@ -339,6 +362,7 @@ namespace OnTopReplica {
 
 		protected override void OnPaint(PaintEventArgs e) {
 			if (_drawingRegion) {
+                //Is currently drawing, show rectangle
 				int left = Math.Min(_regionStartPoint.X, _regionLastPoint.X);
 				int right = Math.Max(_regionStartPoint.X, _regionLastPoint.X);
 				int top = Math.Min(_regionStartPoint.Y, _regionLastPoint.Y);
@@ -346,7 +370,8 @@ namespace OnTopReplica {
 
 				e.Graphics.DrawRectangle(penRed, left, top, right - left, bottom - top);
 			}
-            else if (_drawMouseRegions) {
+            else if (DrawMouseRegions && ! _drawingSuspended) {
+                //Show cursor coordinates
                 e.Graphics.DrawLine(penRed, new Point(0, _regionLastPoint.Y), new Point(ClientSize.Width, _regionLastPoint.Y));
                 e.Graphics.DrawLine(penRed, new Point(_regionLastPoint.X, 0), new Point(_regionLastPoint.X, ClientSize.Height));
             }
@@ -356,7 +381,10 @@ namespace OnTopReplica {
 
 		#endregion
 
+        //Set if currently drawing a window (first click/drag was initiated)
 		bool _drawingRegion = false;
+        //Set if drawing was suspended because the mouse left the control
+        bool _drawingSuspended = false;
 		Point _regionStartPoint;
 		Point _regionLastPoint;
 
@@ -390,10 +418,19 @@ namespace OnTopReplica {
 		}
 
 		protected void HandleRegionDrawn(Point start, Point end) {
+            if (thumbnailSize.Width == 0 || thumbnailSize.Height == 0) //causes DivBy0
+                return;
+
 			int left = Math.Min(start.X, end.X);
 			int right = Math.Max(start.X, end.X);
 			int top = Math.Min(start.Y, end.Y);
 			int bottom = Math.Max(start.Y, end.Y);
+
+            //Clip to boundaries
+            left = Math.Max(0, left);
+            right = Math.Min(thumbnailSize.Width, right);
+            top = Math.Max(0, top);
+            bottom = Math.Min(thumbnailSize.Height, bottom);
 
 			//Offset points of padding space around thumbnail
 			left -= padWidth;
