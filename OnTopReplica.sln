@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 10
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTopReplica", "OnTopReplica\OnTopReplica.csproj", "{E626BD6E-BF38-4EB7-A128-5CA6F40EF557}"
 EndProject
 Global
