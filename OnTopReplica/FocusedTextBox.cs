@@ -19,17 +19,47 @@ namespace OnTopReplica {
 			if (e.KeyCode == Keys.Return) {
 				OnConfirmInput();
 				e.Handled = true;
+                e.SuppressKeyPress = true;
 			}
+            else if (e.KeyCode == Keys.Escape) {
+                OnAbortInput();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
 
-			base.OnKeyUp(e);
+            Console.WriteLine("{0} ({1})", e.KeyCode, e.KeyValue);
+
+            base.OnKeyUp(e);
 		}
+
+        //List of characters to ignore on KeyPress events (because they generate bell rings)
+        char[] _ignoreChars = new char[] {
+            (char)27, (char)13
+        };
+
+        protected override void OnKeyPress(KeyPressEventArgs e) {
+            if (EnumerationExtensions.Contains(_ignoreChars, e.KeyChar)) {
+                e.Handled = true;
+            }
+
+            base.OnKeyPress(e);
+        }
 
 		public event EventHandler ConfirmInput;
 
 		protected virtual void OnConfirmInput() {
-			if (ConfirmInput != null)
-				ConfirmInput(this, EventArgs.Empty);
+            var evt = ConfirmInput;
+            if (evt != null)
+                evt(this, EventArgs.Empty);
 		}
+
+        public event EventHandler AbortInput;
+
+        protected virtual void OnAbortInput() {
+            var evt = AbortInput;
+            if (evt != null)
+                evt(this, EventArgs.Empty);
+        }
 
 	}
 
