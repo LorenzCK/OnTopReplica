@@ -105,6 +105,7 @@
     </Compile>
     <Compile Include="CloneClickEventArgs.cs" />
     <Compile Include="CloseRequestEventArgs.cs" />
+    <Compile Include="EnumerationExtensions.cs" />
     <Compile Include="FullscreenMode.cs" />
     <Compile Include="Strings.it.Designer.cs">
       <DependentUpon>Strings.it.resx</DependentUpon>

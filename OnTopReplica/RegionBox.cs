@@ -104,8 +104,15 @@ namespace OnTopReplica {
 		}
 
 		private void DeleteClick(object sender, EventArgs e) {
-			Settings.Default.SavedRegions.RemoveAt(comboBox1.SelectedIndex);
-			comboBox1.Items.RemoveAt(comboBox1.SelectedIndex);
+            if (comboBox1.SelectedIndex < 0)
+                return;
+
+            var origIndex = comboBox1.SelectedIndex;
+			Settings.Default.SavedRegions.RemoveAt(origIndex);
+			comboBox1.Items.RemoveAt(origIndex);
+
+            if (comboBox1.Items.Count > 0)
+                comboBox1.SelectedIndex = 0;
 		}
 
 		private void SaveClick(object sender, EventArgs e) {
