@@ -448,7 +448,7 @@
             this.openToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.openToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuOpen;
             this.openToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuOpenTT;
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.IconContextOpen_click);
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.TaskIconOpen_click);
             // 
             // resetWindowToolStripMenuItem
             // 
@@ -456,7 +456,7 @@
             this.resetWindowToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.resetWindowToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuReset;
             this.resetWindowToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuResetTT;
-            this.resetWindowToolStripMenuItem.Click += new System.EventHandler(this.IconContextReset_click);
+            this.resetWindowToolStripMenuItem.Click += new System.EventHandler(this.TaskIconReset_click);
             // 
             // exitToolStripMenuItem
             // 
@@ -465,7 +465,7 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.exitToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuClose;
             this.exitToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuCloseTT;
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.IconContextExit_click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.TaskIconExit_click);
             // 
             // MainForm
             // 
