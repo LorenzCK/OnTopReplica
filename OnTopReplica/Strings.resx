@@ -330,6 +330,7 @@ You must run this application on Windows Vista Home Premium or better.</value>
   </data>
   <data name="AskUpdate" xml:space="preserve">
     <value>Install OnTopReplica {0}?</value>
+    <comment>{0} update version</comment>
   </data>
   <data name="AskUpdateButtonCancel" xml:space="preserve">
     <value>Cancel update
@@ -338,6 +339,7 @@ OnTopReplica will prompt you the next time it is started.</value>
   <data name="AskUpdateButtonOk" xml:space="preserve">
     <value>Proceed
 Install OnTopReplica {0}.</value>
+    <comment>{0} update version</comment>
   </data>
   <data name="AskUpdateContent" xml:space="preserve">
     <value>The new version will be automatically downloaded and installed.</value>
@@ -346,6 +348,9 @@ Install OnTopReplica {0}.</value>
     <value>Installed version: {0}
 Available version: {1}
 Download size: {2} bytes</value>
+    <comment>{0} installed version number
+{1} online available version number
+{2} update size</comment>
   </data>
   <data name="AskUpdateTitle" xml:space="preserve">
     <value>Update available</value>
