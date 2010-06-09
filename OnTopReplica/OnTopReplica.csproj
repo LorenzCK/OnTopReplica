@@ -108,6 +108,16 @@
     <Compile Include="EnumerationExtensions.cs" />
     <Compile Include="FullscreenMode.cs" />
     <Compile Include="HotKeyManager.cs" />
+    <Compile Include="Strings.cs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.cs.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.da.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.da.resx</DependentUpon>
+    </Compile>
     <Compile Include="Strings.it.Designer.cs">
       <DependentUpon>Strings.it.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -136,7 +146,14 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings.cs.resx" />
+    <EmbeddedResource Include="Strings.cs.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.cs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.da.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.da.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Strings.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.it.Designer.cs</LastGenOutput>
@@ -221,6 +238,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\OnTopReplica.exe.manifest" />
+    <None Include="Assets\flag_danish.png" />
     <Content Include="Assets\window_multiple16.ico" />
   </ItemGroup>
   <ItemGroup>
