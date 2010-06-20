@@ -6,10 +6,10 @@ using OnTopReplica.Properties;
 using VistaControls.Dwm;
 using VistaControls.TaskDialog;
 
-namespace OnTopReplica
-{
-    public partial class MainForm : AspectRatioForm
-    {
+namespace OnTopReplica {
+    
+    public partial class MainForm : AspectRatioForm {
+
         //Visualization status
 		bool _clickForwarding = false;
 
@@ -33,6 +33,7 @@ namespace OnTopReplica
 
         public MainForm(Point location, Size size)
             : this() {
+
             _startOverride = true;
             _startLocation = location;
             _startSize = size;

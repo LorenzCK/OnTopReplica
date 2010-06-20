@@ -5,6 +5,7 @@ using OnTopReplica.Properties;
 using System.Threading;
 using System.Globalization;
 using System.Drawing;
+using System.IO;
 
 namespace OnTopReplica
 {
@@ -14,6 +15,9 @@ namespace OnTopReplica
         /// </summary>
         [STAThread]
         static void Main() {
+            //Hook abort handler
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+
 			//Update settings if needed
 			if (Settings.Default.MustUpdate) {
 				Settings.Default.Upgrade();
@@ -70,5 +74,28 @@ namespace OnTopReplica
 
 			return true;
 		}
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
+            string dump = string.Format("OnTopReplica-dump-{0}{1}{2}{3}{4}.txt",
+                DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day,
+                DateTime.UtcNow.Hour, DateTime.UtcNow.Minute);
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), dump);
+
+            using (var s = new FileStream(path, FileMode.Create)) {
+                using (var sw = new StreamWriter(s)) {
+                    sw.WriteLine("OnTopReplica Dump file");
+                    sw.WriteLine("This file has been created because OnTopReplica crashed.");
+                    sw.WriteLine("Please send it to lck@klopfenstein.net to help fix the bug that caused the crash.");
+                    sw.WriteLine();
+                    sw.WriteLine("Last exception:");
+                    sw.WriteLine(e.ExceptionObject.ToString());
+                    sw.WriteLine();
+                    sw.WriteLine("OS: {0}", Environment.OSVersion.ToString());
+                    sw.WriteLine(".NET: {0}", Environment.Version.ToString());
+                    sw.WriteLine("Aero DWM: {0}", VistaControls.OsSupport.IsCompositionEnabled);
+                }
+            }
+        }
+
     }
 }
