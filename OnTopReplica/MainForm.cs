@@ -223,6 +223,7 @@ namespace OnTopReplica {
 
         protected override void OnResize(EventArgs e) {
             base.OnResize(e);
+            
             this.GlassMargins = (_regionBoxShowing) ?
                 new Margins(ClientSize.Width - _regionBox.Width, 0, 0, 0) :
                 new Margins(-1);
@@ -231,39 +232,19 @@ namespace OnTopReplica {
 		protected override void OnShown(EventArgs e) {
             base.OnShown(e);
 
-			//Do some checks in order to verify the presence of desktop composition
-			if (!VistaControls.OsSupport.IsVistaOrBetter) {
-				MessageBox.Show(Strings.ErrorNoDwm, Strings.ErrorNoDwmTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-				this.Close();
-
-				return;
-			}
-
-			if (!VistaControls.OsSupport.IsCompositionEnabled) {
-				VistaControls.TaskDialog.TaskDialog dlg = new VistaControls.TaskDialog.TaskDialog(Strings.ErrorDwmOff, Strings.ErrorGenericTitle, Strings.ErrorDwmOffContent);
-				dlg.ExpandedControlText = Strings.ErrorDetailsAero;
-				dlg.ExpandedInformation = Strings.ErrorDetailsAeroInfo;
-				dlg.CommonButtons = TaskDialogButton.Close;
-				dlg.CommonIcon = VistaControls.TaskDialog.TaskDialogIcon.Stop;
-				dlg.Show();
-
-				this.Close();
-
-				return;
-			}
-
 			//Get a window manager
 			_windowManager = new WindowManager();
 
 			//Install NotifyIcon
-			taskIcon = new NotifyIcon();
-			taskIcon.Text = Strings.ApplicationName;
-			taskIcon.Icon = Properties.Resources.main_icon;
-			taskIcon.Visible = true;
-			taskIcon.ContextMenuStrip = menuIconContext;
+            taskIcon = new NotifyIcon {
+                Text = Strings.ApplicationName,
+                Icon = Properties.Resources.main_icon,
+                Visible = true,
+                ContextMenuStrip = menuIconContext
+            };
 			taskIcon.DoubleClick += new EventHandler(TaskIcon_doubleclick);
 
-			//Reload position settings
+			//Reload position settings if needed
             if (_startOverride) {
                 Location = _startLocation;
                 Size = _startSize;
@@ -274,7 +255,6 @@ namespace OnTopReplica {
 			}
 
 			//Glassify window
-			this.GlassMargins = new VistaControls.Dwm.Margins(-1);
 			SetGlass(Settings.Default.UseGlass);
 		}
 
