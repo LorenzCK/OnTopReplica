@@ -6,6 +6,7 @@ using System.Threading;
 using System.Globalization;
 using System.Drawing;
 using System.IO;
+using VistaControls.TaskDialog;
 
 namespace OnTopReplica
 {
@@ -18,14 +19,18 @@ namespace OnTopReplica
             //Hook abort handler
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            //Check for DWM
+            if (!CanStart)
+                return;
+
 			//Update settings if needed
 			if (Settings.Default.MustUpdate) {
 				Settings.Default.Upgrade();
 				Settings.Default.MustUpdate = false;
 			}
-
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
 
             bool reloadSettings = false;
             Point reloadLocation = new Point();
@@ -53,6 +58,34 @@ namespace OnTopReplica
 
 			//Persist settings
 			Settings.Default.Save();
+        }
+
+        /// <summary>
+        /// Checks whether OnTopReplica can start or not.
+        /// </summary>
+        private static bool CanStart {
+            get {
+                //Do some checks in order to verify the presence of desktop composition
+                if (!VistaControls.OsSupport.IsVistaOrBetter) {
+                    MessageBox.Show(Strings.ErrorNoDwm, Strings.ErrorNoDwmTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                if (!VistaControls.OsSupport.IsCompositionEnabled) {
+                    MessageBox.Show(Strings.ErrorDwmOffContent, Strings.ErrorDwmOff, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    /*var dlg = new TaskDialog(Strings.ErrorDwmOff, Strings.ErrorGenericTitle, Strings.ErrorDwmOffContent) {
+                        ExpandedControlText = Strings.ErrorDetailsAero,
+                        ExpandedInformation = Strings.ErrorDetailsAeroInfo,
+                        CommonButtons = TaskDialogButton.Close,
+                        CommonIcon = VistaControls.TaskDialog.TaskDialogIcon.Stop
+                    };
+                    dlg.Show();*/
+
+                    return false;
+                }
+
+                return true;
+            }
         }
 
 		static CultureInfo _languageChangeCode = Settings.Default.Language;

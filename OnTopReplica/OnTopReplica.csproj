@@ -19,7 +19,6 @@
     <StartupObject>OnTopReplica.Program</StartupObject>
     <ExcludedPermissions>
     </ExcludedPermissions>
-    <ApplicationManifest>Properties\OnTopReplica.exe.manifest</ApplicationManifest>
     <SignAssembly>false</SignAssembly>
     <ManifestCertificateThumbprint>DB79D77572EF10838D6A2CECDDE738C6570E7995</ManifestCertificateThumbprint>
     <ManifestKeyFile>OnTopReplica_TemporaryKey.pfx</ManifestKeyFile>
@@ -66,6 +65,7 @@
     <DocumentationFile>
     </DocumentationFile>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -78,6 +78,13 @@
     </DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>OnTopReplica.exe.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -105,6 +112,7 @@
     </Compile>
     <Compile Include="CloneClickEventArgs.cs" />
     <Compile Include="CloseRequestEventArgs.cs" />
+    <None Include="CommonControls.cs" />
     <Compile Include="EnumerationExtensions.cs" />
     <Compile Include="FullscreenMode.cs" />
     <Compile Include="HotKeyManager.cs" />
@@ -237,7 +245,9 @@
     <None Include="Assets\reduce.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\OnTopReplica.exe.manifest" />
+    <None Include="OnTopReplica.exe.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Assets\flag_danish.png" />
     <Content Include="Assets\window_multiple16.ico" />
   </ItemGroup>
@@ -326,6 +336,10 @@
     </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
