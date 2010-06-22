@@ -116,6 +116,11 @@
     <Compile Include="EnumerationExtensions.cs" />
     <Compile Include="FullscreenMode.cs" />
     <Compile Include="HotKeyManager.cs" />
+    <Compile Include="PlatformSupport.cs" />
+    <Compile Include="Platforms\Other.cs" />
+    <Compile Include="Platforms\WindowsSeven.cs" />
+    <Compile Include="Platforms\WindowsVista.cs" />
+    <Compile Include="Platforms\WindowsXp.cs" />
     <Compile Include="Strings.cs.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
