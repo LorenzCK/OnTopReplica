@@ -70,7 +70,7 @@ namespace OnTopReplica {
 			_fullscreenForm = new FullscreenForm();
 			_fullscreenForm.CloseRequest += new EventHandler<CloseRequestEventArgs>(FullscreenForm_CloseRequest);
 
-			//Set native renderer on context menues
+			//Set native renderer on context menus
 			Asztal.Szótár.NativeToolStripRenderer.SetToolStripRenderer(new Control[] {
 				menuContext, menuWindows, menuOpacity, menuIconContext, menuResize, menuLanguages
 			});
@@ -209,7 +209,7 @@ namespace OnTopReplica {
                 manager.Dispose();
             }
 
-            //Store settings
+            //Store position settings
             if (Settings.Default.StoreWindowPosition) {
                 Settings.Default.WindowPositionStored = true;
                 Settings.Default.LastLocation = Location;
@@ -235,14 +235,17 @@ namespace OnTopReplica {
 			//Get a window manager
 			_windowManager = new WindowManager();
 
-			//Install NotifyIcon
-            taskIcon = new NotifyIcon {
-                Text = Strings.ApplicationName,
-                Icon = Properties.Resources.main_icon,
-                Visible = true,
-                ContextMenuStrip = menuIconContext
-            };
-			taskIcon.DoubleClick += new EventHandler(TaskIcon_doubleclick);
+			//Platform specific tray/taskbar
+            this.ShowInTaskbar = Program.Platform.ShowsInTaskBar;
+            if (Program.Platform.InstallTrayIcon) {
+                taskIcon = new NotifyIcon {
+                    Text = Strings.ApplicationName,
+                    Icon = Properties.Resources.main_icon,
+                    Visible = true,
+                    ContextMenuStrip = menuIconContext
+                };
+                taskIcon.DoubleClick += new EventHandler(TaskIcon_doubleclick);
+            }
 
 			//Reload position settings if needed
             if (_startOverride) {

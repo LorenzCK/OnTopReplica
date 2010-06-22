@@ -8,9 +8,12 @@ using System.Drawing;
 using System.IO;
 using VistaControls.TaskDialog;
 
-namespace OnTopReplica
-{
+namespace OnTopReplica {
+    
     static class Program {
+
+        public static PlatformSupport Platform { get; private set; }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -22,25 +25,26 @@ namespace OnTopReplica
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Check for DWM
-            if (!CanStart)
+            //Initialize and check for platform support
+            Platform = PlatformSupport.Create();
+            if (!Platform.CheckCompatibility())
                 return;
 
-			//Update settings if needed
-			if (Settings.Default.MustUpdate) {
-				Settings.Default.Upgrade();
-				Settings.Default.MustUpdate = false;
-			}
+            //Update settings if needed
+            if (Settings.Default.MustUpdate) {
+                Settings.Default.Upgrade();
+                Settings.Default.MustUpdate = false;
+            }
 
             bool reloadSettings = false;
             Point reloadLocation = new Point();
             Size reloadSize = new Size();
 
-			do {
-				//Update language settings
-				Thread.CurrentThread.CurrentUICulture = _languageChangeCode;
-				Settings.Default.Language = _languageChangeCode;
-				_languageChangeCode = null;
+            do {
+                //Update language settings
+                Thread.CurrentThread.CurrentUICulture = _languageChangeCode;
+                Settings.Default.Language = _languageChangeCode;
+                _languageChangeCode = null;
 
                 Form form;
                 if (reloadSettings)
@@ -48,65 +52,37 @@ namespace OnTopReplica
                 else
                     form = new MainForm();
 
-				Application.Run(form);
+                Application.Run(form);
 
                 reloadSettings = true;
                 reloadLocation = form.Location;
                 reloadSize = form.Size;
-			}
-			while(_languageChangeCode != null);
+            }
+            while (_languageChangeCode != null);
 
-			//Persist settings
-			Settings.Default.Save();
+            //Persist settings
+            Settings.Default.Save();
         }
+
+        static CultureInfo _languageChangeCode = Settings.Default.Language;
 
         /// <summary>
-        /// Checks whether OnTopReplica can start or not.
+        /// Forces a global language change. As soon as the main form is closed, the change is performed
+        /// and the form is reopened using the new language.
         /// </summary>
-        private static bool CanStart {
-            get {
-                //Do some checks in order to verify the presence of desktop composition
-                if (!VistaControls.OsSupport.IsVistaOrBetter) {
-                    MessageBox.Show(Strings.ErrorNoDwm, Strings.ErrorNoDwmTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+        public static bool ForceGlobalLanguageChange(string languageCode) {
+            if (string.IsNullOrEmpty(languageCode))
+                return false;
 
-                if (!VistaControls.OsSupport.IsCompositionEnabled) {
-                    MessageBox.Show(Strings.ErrorDwmOffContent, Strings.ErrorDwmOff, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    /*var dlg = new TaskDialog(Strings.ErrorDwmOff, Strings.ErrorGenericTitle, Strings.ErrorDwmOffContent) {
-                        ExpandedControlText = Strings.ErrorDetailsAero,
-                        ExpandedInformation = Strings.ErrorDetailsAeroInfo,
-                        CommonButtons = TaskDialogButton.Close,
-                        CommonIcon = VistaControls.TaskDialog.TaskDialogIcon.Stop
-                    };
-                    dlg.Show();*/
-
-                    return false;
-                }
-
-                return true;
+            try {
+                _languageChangeCode = new CultureInfo(languageCode);
             }
+            catch {
+                return false;
+            }
+
+            return true;
         }
-
-		static CultureInfo _languageChangeCode = Settings.Default.Language;
-
-		/// <summary>
-		/// Forces a global language change. As soon as the main form is closed, the change is performed
-		/// and the form is reopened using the new language.
-		/// </summary>
-		public static bool ForceGlobalLanguageChange(string languageCode){
-			if (string.IsNullOrEmpty(languageCode))
-				return false;
-
-			try {
-				_languageChangeCode = new CultureInfo(languageCode);
-			}
-			catch {
-				return false;
-			}
-
-			return true;
-		}
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
             string dump = string.Format("OnTopReplica-dump-{0}{1}{2}{3}{4}.txt",

@@ -388,14 +388,15 @@
             this.danskToolStripMenuItem1,
             this.italianoToolStripMenuItem});
             this.menuLanguages.Name = "menuLanguages";
-            this.menuLanguages.Size = new System.Drawing.Size(153, 114);
+            this.menuLanguages.OwnerItem = this.languageToolStripMenuItem;
+            this.menuLanguages.Size = new System.Drawing.Size(114, 92);
             this.menuLanguages.Text = "Dansk";
             // 
             // englishToolStripMenuItem
             // 
             this.englishToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.flag_usa;
             this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
-            this.englishToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.englishToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.englishToolStripMenuItem.Tag = "en-US";
             this.englishToolStripMenuItem.Text = "English";
             this.englishToolStripMenuItem.Click += new System.EventHandler(this.Menu_Language_click);
@@ -404,7 +405,7 @@
             // 
             this.cestinaToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.flag_czech;
             this.cestinaToolStripMenuItem.Name = "cestinaToolStripMenuItem";
-            this.cestinaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cestinaToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.cestinaToolStripMenuItem.Tag = "cs-CZ";
             this.cestinaToolStripMenuItem.Text = "Čeština";
             this.cestinaToolStripMenuItem.Click += new System.EventHandler(this.Menu_Language_click);
@@ -413,7 +414,7 @@
             // 
             this.danskToolStripMenuItem1.Image = global::OnTopReplica.Properties.Resources.flag_danish;
             this.danskToolStripMenuItem1.Name = "danskToolStripMenuItem1";
-            this.danskToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.danskToolStripMenuItem1.Size = new System.Drawing.Size(113, 22);
             this.danskToolStripMenuItem1.Tag = "da-DK";
             this.danskToolStripMenuItem1.Text = "Dansk";
             this.danskToolStripMenuItem1.Click += new System.EventHandler(this.Menu_Language_click);
@@ -422,7 +423,7 @@
             // 
             this.italianoToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.flag_ita;
             this.italianoToolStripMenuItem.Name = "italianoToolStripMenuItem";
-            this.italianoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.italianoToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.italianoToolStripMenuItem.Tag = "it-IT";
             this.italianoToolStripMenuItem.Text = "Italiano";
             this.italianoToolStripMenuItem.Click += new System.EventHandler(this.Menu_Language_click);
@@ -500,7 +501,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(200, 210);
             this.Name = "MainForm";
-            this.ShowInTaskbar = false;
             this.TopMost = true;
             this.DoubleClick += new System.EventHandler(this.Form_doubleclick);
             this.menuContext.ResumeLayout(false);
