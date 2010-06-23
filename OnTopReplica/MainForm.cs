@@ -229,6 +229,12 @@ namespace OnTopReplica {
                 new Margins(-1);
         }
 
+        protected override void OnMouseWheel(MouseEventArgs e) {
+            base.OnMouseWheel(e);
+
+            AdjustSize(e.Delta);
+        }
+
 		protected override void OnShown(EventArgs e) {
             base.OnShown(e);
 
