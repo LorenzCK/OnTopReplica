@@ -70,6 +70,24 @@ namespace OnTopReplica {
             ClientSize = new Size(newWidth, newHeight);
         }
 
+        public void AdjustSize(double delta) {
+            int newWidth = Math.Max((int)(ClientSize.Width + delta), MinimumSize.Width);
+            int newHeight = (int)((newWidth - ExtraPadding.Horizontal) / AspectRatio + ExtraPadding.Vertical);
+
+            //Readjust if we go lower than minimal height
+            if (newHeight < MinimumSize.Height) {
+                newHeight = MinimumSize.Height;
+                newWidth = (int)((newHeight - ExtraPadding.Vertical) * AspectRatio + ExtraPadding.Horizontal);
+            }
+
+            //Compute movement to re-center
+            int deltaX = newWidth - ClientSize.Width;
+            int deltaY = newHeight - ClientSize.Height;
+
+            ClientSize = new Size(newWidth, newHeight);
+            Location = new Point(Location.X - (deltaX / 2), Location.Y - (deltaY / 2));
+        }
+
         /// <summary>
         /// Updates the aspect ratio of the form and forces a refresh.
         /// </summary>
@@ -145,14 +163,6 @@ namespace OnTopReplica {
         public Size FromSizeToClientSize(Size size) {
             return new Size(size.Width - clientSizeConversionWidth, size.Height - clientSizeConversionHeight);
         }
-
-        /*private void ClientSizeInit() {
-            if (clientSizeConversionSet)
-                return;
-
-            clientSizeConversionWidth = this.Size.Width - this.ClientSize.Width;
-            clientSizeConversionHeight = this.ClientSize.Width - this.ClientSize.Height;
-        }*/
 
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
