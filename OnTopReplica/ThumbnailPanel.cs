@@ -393,8 +393,13 @@ namespace OnTopReplica {
 		public event RegionDrawnHandler RegionDrawn;
 
 		protected virtual void OnRegionDrawn(Rectangle region) {
-			if (RegionDrawn != null)
-				RegionDrawn(this, region);
+            //Fix region if necessary (bug report by Gunter, via comment)
+            if (region.Width < 1) region.Width = 1;
+            if (region.Height < 1) region.Height = 1;
+
+            var evt = RegionDrawn;
+			if (evt != null)
+				evt(this, region);
 		}
 
 		protected Point ScreenToThumbnail(Point position) {
