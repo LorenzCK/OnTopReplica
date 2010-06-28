@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using OnTopReplica.Platforms;
+using System.Windows.Forms;
 
 namespace OnTopReplica {
     abstract class PlatformSupport {
@@ -46,6 +47,13 @@ namespace OnTopReplica {
             get {
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Initialized a form.
+        /// </summary>
+        /// <param name="form">Form to initialize.</param>
+        public virtual void InitForm(Form form) {
         }
 
     }

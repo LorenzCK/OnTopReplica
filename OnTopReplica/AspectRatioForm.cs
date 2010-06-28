@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using VistaControls.Dwm.Helpers;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace OnTopReplica {
 
@@ -13,11 +14,12 @@ namespace OnTopReplica {
     /// </summary>
     public class AspectRatioForm : GlassForm {
 
-        public AspectRatioForm() {
-            AspectRatio = 1.0;
-        }
-
         bool _keepAspectRatio = true;
+
+        /// <summary>
+        /// Gets or sets whether the form should keep its aspect ratio.
+        /// </summary>
+        [Description("Enables fixed aspect ratio for this form."), Category("Appearance"), DefaultValue(true)]
         public bool KeepAspectRatio {
             get {
                 return _keepAspectRatio;
@@ -31,6 +33,11 @@ namespace OnTopReplica {
         }
 
         double _aspectRatio = 1.0;
+
+        /// <summary>
+        /// Gets or sets the form's aspect ratio that will be kept automatically when resizing.
+        /// </summary>
+        [Description("Determins this form's fixed aspect ratio."), Category("Appearance"), DefaultValue(1.0)]
         public double AspectRatio {
             get {
                 return _aspectRatio;
@@ -44,6 +51,12 @@ namespace OnTopReplica {
         }
 
         Padding _extraPadding;
+
+        /// <summary>
+        /// Gets or sets some additional internal padding of the form that is ignored when keeping the aspect ratio.
+        /// </summary>
+        [Description("Sets some padding inside the form's client area that is ignored when keeping the aspect ratio."),
+            Category("Appearance")]
         public Padding ExtraPadding {
             get {
                 return _extraPadding;
@@ -97,13 +110,14 @@ namespace OnTopReplica {
             RefreshAspectRatio();
         }
 
+        #region Event overriding
+
         protected override void OnResizeEnd(EventArgs e) {
             base.OnResizeEnd(e);
 
-            //Ensure that the ClientSize of the form is always respected (not ensured by the WM_SIZING message alone)
+            //Ensure that the ClientSize of the form is always respected
+            //(not ensured by the WM_SIZING message alone because of rounding errors and the chrome space)
             if (KeepAspectRatio) {
-                //Since WM_SIZING already fixes up the size almost correctly,
-                //simply set the height to the correct value
                 var newHeight = (int)((ClientSize.Width - ExtraPadding.Horizontal) / AspectRatio + ExtraPadding.Vertical);
                 ClientSize = new Size(ClientSize.Width, newHeight);
             }
@@ -112,37 +126,39 @@ namespace OnTopReplica {
         /// <summary>
         /// Override WM_SIZING message to restrict resizing.
         /// Taken from: http://www.vcskicks.com/maintain-aspect-ratio.php
+        /// Improved with code from: http://stoyanoff.info/blog/2010/06/27/resizing-forms-while-keeping-aspect-ratio/
         /// </summary>
         protected override void WndProc(ref Message m) {
             if (KeepAspectRatio && m.Msg == NativeMethods.WM_SIZING) {
                 var rc = (NativeMethods.Rectangle)Marshal.PtrToStructure(m.LParam, typeof(NativeMethods.Rectangle));
                 int res = m.WParam.ToInt32();
 
-                if (res == NativeMethods.WMSZ_LEFT || res == NativeMethods.WMSZ_RIGHT) {
-                    //Left or right resize -> adjust height (bottom)
-                    int targetHeight = (int)Math.Ceiling((Width - ExtraPadding.Horizontal) / AspectRatio) + ExtraPadding.Vertical;
-                    int originalHeight = rc.Bottom - rc.Top;
-                    int diffHeight = originalHeight - targetHeight;
+                int width = (rc.Right - rc.Left) - clientSizeConversionWidth - ExtraPadding.Horizontal;
+                int height = (rc.Bottom - rc.Top) - clientSizeConversionHeight - ExtraPadding.Vertical;
 
-                    rc.Top += (diffHeight / 2);
-                    rc.Bottom = rc.Top + targetHeight;
+                if (res == NativeMethods.WMSZ_LEFT || res == NativeMethods.WMSZ_RIGHT) {
+                    //Left or right resize, adjust top and bottom
+                    int targetHeight = (int)(width / AspectRatio);
+                    int diffHeight = height - targetHeight;
+
+                    rc.Top += (int)(diffHeight / 2.0);
+                    rc.Bottom = rc.Top + targetHeight + ExtraPadding.Vertical + clientSizeConversionHeight;
                 }
                 else if (res == NativeMethods.WMSZ_TOP || res == NativeMethods.WMSZ_BOTTOM) {
-                    //Up or down resize -> adjust width (right)
-                    int targetWidth = (int)Math.Ceiling((Height - ExtraPadding.Vertical) * AspectRatio) + ExtraPadding.Horizontal;
-                    int originalWidth = rc.Right - rc.Left;
-                    int diffWidth = originalWidth - targetWidth;
+                    //Up or down resize, adjust left and right
+                    int targetWidth = (int)(height * AspectRatio);
+                    int diffWidth = width - targetWidth;
 
-                    rc.Left += (diffWidth / 2);
-                    rc.Right = rc.Left + targetWidth;
+                    rc.Left += (int)(diffWidth / 2.0);
+                    rc.Right = rc.Left + targetWidth + ExtraPadding.Horizontal + clientSizeConversionWidth;
                 }
                 else if (res == NativeMethods.WMSZ_RIGHT + NativeMethods.WMSZ_BOTTOM || res == NativeMethods.WMSZ_LEFT + NativeMethods.WMSZ_BOTTOM) {
-                    //Lower-right/left corner resize -> adjust height (could have been width)
-                    rc.Bottom = rc.Top + (int)Math.Ceiling((Width - ExtraPadding.Horizontal) / AspectRatio) + ExtraPadding.Vertical;
+                    //Lower corner resize, adjust bottom
+                    rc.Bottom = rc.Top + (int)(width / AspectRatio) + ExtraPadding.Vertical + clientSizeConversionHeight;
                 }
                 else if (res == NativeMethods.WMSZ_LEFT + NativeMethods.WMSZ_TOP || res == NativeMethods.WMSZ_RIGHT + NativeMethods.WMSZ_TOP) {
-                    //Upper-left/right corner -> adjust width (could have been height)
-                    rc.Top = rc.Bottom - (int)Math.Ceiling((Width - ExtraPadding.Horizontal) / AspectRatio) + ExtraPadding.Vertical;
+                    //Upper corner resize, adjust top
+                    rc.Top = rc.Bottom - (int)(width / AspectRatio) - ExtraPadding.Vertical - clientSizeConversionHeight;
                 }
 
                 Marshal.StructureToPtr(rc, m.LParam, true);
@@ -151,15 +167,26 @@ namespace OnTopReplica {
             base.WndProc(ref m);
         }
 
-        #region ClientSize/Size conversion
+        #endregion
 
-        //bool clientSizeConversionSet = false;
+        #region ClientSize/Size conversion helpers
+
         int clientSizeConversionWidth, clientSizeConversionHeight;
 
+        /// <summary>
+        /// Converts a client size measurement to a window size measurement.
+        /// </summary>
+        /// <param name="clientSize">Size of the window's client area.</param>
+        /// <returns>Size of the whole window.</returns>
         public Size FromClientSizeToSize(Size clientSize) {
             return new Size(clientSize.Width + clientSizeConversionWidth, clientSize.Height + clientSizeConversionHeight);
         }
 
+        /// <summary>
+        /// Converts a window size measurement to a client size measurement.
+        /// </summary>
+        /// <param name="size">Size of the whole window.</param>
+        /// <returns>Size of the window's client area.</returns>
         public Size FromSizeToClientSize(Size size) {
             return new Size(size.Width - clientSizeConversionWidth, size.Height - clientSizeConversionHeight);
         }
@@ -167,8 +194,8 @@ namespace OnTopReplica {
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
 
-            clientSizeConversionWidth = this.Size.Width - this.ClientSize.Width;
-            clientSizeConversionHeight = this.Size.Height - this.ClientSize.Height;
+            clientSizeConversionWidth = Size.Width - ClientSize.Width;
+            clientSizeConversionHeight = Size.Height - ClientSize.Height;
         }
 
         #endregion

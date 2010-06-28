@@ -223,6 +223,7 @@
     <Compile Include="ThumbnailPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="VirtualKeyState.cs" />
     <Compile Include="Win32Helper.cs" />
     <Compile Include="WindowHandle.cs" />
     <Compile Include="WindowListHelper.cs" />
