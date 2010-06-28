@@ -159,8 +159,9 @@ namespace OnTopReplica {
 		public event RegionSetHandler RegionSet;
 
 		protected virtual void OnRegionSet(Rectangle region){
-			if (RegionSet != null)
-				RegionSet(this, region);
+            var evt = RegionSet;
+			if (evt != null)
+				evt(this, region);
 
 			buttonSave.Enabled = true;
 		}

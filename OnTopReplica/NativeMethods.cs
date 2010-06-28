@@ -159,7 +159,6 @@ namespace OnTopReplica
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetWindow(IntPtr hwnd, GetWindowMode mode);
 
-
 		[DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
 		public static extern int GetWindowText(IntPtr hWnd, [Out] StringBuilder lpString, int nMaxCount);
 
@@ -260,15 +259,20 @@ namespace OnTopReplica
 
 
 		public const int HTTRANSPARENT = -1;
+        public const int HTCLIENT = 1;
+        public const int HTCAPTION = 2;
+
 		public const int WM_NCHITTEST = 0x84;
 		public const int WM_NCPAINT = 0x0085;
 		public const int WM_LBUTTONDOWN = 0x0201;
 		public const int WM_LBUTTONUP = 0x0202;
 		public const int WM_LBUTTONDBLCLK = 0x0203;
+        public const int WM_NCLBUTTONUP = 0x00A2;
+        public const int WM_NCLBUTTONDOWN = 0x00A1;
+        public const int WM_NCLBUTTONDBLCLK = 0x00A3;
+        public const int WM_NCRBUTTONUP = 0x00A5;
 
 		public const int MK_LBUTTON = 0x0001;
-
-		//public const int MN_GETHMENU = 0x01E1;
 
 		public static IntPtr MakeLParam(int LoWord, int HiWord) {
 			return new IntPtr((HiWord << 16) | (LoWord & 0xffff));
@@ -286,24 +290,8 @@ namespace OnTopReplica
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetMenu(IntPtr hwnd);
 
-
-		public static uint WTNCA_NODRAWCAPTION = 0x00000001;
-		public static uint WTNCA_NODRAWICON = 0x00000002;
-		public static uint WTNCA_NOSYSMENU = 0x00000004;
-		public static uint WTNCA_NOMIRRORHELP = 0x00000008;
-
-		[StructLayout(LayoutKind.Sequential)]
-		public struct WTA_OPTIONS {
-			public uint Flags;
-			public uint Mask;
-		}
-
-		public enum WindowThemeAttributeType {
-			WTA_NONCLIENT = 1,
-		};
-
-		[DllImport("UxTheme.dll")]
-		public static extern int SetWindowThemeAttribute(IntPtr hWnd, WindowThemeAttributeType wtype, ref WTA_OPTIONS attributes, uint size);
+        [DllImport("user32.dll")]
+        public static extern short GetKeyState(VirtualKeyState nVirtKey);
 
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using VistaControls.Dwm;
 
 namespace OnTopReplica.Platforms {
     class WindowsVista : PlatformSupport {
@@ -12,6 +13,10 @@ namespace OnTopReplica.Platforms {
                 return false;
             }
             return true;
+        }
+
+        public override void InitForm(Form form) {
+            DwmManager.SetWindowFlip3dPolicy(form, Flip3DPolicy.ExcludeAbove);
         }
 
     }

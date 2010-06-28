@@ -30,6 +30,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.progressBar1 = new VistaControls.ProgressBar();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonExpander = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,7 +38,6 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.progressBar1 = new VistaControls.ProgressBar();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -109,6 +109,15 @@
             this.buttonCancel.Visible = false;
             this.buttonCancel.Click += new System.EventHandler(this.Abort_click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(235, 79);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(102, 23);
+            this.progressBar1.TabIndex = 3;
+            this.progressBar1.Visible = false;
+            // 
             // buttonUpdate
             // 
             this.buttonUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -143,7 +152,8 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(199, 31);
             this.label1.TabIndex = 13;
-            this.label1.Text = Strings.UpdateDisclaimer;
+            this.label1.Text = "OnTopReplica automatically checks for updates. No information is logged at any po" +
+                "int.";
             // 
             // linkLabel2
             // 
@@ -156,7 +166,7 @@
             this.linkLabel2.Size = new System.Drawing.Size(252, 21);
             this.linkLabel2.TabIndex = 1;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = Strings.Homepage;
+            this.linkLabel2.Text = "Homepage: www.codeplex.com/ontopreplica.";
             this.linkLabel2.UseCompatibleTextRendering = true;
             this.linkLabel2.VisitedLinkColor = System.Drawing.Color.Blue;
             // 
@@ -172,7 +182,7 @@
             this.linkLabel1.Size = new System.Drawing.Size(212, 21);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = Strings.CreatedBy;
+            this.linkLabel1.Text = "Created by: Lorenz Cuno Klopfenstein.";
             this.linkLabel1.UseCompatibleTextRendering = true;
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Blue;
             // 
@@ -184,7 +194,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(287, 33);
             this.label2.TabIndex = 10;
-            this.label2.Text = Strings.Slogan;
+            this.label2.Text = "A lightweight, real-time, always on top thumbnail of a window of your choice.";
             // 
             // webBrowser
             // 
@@ -198,15 +208,6 @@
             this.webBrowser.Size = new System.Drawing.Size(389, 200);
             this.webBrowser.TabIndex = 14;
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(235, 79);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(102, 23);
-            this.progressBar1.TabIndex = 3;
-            this.progressBar1.Visible = false;
-            // 
             // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,6 +220,7 @@
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.HideTitle = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "AboutForm";

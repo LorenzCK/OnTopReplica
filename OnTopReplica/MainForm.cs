@@ -252,6 +252,7 @@ namespace OnTopReplica {
                 };
                 taskIcon.DoubleClick += new EventHandler(TaskIcon_doubleclick);
             }
+            Program.Platform.InitForm(this);
 
 			//Reload position settings if needed
             if (_startOverride) {
@@ -266,6 +267,17 @@ namespace OnTopReplica {
 			//Glassify window
 			SetGlass(Settings.Default.UseGlass);
 		}
+
+        protected override void WndProc(ref Message m) {
+            base.WndProc(ref m);
+
+            //Open context menu if right button clicked on caption (i.e. all of the window area because of glass)
+            if (m.Msg == NativeMethods.WM_NCRBUTTONUP) {
+                if (m.WParam.ToInt32() == NativeMethods.HTCAPTION) {
+                    menuContext.Show(MousePosition);
+                }
+            }
+        }
 
 		#endregion
 
@@ -741,24 +753,6 @@ namespace OnTopReplica {
 				ThumbnailError(ex, false, Strings.ErrorUnableToFit);
 			}
 		}
-
-        /*
-		/// <summary>Automatically fits the window to the current thumbnail.</summary>
-		/// <remarks>Only adjusts height and corrects the window's position.</remarks>
-		private void FitToThumbnail() {
-			if (_thumbnailPanel.IsShowingThumbnail) {
-				var source = _thumbnailPanel.ThumbnailOriginalSize;
-				double ratio = (double)source.Width / (double)source.Height;
-
-				int width = (RegionBoxShowing) ? (ClientSize.Width - _regionBox.Width) : ClientSize.Width;
-					//(RegionBoxShowing) ? ClientSize.Width - cRegionWithPadding : ClientSize.Width;
-				int newHeight = (int)(width / ratio);
-				int diffHeight = ClientSize.Height - newHeight;
-				ClientSize = new Size(ClientSize.Width, newHeight);
-				Location = new Point(Location.X, Location.Y + diffHeight / 2);
-			}
-		}
-         * */
 
         #endregion
 

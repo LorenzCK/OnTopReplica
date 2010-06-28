@@ -256,8 +256,8 @@ namespace OnTopReplica {
 			}
 			else {
 				//Update visibility
-				_labelGlass.Visible = _glassMode;
-				_labelNoGlass.Visible = !_glassMode;
+                _labelGlass.Visible = _glassMode;
+                _labelNoGlass.Visible = !_glassMode;
 			}
 		}
 
@@ -270,13 +270,13 @@ namespace OnTopReplica {
 		}
 
 		protected override void WndProc(ref Message m) {
-			//Make transparent to hit-testing
-			if (m.Msg == NativeMethods.WM_NCHITTEST && !DrawMouseRegions && ClickThrough) {
-				m.Result = new IntPtr(NativeMethods.HTTRANSPARENT);
-				return;
-			}
+            base.WndProc(ref m);
 
-			base.WndProc(ref m);
+			//Make transparent to hit-testing
+			if (m.Msg == NativeMethods.WM_NCHITTEST && m.Result.ToInt32() == 1 &&
+                !DrawMouseRegions && ClickThrough) {
+			    m.Result = new IntPtr(NativeMethods.HTTRANSPARENT);
+			}
 		}
 
 		protected override void OnMouseClick(MouseEventArgs e) {

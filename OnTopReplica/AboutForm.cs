@@ -30,17 +30,7 @@ namespace OnTopReplica {
 			GlassEnabled = true;
 			GlassMargins = new VistaControls.Dwm.Margins(0, 0, themedLabel1.Size.Height, 0);
 
-			//Remove title and icon from title bar
-			//  Code taken from: https://secure.codeproject.com/KB/vista/HideCaptionIcon.aspx
-			NativeMethods.WTA_OPTIONS ops = new NativeMethods.WTA_OPTIONS();
-			ops.Flags = NativeMethods.WTNCA_NODRAWCAPTION | NativeMethods.WTNCA_NODRAWICON;
-			ops.Mask = NativeMethods.WTNCA_NODRAWCAPTION | NativeMethods.WTNCA_NODRAWICON;
-			NativeMethods.SetWindowThemeAttribute(this.Handle,
-				NativeMethods.WindowThemeAttributeType.WTA_NONCLIENT,
-				ref ops,
-				(uint)Marshal.SizeOf(typeof(NativeMethods.WTA_OPTIONS))
-			);
-
+            //Update title
 			themedLabel2.Text = "v" + Application.ProductVersion.Substring(0, 3);
 
 			//Create event handlers
