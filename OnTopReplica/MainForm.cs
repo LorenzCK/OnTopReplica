@@ -19,9 +19,6 @@ namespace OnTopReplica {
 		FullscreenForm _fullscreenForm;
         HotKeyManager _hotKeyManager;
 
-		//Icon
-		NotifyIcon taskIcon = null;
-
         //Window manager
         WindowManager _windowManager;
 		WindowHandle _lastWindowHandle = null;
@@ -42,28 +39,30 @@ namespace OnTopReplica {
         public MainForm() {
             InitializeComponent();
 
-            this.SetStyle(ControlStyles.EnableNotifyMessage, true);
             KeepAspectRatio = false;
 
 			//Thumbnail panel
-			_thumbnailPanel = new ThumbnailPanel(Settings.Default.UseGlass);
-			_thumbnailPanel.RegionDrawn += new ThumbnailPanel.RegionDrawnHandler(Thumbnail_RegionDrawn);
-			_thumbnailPanel.CloneClick += new EventHandler<CloneClickEventArgs>(Thumbnail_CloneClick);
-			_thumbnailPanel.ClickThrough = !_clickForwarding;
-			_thumbnailPanel.Location = Point.Empty;
-			_thumbnailPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-			_thumbnailPanel.Size = ClientSize;
+			_thumbnailPanel = new ThumbnailPanel(Settings.Default.UseGlass){
+			    ClickThrough = !_clickForwarding,
+			    Location = Point.Empty,
+			    Anchor = AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
+			    Size = ClientSize
+            };
+            _thumbnailPanel.RegionDrawn += new ThumbnailPanel.RegionDrawnHandler(Thumbnail_RegionDrawn);
+            _thumbnailPanel.CloneClick += new EventHandler<CloneClickEventArgs>(Thumbnail_CloneClick);
 			Controls.Add(_thumbnailPanel);
 
 			//Region box
-			_regionBox = new RegionBox();
-			_regionBox.RequestClosing += new EventHandler(RegionBox_RequestClosing);
-			_regionBox.RequestRegionReset += new EventHandler(RegionBox_RequestRegionReset);
-			_regionBox.RegionSet += new RegionBox.RegionSetHandler(RegionBox_RegionChanged);
-			_regionBox.Location = new Point(ClientSize.Width, 0);
-			_regionBox.Size = new Size(_regionBox.Width, ClientSize.Height);
-			_regionBox.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
-			_regionBox.Enabled = _regionBox.Visible = false;
+            _regionBox = new RegionBox {
+                Location = new Point(ClientSize.Width, 0),
+                Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom,
+                Enabled = false,
+                Visible = false
+            };
+            _regionBox.Size = new Size(_regionBox.Width, ClientSize.Height);
+            _regionBox.RequestClosing += new EventHandler(RegionBox_RequestClosing);
+            _regionBox.RequestRegionReset += new EventHandler(RegionBox_RequestRegionReset);
+            _regionBox.RegionSet += new RegionBox.RegionSetHandler(RegionBox_RegionChanged);
 			Controls.Add(_regionBox);
 
 			//Full screen form
@@ -71,9 +70,9 @@ namespace OnTopReplica {
 			_fullscreenForm.CloseRequest += new EventHandler<CloseRequestEventArgs>(FullscreenForm_CloseRequest);
 
 			//Set native renderer on context menus
-			Asztal.Szótár.NativeToolStripRenderer.SetToolStripRenderer(new Control[] {
-				menuContext, menuWindows, menuOpacity, menuIconContext, menuResize, menuLanguages
-			});
+			Asztal.Szótár.NativeToolStripRenderer.SetToolStripRenderer(
+				menuContext, menuWindows, menuOpacity, menuResize, menuLanguages
+			);
 
             //Hook keyboard handler
             this.KeyUp += new KeyEventHandler(Common_Key);
@@ -189,25 +188,33 @@ namespace OnTopReplica {
 
 		#region Event override
 
-        protected override void OnNotifyMessage(Message m) {
-            if (_hotKeyManager != null)
-                _hotKeyManager.ProcessHotKeys(m);
+        protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+
+            //Get a window manager
+            _windowManager = new WindowManager();
+
+            //Platform specific form initialization
+            Program.Platform.InitForm(this);
+
+            //Reload position settings if needed
+            if (_startOverride) {
+                Location = _startLocation;
+                Size = _startSize;
+            }
+            else if (Settings.Default.WindowPositionStored) {
+                Location = Settings.Default.LastLocation;
+                ClientSize = Settings.Default.LastSize;
+            }
+
+            //Glassify window
+            SetGlass(Settings.Default.UseGlass);
         }
 
         protected override void OnClosing(CancelEventArgs e) {
-            //Destroy NotifyIcon
-            if (taskIcon != null) {
-                taskIcon.Visible = false;
-                taskIcon.Dispose();
-                taskIcon = null;
-            }
-
             //Destroy hotkeys
-            {
-                var manager = _hotKeyManager;
-                _hotKeyManager = null;
-                manager.Dispose();
-            }
+            _hotKeyManager.Dispose();
+            _hotKeyManager = null;
 
             //Store position settings
             if (Settings.Default.StoreWindowPosition) {
@@ -229,46 +236,20 @@ namespace OnTopReplica {
                 new Margins(-1);
         }
 
+        protected override void OnActivated(EventArgs e) {
+            base.OnActivated(e);
+        }
+
         protected override void OnMouseWheel(MouseEventArgs e) {
             base.OnMouseWheel(e);
 
             AdjustSize(e.Delta);
         }
 
-		protected override void OnShown(EventArgs e) {
-            base.OnShown(e);
-
-			//Get a window manager
-			_windowManager = new WindowManager();
-
-			//Platform specific tray/taskbar
-            this.ShowInTaskbar = Program.Platform.ShowsInTaskBar;
-            if (Program.Platform.InstallTrayIcon) {
-                taskIcon = new NotifyIcon {
-                    Text = Strings.ApplicationName,
-                    Icon = Properties.Resources.main_icon,
-                    Visible = true,
-                    ContextMenuStrip = menuIconContext
-                };
-                taskIcon.DoubleClick += new EventHandler(TaskIcon_doubleclick);
-            }
-            Program.Platform.InitForm(this);
-
-			//Reload position settings if needed
-            if (_startOverride) {
-                Location = _startLocation;
-                Size = _startSize;
-            }
-			else if (Settings.Default.WindowPositionStored) {
-				Location = Settings.Default.LastLocation;
-				ClientSize = Settings.Default.LastSize;
-			}
-
-			//Glassify window
-			SetGlass(Settings.Default.UseGlass);
-		}
-
         protected override void WndProc(ref Message m) {
+            if (_hotKeyManager != null)
+                _hotKeyManager.ProcessHotKeys(m);
+
             base.WndProc(ref m);
 
             //Open context menu if right button clicked on caption (i.e. all of the window area because of glass)
@@ -278,50 +259,6 @@ namespace OnTopReplica {
                 }
             }
         }
-
-		#endregion
-
-		#region Task Icon events
-
-		void TaskIcon_doubleclick(object sender, EventArgs e) {
-            EnsureMainFormVisible();
-		}
-
-		private void TaskIconOpen_click(object sender, EventArgs e) {
-            EnsureMainFormVisible();
-		}
-
-		private void TaskIconReset_click(object sender, EventArgs e) {
-			var dlg = new TaskDialog(Strings.AskReset, Strings.AskResetTitle, Strings.AskResetContent);
-			dlg.UseCommandLinks = true;
-			dlg.CustomButtons = new CustomButton[] {
-				new CustomButton(Result.OK, Strings.AskResetButtonOk),
-				new CustomButton(Result.Cancel, Strings.ButtonCancel)
-			};
-			dlg.CommonIcon = TaskDialogIcon.Information;
-
-			if (dlg.Show().CommonButton == Result.OK) {
-				//Reset display status
-				TaskIcon_doubleclick(sender, e);
-
-				//Reset form settings
-				ThumbnailUnset();
-				RegionBoxShowing = false;
-
-				Point nuLoc = Screen.PrimaryScreen.WorkingArea.Location;
-				nuLoc.Offset(40, 40);
-
-				Location = nuLoc;
-				Size = MinimumSize;
-
-				Show();
-                _fullscreenForm.Hide();
-			}
-		}
-
-		private void TaskIconExit_click(object sender, EventArgs e) {
-			this.Close();
-		}
 
 		#endregion
 
@@ -785,7 +722,7 @@ namespace OnTopReplica {
         /// <summary>
         /// Ensures that the main form is visible (either closing the fullscreen mode or reactivating from task icon).
         /// </summary>
-        private void EnsureMainFormVisible() {
+        public void EnsureMainFormVisible() {
             if (_isFullscreen)
                 ToggleFullscreen();
 
@@ -793,6 +730,42 @@ namespace OnTopReplica {
             this.Show();
             this.Activate();
             this.TopMost = true;
+        }
+
+        /// <summary>
+        /// Opens a confirmation dialog to confirm whether to reset the main form or not.
+        /// </summary>
+        public void ResetMainFormWithConfirmation() {
+            var dlg = new TaskDialog(Strings.AskReset, Strings.AskResetTitle, Strings.AskResetContent);
+            dlg.UseCommandLinks = true;
+            dlg.CustomButtons = new CustomButton[] {
+				new CustomButton(Result.OK, Strings.AskResetButtonOk),
+				new CustomButton(Result.Cancel, Strings.ButtonCancel)
+			};
+            dlg.CommonIcon = TaskDialogIcon.Information;
+
+            if (dlg.Show(this).CommonButton == Result.OK) {
+                ResetMainForm();
+            }
+        }
+
+        /// <summary>
+        /// Resets the main form to its initial state.
+        /// </summary>
+        public void ResetMainForm() {
+            //Reset form settings
+            ThumbnailUnset();
+            RegionBoxShowing = false;
+
+            //Reset location and size (edge of the screen, min size)
+            Point nuLoc = Screen.PrimaryScreen.WorkingArea.Location;
+            nuLoc.Offset(40, 40);
+            Location = nuLoc;
+            Size = MinimumSize;
+
+            _fullscreenForm.Hide();
+            this.Show();
+            this.Activate();
         }
 
 		#endregion
