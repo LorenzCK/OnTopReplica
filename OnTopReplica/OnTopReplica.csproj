@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="CloneClickEventArgs.cs" />
     <Compile Include="CloseRequestEventArgs.cs" />
+    <Compile Include="WindowsSevenMethods.cs" />
     <None Include="CommonControls.cs" />
     <Compile Include="EnumerationExtensions.cs" />
     <Compile Include="FullscreenMode.cs" />
@@ -139,12 +140,12 @@
     <Compile Include="FocusedTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="FullscreenForm.cs">
+    <None Include="FullscreenForm.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FullscreenForm.Designer.cs">
+    </None>
+    <None Include="FullscreenForm.Designer.cs">
       <DependentUpon>FullscreenForm.cs</DependentUpon>
-    </Compile>
+    </None>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,9 +173,9 @@
       <LastGenOutput>Strings.it.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FullscreenForm.resx">
+    <None Include="FullscreenForm.resx">
       <DependentUpon>FullscreenForm.cs</DependentUpon>
-    </EmbeddedResource>
+    </None>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>

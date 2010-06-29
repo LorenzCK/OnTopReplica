@@ -5,7 +5,7 @@ using OnTopReplica.Platforms;
 using System.Windows.Forms;
 
 namespace OnTopReplica {
-    abstract class PlatformSupport {
+    abstract class PlatformSupport : IDisposable {
 
         public static PlatformSupport Create() {
             var os = Environment.OSVersion;
@@ -32,29 +32,36 @@ namespace OnTopReplica {
         public abstract bool CheckCompatibility();
 
         /// <summary>
-        /// Gets whether OnTopReplica should be displayed in the task bar.
+        /// Initialized the application. Called once in the app lifetime.
         /// </summary>
-        public virtual bool ShowsInTaskBar {
-            get {
-                return false;
-            }
+        public virtual void InitApp() {
         }
 
-        /// <summary>
-        /// Gets whether OnTopReplica should install a tray icon.
-        /// </summary>
-        public virtual bool InstallTrayIcon {
-            get {
-                return true;
-            }
-        }
+        protected MainForm Form { get; private set; }
 
         /// <summary>
-        /// Initialized a form.
+        /// Initializes a form.
         /// </summary>
         /// <param name="form">Form to initialize.</param>
-        public virtual void InitForm(Form form) {
+        public virtual void InitForm(MainForm form) {
+            Form = form;
         }
 
+        public virtual void ShutdownApp() {
+        }
+
+        #region IDisposable Members
+
+        bool _isDisposed = false;
+
+        public void Dispose() {
+            if (_isDisposed)
+                return;
+
+            this.ShutdownApp();
+            _isDisposed = true;
+        }
+
+        #endregion
     }
 }

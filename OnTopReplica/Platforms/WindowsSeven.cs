@@ -7,23 +7,20 @@ using System.Windows.Forms;
 namespace OnTopReplica.Platforms {
     class WindowsSeven : WindowsVista {
 
-        public override bool InstallTrayIcon {
-            get {
-                return false;
-            }
-        }
-
-        public override bool ShowsInTaskBar {
-            get {
-                return true;
-            }
-        }
-
-        public override void InitForm(Form form) {
-            base.InitForm(form);
-
+        public override void InitForm(MainForm form) {
             DwmManager.SetExludeFromPeek(form, true);
             DwmManager.SetDisallowPeek(form, true);
+            
+            base.InitForm(form);
+        }
+
+        public override void InitApp() {
+            //Set Application ID
+            WindowsSevenMethods.SetCurrentProcessExplicitAppUserModelID("OnTopReplica");
+        }
+
+        protected override void InitFormCore(MainForm form) {
+            //do nothing
         }
 
     }

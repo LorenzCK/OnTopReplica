@@ -69,16 +69,11 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContextClose = new System.Windows.Forms.ToolStripMenuItem();
             this.danskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuIconContext = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContext.SuspendLayout();
             this.menuWindows.SuspendLayout();
             this.menuOpacity.SuspendLayout();
             this.menuResize.SuspendLayout();
             this.menuLanguages.SuspendLayout();
-            this.menuIconContext.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuContext
@@ -453,42 +448,6 @@
             this.danskToolStripMenuItem.Text = "Dansk";
             this.danskToolStripMenuItem.Click += new System.EventHandler(this.Menu_Language_click);
             // 
-            // menuIconContext
-            // 
-            this.menuIconContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
-            this.resetWindowToolStripMenuItem,
-            this.exitToolStripMenuItem});
-            this.menuIconContext.Name = "menuIconContext";
-            this.menuIconContext.Size = new System.Drawing.Size(148, 70);
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.openToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.icon;
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.openToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuOpen;
-            this.openToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuOpenTT;
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.TaskIconOpen_click);
-            // 
-            // resetWindowToolStripMenuItem
-            // 
-            this.resetWindowToolStripMenuItem.Name = "resetWindowToolStripMenuItem";
-            this.resetWindowToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.resetWindowToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuReset;
-            this.resetWindowToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuResetTT;
-            this.resetWindowToolStripMenuItem.Click += new System.EventHandler(this.TaskIconReset_click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.close_new;
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.exitToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuClose;
-            this.exitToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuCloseTT;
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.TaskIconExit_click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -507,7 +466,6 @@
             this.menuOpacity.ResumeLayout(false);
             this.menuResize.ResumeLayout(false);
             this.menuLanguages.ResumeLayout(false);
-            this.menuIconContext.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -530,12 +488,8 @@
 		private System.Windows.Forms.ToolStripMenuItem selectRegionToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem resizeToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
-		private System.Windows.Forms.ContextMenuStrip menuIconContext;
-		private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem noneToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem resetWindowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem noneToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem switchToWindowToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem dockToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem topLeftToolStripMenuItem;

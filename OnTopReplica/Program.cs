@@ -14,6 +14,8 @@ namespace OnTopReplica {
 
         public static PlatformSupport Platform { get; private set; }
 
+        static CultureInfo _languageChangeCode = Settings.Default.Language;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -29,6 +31,7 @@ namespace OnTopReplica {
             Platform = PlatformSupport.Create();
             if (!Platform.CheckCompatibility())
                 return;
+            Platform.InitApp();
 
             //Update settings if needed
             if (Settings.Default.MustUpdate) {
@@ -63,8 +66,6 @@ namespace OnTopReplica {
             //Persist settings
             Settings.Default.Save();
         }
-
-        static CultureInfo _languageChangeCode = Settings.Default.Language;
 
         /// <summary>
         /// Forces a global language change. As soon as the main form is closed, the change is performed
@@ -102,6 +103,7 @@ namespace OnTopReplica {
                     sw.WriteLine("OS: {0}", Environment.OSVersion.ToString());
                     sw.WriteLine(".NET: {0}", Environment.Version.ToString());
                     sw.WriteLine("Aero DWM: {0}", VistaControls.OsSupport.IsCompositionEnabled);
+                    sw.WriteLine("Launch command: {0}", Environment.CommandLine);
                 }
             }
         }
