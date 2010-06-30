@@ -297,5 +297,16 @@ namespace OnTopReplica
         [DllImport("user32.dll")]
         public static extern short GetKeyState(VirtualKeyState nVirtKey);
 
+        [DllImport("kernel32.dll")]
+        static extern uint FormatMessage(uint dwFlags, IntPtr lpSource,
+           int dwMessageId, uint dwLanguageId, [Out] StringBuilder lpBuffer,
+           uint nSize, IntPtr Arguments);
+
+        public static string GetLastErrorMessage(int msgCode) {
+            var sb = new StringBuilder(300);
+            FormatMessage((uint)(0x00001000), IntPtr.Zero, msgCode, 0, sb, 299, IntPtr.Zero);
+            return sb.ToString();
+        }
+
 	}
 }
