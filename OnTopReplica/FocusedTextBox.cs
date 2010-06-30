@@ -17,12 +17,15 @@ namespace OnTopReplica {
 
 		protected override void OnKeyUp(KeyEventArgs e) {
 			if (e.KeyCode == Keys.Return) {
-				OnConfirmInput();
+                if(!string.IsNullOrEmpty(Text))
+				    OnConfirmInput();
+
 				e.Handled = true;
                 e.SuppressKeyPress = true;
 			}
             else if (e.KeyCode == Keys.Escape) {
                 OnAbortInput();
+
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }

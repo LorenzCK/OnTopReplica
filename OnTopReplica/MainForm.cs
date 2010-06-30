@@ -8,11 +8,12 @@ using VistaControls.TaskDialog;
 
 namespace OnTopReplica {
     
-    public partial class MainForm : AspectRatioForm {
+    partial class MainForm : AspectRatioForm {
 
-		//GUI
+		//GUI elements
 		ThumbnailPanel _thumbnailPanel;
-		RegionBox _regionBox;
+        SidePanel _currentSidePanel = null;
+        Panel _sidePanelContainer;
 
         //Window manager
         WindowManager _windowManager = new WindowManager();
@@ -31,22 +32,19 @@ namespace OnTopReplica {
 			    Anchor = AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
 			    Size = ClientSize
             };
-            _thumbnailPanel.RegionDrawn += new ThumbnailPanel.RegionDrawnHandler(Thumbnail_RegionDrawn);
             _thumbnailPanel.CloneClick += new EventHandler<CloneClickEventArgs>(Thumbnail_CloneClick);
 			Controls.Add(_thumbnailPanel);
 
-			//Region box
-            _regionBox = new RegionBox {
+			//Side panel
+            _sidePanelContainer = new Panel {
                 Location = new Point(ClientSize.Width, 0),
                 Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom,
                 Enabled = false,
-                Visible = false
+                Visible = false,
+                Size = new Size(100, ClientSize.Height),
+                Padding = new Padding(4)
             };
-            _regionBox.Size = new Size(_regionBox.Width, ClientSize.Height);
-            _regionBox.RequestClosing += new EventHandler(RegionBox_RequestClosing);
-            _regionBox.RequestRegionReset += new EventHandler(RegionBox_RequestRegionReset);
-            _regionBox.RegionSet += new RegionBox.RegionSetHandler(RegionBox_RegionChanged);
-			Controls.Add(_regionBox);
+			Controls.Add(_sidePanelContainer);
 
 			//Set native renderer on context menus
 			Asztal.Szótár.NativeToolStripRenderer.SetToolStripRenderer(
@@ -68,97 +66,123 @@ namespace OnTopReplica {
 
         #region Child forms & controls events
 
-		void RegionBox_RegionChanged(object sender, Rectangle region) {
-			_thumbnailPanel.SelectedRegion = region;
-            SetAspectRatio(region.Size);
-		}
+        EventHandler RequestClosingHandler;
 
-		void RegionBox_RequestRegionReset(object sender, EventArgs e) {
-            _thumbnailPanel.ConstrainToRegion = false;
-            SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
-		}
+        const int SidePanelMargin = 2;
+        const int ScreenBorderMargin = 10;
 
-		void Thumbnail_RegionDrawn(object sender, Rectangle region) {
-			_regionBox.SetRegion(region);
-		}
+		bool _sidePanelDidMoveForm = false;
+		Point _sidePanelPreviousFormLocation;
+
+        /// <summary>
+        /// Opens a new side panel.
+        /// </summary>
+        /// <param name="panel">The side panel to embed.</param>
+        public void SetSidePanel(SidePanel panel) {
+            if (_currentSidePanel != null)
+                CloseSidePanel();
+
+            _currentSidePanel = panel;
+            _currentSidePanel.OnFirstShown(this);
+
+            //Add and show
+            _sidePanelContainer.Controls.Add(panel);
+            _sidePanelContainer.Visible = _sidePanelContainer.Enabled = true;
+            panel.Show();
+
+            int intHorzMargin = panel.Margin.Horizontal + _sidePanelContainer.Padding.Horizontal; //internal margins for sidepanel
+            int intVertMargin = panel.Margin.Vertical + _sidePanelContainer.Padding.Vertical;
+
+            //Resize container
+            _sidePanelContainer.ClientSize = new Size(
+                panel.Width + intHorzMargin,
+                ClientSize.Height
+            );
+
+            int rightHorzMargin = _sidePanelContainer.Width + SidePanelMargin; //horz margin between the two controls
+
+            //Resize rest
+            ClientSize = new Size(
+                ClientSize.Width + rightHorzMargin,
+                ClientSize.Height
+            );
+            ExtraPadding = new Padding(0, 0, rightHorzMargin, 0);
+            _thumbnailPanel.Size = new Size(
+                ClientSize.Width - rightHorzMargin,
+                ClientSize.Height
+            );
+            _sidePanelContainer.Location = new Point(
+                ClientSize.Width - rightHorzMargin,
+                0
+            );
+            MinimumSize = new Size(
+                20 + panel.MinimumSize.Width + SidePanelMargin + intHorzMargin,
+                panel.MinimumSize.Height + intVertMargin
+            );
+
+            //Move window if needed
+            var screenCurr = Screen.FromControl(this);
+            int pRight = Location.X + Width + ScreenBorderMargin;
+            if (pRight >= screenCurr.Bounds.Width) {
+                _sidePanelPreviousFormLocation = Location;
+                _sidePanelDidMoveForm = true;
+
+                Location = new Point(screenCurr.WorkingArea.Width - Width - ScreenBorderMargin, Location.Y);
+            }
+            else {
+                _sidePanelDidMoveForm = false;
+            }
+
+            //Hook event listener
+            if (RequestClosingHandler == null)
+                RequestClosingHandler = new EventHandler(SidePanel_RequestClosing);
+            panel.RequestClosing += RequestClosingHandler;
+        }
+
+        /// <summary>
+        /// Closes the current side panel.
+        /// </summary>
+        public void CloseSidePanel() {
+            if (_currentSidePanel == null)
+                return;
+
+            //Unhook listener
+            _currentSidePanel.RequestClosing -= RequestClosingHandler;
+
+            //Remove side panel
+            _currentSidePanel.OnClosing(this);
+            _sidePanelContainer.Controls.Clear();
+            _sidePanelContainer.Visible = _sidePanelContainer.Enabled = false;
+            _currentSidePanel = null;
+
+            //Resize
+            MinimumSize = new Size(20, 20);
+            ClientSize = new Size(
+                ClientSize.Width - _sidePanelContainer.Width - SidePanelMargin,
+                ClientSize.Height
+            );
+            ExtraPadding = new Padding(0);
+            _thumbnailPanel.Size = ClientSize;
+
+            //Move window back if needed
+            if (_sidePanelDidMoveForm) {
+                Location = _sidePanelPreviousFormLocation;
+                _sidePanelDidMoveForm = false;
+            }
+        }
+
+        void SidePanel_RequestClosing(object sender, EventArgs e) {
+            CloseSidePanel();
+        }
 
 		void Thumbnail_CloneClick(object sender, CloneClickEventArgs e) {
             //TODO: handle other mouse buttons
 			Win32Helper.InjectFakeMouseClick(_lastWindowHandle.Handle, e.ClientClickLocation, e.IsDoubleClick);
 		}
 
-		void RegionBox_RequestClosing(object sender, EventArgs e) {
-			RegionBoxShowing = false;
-		}
-
         #endregion
 
-        #region Side "Region box" events
-
-        const int cWindowBoundary = 10;
-
-		bool _regionBoxShowing = false;
-		bool _regionBoxDidMoveForm = false;
-		Point _regionBoxPrevFormLocation;
-
-		public bool RegionBoxShowing {
-			get {
-				return _regionBoxShowing;
-			}
-			set {
-                if (_regionBoxShowing != value) {
-                    //Show box
-                    _regionBoxShowing = value;
-                    _regionBox.Visible = value;
-                    _regionBox.Enabled = value;
-
-                    //Enable region drawing on thumbnail
-                    _thumbnailPanel.DrawMouseRegions = value;
-
-                    //Pad form and resize it
-                    ClientSize = new Size {
-                        Width = ClientSize.Width + ((value) ? _regionBox.Width : -_regionBox.Width),
-                        Height = Math.Max(ClientSize.Height, _regionBox.ClientSize.Height)
-                    };
-                    ExtraPadding = (value) ? new Padding(0, 0, _regionBox.Width, 0) : new Padding(0);
-
-                    //Resize and move panels
-                    _thumbnailPanel.Size = new Size {
-                        Width = (value) ? (ClientSize.Width - _regionBox.Width) : ClientSize.Width,
-                        Height = ClientSize.Height
-                    };
-                    _regionBox.Location = new Point {
-                        X = (value) ? (ClientSize.Width - _regionBox.Width) : ClientSize.Width,
-                        Y = 0
-                    };
-                    _regionBox.Size = new Size(_regionBox.Width, ClientSize.Height);
-
-                    //Check form boundaries and move form if necessary (if it crosses the right screen border)
-                    if (value) {
-                        var screenCurr = Screen.FromControl(this);
-                        int pRight = Location.X + Size.Width + cWindowBoundary;
-                        if (pRight >= screenCurr.Bounds.Width) {
-                            _regionBoxPrevFormLocation = Location;
-                            _regionBoxDidMoveForm = true;
-
-                            Location = new Point(screenCurr.WorkingArea.Width - Size.Width - cWindowBoundary, Location.Y);
-                        }
-                        else
-                            _regionBoxDidMoveForm = false;
-                    }
-                    else {
-                        if (_regionBoxDidMoveForm) {
-                            Location = _regionBoxPrevFormLocation;
-                            _regionBoxDidMoveForm = false;
-                        }
-                    }
-                }
-			}
-		}
-
-		#endregion
-
-		#region Event override
+    	#region Event override
 
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
@@ -179,8 +203,8 @@ namespace OnTopReplica {
         protected override void OnResize(EventArgs e) {
             base.OnResize(e);
             
-            this.GlassMargins = (_regionBoxShowing) ?
-                new Margins(ClientSize.Width - _regionBox.Width, 0, 0, 0) :
+            this.GlassMargins = (_currentSidePanel != null) ?
+                new Margins(ClientSize.Width - _sidePanelContainer.Width, 0, 0, 0) :
                 new Margins(-1);
         }
 
@@ -238,15 +262,8 @@ namespace OnTopReplica {
         }
 
 		private void Menu_opening(object sender, CancelEventArgs e) {
-			//Cancel if currently in "fullscreen" mode
-			if (IsFullscreen) {
-				e.Cancel = true;
-				return;
-			}
-
-			//Close region box if opened
-			if (RegionBoxShowing) {
-				RegionBoxShowing = false;
+			//Cancel if currently in "fullscreen" mode or a side panel is open
+			if (IsFullscreen || _currentSidePanel != null) {
 				e.Cancel = true;
 				return;
 			}
@@ -299,9 +316,7 @@ namespace OnTopReplica {
 			}
 
             var selectionData = (WindowListHelper.WindowSelectionData)tsi.Tag;
-            if (_windowManager != null) {
-                SetThumbnail(selectionData.Handle, selectionData.Region);
-            }
+            SetThumbnail(selectionData.Handle, selectionData.Region);
         }
 
 		private void Menu_Switch_click(object sender, EventArgs e) {
@@ -357,7 +372,7 @@ namespace OnTopReplica {
         }
 
 		private void Menu_Region_click(object sender, EventArgs e) {
-			RegionBoxShowing = true;
+            SetSidePanel(new OnTopReplica.SidePanels.RegionPanel());
 		}
 		
 		private void Menu_Resize_opening(object sender, CancelEventArgs e) {
@@ -522,7 +537,7 @@ namespace OnTopReplica {
                 if (IsFullscreen == value)
                     return;
 
-                RegionBoxShowing = false; //on switch, always hide region box
+                CloseSidePanel(); //on switch, always hide side panels
                 GlassEnabled = !value;
                 FormBorderStyle = (value) ? FormBorderStyle.None : FormBorderStyle.Sizable;
                 TopMost = !value;
@@ -557,18 +572,15 @@ namespace OnTopReplica {
         public void SetThumbnail(WindowHandle handle, StoredRegion region) {
             try {
 				_lastWindowHandle = handle;
-
 				_thumbnailPanel.SetThumbnailHandle(handle);
+                if (region != null)
+                    _thumbnailPanel.SelectedRegion = region.Rect;
+                else
+                    _thumbnailPanel.ConstrainToRegion = false;
             }
             catch (Exception ex) {
                 ThumbnailError(ex, false, Strings.ErrorUnableToCreateThumbnail);
             }
-
-            //Update region to show
-            if (region == null)
-                _regionBox.Reset();
-            else
-                _regionBox.SetRegion(region);
 
             //Set aspect ratio (this will resize the form)
             SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
@@ -582,11 +594,42 @@ namespace OnTopReplica {
 			_lastWindowHandle = null;
 			_thumbnailPanel.UnsetThumbnail();
 
-            //Reset regions
-			_regionBox.Reset();
-
             //Disable aspect ratio
             KeepAspectRatio = false;
+        }
+
+        /// <summary>
+        /// Gets or sets the region displayed of the current thumbnail.
+        /// </summary>
+        public Rectangle? SelectedThumbnailRegion {
+            get {
+                if (!_thumbnailPanel.IsShowingThumbnail || !_thumbnailPanel.ConstrainToRegion)
+                    return null;
+
+                return _thumbnailPanel.SelectedRegion;
+            }
+            set {
+                if (!_thumbnailPanel.IsShowingThumbnail)
+                    return;
+
+                if (value.HasValue) {
+                    _thumbnailPanel.SelectedRegion = value.Value;
+                    SetAspectRatio(value.Value.Size);
+                }
+                else {
+                    _thumbnailPanel.ConstrainToRegion = false;
+                    SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the form's thumbnail panel.
+        /// </summary>
+        public ThumbnailPanel ThumbnailPanel {
+            get {
+                return _thumbnailPanel;
+            }
         }
 
         private void ThumbnailError(Exception ex, bool suppress, string title){
@@ -710,7 +753,7 @@ namespace OnTopReplica {
         public void ResetMainForm() {
             //Reset form settings
             UnsetThumbnail();
-            RegionBoxShowing = false;
+            CloseSidePanel();
 
             //Reset location and size (edge of the screen, min size)
             Point nuLoc = Screen.PrimaryScreen.WorkingArea.Location;
