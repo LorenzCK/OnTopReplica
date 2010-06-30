@@ -23,5 +23,9 @@ namespace OnTopReplica.Platforms {
             //do nothing
         }
 
+        public override void HideForm(MainForm form) {
+            form.WindowState = FormWindowState.Minimized;
+        }
+
     }
 }

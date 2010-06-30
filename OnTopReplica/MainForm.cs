@@ -10,40 +10,21 @@ namespace OnTopReplica {
     
     public partial class MainForm : AspectRatioForm {
 
-        //Visualization status
-		bool _clickForwarding = false;
-
 		//GUI
-		ThumbnailPanel _thumbnailPanel = null;
-		RegionBox _regionBox = null;
-		FullscreenForm _fullscreenForm;
+		ThumbnailPanel _thumbnailPanel;
+		RegionBox _regionBox;
         HotKeyManager _hotKeyManager;
 
         //Window manager
-        WindowManager _windowManager;
+        WindowManager _windowManager = new WindowManager();
 		WindowHandle _lastWindowHandle = null;
-
-        //Override position and size on startup
-        bool _startOverride = false;
-        Point _startLocation;
-        Size _startSize;
-
-        public MainForm(Point location, Size size)
-            : this() {
-
-            _startOverride = true;
-            _startLocation = location;
-            _startSize = size;
-        }
 
         public MainForm() {
             InitializeComponent();
-
             KeepAspectRatio = false;
 
 			//Thumbnail panel
-			_thumbnailPanel = new ThumbnailPanel(Settings.Default.UseGlass){
-			    ClickThrough = !_clickForwarding,
+			_thumbnailPanel = new ThumbnailPanel {
 			    Location = Point.Empty,
 			    Anchor = AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
 			    Size = ClientSize
@@ -65,17 +46,13 @@ namespace OnTopReplica {
             _regionBox.RegionSet += new RegionBox.RegionSetHandler(RegionBox_RegionChanged);
 			Controls.Add(_regionBox);
 
-			//Full screen form
-			_fullscreenForm = new FullscreenForm();
-			_fullscreenForm.CloseRequest += new EventHandler<CloseRequestEventArgs>(FullscreenForm_CloseRequest);
-
 			//Set native renderer on context menus
 			Asztal.Szótár.NativeToolStripRenderer.SetToolStripRenderer(
 				menuContext, menuWindows, menuOpacity, menuResize, menuLanguages
 			);
 
             //Hook keyboard handler
-            this.KeyUp += new KeyEventHandler(Common_Key);
+            this.KeyUp += new KeyEventHandler(Form_KeyUp);
             this.KeyPreview = true;
 
             //Add hotkeys
@@ -86,19 +63,13 @@ namespace OnTopReplica {
 
         #region Child forms & controls events
 
-        void FullscreenForm_CloseRequest(object sender, CloseRequestEventArgs e) {
-			if (_isFullscreen) {
-                ToggleFullscreen();
-			}
-		}
-
 		void RegionBox_RegionChanged(object sender, Rectangle region) {
-			_thumbnailPanel.ShownRegion = region;
+			_thumbnailPanel.SelectedRegion = region;
             SetAspectRatio(region.Size);
 		}
 
 		void RegionBox_RequestRegionReset(object sender, EventArgs e) {
-			_thumbnailPanel.ResetShownRegion();
+            _thumbnailPanel.ConstrainToRegion = false;
             SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
 		}
 
@@ -107,9 +78,8 @@ namespace OnTopReplica {
 		}
 
 		void Thumbnail_CloneClick(object sender, CloneClickEventArgs e) {
-			if (_clickForwarding) {
-				Win32Helper.InjectFakeMouseClick(_lastWindowHandle.Handle, e.ClientClickLocation, e.IsDoubleClick);
-			}
+            //TODO: handle other mouse buttons
+			Win32Helper.InjectFakeMouseClick(_lastWindowHandle.Handle, e.ClientClickLocation, e.IsDoubleClick);
 		}
 
 		void RegionBox_RequestClosing(object sender, EventArgs e) {
@@ -137,9 +107,6 @@ namespace OnTopReplica {
                     _regionBox.Visible = value;
                     _regionBox.Enabled = value;
 
-                    //Disable dragging
-                    HandleMouseMove = !value;
-
                     //Enable region drawing on thumbnail
                     _thumbnailPanel.DrawMouseRegions = value;
 
@@ -161,7 +128,7 @@ namespace OnTopReplica {
                     };
                     _regionBox.Size = new Size(_regionBox.Width, ClientSize.Height);
 
-                    //Check form boundaries and move form if necessary
+                    //Check form boundaries and move form if necessary (if it crosses the right screen border)
                     if (value) {
                         var screenCurr = Screen.FromControl(this);
                         int pRight = Location.X + Size.Width + cWindowBoundary;
@@ -191,39 +158,17 @@ namespace OnTopReplica {
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
 
-            //Get a window manager
-            _windowManager = new WindowManager();
-
             //Platform specific form initialization
             Program.Platform.InitForm(this);
 
-            //Reload position settings if needed
-            if (_startOverride) {
-                Location = _startLocation;
-                Size = _startSize;
-            }
-            else if (Settings.Default.WindowPositionStored) {
-                Location = Settings.Default.LastLocation;
-                ClientSize = Settings.Default.LastSize;
-            }
-
             //Glassify window
-            SetGlass(Settings.Default.UseGlass);
+            GlassEnabled = true;
         }
 
         protected override void OnClosing(CancelEventArgs e) {
             //Destroy hotkeys
             _hotKeyManager.Dispose();
             _hotKeyManager = null;
-
-            //Store position settings
-            if (Settings.Default.StoreWindowPosition) {
-                Settings.Default.WindowPositionStored = true;
-                Settings.Default.LastLocation = Location;
-                Settings.Default.LastSize = ClientSize;
-            }
-            else
-                Settings.Default.WindowPositionStored = false;
 
             base.OnClosing(e);
         }
@@ -236,28 +181,50 @@ namespace OnTopReplica {
                 new Margins(-1);
         }
 
-        protected override void OnActivated(EventArgs e) {
-            base.OnActivated(e);
+        protected override void OnDeactivate(EventArgs e) {
+            base.OnDeactivate(e);
+
+            //HACK: sometimes, even if TopMost is true, the window loses its "always on top" status.
+            //  This is an attempt of a fix that probably won't work...
+            if (!IsFullscreen) { //fullscreen mode doesn't use TopMost
+                TopMost = true;
+            }
         }
 
         protected override void OnMouseWheel(MouseEventArgs e) {
             base.OnMouseWheel(e);
 
-            AdjustSize(e.Delta);
+            int change = (int)(e.Delta / 6.0); //assumes a mouse wheel "tick" is in the 80-120 range
+            AdjustSize(change);
         }
 
         protected override void WndProc(ref Message m) {
             if (_hotKeyManager != null)
                 _hotKeyManager.ProcessHotKeys(m);
 
-            base.WndProc(ref m);
+            switch(m.Msg){
+                case NativeMethods.WM_NCRBUTTONUP:
+                    //Open context menu if right button clicked on caption (i.e. all of the window area because of glass)
+                    if (m.WParam.ToInt32() == NativeMethods.HTCAPTION) {
+                        menuContext.Show(MousePosition);
+                        
+                        m.Result = IntPtr.Zero;
+                        return;
+                    }
+                    break;
 
-            //Open context menu if right button clicked on caption (i.e. all of the window area because of glass)
-            if (m.Msg == NativeMethods.WM_NCRBUTTONUP) {
-                if (m.WParam.ToInt32() == NativeMethods.HTCAPTION) {
-                    menuContext.Show(MousePosition);
-                }
+                case NativeMethods.WM_NCLBUTTONDBLCLK:
+                    //Toggle fullscreen mode if double click on caption (whole glass area)
+                    if (m.WParam.ToInt32() == NativeMethods.HTCAPTION) {
+                        IsFullscreen = !IsFullscreen;
+                        
+                        m.Result = IntPtr.Zero;
+                        return;
+                    }
+                    break;
             }
+
+            base.WndProc(ref m);
         }
 
 		#endregion
@@ -269,8 +236,8 @@ namespace OnTopReplica {
         }
 
 		private void Menu_opening(object sender, CancelEventArgs e) {
-			//Cancel if currently "fullscreen" mode
-			if (_isFullscreen) {
+			//Cancel if currently in "fullscreen" mode
+			if (IsFullscreen) {
 				e.Cancel = true;
 				return;
 			}
@@ -285,9 +252,8 @@ namespace OnTopReplica {
 			selectRegionToolStripMenuItem.Enabled = _thumbnailPanel.IsShowingThumbnail;
 			switchToWindowToolStripMenuItem.Enabled = _thumbnailPanel.IsShowingThumbnail;
 			resizeToolStripMenuItem.Enabled = _thumbnailPanel.IsShowingThumbnail;
-			chromeToolStripMenuItem.Checked = (FormBorderStyle == FormBorderStyle.SizableToolWindow);
-
-			forwardClicksToolStripMenuItem.Checked = _clickForwarding;
+			chromeToolStripMenuItem.Checked = (FormBorderStyle == FormBorderStyle.Sizable);
+			forwardClicksToolStripMenuItem.Checked = _thumbnailPanel.ReportThumbnailClicks;
 		}
 
         private void Menu_Close_click(object sender, EventArgs e) {
@@ -297,14 +263,13 @@ namespace OnTopReplica {
         private void Menu_About_click(object sender, EventArgs e) {
 			this.Hide();
 
-			var box = new AboutForm();
-			box.Location = RecenterLocation(this, box);
-            box.ShowDialog();
-
-			Location = RecenterLocation(box, this);
+            using (var box = new AboutForm()) {
+                box.Location = RecenterLocation(this, box);
+                box.ShowDialog();
+                Location = RecenterLocation(box, this);
+            }
+			
 			this.Show();
-
-			box.Dispose();
         }
 
 		private void Menu_Language_click(object sender, EventArgs e) {
@@ -316,27 +281,6 @@ namespace OnTopReplica {
 				this.Close();
 			else
 				MessageBox.Show("Error");
-		}
-
-		private Point RecenterLocation(Control original, Control final) {
-			int origX = original.Location.X + original.Size.Width / 2;
-			int origY = original.Location.Y + original.Size.Height / 2;
-
-			int finX = origX - final.Size.Width / 2;
-			int finY = origY - final.Size.Height / 2;
-
-			//Check boundaries
-			var screen = Screen.FromControl(final);
-			if (finX < screen.WorkingArea.X)
-				finX = screen.WorkingArea.X;
-			if (finX + final.Size.Width > screen.WorkingArea.Width)
-				finX = screen.WorkingArea.Width - final.Size.Width;
-			if (finY < screen.WorkingArea.Y)
-				finY = screen.WorkingArea.Y;
-			if (finY + final.Size.Height > screen.WorkingArea.Height)
-				finY = screen.WorkingArea.Height - final.Size.Height;
-
-			return new Point(finX, finY);
 		}
 
         void Menu_Windows_itemclick(object sender, EventArgs e) {
@@ -362,27 +306,22 @@ namespace OnTopReplica {
 			if (_lastWindowHandle == null)
 				return;
 
+            Program.Platform.HideForm(this);
 			NativeMethods.SetForegroundWindow(_lastWindowHandle.Handle);
-
-			this.Hide();
 		}
 
 		private void Menu_Forward_click(object sender, EventArgs e) {
-			if (Settings.Default.FirstTimeClickForwarding && !_clickForwarding) {
-				TaskDialog dlg = new TaskDialog(Strings.InfoClickForwarding,
-					Strings.InfoClickForwardingTitle, Strings.InfoClickForwardingContent);
-				dlg.CommonButtons = TaskDialogButton.Yes | TaskDialogButton.No;
-
-				Results result = dlg.Show(this);
-
-				if (result.CommonButton == Result.No)
+			if (Settings.Default.FirstTimeClickForwarding && !_thumbnailPanel.ReportThumbnailClicks) {
+                TaskDialog dlg = new TaskDialog(Strings.InfoClickForwarding, Strings.InfoClickForwardingTitle, Strings.InfoClickForwardingContent) {
+                    CommonButtons = TaskDialogButton.Yes | TaskDialogButton.No
+                };
+				if (dlg.Show(this).CommonButton == Result.No)
 					return;
 
 				Settings.Default.FirstTimeClickForwarding = false;
 			}
 
-			_clickForwarding = !_clickForwarding;
-			_thumbnailPanel.ClickThrough = !_clickForwarding;
+			_thumbnailPanel.ReportThumbnailClicks = !_thumbnailPanel.ReportThumbnailClicks;
 		}
 
         private void Menu_Opacity_opening(object sender, CancelEventArgs e) {
@@ -399,9 +338,6 @@ namespace OnTopReplica {
 				else
 					i.Checked = false;
 			}
-
-			//Glass state
-			toolStripMenuItem5.Checked = Settings.Default.UseGlass;
         }
 
         private void Menu_Opacity_click(object sender, EventArgs e) {
@@ -414,10 +350,6 @@ namespace OnTopReplica {
             }
         }
 
-		private void Menu_Opacity_Glass_click(object sender, EventArgs e) {
-			SetGlass(!Settings.Default.UseGlass);
-		}
-
 		private void Menu_Region_click(object sender, EventArgs e) {
 			RegionBoxShowing = true;
 		}
@@ -425,8 +357,6 @@ namespace OnTopReplica {
 		private void Menu_Resize_opening(object sender, CancelEventArgs e) {
 			if (!_thumbnailPanel.IsShowingThumbnail)
 				e.Cancel = true;
-
-			recallLastPositionAndSizeToolStripMenuItem.Checked = Settings.Default.StoreWindowPosition;
 		}
 
 		private void Menu_Resize_Double(object sender, EventArgs e) {
@@ -446,11 +376,7 @@ namespace OnTopReplica {
 		}
 
 		private void Menu_Resize_Fullscreen(object sender, EventArgs e) {
-			ToggleFullscreen();
-		}
-
-		private void Menu_Position_Recall_click(object sender, EventArgs e) {
-			Settings.Default.StoreWindowPosition = !Settings.Default.StoreWindowPosition;
+            IsFullscreen = true;
 		}
 
 		private void Menu_Position_TopLeft(object sender, EventArgs e) {
@@ -489,27 +415,9 @@ namespace OnTopReplica {
 			);
 		}
 
-        private int ChromeBorderVertical {
-            get {
-                if (FormBorderStyle == FormBorderStyle.SizableToolWindow)
-                    return SystemInformation.FrameBorderSize.Height;
-                else
-                    return 0;
-            }
-        }
-
-        private int ChromeBorderHorizontal {
-            get {
-                if (FormBorderStyle == FormBorderStyle.SizableToolWindow)
-                    return SystemInformation.FrameBorderSize.Width;
-                else
-                    return 0;
-            }
-        }
-
         private void Menu_Reduce_click(object sender, EventArgs e) {
-            //Hide form
-            this.Hide();
+            //Hide form in a platform specific way
+            Program.Platform.HideForm(this);
         }
 
 		private void Menu_Windows_opening(object sender, EventArgs e) {
@@ -520,7 +428,7 @@ namespace OnTopReplica {
 		}
 
 		private void Menu_Chrome_click(object sender, EventArgs e) {
-            if (FormBorderStyle == FormBorderStyle.SizableToolWindow) {
+            if (FormBorderStyle == FormBorderStyle.Sizable) {
                 FormBorderStyle = FormBorderStyle.None;
                 Location = new Point {
                     X = Location.X + SystemInformation.FrameBorderSize.Width,
@@ -528,7 +436,7 @@ namespace OnTopReplica {
                 };
             }
             else {
-                FormBorderStyle = FormBorderStyle.SizableToolWindow;
+                FormBorderStyle = FormBorderStyle.Sizable;
                 Location = new Point {
                     X = Location.X - SystemInformation.FrameBorderSize.Width,
                     Y = Location.Y - SystemInformation.FrameBorderSize.Height
@@ -542,16 +450,12 @@ namespace OnTopReplica {
 
 		#region Event handling
 
-		private void Form_doubleclick(object sender, EventArgs e) {
-			if(_thumbnailPanel.IsShowingThumbnail)
-				ToggleFullscreen();
-		}
-
-        void Common_Key(object sender, KeyEventArgs e) {
+        void Form_KeyUp(object sender, KeyEventArgs e) {
+            //ALT
             if (e.Modifiers == Keys.Alt) {
                 if (e.KeyCode == Keys.Enter) {
                     e.Handled = true;
-                    ToggleFullscreen();
+                    IsFullscreen = !IsFullscreen;
                 }
 
                 else if (e.KeyCode == Keys.D1 || e.KeyCode == Keys.NumPad1) {
@@ -570,14 +474,26 @@ namespace OnTopReplica {
                     FitToThumbnail(2.0);
                 }
             }
+
+            //ESCAPE
+            else if (e.KeyCode == Keys.Escape) {
+                //Toggle fullscreen
+                if (IsFullscreen) {
+                    IsFullscreen = false;
+                }
+                //Disable click forwarding
+                else if (_thumbnailPanel.ReportThumbnailClicks) {
+                    _thumbnailPanel.ReportThumbnailClicks = false;
+                }
+            }
         }
 
         void HotKeyOpenHandler() {
-            if (_isFullscreen)
-                ToggleFullscreen();
+            if (IsFullscreen)
+                IsFullscreen = false;
 
-            if (this.Visible) {
-                this.Hide();
+            if (Visible && WindowState != FormWindowState.Minimized) {
+                Program.Platform.HideForm(this);
             }
             else {
                 EnsureMainFormVisible();
@@ -588,44 +504,40 @@ namespace OnTopReplica {
 
 		#region Fullscreen
 
-		bool _isFullscreen = false;
-		
-		private void ToggleFullscreen() {
-			if (_isFullscreen) {
-                //Update thumbnail
-                if (_fullscreenForm.LastWindowHandle != null) {
-                    StoredRegion region = null;
-                    if(_fullscreenForm.ShowRegion)
-                        region = new StoredRegion { Rect = _fullscreenForm.ShownRegion };
+        bool _isFullscreen = false;
+        Point _preFullscreenLocation;
+        Size _preFullscreenSize;
 
-                    ThumbnailSet(_fullscreenForm.LastWindowHandle, region);
+        public bool IsFullscreen {
+            get {
+                return _isFullscreen;
+            }
+            set {
+                if (IsFullscreen == value)
+                    return;
+
+                RegionBoxShowing = false; //on switch, always hide region box
+                GlassEnabled = !value;
+                FormBorderStyle = (value) ? FormBorderStyle.None : FormBorderStyle.Sizable;
+                TopMost = !value;
+
+                //Location and size
+                if (value) {
+                    _preFullscreenLocation = Location;
+                    _preFullscreenSize = Size;
+
+                    var currentScreen = Screen.FromControl(this);
+                    Size = currentScreen.WorkingArea.Size;
+                    Location = currentScreen.WorkingArea.Location;
                 }
-                else
-                    ThumbnailUnset();
+                else {
+                    Location = _preFullscreenLocation;
+                    Size = _preFullscreenSize;
+                }
 
-                //Update properties
-                this.Opacity = _fullscreenForm.Opacity;
-
-                _fullscreenForm.Hide();
-                this.Show();
-			}
-			else {
-				if (_lastWindowHandle == null) {
-					//Should not happen... if it does, do nothing
-					return;
-				}
-
-				_fullscreenForm.DisplayFullscreen(Screen.FromControl(this), _lastWindowHandle);
-				_fullscreenForm.ShownRegion = _thumbnailPanel.ShownRegion;
-				_fullscreenForm.ShowRegion = _thumbnailPanel.ShowRegion;
-				_fullscreenForm.Opacity = this.Opacity;
-
-                _fullscreenForm.Show();
-                this.Hide();
-			}
-
-			_isFullscreen = !_isFullscreen;
-		}
+                _isFullscreen = value;
+            }
+        }
 
 		#endregion
 
@@ -649,10 +561,6 @@ namespace OnTopReplica {
 
             //Set aspect ratio (this will resize the form)
             SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
-
-			//GUI
-			selectRegionToolStripMenuItem.Enabled = true;
-			resizeToolStripMenuItem.Enabled = true;
         }
 
         private void ThumbnailUnset(){
@@ -674,17 +582,14 @@ namespace OnTopReplica {
 
             ThumbnailUnset();
         }
-
         
 		/// <summary>Automatically sizes the window in order to accomodate the thumbnail p times.</summary>
 		/// <param name="p">Scale of the thumbnail to consider.</param>
 		private void FitToThumbnail(double p) {
 			try {
 				Size originalSize = _thumbnailPanel.ThumbnailOriginalSize;
-
 				Size fittedSize = new Size((int)(originalSize.Width * p), (int)(originalSize.Height * p));
-
-				this.ClientSize = fittedSize;
+				ClientSize = fittedSize;
 			}
 			catch (Exception ex) {
 				ThumbnailError(ex, false, Strings.ErrorUnableToFit);
@@ -695,41 +600,77 @@ namespace OnTopReplica {
 
 		#region GUI stuff
 
-		/// <summary>Do whatever needed to set the "glass" effect to the desired state.</summary>
-		protected void SetGlass(bool b) {
-			this.GlassEnabled = b;
-			
-			_thumbnailPanel.GlassMode = b;
-			_regionBox.GlassMode = b;
+        private Point RecenterLocation(Control original, Control final) {
+            int origX = original.Location.X + original.Size.Width / 2;
+            int origY = original.Location.Y + original.Size.Height / 2;
 
-			this.Invalidate();
+            int finX = origX - final.Size.Width / 2;
+            int finY = origY - final.Size.Height / 2;
 
-			//Store
-			Settings.Default.UseGlass = b;
-		}
+            //Check boundaries
+            var screen = Screen.FromControl(final);
+            if (finX < screen.WorkingArea.X)
+                finX = screen.WorkingArea.X;
+            if (finX + final.Size.Width > screen.WorkingArea.Width)
+                finX = screen.WorkingArea.Width - final.Size.Width;
+            if (finY < screen.WorkingArea.Y)
+                finY = screen.WorkingArea.Y;
+            if (finY + final.Size.Height > screen.WorkingArea.Height)
+                finY = screen.WorkingArea.Height - final.Size.Height;
 
+            return new Point(finX, finY);
+        }
+
+        private int ChromeBorderVertical {
+            get {
+                if (FormBorderStyle == FormBorderStyle.Sizable)
+                    return SystemInformation.FrameBorderSize.Height;
+                else
+                    return 0;
+            }
+        }
+
+        private int ChromeBorderHorizontal {
+            get {
+                if (FormBorderStyle == FormBorderStyle.Sizable)
+                    return SystemInformation.FrameBorderSize.Width;
+                else
+                    return 0;
+            }
+        }
+
+        /// <summary>
+        /// Displays an error task dialog.
+        /// </summary>
+        /// <param name="mainInstruction">Main instruction of the error dialog.</param>
+        /// <param name="explanation">Detailed informations about the error.</param>
+        /// <param name="errorMessage">Expanded error codes/messages.</param>
 		private void ShowErrorDialog(string mainInstruction, string explanation, string errorMessage) {
-			TaskDialog dlg = new TaskDialog(mainInstruction, Strings.ErrorGenericTitle, explanation);
-			dlg.CommonIcon = TaskDialogIcon.Stop;
-			dlg.IsExpanded = false;
+            TaskDialog dlg = new TaskDialog(mainInstruction, Strings.ErrorGenericTitle, explanation) {
+                CommonIcon = TaskDialogIcon.Stop,
+                IsExpanded = false
+            };
+
 			if (!string.IsNullOrEmpty(errorMessage)) {
 				dlg.ExpandedInformation = Strings.ErrorGenericInfoText + errorMessage;
 				dlg.ExpandedControlText = Strings.ErrorGenericInfoButton;
 			}
-			dlg.Show(this.Handle);
+
+			dlg.Show(this);
 		}
 
         /// <summary>
         /// Ensures that the main form is visible (either closing the fullscreen mode or reactivating from task icon).
         /// </summary>
         public void EnsureMainFormVisible() {
-            if (_isFullscreen)
-                ToggleFullscreen();
+            if (IsFullscreen)
+                IsFullscreen = false;
 
             //Ensure main form is shown
-            this.Show();
-            this.Activate();
-            this.TopMost = true;
+            WindowState = FormWindowState.Normal;
+            Show();
+            Activate();
+            TopMost = true;
         }
 
         /// <summary>
@@ -763,7 +704,6 @@ namespace OnTopReplica {
             Location = nuLoc;
             Size = MinimumSize;
 
-            _fullscreenForm.Hide();
             this.Show();
             this.Activate();
         }

@@ -40,8 +40,6 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.resizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuResize = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.doubleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,8 +53,6 @@
             this.topRightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bottomLeftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bottomRightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.recallLastPositionAndSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reduceToIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -93,7 +89,7 @@
             this.aboutToolStripMenuItem,
             this.menuContextClose});
             this.menuContext.Name = "menuContext";
-            this.menuContext.Size = new System.Drawing.Size(169, 274);
+            this.menuContext.Size = new System.Drawing.Size(169, 296);
             this.menuContext.Opening += new System.ComponentModel.CancelEventHandler(this.Menu_opening);
             // 
             // menuContextWindows
@@ -161,14 +157,12 @@
             this.toolStripMenuItem1,
             this.toolStripMenuItem2,
             this.toolStripMenuItem3,
-            this.toolStripMenuItem4,
-            this.toolStripSeparator2,
-            this.toolStripMenuItem5});
+            this.toolStripMenuItem4});
             this.menuOpacity.Name = "menuOpacity";
             this.menuOpacity.OwnerItem = this.menuContextOpacity;
             this.menuOpacity.ShowCheckMargin = true;
             this.menuOpacity.ShowImageMargin = false;
-            this.menuOpacity.Size = new System.Drawing.Size(154, 120);
+            this.menuOpacity.Size = new System.Drawing.Size(154, 114);
             this.menuOpacity.Opening += new System.ComponentModel.CancelEventHandler(this.Menu_Opacity_opening);
             // 
             // toolStripMenuItem1
@@ -208,21 +202,6 @@
             this.toolStripMenuItem4.Text = global::OnTopReplica.Strings.MenuOp25;
             this.toolStripMenuItem4.ToolTipText = global::OnTopReplica.Strings.MenuOp25TT;
             this.toolStripMenuItem4.Click += new System.EventHandler(this.Menu_Opacity_click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(150, 6);
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Checked = true;
-            this.toolStripMenuItem5.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(153, 22);
-            this.toolStripMenuItem5.Text = global::OnTopReplica.Strings.MenuGlass;
-            this.toolStripMenuItem5.ToolTipText = global::OnTopReplica.Strings.MenuGlassTT;
-            this.toolStripMenuItem5.Click += new System.EventHandler(this.Menu_Opacity_Glass_click);
             // 
             // resizeToolStripMenuItem
             // 
@@ -292,9 +271,7 @@
             this.topLeftToolStripMenuItem,
             this.topRightToolStripMenuItem,
             this.bottomLeftToolStripMenuItem,
-            this.bottomRightToolStripMenuItem,
-            this.toolStripSeparator4,
-            this.recallLastPositionAndSizeToolStripMenuItem});
+            this.bottomRightToolStripMenuItem});
             this.dockToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.pos_null;
             this.dockToolStripMenuItem.Name = "dockToolStripMenuItem";
             this.dockToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
@@ -305,7 +282,7 @@
             // 
             this.topLeftToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.pos_topleft;
             this.topLeftToolStripMenuItem.Name = "topLeftToolStripMenuItem";
-            this.topLeftToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.topLeftToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.topLeftToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuPosTopLeft;
             this.topLeftToolStripMenuItem.Click += new System.EventHandler(this.Menu_Position_TopLeft);
             // 
@@ -313,7 +290,7 @@
             // 
             this.topRightToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.pos_topright;
             this.topRightToolStripMenuItem.Name = "topRightToolStripMenuItem";
-            this.topRightToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.topRightToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.topRightToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuPosTopRight;
             this.topRightToolStripMenuItem.Click += new System.EventHandler(this.Menu_Position_TopRight);
             // 
@@ -321,7 +298,7 @@
             // 
             this.bottomLeftToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.pos_bottomleft;
             this.bottomLeftToolStripMenuItem.Name = "bottomLeftToolStripMenuItem";
-            this.bottomLeftToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.bottomLeftToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.bottomLeftToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuPosBottomLeft;
             this.bottomLeftToolStripMenuItem.Click += new System.EventHandler(this.Menu_Position_BottomLeft);
             // 
@@ -329,22 +306,9 @@
             // 
             this.bottomRightToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.pos_bottomright;
             this.bottomRightToolStripMenuItem.Name = "bottomRightToolStripMenuItem";
-            this.bottomRightToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.bottomRightToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.bottomRightToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuPosBottomRight;
             this.bottomRightToolStripMenuItem.Click += new System.EventHandler(this.Menu_Position_BottomRight);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(214, 6);
-            // 
-            // recallLastPositionAndSizeToolStripMenuItem
-            // 
-            this.recallLastPositionAndSizeToolStripMenuItem.Name = "recallLastPositionAndSizeToolStripMenuItem";
-            this.recallLastPositionAndSizeToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.recallLastPositionAndSizeToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuRecall;
-            this.recallLastPositionAndSizeToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuRecallTT;
-            this.recallLastPositionAndSizeToolStripMenuItem.Click += new System.EventHandler(this.Menu_Position_Recall_click);
             // 
             // chromeToolStripMenuItem
             // 
@@ -453,14 +417,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(264, 204);
+            this.ClientSize = new System.Drawing.Size(264, 208);
             this.ControlBox = false;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(200, 210);
             this.Name = "MainForm";
             this.TopMost = true;
-            this.DoubleClick += new System.EventHandler(this.Form_doubleclick);
             this.menuContext.ResumeLayout(false);
             this.menuWindows.ResumeLayout(false);
             this.menuOpacity.ResumeLayout(false);
@@ -486,18 +449,14 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reduceToIconToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem selectRegionToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem resizeToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem resizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem noneToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem switchToWindowToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem dockToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem topLeftToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem topRightToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem bottomLeftToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem bottomRightToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-		private System.Windows.Forms.ToolStripMenuItem recallLastPositionAndSizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bottomRightToolStripMenuItem;
 		private System.Windows.Forms.ContextMenuStrip menuResize;
 		private System.Windows.Forms.ToolStripMenuItem doubleToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem fitToWindowToolStripMenuItem1;

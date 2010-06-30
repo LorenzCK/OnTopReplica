@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace OnTopReplica {
 	public class CloneClickEventArgs : EventArgs {
@@ -10,13 +11,17 @@ namespace OnTopReplica {
 
 		public bool IsDoubleClick { get; set; }
 
-		public CloneClickEventArgs(Point location) {
+        public MouseButtons Buttons { get; set; }
+
+		public CloneClickEventArgs(Point location, MouseButtons buttons) {
 			ClientClickLocation = location;
+            Buttons = buttons;
 			IsDoubleClick = false;
 		}
 
-		public CloneClickEventArgs(Point location, bool doubleClick) {
+		public CloneClickEventArgs(Point location, MouseButtons buttons, bool doubleClick) {
 			ClientClickLocation = location;
+            Buttons = buttons;
 			IsDoubleClick = doubleClick;
 		}
 

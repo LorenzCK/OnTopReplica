@@ -32,11 +32,14 @@ namespace OnTopReplica {
         public abstract bool CheckCompatibility();
 
         /// <summary>
-        /// Initialized the application. Called once in the app lifetime.
+        /// Initializes the application. Called once in the app lifetime.
         /// </summary>
         public virtual void InitApp() {
         }
 
+        /// <summary>
+        /// Gets the main OnTopReplica form.
+        /// </summary>
         protected MainForm Form { get; private set; }
 
         /// <summary>
@@ -48,6 +51,14 @@ namespace OnTopReplica {
         }
 
         public virtual void ShutdownApp() {
+        }
+
+        /// <summary>
+        /// Hides a form in a way that it can be restored later by the user.
+        /// </summary>
+        /// <param name="form">Form to hide.</param>
+        public virtual void HideForm(MainForm form) {
+            form.Hide();
         }
 
         #region IDisposable Members

@@ -274,6 +274,10 @@ namespace OnTopReplica
 
 		public const int MK_LBUTTON = 0x0001;
 
+        public const int WM_SYSCOMMAND = 0x0112;
+        public const int SC_MAXIMIZE = 61458;
+        public const int SC_RESTORE = 61490;
+
 		public static IntPtr MakeLParam(int LoWord, int HiWord) {
 			return new IntPtr((HiWord << 16) | (LoWord & 0xffff));
 		}
