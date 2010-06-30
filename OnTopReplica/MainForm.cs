@@ -13,13 +13,13 @@ namespace OnTopReplica {
 		//GUI
 		ThumbnailPanel _thumbnailPanel;
 		RegionBox _regionBox;
-        HotKeyManager _hotKeyManager;
 
         //Window manager
         WindowManager _windowManager = new WindowManager();
 		WindowHandle _lastWindowHandle = null;
 
-        DualModeManager _dualModeManager;
+        //Message pump extension
+        MessagePumpManager _msgPumpManager = new MessagePumpManager();
 
         public MainForm() {
             InitializeComponent();
@@ -57,12 +57,13 @@ namespace OnTopReplica {
             this.KeyUp += new KeyEventHandler(Form_KeyUp);
             this.KeyPreview = true;
 
-            //Add hotkeys
-            _hotKeyManager = new HotKeyManager(this);
-            _hotKeyManager.RegisterHotKey(HotKeyManager.HotKeyModifiers.Control | HotKeyManager.HotKeyModifiers.Shift,
-                                          Keys.O, new HotKeyManager.HotKeyHandler(HotKeyOpenHandler));
+            //Init message pump extensions
+            _msgPumpManager.Initialize(this);
 
-            _dualModeManager = new DualModeManager(this);
+            //Add hotkeys
+            var hotKeyMgr = _msgPumpManager.Get<MessagePumpProcessors.HotKeyManager>();
+            hotKeyMgr.RegisterHotKey(Native.HotKeyModifiers.Control | Native.HotKeyModifiers.Shift,
+                                     Keys.O, new Native.HotKeyMethods.HotKeyHandler(HotKeyOpenHandler));
         }
 
         #region Child forms & controls events
@@ -170,13 +171,7 @@ namespace OnTopReplica {
         }
 
         protected override void OnClosing(CancelEventArgs e) {
-            //Destroy hotkeys
-            _hotKeyManager.Dispose();
-            _hotKeyManager = null;
-
-            //Destroy dual mode manager
-            _dualModeManager.Dispose();
-            _dualModeManager = null;
+            _msgPumpManager.Dispose();
 
             base.OnClosing(e);
         }
@@ -207,10 +202,7 @@ namespace OnTopReplica {
         }
 
         protected override void WndProc(ref Message m) {
-            if (_hotKeyManager != null)
-                _hotKeyManager.ProcessHotKeys(m);
-            if (_dualModeManager != null)
-                _dualModeManager.ProcessHookMessages(m);
+            _msgPumpManager.PumpMessage(m);
 
             switch(m.Msg){
                 case NativeMethods.WM_NCRBUTTONUP:

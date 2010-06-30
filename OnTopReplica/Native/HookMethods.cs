@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace OnTopReplica {
+namespace OnTopReplica.Native {
 
     /// <summary>
     /// Helpers for interop with native Windows hooks.
     /// </summary>
-    static class NativeHooks {
+    static class HookMethods {
 
         public const int HSHELL_WINDOWACTIVATED = 4;
         public const int HSHELL_RUDEAPPACTIVATED = HSHELL_WINDOWACTIVATED | HSHELL_HIGHBIT;

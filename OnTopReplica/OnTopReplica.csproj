@@ -131,13 +131,17 @@
     </Compile>
     <Compile Include="CloneClickEventArgs.cs" />
     <Compile Include="CloseRequestEventArgs.cs" />
-    <Compile Include="DualModeManager.cs" />
-    <Compile Include="NativeHooks.cs" />
+    <Compile Include="MessagePumpManager.cs" />
+    <Compile Include="MessagePumpProcessors\DualModeManager.cs" />
+    <Compile Include="IMessagePumpProcessor.cs" />
+    <Compile Include="MessagePumpProcessors\BaseMessagePumpProcessor.cs" />
+    <Compile Include="Native\HookMethods.cs" />
+    <Compile Include="Native\HotKeyMethods.cs" />
     <Compile Include="WindowsSevenMethods.cs" />
     <None Include="CommonControls.cs" />
     <Compile Include="EnumerationExtensions.cs" />
     <Compile Include="FullscreenMode.cs" />
-    <Compile Include="HotKeyManager.cs" />
+    <Compile Include="MessagePumpProcessors\HotKeyManager.cs" />
     <Compile Include="PlatformSupport.cs" />
     <Compile Include="Platforms\Other.cs" />
     <Compile Include="Platforms\WindowsSeven.cs" />
