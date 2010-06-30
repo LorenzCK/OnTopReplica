@@ -5,26 +5,11 @@
     <Setting Name="SavedRegions" Type="OnTopReplica.StoredRegionArray" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="UseGlass" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="AutoFitOnResize" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="Opacity" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">255</Value>
-    </Setting>
-    <Setting Name="LastLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="LastSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="WindowPositionStored" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="StoreWindowPosition" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Language" Type="System.Globalization.CultureInfo" Scope="User">
       <Value Profile="(Default)">(Default)</Value>

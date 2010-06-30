@@ -5,7 +5,8 @@ using System.Text;
 namespace OnTopReplica {
 	/// <summary>A helper class that allows you to easily build and keep a list of Windows (in the form of WindowHandle objects).</summary>
 	public class WindowManager {
-        List<WindowHandle> _windows = null;
+        
+        List<WindowHandle> _windows = new List<WindowHandle>();
 
 		public enum EnumerationMode {
 			/// <summary>All windows with 'Visible' flag.</summary>
@@ -16,14 +17,6 @@ namespace OnTopReplica {
 
 			/// <summary>Windows of a task (like Alt+Tab).</summary>
 			TaskWindows
-		}
-
-		public WindowManager() {
-			Refresh(EnumerationMode.AllTopLevel);
-		}
-
-		public WindowManager(EnumerationMode mode) {
-			Refresh(mode);
 		}
 
 		/// <summary>Refreshes the window list.</summary>

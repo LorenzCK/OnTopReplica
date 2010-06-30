@@ -13,106 +13,58 @@ namespace OnTopReplica {
 
 		//DWM Thumbnail stuff
 		Thumbnail _thumbnail = null;
-		bool _regionEnabled = false;
 		Rectangle _regionCurrent;
 
 		//Labels
-		ClickThroughLabel _labelNoGlass;
 		ThemedLabel _labelGlass;
 
-		public ThumbnailPanel()
-			: this(false) {
-		}
-
-		/// <summary>Constructs a new ThumbnailPanel with a given glass mode value.</summary>
-		/// <param name="enableGlass">True if glass should be enabled.</param>
-		public ThumbnailPanel(bool enableGlass) {
+		public ThumbnailPanel() {
 			InitFormComponents();
-
-			GlassMode = enableGlass;
-
-			UpdateRightClickLabels();
 		}
 
 		private void InitFormComponents() {
+            BackColor = Color.Black;
+
 			//Themed Label
-			_labelGlass = new ThemedLabel();
-			_labelGlass.Dock = DockStyle.Fill;
-			_labelGlass.ForeColor = SystemColors.ControlText;
-			_labelGlass.Location = Point.Empty;
-			_labelGlass.Size = ClientSize;
-			_labelGlass.Name = "labelGlass";
-			_labelGlass.Text = Strings.RightClick;
-			_labelGlass.TextAlign = HorizontalAlignment.Center;
-			_labelGlass.TextAlignVertical = VerticalAlignment.Center;
+            _labelGlass = new ThemedLabel {
+                Dock = DockStyle.Fill,
+                ForeColor = SystemColors.ControlText,
+                Location = Point.Empty,
+                Size = ClientSize,
+                Name = "labelGlass",
+                Text = Strings.RightClick,
+                TextAlign = HorizontalAlignment.Center,
+                TextAlignVertical = VerticalAlignment.Center
+            };
 			this.Controls.Add(_labelGlass);
-
-			//Standard label
-			_labelNoGlass = new ClickThroughLabel();
-			_labelNoGlass.Dock = DockStyle.Fill;
-			_labelNoGlass.BackColor = Color.Transparent;
-			_labelNoGlass.Location = Point.Empty;
-			_labelNoGlass.Size = ClientSize;
-			_labelNoGlass.Name = "labelNoGlass";
-			_labelNoGlass.Text = Strings.RightClick;
-			_labelNoGlass.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			this.Controls.Add(_labelNoGlass);
 		}
 
-		#region Settings
-
-		bool _glassMode = true;
-
-		public bool GlassMode {
-			get {
-				return _glassMode;
-			}
-			set {
-				_glassMode = value;
-
-                UpdateBackColor();
-				UpdateRightClickLabels();
-			}
-		}
-
-		bool _fullscreenMode = false;
-
-		public bool FullscreenMode {
-			get {
-				return _fullscreenMode;
-			}
-			set {
-				_fullscreenMode = value;
-                UpdateBackColor();
-				UpdateRightClickLabels();
-			}
-		}
+		#region Properties and settings
 
         /// <summary>
-        /// Gets or sets the region that is currently shown on the thumbnail. When set, enabled region showing.
+        /// Gets or sets the region that is currently shown on the thumbnail. When set, also enabled region constrain.
         /// </summary>
-		public Rectangle ShownRegion {
+		public Rectangle SelectedRegion {
 			get {
 				return _regionCurrent;
 			}
 			set {
-				_regionEnabled = true;
 				_regionCurrent = value;
-
-				UpdateThubmnail();
+                ConstrainToRegion = true;
 			}
 		}
+
+        bool _regionEnabled = false;
 
         /// <summary>
         /// Gets or sets whether the thumbnail is constrained to a region or not.
         /// </summary>
-		public bool ShowRegion {
+		public bool ConstrainToRegion {
 			get {
 				return _regionEnabled;
 			}
 			set {
 				_regionEnabled = value;
-
 				UpdateThubmnail();
 			}
 		}
@@ -120,7 +72,7 @@ namespace OnTopReplica {
 		bool _drawMouseRegions = false;
 
         /// <summary>
-        /// Gets or sets whether the thumbnail allows region drawing.
+        /// Gets or sets whether the control is is "region drawing" mode and reports them via events.
         /// </summary>
 		public bool DrawMouseRegions {
 			get {
@@ -134,36 +86,69 @@ namespace OnTopReplica {
 				//Cursor change
 				Cursor = (value) ? Cursors.Cross : Cursors.Default;
 
+                //Refresh gui
 				UpdateThubmnail();
+                _labelGlass.Visible = !value;
                 this.Invalidate();
 			}
 		}
 
-		private byte ThumbnailOpacity {
+        /// <summary>
+        /// Gets the target opacity of the thumbnail, depending on the control's state.
+        /// </summary>
+		protected byte ThumbnailOpacity {
 			get {
                 return (_drawMouseRegions) ? (byte)130 : (byte)255;
 			}
 		}
 
-		bool _clickThrough = true;
+        /// <summary>
+        /// Gets or sets whether the control should report clicks made on the cloned thumbnail.
+        /// </summary>
+        public bool ReportThumbnailClicks {
+            get;
+            set;
+        }
 
-		public bool ClickThrough {
-			get {
-				return _clickThrough;
-			}
-			set {
-				_clickThrough = value;
-			}
-		}
+        /// <summary>
+        /// Gets the thumbnail's original size.
+        /// </summary>
+        public Size ThumbnailOriginalSize {
+            get {
+                if (_thumbnail != null && !_thumbnail.IsInvalid)
+                    return (_regionEnabled) ? _regionCurrent.Size : _thumbnail.SourceSize;
+                else
+                    throw new Exception(Strings.ErrorNoThumbnail);
+            }
+        }
 
 		#endregion
 
-		public void ResetShownRegion() {
-			_regionEnabled = false;
+        #region GUI event handling
 
-			UpdateThubmnail();
-		}
+        protected override void OnResize(EventArgs eventargs) {
+            base.OnResize(eventargs);
+            UpdateThubmnail();
+        }
 
+        protected override void WndProc(ref Message m) {
+            base.WndProc(ref m);
+
+            //Make transparent to hit-testing if clicks must not be registered
+            if (m.Msg == NativeMethods.WM_NCHITTEST && m.Result.ToInt32() == NativeMethods.HTCLIENT &&
+                !DrawMouseRegions && !ReportThumbnailClicks) {
+                m.Result = new IntPtr(NativeMethods.HTTRANSPARENT);
+            }
+        }
+
+        #endregion
+
+        #region Thumbnail interface
+
+        /// <summary>
+        /// Creates a new thumbnail of a certain window.
+        /// </summary>
+        /// <param name="handle">Handle of the window to clone.</param>
 		public void SetThumbnailHandle(WindowHandle handle) {
 			if (_thumbnail != null && !_thumbnail.IsInvalid)
 				_thumbnail.Close();
@@ -171,133 +156,129 @@ namespace OnTopReplica {
 			//Get form and register thumbnail on it
 			Form owner = this.TopLevelControl as Form;
 			if(owner == null)
-				throw new Exception();
-
-			//Reset region
-			_regionEnabled = false;
+				throw new Exception("Internal error: ThumbnailPanel.TopLevelControl is not a Form.");
 
 			_thumbnail = DwmManager.Register(owner, handle.Handle);
-
-			//Do empty thumbnail update to init DWM info (source size)
-			_thumbnail.Update(ClientRectangle, (byte)255, true, true);
-
-			//Correct update
-			UpdateThubmnail();
+            ConstrainToRegion = false; //this also invokes a thumbnail update
 		}
 
+        /// <summary>
+        /// Disposes current thumbnail and enters stand-by mode.
+        /// </summary>
 		public void UnsetThumbnail() {
 			if (_thumbnail != null && !_thumbnail.IsInvalid)
 				_thumbnail.Close();
 
 			_thumbnail = null;
-
-			UpdateRightClickLabels();
 		}
 
+        /// <summary>
+        /// Gets whether the control is currently displaying a thumbnail.
+        /// </summary>
 		public bool IsShowingThumbnail {
 			get {
 				return (_thumbnail != null && !_thumbnail.IsInvalid);
 			}
 		}
 
-		int padWidth = 0;
-		int padHeight = 0;
-		Size thumbnailSize;
+		int _padWidth = 0;
+		int _padHeight = 0;
+		Size _thumbnailSize;
 
-		/// <summary>Updates the thumbnail options and the right-click labels.</summary>
+		/// <summary>
+        /// Updates the thumbnail options and the right-click label.
+        /// </summary>
 		private void UpdateThubmnail() {
 			if (_thumbnail != null && !_thumbnail.IsInvalid){
                 try {
-                    Size sourceSize = (_regionEnabled) ? _regionCurrent.Size : _thumbnail.SourceSize;
-                    thumbnailSize = ComputeIdealSize(sourceSize, Size);
-                    padHeight = (Size.Height - thumbnailSize.Height) / 2;
+                    Size sourceSize = ThumbnailOriginalSize;
+                    _thumbnailSize = ComputeIdealSize(sourceSize, Size);
+                    _padHeight = (Size.Height - _thumbnailSize.Height) / 2;
 
-                    var target = new Rectangle(0, padHeight, thumbnailSize.Width, thumbnailSize.Height);
+                    var target = new Rectangle(0, _padHeight, _thumbnailSize.Width, _thumbnailSize.Height);
                     Rectangle source = (_regionEnabled) ? _regionCurrent : new Rectangle(Point.Empty, _thumbnail.SourceSize);
 
                     _thumbnail.Update(target, source, ThumbnailOpacity, true, true);
                 }
                 catch {
-                    //Any error updating the thumbnail forces to unset (handle may be not valid)
+                    //Any error updating the thumbnail forces to unset (handle may not be valid anymore)
                     UnsetThumbnail();
                     return;
                 }
 			}
-
-			UpdateRightClickLabels();
-		}
-
-		/// <summary>Computes ideal thumbnail size given an original size and a target to fit.</summary>
-		/// <param name="sourceSize">Size of the original thumbnail.</param>
-		/// <param name="clientSize">Size of the client area to fit.</param>
-		private Size ComputeIdealSize(Size sourceSize, Size clientSize) {
-			double sourceRatio = (double)sourceSize.Width / (double)sourceSize.Height;
-			double clientRatio = (double)clientSize.Width / (double)clientSize.Height;
-
-			Size ret = new Size(clientSize.Width, (int)((double)clientSize.Width / sourceRatio));
-
-			return ret;
 		}
 
         /// <summary>
-        /// Updates the background color.
+        /// Computes ideal thumbnail size given an original size and a target to fit.
         /// </summary>
-        private void UpdateBackColor() {
-            BackColor = (FullscreenMode || GlassMode) ? Color.Black : SystemColors.Control;
+        /// <param name="sourceSize">Size of the original thumbnail.</param>
+        /// <param name="clientSize">Size of the client area to fit.</param>
+        private Size ComputeIdealSize(Size sourceSize, Size clientSize) {
+            double sourceRatio = (double)sourceSize.Width / (double)sourceSize.Height;
+            double clientRatio = (double)clientSize.Width / (double)clientSize.Height;
+
+            Size ret = new Size(clientSize.Width, (int)((double)clientSize.Width / sourceRatio));
+            //TODO: enable width padding if width > height
+
+            return ret;
         }
 
-		/// <summary>Updates the right-click labels.</summary>
-		/// <remarks>If a thumbnail is shown no label will be visible. If no thumbnail is active, the correct label will be visible.</remarks>
-		private void UpdateRightClickLabels(){
-			if (_thumbnail != null && !_thumbnail.IsInvalid) {
-				//Thumbnail active and no region drawing
-				_labelGlass.Visible = false;
-				_labelNoGlass.Visible = false;
-			}
-			else {
-				//Update visibility
-                _labelGlass.Visible = _glassMode;
-                _labelNoGlass.Visible = !_glassMode;
-			}
-		}
+        #endregion
 
-		#region Event handling
+		#region Region drawing
 
-		protected override void OnResize(EventArgs eventargs) {
-			UpdateThubmnail();
+        //Set if currently drawing a window (first click/drag was initiated)
+        bool _drawingRegion = false;
+        //Set if drawing was suspended because the mouse left the control
+        bool _drawingSuspended = false;
+        Point _regionStartPoint;
+        Point _regionLastPoint;
 
-			base.OnResize(eventargs);
-		}
+        public delegate void RegionDrawnHandler(object sender, Rectangle region);
 
-		protected override void WndProc(ref Message m) {
-            base.WndProc(ref m);
+        public event RegionDrawnHandler RegionDrawn;
 
-			//Make transparent to hit-testing
-			if (m.Msg == NativeMethods.WM_NCHITTEST && m.Result.ToInt32() == 1 &&
-                !DrawMouseRegions && ClickThrough) {
-			    m.Result = new IntPtr(NativeMethods.HTTRANSPARENT);
-			}
-		}
+        protected virtual void OnRegionDrawn(Rectangle region) {
+            //Fix region if necessary (bug report by Gunter, via comment)
+            if (region.Width < 1) region.Width = 1;
+            if (region.Height < 1) region.Height = 1;
 
-		protected override void OnMouseClick(MouseEventArgs e) {
-            //Raise clicking event to allow click forwarding
-			if (!_clickThrough && e.Button == MouseButtons.Left) {
-				if(_thumbnail != null)
-					OnCloneClick(ScreenToThumbnail(e.Location), false);
-			}
+            var evt = RegionDrawn;
+            if (evt != null)
+                evt(this, region);
+        }
 
-			base.OnMouseClick(e);
-		}
+        /// <summary>
+        /// Raises a RegionDrawn event, given a starting and an ending point of the drawn region.
+        /// </summary>
+        protected void RaiseRegionDrawn(Point start, Point end) {
+            if (_thumbnailSize.Width < 1 || _thumbnailSize.Height < 1) //causes DivBy0
+                return;
 
-		protected override void OnMouseDoubleClick(MouseEventArgs e) {
-            //Raise double clicking event to allow click forwarding
-			if (!_clickThrough && e.Button == MouseButtons.Left) {
-				if (_thumbnail != null)
-					OnCloneClick(ScreenToThumbnail(e.Location), true);
-			}
+            //Compute bounds
+            int left = Math.Min(start.X, end.X);
+            int right = Math.Max(start.X, end.X);
+            int top = Math.Min(start.Y, end.Y);
+            int bottom = Math.Max(start.Y, end.Y);
 
-			base.OnMouseDoubleClick(e);
-		}
+            //Clip to boundaries
+            left = Math.Max(0, left);
+            right = Math.Min(_thumbnailSize.Width, right);
+            top = Math.Max(0, top);
+            bottom = Math.Min(_thumbnailSize.Height, bottom);
+
+            //Compute region rectangle in thumbnail coordinates
+            var startPoint = ClientToThumbnail(new Point(left, top));
+            var endPoint = ClientToThumbnail(new Point(right, bottom));
+            var final = new Rectangle(
+                startPoint,
+                new Size(endPoint.X - startPoint.X, endPoint.Y - startPoint.Y)
+            );
+
+            //Update region
+            SelectedRegion = final;
+            OnRegionDrawn(final);
+        }
 
 		protected override void OnMouseDown(MouseEventArgs e) {
 			if (DrawMouseRegions && e.Button == MouseButtons.Left) {
@@ -317,7 +298,7 @@ namespace OnTopReplica {
                 //Region completed
 				_drawingRegion = false;
                 _drawingSuspended = false;
-				HandleRegionDrawn(_regionStartPoint, _regionLastPoint);
+				RaiseRegionDrawn(_regionStartPoint, _regionLastPoint);
 
 				this.Invalidate();
 			}
@@ -381,109 +362,69 @@ namespace OnTopReplica {
 
 		#endregion
 
-        //Set if currently drawing a window (first click/drag was initiated)
-		bool _drawingRegion = false;
-        //Set if drawing was suspended because the mouse left the control
-        bool _drawingSuspended = false;
-		Point _regionStartPoint;
-		Point _regionLastPoint;
+        #region Thumbnail clone click
 
-		public delegate void RegionDrawnHandler(object sender, Rectangle region);
+        protected override void OnMouseClick(MouseEventArgs e) {
+            base.OnMouseClick(e);
 
-		public event RegionDrawnHandler RegionDrawn;
-
-		protected virtual void OnRegionDrawn(Rectangle region) {
-            //Fix region if necessary (bug report by Gunter, via comment)
-            if (region.Width < 1) region.Width = 1;
-            if (region.Height < 1) region.Height = 1;
-
-            var evt = RegionDrawn;
-			if (evt != null)
-				evt(this, region);
-		}
-
-		protected Point ScreenToThumbnail(Point position) {
-			//Compensate padding
-			position.X -= padWidth;
-			position.Y -= padHeight;
-
-			PointF proportionalPosition = new PointF(
-				(float)position.X / thumbnailSize.Width,
-				(float)position.Y / thumbnailSize.Height
-			);
-
-			//Get real pixel region info
-			Size source = (_regionEnabled) ? _regionCurrent.Size : _thumbnail.SourceSize;
-			Point offset = (_regionEnabled) ? _regionCurrent.Location : Point.Empty;
-
-			return new Point(
-				(int)((proportionalPosition.X * source.Width) + offset.X),
-				(int)((proportionalPosition.Y * source.Height) + offset.Y)
-			);
-		}
-
-		protected void HandleRegionDrawn(Point start, Point end) {
-            if (thumbnailSize.Width == 0 || thumbnailSize.Height == 0) //causes DivBy0
+            if (_thumbnail == null)
                 return;
 
-			int left = Math.Min(start.X, end.X);
-			int right = Math.Max(start.X, end.X);
-			int top = Math.Min(start.Y, end.Y);
-			int bottom = Math.Max(start.Y, end.Y);
+            //Raise clicking event to allow click forwarding
+            if (ReportThumbnailClicks) {
+                OnCloneClick(ClientToThumbnail(e.Location), e.Button, false);
+            }
+        }
 
-            //Clip to boundaries
-            left = Math.Max(0, left);
-            right = Math.Min(thumbnailSize.Width, right);
-            top = Math.Max(0, top);
-            bottom = Math.Min(thumbnailSize.Height, bottom);
+        protected override void OnMouseDoubleClick(MouseEventArgs e) {
+            base.OnMouseDoubleClick(e);
 
-			//Offset points of padding space around thumbnail
-			left -= padWidth;
-			right -= padWidth;
-			top -= padHeight;
-			bottom -= padHeight;
+            if (_thumbnail == null)
+                return;
 
-			//Get proportional region on thumbnail size
-			RectangleF region = new RectangleF(
-				(float)left / thumbnailSize.Width,
-				(float)top / thumbnailSize.Height,
-				(float)(right - left) / thumbnailSize.Width,
-				(float)(bottom - top) / thumbnailSize.Height
-			);
+            //Raise double clicking event to allow click forwarding
+            if (ReportThumbnailClicks) {
+                OnCloneClick(ClientToThumbnail(e.Location), e.Button, true);
+            }
+        }
 
-			//Compute real pixel-region
-			Size source = (_regionEnabled) ? _regionCurrent.Size : _thumbnail.SourceSize;
-			Point offset = (_regionEnabled) ? _regionCurrent.Location : Point.Empty;
-
-			Rectangle regionPixel = new Rectangle(
-				(int)(region.Left * source.Width) + offset.X,
-				(int)(region.Top * source.Height) + offset.Y,
-				(int)(region.Width * source.Width),
-				(int)(region.Height * source.Height)
-			);
-
-			//Update region
-			ShownRegion = regionPixel;
-
-			//Report to hooked event handlers that the current region has changed
-			OnRegionDrawn(regionPixel);
-		}
-
-		public Size ThumbnailOriginalSize {
-			get {
-				if (_thumbnail != null && !_thumbnail.IsInvalid)
-					return (_regionEnabled) ? _regionCurrent.Size : _thumbnail.SourceSize;
-				else
-					throw new Exception(Strings.ErrorNoThumbnail);
-			}
-		}
-
+        /// <summary>
+        /// Is raised when the thumbnail clone is clicked.
+        /// </summary>
 		public event EventHandler<CloneClickEventArgs> CloneClick;
 
-		protected virtual void OnCloneClick(Point location, bool doubleClick){
-			if(CloneClick != null)
-				CloneClick(this, new CloneClickEventArgs(location, doubleClick));
-		}
-	}
+		protected virtual void OnCloneClick(Point location, MouseButtons buttons, bool doubleClick){
+            var evt = CloneClick;
+			if(evt != null)
+				evt(this, new CloneClickEventArgs(location, buttons, doubleClick));
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Convert a point in client coordinates to a point expressed in terms of a cloned thumbnail window.
+        /// </summary>
+        /// <param name="position">Point in client coordinates.</param>
+        protected Point ClientToThumbnail(Point position) {
+            //Compensate padding
+            position.X -= _padWidth;
+            position.Y -= _padHeight;
+
+            PointF proportionalPosition = new PointF(
+                (float)position.X / _thumbnailSize.Width,
+                (float)position.Y / _thumbnailSize.Height
+            );
+
+            //Get real pixel region info
+            Size source = (_regionEnabled) ? _regionCurrent.Size : _thumbnail.SourceSize;
+            Point offset = (_regionEnabled) ? _regionCurrent.Location : Point.Empty;
+
+            return new Point(
+                (int)((proportionalPosition.X * source.Width) + offset.X),
+                (int)((proportionalPosition.Y * source.Height) + offset.Y)
+            );
+        }
+
+    }
 
 }

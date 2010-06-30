@@ -83,21 +83,25 @@ namespace OnTopReplica {
             ClientSize = new Size(newWidth, newHeight);
         }
 
-        public void AdjustSize(double delta) {
-            int newWidth = Math.Max((int)(ClientSize.Width + delta), MinimumSize.Width);
-            int newHeight = (int)((newWidth - ExtraPadding.Horizontal) / AspectRatio + ExtraPadding.Vertical);
+        /// <summary>
+        /// Adjusts the size of the form by a pixel increment while keeping its aspect ratio.
+        /// </summary>
+        /// <param name="pixelIncrement">Change of size in pixels.</param>
+        public void AdjustSize(int pixelOffset) {
+            Size origSize = Size;
 
-            //Readjust if we go lower than minimal height
-            if (newHeight < MinimumSize.Height) {
-                newHeight = MinimumSize.Height;
-                newWidth = (int)((newHeight - ExtraPadding.Vertical) * AspectRatio + ExtraPadding.Horizontal);
-            }
+            //Resize to new width (clamped to max allowed size and minimum form size)
+            int newWidth = Math.Max(Math.Min(origSize.Width + pixelOffset, 
+                SystemInformation.MaxWindowTrackSize.Width),
+                MinimumSize.Width);
 
-            //Compute movement to re-center
-            int deltaX = newWidth - ClientSize.Width;
-            int deltaY = newHeight - ClientSize.Height;
+            //Determine new height while keeping aspect ratio
+            int newHeight = (int)((newWidth - ExtraPadding.Horizontal - clientSizeConversionWidth) / AspectRatio) + ExtraPadding.Vertical + clientSizeConversionHeight;
 
-            ClientSize = new Size(newWidth, newHeight);
+            //Apply and move form to recenter
+            Size = new Size(newWidth, newHeight);
+            int deltaX = Size.Width - origSize.Width;
+            int deltaY = Size.Height - origSize.Height;
             Location = new Point(Location.X - (deltaX / 2), Location.Y - (deltaY / 2));
         }
 

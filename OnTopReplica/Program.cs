@@ -39,7 +39,7 @@ namespace OnTopReplica {
                 Settings.Default.MustUpdate = false;
             }
 
-            bool reloadSettings = false;
+            bool mustReloadForm = false;
             Point reloadLocation = new Point();
             Size reloadSize = new Size();
 
@@ -49,15 +49,16 @@ namespace OnTopReplica {
                 Settings.Default.Language = _languageChangeCode;
                 _languageChangeCode = null;
 
-                Form form;
-                if (reloadSettings)
-                    form = new MainForm(reloadLocation, reloadSize);
-                else
-                    form = new MainForm();
+                Form form = new MainForm();
+                if (mustReloadForm) {
+                    form.Location = reloadLocation;
+                    form.Size = reloadSize;
+                }
 
                 Application.Run(form);
 
-                reloadSettings = true;
+                //Enable reloading on next loop
+                mustReloadForm = true;
                 reloadLocation = form.Location;
                 reloadSize = form.Size;
             }

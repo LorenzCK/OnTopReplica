@@ -107,9 +107,6 @@
     <Compile Include="AspectRatioForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClickThroughLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CloneClickEventArgs.cs" />
     <Compile Include="CloseRequestEventArgs.cs" />
     <Compile Include="WindowsSevenMethods.cs" />
@@ -140,12 +137,6 @@
     <Compile Include="FocusedTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <None Include="FullscreenForm.cs">
-      <SubType>Form</SubType>
-    </None>
-    <None Include="FullscreenForm.Designer.cs">
-      <DependentUpon>FullscreenForm.cs</DependentUpon>
-    </None>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,9 +164,6 @@
       <LastGenOutput>Strings.it.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="FullscreenForm.resx">
-      <DependentUpon>FullscreenForm.cs</DependentUpon>
-    </None>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>

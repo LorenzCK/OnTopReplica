@@ -4,6 +4,7 @@ using System.Text;
 using System.Drawing;
 
 namespace OnTopReplica {
+
 	/// <summary>Helper class that keeps a window handle (HWND), the title of the window and can load its icon.</summary>
 	public class WindowHandle : System.Windows.Forms.IWin32Window {
 		IntPtr _handle;
@@ -77,5 +78,6 @@ namespace OnTopReplica {
 		}
 
 		#endregion
+
 	}
 }
