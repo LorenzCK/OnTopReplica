@@ -110,6 +110,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -137,6 +138,10 @@
     <Compile Include="MessagePumpProcessors\BaseMessagePumpProcessor.cs" />
     <Compile Include="Native\HookMethods.cs" />
     <Compile Include="Native\HotKeyMethods.cs" />
+    <Compile Include="SidePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StoredRegionComparer.cs" />
     <Compile Include="WindowsSevenMethods.cs" />
     <None Include="CommonControls.cs" />
     <Compile Include="EnumerationExtensions.cs" />
@@ -201,8 +206,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegionBox.resx">
-      <DependentUpon>RegionBox.cs</DependentUpon>
+    <EmbeddedResource Include="SidePanels\RegionPanel.resx">
+      <DependentUpon>RegionPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.resx">
@@ -224,11 +229,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="RegionBox.cs">
+    <Compile Include="SidePanels\RegionPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RegionBox.Designer.cs">
-      <DependentUpon>RegionBox.cs</DependentUpon>
+    <Compile Include="SidePanels\RegionPanel.Designer.cs">
+      <DependentUpon>RegionPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="StoredRegion.cs" />
     <Compile Include="StoredRegionArray.cs" />
@@ -268,6 +273,9 @@
     <None Include="Assets\reduce.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\xiao_delete.png" />
+    <None Include="Assets\xiao_add.png" />
+    <None Include="Assets\xiao_ok.png" />
     <None Include="OnTopReplica.exe.manifest">
       <SubType>Designer</SubType>
     </None>

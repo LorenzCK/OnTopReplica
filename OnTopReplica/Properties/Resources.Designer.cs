@@ -235,9 +235,30 @@ namespace OnTopReplica.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap xiao_add {
+            get {
+                object obj = ResourceManager.GetObject("xiao_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap xiao_delete {
+            get {
+                object obj = ResourceManager.GetObject("xiao_delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap xiao_down {
             get {
                 object obj = ResourceManager.GetObject("xiao_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap xiao_ok {
+            get {
+                object obj = ResourceManager.GetObject("xiao_ok", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

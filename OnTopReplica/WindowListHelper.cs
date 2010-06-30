@@ -78,7 +78,6 @@ namespace OnTopReplica {
                 };
                 nullRegionItem.Image = Resources.regions;
                 nullRegionItem.Click += clickHandler;
-
                 tsi.DropDownItems.Add(nullRegionItem);
 
                 foreach (StoredRegion region in regions) {

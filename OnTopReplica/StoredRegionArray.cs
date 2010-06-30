@@ -7,7 +7,8 @@ using System.Xml.Serialization;
 namespace OnTopReplica {
 
 	public class StoredRegionArray : ArrayList, IXmlSerializable {
-		#region IXmlSerializable Members
+		
+        #region IXmlSerializable Members
 
 		public System.Xml.Schema.XmlSchema GetSchema() {
 			return null;
@@ -32,6 +33,7 @@ namespace OnTopReplica {
 		}
 
 		#endregion
+
 	}
 
 }
