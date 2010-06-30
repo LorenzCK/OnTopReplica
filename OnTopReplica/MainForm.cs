@@ -19,6 +19,8 @@ namespace OnTopReplica {
         WindowManager _windowManager = new WindowManager();
 		WindowHandle _lastWindowHandle = null;
 
+        DualModeManager _dualModeManager;
+
         public MainForm() {
             InitializeComponent();
             KeepAspectRatio = false;
@@ -59,6 +61,8 @@ namespace OnTopReplica {
             _hotKeyManager = new HotKeyManager(this);
             _hotKeyManager.RegisterHotKey(HotKeyManager.HotKeyModifiers.Control | HotKeyManager.HotKeyModifiers.Shift,
                                           Keys.O, new HotKeyManager.HotKeyHandler(HotKeyOpenHandler));
+
+            _dualModeManager = new DualModeManager(this);
         }
 
         #region Child forms & controls events
@@ -170,6 +174,10 @@ namespace OnTopReplica {
             _hotKeyManager.Dispose();
             _hotKeyManager = null;
 
+            //Destroy dual mode manager
+            _dualModeManager.Dispose();
+            _dualModeManager = null;
+
             base.OnClosing(e);
         }
 
@@ -201,6 +209,8 @@ namespace OnTopReplica {
         protected override void WndProc(ref Message m) {
             if (_hotKeyManager != null)
                 _hotKeyManager.ProcessHotKeys(m);
+            if (_dualModeManager != null)
+                _dualModeManager.ProcessHookMessages(m);
 
             switch(m.Msg){
                 case NativeMethods.WM_NCRBUTTONUP:
@@ -292,13 +302,13 @@ namespace OnTopReplica {
 
 			//Handle special "none" window
 			if (tsi.Tag == null) {
-				ThumbnailUnset();
+				UnsetThumbnail();
 				return;
 			}
 
             var selectionData = (WindowListHelper.WindowSelectionData)tsi.Tag;
             if (_windowManager != null) {
-                ThumbnailSet(selectionData.Handle, selectionData.Region);
+                SetThumbnail(selectionData.Handle, selectionData.Region);
             }
         }
 
@@ -309,6 +319,10 @@ namespace OnTopReplica {
             Program.Platform.HideForm(this);
 			NativeMethods.SetForegroundWindow(_lastWindowHandle.Handle);
 		}
+
+        private void Menu_Dual_click(object sender, EventArgs e) {
+
+        }
 
 		private void Menu_Forward_click(object sender, EventArgs e) {
 			if (Settings.Default.FirstTimeClickForwarding && !_thumbnailPanel.ReportThumbnailClicks) {
@@ -543,7 +557,12 @@ namespace OnTopReplica {
 
 		#region Thumbnail operation
 
-        private void ThumbnailSet(WindowHandle handle, StoredRegion region) {
+        /// <summary>
+        /// Sets a new thumbnail.
+        /// </summary>
+        /// <param name="handle">Handle to the window to clone.</param>
+        /// <param name="region">Region of the window to clone.</param>
+        public void SetThumbnail(WindowHandle handle, StoredRegion region) {
             try {
 				_lastWindowHandle = handle;
 
@@ -563,7 +582,10 @@ namespace OnTopReplica {
             SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
         }
 
-        private void ThumbnailUnset(){
+        /// <summary>
+        /// Disables the cloned thumbnail.
+        /// </summary>
+        public void UnsetThumbnail(){
             //Unset handle
 			_lastWindowHandle = null;
 			_thumbnailPanel.UnsetThumbnail();
@@ -580,7 +602,7 @@ namespace OnTopReplica {
                 ShowErrorDialog(title, Strings.ErrorGenericThumbnailHandleError, ex.Message);
             }
 
-            ThumbnailUnset();
+            UnsetThumbnail();
         }
         
 		/// <summary>Automatically sizes the window in order to accomodate the thumbnail p times.</summary>
@@ -695,7 +717,7 @@ namespace OnTopReplica {
         /// </summary>
         public void ResetMainForm() {
             //Reset form settings
-            ThumbnailUnset();
+            UnsetThumbnail();
             RegionBoxShowing = false;
 
             //Reset location and size (edge of the screen, min size)
