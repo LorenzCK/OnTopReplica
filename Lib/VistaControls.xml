@@ -644,6 +644,26 @@
         <member name="P:VistaControls.ThemeText.ThemedLabel.WordEllipsis">
             <summary>Gets or sets whether the text should be trimmed to the last word and an ellipse should be placed at the end of the line.</summary>
         </member>
+        <member name="T:VistaControls.Dwm.Flip3DPolicy">
+            <summary>
+            Determines a window's Flip 3D policy.
+            </summary>
+        </member>
+        <member name="F:VistaControls.Dwm.Flip3DPolicy.Default">
+            <summary>
+            Default Flip 3D behavior.
+            </summary>
+        </member>
+        <member name="F:VistaControls.Dwm.Flip3DPolicy.ExcludeBelow">
+            <summary>
+            Excludes the window from Flip 3D and hides it behind the animation.
+            </summary>
+        </member>
+        <member name="F:VistaControls.Dwm.Flip3DPolicy.ExcludeAbove">
+            <summary>
+            Excludes the window from Flip 3D and shows it above the animation.
+            </summary>
+        </member>
         <member name="T:VistaControls.Dwm.Thumbnail">
             <summary>Handle to a DWM Thumbnail.</summary>
         </member>
@@ -683,6 +703,37 @@
         </member>
         <member name="P:VistaControls.Dwm.Thumbnail.SourceSize">
             <summary>Gets the thumbnail's original size.</summary>
+        </member>
+        <member name="T:VistaControls.ThemeText.Options.GlowOption">
+            <summary>
+            Applies a glow on the themed text.
+            </summary>
+        </member>
+        <member name="F:VistaControls.ThemeText.Options.GlowOption.DefaultSize">
+            <summary>
+            Default glow size.
+            </summary>
+        </member>
+        <member name="F:VistaControls.ThemeText.Options.GlowOption.Word2007Size">
+            <summary>
+            Glow size used commonly by Office 2007 in titles.
+            </summary>
+        </member>
+        <member name="F:VistaControls.ThemeText.Options.GlowOption.PreciseGlow">
+            <summary>
+            Precise glow effect.
+            </summary>
+        </member>
+        <member name="M:VistaControls.ThemeText.Options.GlowOption.#ctor(System.Int32)">
+            <summary>
+            Instantiates a new glow effect for themed text.
+            </summary>
+            <param name="size">Size of the glow effect.</param>
+        </member>
+        <member name="P:VistaControls.ThemeText.Options.GlowOption.Size">
+            <summary>
+            Gets or sets the size of the glow effect.
+            </summary>
         </member>
         <member name="T:VistaControls.OsSupport">
             <summary>
@@ -966,26 +1017,6 @@
             This is false by default, it should only be toggled to true if the control needs to lay directly on
             the glass surface of the form.
             </remarks>
-        </member>
-        <member name="T:VistaControls.Dwm.Flip3DPolicy">
-            <summary>
-            Determines a window's Flip 3D policy.
-            </summary>
-        </member>
-        <member name="F:VistaControls.Dwm.Flip3DPolicy.Default">
-            <summary>
-            Default Flip 3D behavior.
-            </summary>
-        </member>
-        <member name="F:VistaControls.Dwm.Flip3DPolicy.ExcludeBelow">
-            <summary>
-            Excludes the window from Flip 3D and hides it behind the animation.
-            </summary>
-        </member>
-        <member name="F:VistaControls.Dwm.Flip3DPolicy.ExcludeAbove">
-            <summary>
-            Excludes the window from Flip 3D and shows it above the animation.
-            </summary>
         </member>
     </members>
 </doc>
