@@ -23,8 +23,8 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textRegionName = new OnTopReplica.FocusedTextBox();
             this.numH = new System.Windows.Forms.NumericUpDown();
             this.numW = new System.Windows.Forms.NumericUpDown();
             this.numY = new System.Windows.Forms.NumericUpDown();
@@ -39,25 +39,12 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.comboBox1 = new VistaControls.ComboBox();
-            this.textRegionName = new OnTopReplica.FocusedTextBox();
-            this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numX)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.panel1.Size = new System.Drawing.Size(175, 237);
-            this.panel1.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -83,6 +70,21 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Regions";
+            // 
+            // textRegionName
+            // 
+            this.textRegionName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textRegionName.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.textRegionName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.textRegionName.Location = new System.Drawing.Point(6, 48);
+            this.textRegionName.Name = "textRegionName";
+            this.textRegionName.Size = new System.Drawing.Size(90, 20);
+            this.textRegionName.TabIndex = 2;
+            this.textRegionName.Visible = false;
+            this.textRegionName.ConfirmInput += new System.EventHandler(this.Save_confirm);
+            this.textRegionName.AbortInput += new System.EventHandler(this.Save_lost);
+            this.textRegionName.Leave += new System.EventHandler(this.Save_lost);
             // 
             // numH
             // 
@@ -186,7 +188,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label6.Location = new System.Drawing.Point(71, 124);
+            this.label6.Location = new System.Drawing.Point(71, 125);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 9;
@@ -196,7 +198,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label7.Location = new System.Drawing.Point(71, 98);
+            this.label7.Location = new System.Drawing.Point(71, 99);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 8;
@@ -206,7 +208,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label3.Location = new System.Drawing.Point(6, 124);
+            this.label3.Location = new System.Drawing.Point(6, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(14, 13);
             this.label3.TabIndex = 5;
@@ -216,7 +218,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label2.Location = new System.Drawing.Point(6, 98);
+            this.label2.Location = new System.Drawing.Point(6, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(14, 13);
             this.label2.TabIndex = 4;
@@ -269,31 +271,14 @@
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.RegionCombo_index);
             // 
-            // textRegionName
-            // 
-            this.textRegionName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.textRegionName.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.textRegionName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textRegionName.Location = new System.Drawing.Point(6, 48);
-            this.textRegionName.Name = "textRegionName";
-            this.textRegionName.Size = new System.Drawing.Size(90, 20);
-            this.textRegionName.TabIndex = 2;
-            this.textRegionName.Visible = false;
-            this.textRegionName.ConfirmInput += new System.EventHandler(this.Save_confirm);
-            this.textRegionName.AbortInput += new System.EventHandler(this.Save_lost);
-            this.textRegionName.Leave += new System.EventHandler(this.Save_lost);
-            // 
             // RegionBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.groupBox1);
             this.MinimumSize = new System.Drawing.Size(160, 180);
             this.Name = "RegionBox";
             this.Size = new System.Drawing.Size(175, 237);
-            this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numH)).EndInit();
@@ -306,7 +291,6 @@
 
 		#endregion
 
-		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Button buttonDelete;
 		private System.Windows.Forms.Button buttonSave;
