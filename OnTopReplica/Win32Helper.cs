@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Drawing;
-using System.Windows.Forms;
+using OnTopReplica.Native;
 
 namespace OnTopReplica {
 	public static class Win32Helper {
@@ -11,19 +10,18 @@ namespace OnTopReplica {
 		/// <param name="window">Target window to click on.</param>
 		/// <param name="clickLocation">Location of the mouse click expressed in client coordiantes of the target window.</param>
 		/// <param name="doubleClick">True if a double click should be injected.</param>
-		public static void InjectFakeMouseClick(IntPtr window, Point clickLocation, bool doubleClick) {
-			NativeMethods.Point scrClickLocation = NativeMethods.ClientToScreen(window,
-				NativeMethods.Point.FromPoint(clickLocation));
+		public static void InjectFakeMouseClick(IntPtr window, System.Drawing.Point clickLocation, bool doubleClick) {
+			NPoint scrClickLocation = WindowManagerMethods.ClientToScreen(window, NPoint.FromPoint(clickLocation));
 
 			//HACK (?)
 			//If target window has a Menu (which appears on the thumbnail) move the clicked location down
 			//in order to adjust (the menu isn't part of the window's client rect).
-			IntPtr hMenu = NativeMethods.GetMenu(window);
+			IntPtr hMenu = WindowMethods.GetMenu(window);
 			if (hMenu != IntPtr.Zero)
-				scrClickLocation.Y -= SystemInformation.MenuHeight;
+				scrClickLocation.Y -= System.Windows.Forms.SystemInformation.MenuHeight;
 
 			IntPtr hChild = GetRealChildControlFromPoint(window, scrClickLocation);
-			NativeMethods.Point clntClickLocation = NativeMethods.ScreenToClient(hChild, scrClickLocation);
+            NPoint clntClickLocation = WindowManagerMethods.ScreenToClient(hChild, scrClickLocation);
 
 			if (doubleClick)
 				InjectDoubleLeftMouseClick(hChild, clntClickLocation);
@@ -31,25 +29,25 @@ namespace OnTopReplica {
 				InjectLeftMouseClick(hChild, clntClickLocation);
 		}
 
-		private static void InjectLeftMouseClick(IntPtr child, NativeMethods.Point clientLocation) {
-			IntPtr lParamClickLocation = NativeMethods.MakeLParam(clientLocation.X, clientLocation.Y);
+		private static void InjectLeftMouseClick(IntPtr child, Native.NPoint clientLocation) {
+			IntPtr lParamClickLocation = MessagingMethods.MakeLParam(clientLocation.X, clientLocation.Y);
 
-			NativeMethods.PostMessage(child, NativeMethods.WM_LBUTTONDOWN,
-					new IntPtr(NativeMethods.MK_LBUTTON), lParamClickLocation);
+            MessagingMethods.PostMessage(child, MessagingMethods.WM_LBUTTONDOWN,
+                    new IntPtr(MessagingMethods.MK_LBUTTON), lParamClickLocation);
 
-			NativeMethods.PostMessage(child, NativeMethods.WM_LBUTTONUP,
-				new IntPtr(NativeMethods.MK_LBUTTON), lParamClickLocation);
+            MessagingMethods.PostMessage(child, MessagingMethods.WM_LBUTTONUP,
+                new IntPtr(MessagingMethods.MK_LBUTTON), lParamClickLocation);
 
 #if DEBUG
 			Console.WriteLine("Left click on window #" + child.ToString() + " at " + clientLocation.ToString());
 #endif
 		}
 
-		private static void InjectDoubleLeftMouseClick(IntPtr child, NativeMethods.Point clientLocation) {
-			IntPtr lParamClickLocation = NativeMethods.MakeLParam(clientLocation.X, clientLocation.Y);
+		private static void InjectDoubleLeftMouseClick(IntPtr child, NPoint clientLocation) {
+            IntPtr lParamClickLocation = MessagingMethods.MakeLParam(clientLocation.X, clientLocation.Y);
 
-			NativeMethods.PostMessage(child, NativeMethods.WM_LBUTTONDBLCLK,
-					new IntPtr(NativeMethods.MK_LBUTTON), lParamClickLocation);
+            MessagingMethods.PostMessage(child, MessagingMethods.WM_LBUTTONDBLCLK,
+					new IntPtr(MessagingMethods.MK_LBUTTON), lParamClickLocation);
 
 #if DEBUG
 			Console.WriteLine("Double left click on window #" + child.ToString() + " at " + clientLocation.ToString());
@@ -59,10 +57,11 @@ namespace OnTopReplica {
 		/// <summary>Returns the child control of a window corresponding to a screen location.</summary>
 		/// <param name="parent">Parent window to explore.</param>
 		/// <param name="scrClickLocation">Child control location in screen coordinates.</param>
-		private static IntPtr GetRealChildControlFromPoint(IntPtr parent, NativeMethods.Point scrClickLocation) {
+		private static IntPtr GetRealChildControlFromPoint(IntPtr parent, NPoint scrClickLocation) {
 			IntPtr curr = parent, child = IntPtr.Zero;
 			do {
-				child = NativeMethods.RealChildWindowFromPoint(curr, NativeMethods.ScreenToClient(curr, scrClickLocation));
+                child = WindowManagerMethods.RealChildWindowFromPoint(curr,
+                    WindowManagerMethods.ScreenToClient(curr, scrClickLocation));
 
 				if (child == IntPtr.Zero || child == curr)
 					break;

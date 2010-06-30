@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using OnTopReplica.Native;
 
 namespace OnTopReplica {
 
@@ -29,7 +30,8 @@ namespace OnTopReplica {
 					//Fetch icon from window
 					IntPtr hIcon;
 
-					if (NativeMethods.SendMessageTimeout(_handle, NativeMethods.WM_GETICON, new IntPtr(2), new IntPtr(0), NativeMethods.SendMessageTimeoutFlags.AbortIfHung | NativeMethods.SendMessageTimeoutFlags.Block, 500, out hIcon) == IntPtr.Zero)
+                    if (MessagingMethods.SendMessageTimeout(_handle, MessagingMethods.WM_GETICON, new IntPtr(2), new IntPtr(0),
+                        MessagingMethods.SendMessageTimeoutFlags.AbortIfHung | MessagingMethods.SendMessageTimeoutFlags.Block, 500, out hIcon) == IntPtr.Zero)
 						hIcon = IntPtr.Zero;
 
 					if (hIcon.ToInt64() != 0) {
@@ -37,7 +39,7 @@ namespace OnTopReplica {
 					}
 					else {
 						//Fetch icon from window class
-						hIcon = (IntPtr)NativeMethods.GetClassLongPtr(_handle, NativeMethods.ClassLong.IconSmall);
+                        hIcon = (IntPtr)WindowMethods.GetClassLongPtr(_handle, WindowMethods.ClassLong.IconSmall);
 
 						if (hIcon.ToInt64() != 0) {
 							_icon = Icon.FromHandle(hIcon);

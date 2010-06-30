@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using OnTopReplica.Native;
 
 namespace OnTopReplica {
 	/// <summary>A helper class that allows you to easily build and keep a list of Windows (in the form of WindowHandle objects).</summary>
@@ -23,22 +24,22 @@ namespace OnTopReplica {
 		public void Refresh(EnumerationMode mode) {
             _windows = new List<WindowHandle>();
 
-			NativeMethods.EnumWindowsProc proc = null;
+            WindowManagerMethods.EnumWindowsProc proc = null;
 			switch (mode) {
 				case EnumerationMode.AllVisible:
-					proc = new NativeMethods.EnumWindowsProc(EnumWindowProcAll);
+                    proc = new WindowManagerMethods.EnumWindowsProc(EnumWindowProcAll);
 					break;
 
 				case EnumerationMode.AllTopLevel:
-					proc = new NativeMethods.EnumWindowsProc(EnumWindowProcTopLevel);
+                    proc = new WindowManagerMethods.EnumWindowsProc(EnumWindowProcTopLevel);
 					break;
 
 				case EnumerationMode.TaskWindows:
-					proc = new NativeMethods.EnumWindowsProc(EnumWindowProcTask);
+                    proc = new WindowManagerMethods.EnumWindowsProc(EnumWindowProcTask);
 					break;
 			}
 
-			NativeMethods.EnumWindows(proc, IntPtr.Zero);
+			WindowManagerMethods.EnumWindows(proc, IntPtr.Zero);
 		}
 
 
@@ -51,7 +52,7 @@ namespace OnTopReplica {
 
 
 		private bool EnumWindowProcAll(IntPtr hwnd, IntPtr lParam) {
-			if (NativeMethods.IsWindowVisible(hwnd)) {
+            if (WindowManagerMethods.IsWindowVisible(hwnd)) {
                 string title = GetWindowTitle(hwnd);
 				_windows.Add( new WindowHandle(hwnd, title));
 			}
@@ -59,9 +60,9 @@ namespace OnTopReplica {
 		}
 
 		private bool EnumWindowProcTopLevel(IntPtr hwnd, IntPtr lParam) {
-			if (NativeMethods.IsWindowVisible(hwnd)) {
+            if (WindowManagerMethods.IsWindowVisible(hwnd)) {
 				//Check if window has no parent
-				if ((long)NativeMethods.GetParent(hwnd) == 0 && NativeMethods.GetDesktopWindow() != hwnd) {
+                if ((long)WindowManagerMethods.GetParent(hwnd) == 0 && WindowManagerMethods.GetDesktopWindow() != hwnd) {
                     string title = GetWindowTitle(hwnd);
 					_windows.Add( new WindowHandle(hwnd, title));
 				}
@@ -84,13 +85,13 @@ namespace OnTopReplica {
 			if (string.IsNullOrEmpty(title))
 				return true;
 
-			if (NativeMethods.IsWindowVisible(hwnd)) {
-				if ((long)NativeMethods.GetParent(hwnd) == 0) {
-					bool hasOwner = (long)NativeMethods.GetWindow(hwnd, NativeMethods.GetWindowMode.GW_OWNER) != 0;
-					NativeMethods.WindowExStyles exStyle = (NativeMethods.WindowExStyles)NativeMethods.GetWindowLong(hwnd, NativeMethods.WindowLong.ExStyle);
+            if (WindowManagerMethods.IsWindowVisible(hwnd)) {
+                if ((long)WindowManagerMethods.GetParent(hwnd) == 0) {
+                    bool hasOwner = (long)WindowManagerMethods.GetWindow(hwnd, WindowManagerMethods.GetWindowMode.GW_OWNER) != 0;
+                    WindowMethods.WindowExStyles exStyle = (WindowMethods.WindowExStyles)WindowMethods.GetWindowLong(hwnd, WindowMethods.WindowLong.ExStyle);
 
-					if (((exStyle & NativeMethods.WindowExStyles.ToolWindow) == 0 && !hasOwner) || //unowned non-tool window
-						((exStyle & NativeMethods.WindowExStyles.AppWindow) == NativeMethods.WindowExStyles.AppWindow && hasOwner)) { //owned application window
+                    if (((exStyle & WindowMethods.WindowExStyles.ToolWindow) == 0 && !hasOwner) || //unowned non-tool window
+                        ((exStyle & WindowMethods.WindowExStyles.AppWindow) == WindowMethods.WindowExStyles.AppWindow && hasOwner)) { //owned application window
 						_windows.Add(new WindowHandle(hwnd, title));
 					}
 				}
@@ -102,11 +103,11 @@ namespace OnTopReplica {
 		#region Auxiliary methods
 
 		private string GetWindowTitle(IntPtr hwnd) {
-			int length = NativeMethods.GetWindowTextLength(hwnd);
+            int length = WindowMethods.GetWindowTextLength(hwnd);
 
 			if (length > 0) {
 				StringBuilder sb = new StringBuilder(length + 1);
-				if (NativeMethods.GetWindowText(hwnd, sb, sb.Capacity) > 0)
+                if (WindowMethods.GetWindowText(hwnd, sb, sb.Capacity) > 0)
 					return sb.ToString();
 				else
 					return String.Empty;

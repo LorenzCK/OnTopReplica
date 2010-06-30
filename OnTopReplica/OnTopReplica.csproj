@@ -133,13 +133,25 @@
     <Compile Include="CloneClickEventArgs.cs" />
     <Compile Include="CloseRequestEventArgs.cs" />
     <Compile Include="MessagePumpManager.cs" />
-    <Compile Include="MessagePumpProcessors\DualModeManager.cs" />
+    <Compile Include="MessagePumpProcessors\GroupSwitchManager.cs" />
     <Compile Include="IMessagePumpProcessor.cs" />
     <Compile Include="MessagePumpProcessors\BaseMessagePumpProcessor.cs" />
+    <Compile Include="Native\ErrorMethods.cs" />
     <Compile Include="Native\HookMethods.cs" />
     <Compile Include="Native\HotKeyMethods.cs" />
+    <Compile Include="Native\MessagingMethods.cs" />
+    <Compile Include="Native\Point.cs" />
+    <Compile Include="Native\Rectangle.cs" />
+    <Compile Include="Native\WindowManagerMethods.cs" />
+    <Compile Include="Native\WindowMethods.cs" />
     <Compile Include="SidePanel.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SidePanels\GroupSwitchPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SidePanels\GroupSwitchPanel.Designer.cs">
+      <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="StoredRegionComparer.cs" />
     <Compile Include="WindowsSevenMethods.cs" />
@@ -176,12 +188,15 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NativeMethods.cs" />
     <Compile Include="NativeToolStripRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SidePanels\GroupSwitchPanel.resx">
+      <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.cs.resx">
@@ -245,7 +260,6 @@
     <Compile Include="ThumbnailPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="VirtualKeyState.cs" />
     <Compile Include="Win32Helper.cs" />
     <Compile Include="WindowHandle.cs" />
     <Compile Include="WindowListHelper.cs" />

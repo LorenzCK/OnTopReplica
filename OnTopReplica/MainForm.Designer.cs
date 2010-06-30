@@ -151,7 +151,7 @@
             this.dualWindowModeToolStripMenuItem.Name = "dualWindowModeToolStripMenuItem";
             this.dualWindowModeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.dualWindowModeToolStripMenuItem.Text = "Dual window mode";
-            this.dualWindowModeToolStripMenuItem.Click += new System.EventHandler(this.Menu_Dual_click);
+            this.dualWindowModeToolStripMenuItem.Click += new System.EventHandler(this.Menu_Group_click);
             // 
             // menuContextOpacity
             // 
