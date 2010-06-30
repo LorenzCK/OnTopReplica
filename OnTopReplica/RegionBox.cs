@@ -17,19 +17,6 @@ namespace OnTopReplica {
 			}
 		}
 
-		bool _glassMode = true;
-
-		public bool GlassMode {
-			get {
-				return _glassMode;
-			}
-			set {
-				BackColor = (value) ? Color.Black : SystemColors.Control;
-
-				_glassMode = value;
-			}
-		}
-
         public void SetRegion(StoredRegion region) {
             if (region == null) {
                 Reset();
