@@ -10,10 +10,29 @@ namespace OnTopReplica.Native {
     static class WindowMethods {
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        public static extern int GetWindowText(IntPtr hWnd, [Out] StringBuilder lpString, int nMaxCount);
+        static extern int GetWindowText(IntPtr hWnd, [Out] StringBuilder lpString, int nMaxCount);
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        public static extern int GetWindowTextLength(IntPtr hWnd);
+        static extern int GetWindowTextLength(IntPtr hWnd);
+
+        /// <summary>
+        /// Gets a window's text via API call.
+        /// </summary>
+        /// <param name="hwnd">Window handle.</param>
+        /// <returns>Title of the window.</returns>
+        public static string GetWindowText(IntPtr hwnd) {
+            int length = GetWindowTextLength(hwnd);
+
+            if (length > 0) {
+                StringBuilder sb = new StringBuilder(length + 1);
+                if (WindowMethods.GetWindowText(hwnd, sb, sb.Capacity) > 0)
+                    return sb.ToString();
+                else
+                    return String.Empty;
+            }
+            else
+                return String.Empty;
+        }
 
         public enum WindowLong {
             WndProc = (-4),

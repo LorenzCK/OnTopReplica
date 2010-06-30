@@ -53,7 +53,7 @@ namespace OnTopReplica {
 
 		private bool EnumWindowProcAll(IntPtr hwnd, IntPtr lParam) {
             if (WindowManagerMethods.IsWindowVisible(hwnd)) {
-                string title = GetWindowTitle(hwnd);
+                string title = WindowMethods.GetWindowText(hwnd);
 				_windows.Add( new WindowHandle(hwnd, title));
 			}
 			return true;
@@ -63,7 +63,7 @@ namespace OnTopReplica {
             if (WindowManagerMethods.IsWindowVisible(hwnd)) {
 				//Check if window has no parent
                 if ((long)WindowManagerMethods.GetParent(hwnd) == 0 && WindowManagerMethods.GetDesktopWindow() != hwnd) {
-                    string title = GetWindowTitle(hwnd);
+                    string title = WindowMethods.GetWindowText(hwnd);
 					_windows.Add( new WindowHandle(hwnd, title));
 				}
 			}
@@ -81,7 +81,7 @@ namespace OnTopReplica {
 
 			//Reject empty titles
 
-			string title = GetWindowTitle(hwnd);
+			string title = WindowMethods.GetWindowText(hwnd);
 			if (string.IsNullOrEmpty(title))
 				return true;
 
@@ -100,22 +100,5 @@ namespace OnTopReplica {
 			return true;
 		}
 
-		#region Auxiliary methods
-
-		private string GetWindowTitle(IntPtr hwnd) {
-            int length = WindowMethods.GetWindowTextLength(hwnd);
-
-			if (length > 0) {
-				StringBuilder sb = new StringBuilder(length + 1);
-                if (WindowMethods.GetWindowText(hwnd, sb, sb.Capacity) > 0)
-					return sb.ToString();
-				else
-					return String.Empty;
-			}
-			else
-				return String.Empty;
-		}
-
-		#endregion
 	}
 }
