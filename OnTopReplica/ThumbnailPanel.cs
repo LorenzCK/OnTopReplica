@@ -6,6 +6,7 @@ using VistaControls.Dwm;
 using VistaControls.ThemeText;
 using System.Drawing;
 using System.Windows.Forms.VisualStyles;
+using OnTopReplica.Native;
 
 namespace OnTopReplica {
 
@@ -135,9 +136,10 @@ namespace OnTopReplica {
             base.WndProc(ref m);
 
             //Make transparent to hit-testing if clicks must not be registered
-            if (m.Msg == NativeMethods.WM_NCHITTEST && m.Result.ToInt32() == NativeMethods.HTCLIENT &&
+            if (m.Msg == MessagingMethods.WM_NCHITTEST && m.Result.ToInt32() == MessagingMethods.HTCLIENT &&
                 !DrawMouseRegions && !ReportThumbnailClicks) {
-                m.Result = new IntPtr(NativeMethods.HTTRANSPARENT);
+                
+                m.Result = new IntPtr(MessagingMethods.HTTRANSPARENT);
             }
         }
 
