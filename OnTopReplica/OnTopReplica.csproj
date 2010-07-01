@@ -148,11 +148,15 @@
     <Compile Include="Native\ErrorMethods.cs" />
     <Compile Include="Native\HookMethods.cs" />
     <Compile Include="Native\HotKeyMethods.cs" />
+    <Compile Include="Native\HT.cs" />
     <Compile Include="Native\MessagingMethods.cs" />
+    <Compile Include="Native\MK.cs" />
     <Compile Include="Native\Point.cs" />
     <Compile Include="Native\Rectangle.cs" />
     <Compile Include="Native\WindowManagerMethods.cs" />
     <Compile Include="Native\WindowMethods.cs" />
+    <Compile Include="Native\WM.cs" />
+    <Compile Include="Native\WMSZ.cs" />
     <Compile Include="SidePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -136,10 +136,10 @@ namespace OnTopReplica {
             base.WndProc(ref m);
 
             //Make transparent to hit-testing if clicks must not be registered
-            if (m.Msg == MessagingMethods.WM_NCHITTEST && m.Result.ToInt32() == MessagingMethods.HTCLIENT &&
+            if (m.Msg == WM.NCHITTEST && m.Result.ToInt32() == HT.CLIENT &&
                 !DrawMouseRegions && !ReportThumbnailClicks) {
                 
-                m.Result = new IntPtr(MessagingMethods.HTTRANSPARENT);
+                m.Result = new IntPtr(HT.TRANSPARENT);
             }
         }
 

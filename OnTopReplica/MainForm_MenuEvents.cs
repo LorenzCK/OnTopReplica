@@ -21,9 +21,11 @@ namespace OnTopReplica {
             switchToWindowToolStripMenuItem.Enabled = showing;
             resizeToolStripMenuItem.Enabled = showing;
             chromeToolStripMenuItem.Checked = (FormBorderStyle == FormBorderStyle.Sizable);
-            forwardClicksToolStripMenuItem.Checked = _thumbnailPanel.ReportThumbnailClicks;
+            clickForwardingToolStripMenuItem.Checked = _thumbnailPanel.ReportThumbnailClicks;
             chromeToolStripMenuItem.Enabled = showing;
-            advancedToolStripMenuItem.Enabled = showing;
+            clickThroughToolStripMenuItem.Enabled = showing;
+            clickForwardingToolStripMenuItem.Enabled = showing;
+            
         }
 
         private void Menu_Windows_opening(object sender, CancelEventArgs e) {

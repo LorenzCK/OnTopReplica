@@ -30,7 +30,7 @@ namespace OnTopReplica {
 					//Fetch icon from window
 					IntPtr hIcon;
 
-                    if (MessagingMethods.SendMessageTimeout(_handle, MessagingMethods.WM_GETICON, new IntPtr(2), new IntPtr(0),
+                    if (MessagingMethods.SendMessageTimeout(_handle, WM.GETICON, new IntPtr(2), new IntPtr(0),
                         MessagingMethods.SendMessageTimeoutFlags.AbortIfHung | MessagingMethods.SendMessageTimeoutFlags.Block, 500, out hIcon) == IntPtr.Zero)
 						hIcon = IntPtr.Zero;
 
