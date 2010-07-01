@@ -114,8 +114,10 @@ namespace OnTopReplica {
         protected override void OnMouseWheel(MouseEventArgs e) {
             base.OnMouseWheel(e);
 
-            int change = (int)(e.Delta / 6.0); //assumes a mouse wheel "tick" is in the 80-120 range
-            AdjustSize(change);
+            if (!IsFullscreen) {
+                int change = (int)(e.Delta / 6.0); //assumes a mouse wheel "tick" is in the 80-120 range
+                AdjustSize(change);
+            }
         }
 
         protected override void OnMouseDoubleClick(MouseEventArgs e) {
@@ -140,9 +142,9 @@ namespace OnTopReplica {
             _msgPumpManager.PumpMessage(m);
 
             switch (m.Msg) {
-                case MessagingMethods.WM_NCRBUTTONUP:
+                case WM.NCRBUTTONUP:
                     //Open context menu if right button clicked on caption (i.e. all of the window area because of glass)
-                    if (m.WParam.ToInt32() == MessagingMethods.HTCAPTION) {
+                    if (m.WParam.ToInt32() == HT.CAPTION) {
                         OpenContextMenu();
 
                         m.Result = IntPtr.Zero;
@@ -150,9 +152,9 @@ namespace OnTopReplica {
                     }
                     break;
 
-                case MessagingMethods.WM_NCLBUTTONDBLCLK:
+                case WM.NCLBUTTONDBLCLK:
                     //Toggle fullscreen mode if double click on caption (whole glass area)
-                    if (m.WParam.ToInt32() == MessagingMethods.HTCAPTION) {
+                    if (m.WParam.ToInt32() == HT.CAPTION) {
                         IsFullscreen = !IsFullscreen;
 
                         m.Result = IntPtr.Zero;
@@ -160,10 +162,10 @@ namespace OnTopReplica {
                     }
                     break;
 
-                case MessagingMethods.WM_NCHITTEST:
+                case WM.NCHITTEST:
                     //Make transparent to hit-testing if in click through mode
                     if (ClickThroughEnabled) {
-                        m.Result = (IntPtr)MessagingMethods.HTTRANSPARENT;
+                        m.Result = (IntPtr)HT.TRANSPARENT;
                         return;
                     }
                     break;

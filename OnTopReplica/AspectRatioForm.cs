@@ -138,14 +138,14 @@ namespace OnTopReplica {
         /// Improved with code from: http://stoyanoff.info/blog/2010/06/27/resizing-forms-while-keeping-aspect-ratio/
         /// </summary>
         protected override void WndProc(ref Message m) {
-            if (KeepAspectRatio && m.Msg == MessagingMethods.WM_SIZING) {
+            if (KeepAspectRatio && m.Msg == WM.SIZING) {
                 var rc = (Native.NRectangle)Marshal.PtrToStructure(m.LParam, typeof(Native.NRectangle));
                 int res = m.WParam.ToInt32();
 
                 int width = (rc.Right - rc.Left) - clientSizeConversionWidth - ExtraPadding.Horizontal;
                 int height = (rc.Bottom - rc.Top) - clientSizeConversionHeight - ExtraPadding.Vertical;
 
-                if (res == MessagingMethods.WMSZ_LEFT || res == MessagingMethods.WMSZ_RIGHT) {
+                if (res == WMSZ.LEFT || res == WMSZ.RIGHT) {
                     //Left or right resize, adjust top and bottom
                     int targetHeight = (int)(width / AspectRatio);
                     int diffHeight = height - targetHeight;
@@ -153,7 +153,7 @@ namespace OnTopReplica {
                     rc.Top += (int)(diffHeight / 2.0);
                     rc.Bottom = rc.Top + targetHeight + ExtraPadding.Vertical + clientSizeConversionHeight;
                 }
-                else if (res == MessagingMethods.WMSZ_TOP || res == MessagingMethods.WMSZ_BOTTOM) {
+                else if (res == WMSZ.TOP || res == WMSZ.BOTTOM) {
                     //Up or down resize, adjust left and right
                     int targetWidth = (int)(height * AspectRatio);
                     int diffWidth = width - targetWidth;
@@ -161,11 +161,11 @@ namespace OnTopReplica {
                     rc.Left += (int)(diffWidth / 2.0);
                     rc.Right = rc.Left + targetWidth + ExtraPadding.Horizontal + clientSizeConversionWidth;
                 }
-                else if (res == MessagingMethods.WMSZ_RIGHT + MessagingMethods.WMSZ_BOTTOM || res == MessagingMethods.WMSZ_LEFT + MessagingMethods.WMSZ_BOTTOM) {
+                else if (res == WMSZ.RIGHT + WMSZ.BOTTOM || res == WMSZ.LEFT + WMSZ.BOTTOM) {
                     //Lower corner resize, adjust bottom
                     rc.Bottom = rc.Top + (int)(width / AspectRatio) + ExtraPadding.Vertical + clientSizeConversionHeight;
                 }
-                else if (res == MessagingMethods.WMSZ_LEFT + MessagingMethods.WMSZ_TOP || res == MessagingMethods.WMSZ_RIGHT + MessagingMethods.WMSZ_TOP) {
+                else if (res == WMSZ.LEFT + WMSZ.TOP || res == WMSZ.RIGHT + WMSZ.TOP) {
                     //Upper corner resize, adjust top
                     rc.Top = rc.Bottom - (int)(width / AspectRatio) - ExtraPadding.Vertical - clientSizeConversionHeight;
                 }

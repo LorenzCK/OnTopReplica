@@ -32,11 +32,11 @@ namespace OnTopReplica {
 		private static void InjectLeftMouseClick(IntPtr child, Native.NPoint clientLocation) {
 			IntPtr lParamClickLocation = MessagingMethods.MakeLParam(clientLocation.X, clientLocation.Y);
 
-            MessagingMethods.PostMessage(child, MessagingMethods.WM_LBUTTONDOWN,
-                    new IntPtr(MessagingMethods.MK_LBUTTON), lParamClickLocation);
+            MessagingMethods.PostMessage(child, WM.LBUTTONDOWN,
+                    new IntPtr(MK.LBUTTON), lParamClickLocation);
 
-            MessagingMethods.PostMessage(child, MessagingMethods.WM_LBUTTONUP,
-                new IntPtr(MessagingMethods.MK_LBUTTON), lParamClickLocation);
+            MessagingMethods.PostMessage(child, WM.LBUTTONUP,
+                new IntPtr(MK.LBUTTON), lParamClickLocation);
 
 #if DEBUG
 			Console.WriteLine("Left click on window #" + child.ToString() + " at " + clientLocation.ToString());
@@ -46,8 +46,8 @@ namespace OnTopReplica {
 		private static void InjectDoubleLeftMouseClick(IntPtr child, NPoint clientLocation) {
             IntPtr lParamClickLocation = MessagingMethods.MakeLParam(clientLocation.X, clientLocation.Y);
 
-            MessagingMethods.PostMessage(child, MessagingMethods.WM_LBUTTONDBLCLK,
-					new IntPtr(MessagingMethods.MK_LBUTTON), lParamClickLocation);
+            MessagingMethods.PostMessage(child, WM.LBUTTONDBLCLK,
+					new IntPtr(MK.LBUTTON), lParamClickLocation);
 
 #if DEBUG
 			Console.WriteLine("Double left click on window #" + child.ToString() + " at " + clientLocation.ToString());
