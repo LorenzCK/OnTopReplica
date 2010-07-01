@@ -163,10 +163,9 @@
       <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="StoredRegionComparer.cs" />
-    <Compile Include="WindowsSevenMethods.cs" />
-    <None Include="CommonControls.cs" />
+    <Compile Include="Native\WindowsSevenMethods.cs" />
+    <None Include="Native\CommonControls.cs" />
     <Compile Include="EnumerationExtensions.cs" />
-    <Compile Include="FullscreenMode.cs" />
     <Compile Include="MessagePumpProcessors\HotKeyManager.cs" />
     <Compile Include="PlatformSupport.cs" />
     <Compile Include="Platforms\Other.cs" />
