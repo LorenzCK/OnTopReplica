@@ -501,8 +501,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(20, 34);
             this.Name = "MainForm";
+            this.Text = "OnTopReplica";
             this.TopMost = true;
             this.menuContext.ResumeLayout(false);
             this.menuWindows.ResumeLayout(false);

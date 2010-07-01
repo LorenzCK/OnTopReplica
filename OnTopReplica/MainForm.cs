@@ -73,6 +73,16 @@ namespace OnTopReplica {
 
         #region Event override
 
+        protected override CreateParams CreateParams {
+            get {
+                //Needed to hide caption, while keeping window title in task bar
+                var parms = base.CreateParams;
+                parms.Style &= ~0x00C00000; //WS_CAPTION
+                parms.Style &= 0x00040000; //WS_SIZEBOX
+                return parms;
+            }
+        }
+
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
 
