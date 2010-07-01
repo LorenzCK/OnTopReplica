@@ -131,7 +131,7 @@ namespace OnTopReplica {
         ///	
         ///		&lt;h1&gt;License&lt;/h1&gt;
         ///		
-        ///		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; is licensed under the &lt;a href=&quot;http://opensource.org/licenses [rest of string was truncated]&quot;;.
+        ///		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; is licensed under the &lt;a href=&quot;http://opensource.org/licenses/ms-rl.html&quot;&gt;Microsoft Reciprocal  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string AboutDetails {
             get {
@@ -436,7 +436,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It appears that OnTopReplica wasn&apos;t installed using &apos;ClickOnce&apos;. You&apos;ll have to update manually (visit &lt;a href=&quot;http://www.codeplex.com/ontopreplica&quot;&gt;OnTopReplica&apos;s homepage&lt;/a&gt;)..
+        ///   Looks up a localized string similar to It appears that OnTopReplica wasn&apos;t installed using &apos;ClickOnce&apos;. You&apos;ll have to update manually (visit &lt;a href=&quot;http://ontopreplica.codeplex.com&quot;&gt;OnTopReplica&apos;s homepage&lt;/a&gt;)..
         /// </summary>
         internal static string ErrorUpdateContent {
             get {
@@ -517,6 +517,60 @@ namespace OnTopReplica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable.
+        /// </summary>
+        internal static string GroupSwitchModeDisableButton {
+            get {
+                return ResourceManager.GetString("GroupSwitchModeDisableButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Group mode.
+        /// </summary>
+        internal static string GroupSwitchModeEnableButton {
+            get {
+                return ResourceManager.GetString("GroupSwitchModeEnableButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select multiple windows to enable..
+        /// </summary>
+        internal static string GroupSwitchModeStatusDisabled {
+            get {
+                return ResourceManager.GetString("GroupSwitchModeStatusDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group switch mode is enabled..
+        /// </summary>
+        internal static string GroupSwitchModeStatusEnabled {
+            get {
+                return ResourceManager.GetString("GroupSwitchModeStatusEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group switch mode:.
+        /// </summary>
+        internal static string GroupSwitchModeTitle {
+            get {
+                return ResourceManager.GetString("GroupSwitchModeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows.
+        /// </summary>
+        internal static string GroupSwitchModeWindows {
+            get {
+                return ResourceManager.GetString("GroupSwitchModeWindows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Homepage: www.codeplex.com/ontopreplica..
         /// </summary>
         internal static string Homepage {
@@ -537,7 +591,7 @@ namespace OnTopReplica {
         /// <summary>
         ///   Looks up a localized string similar to If this mode is enabled, OnTopReplica will forward all left mouse clicks to the window that is being cloned (this will allow you to do basic mouse operations on the cloned window without having to activate it).
         ///
-        ///To exit this mode, right-click on OnTopReplica and disable &quot;Click forwarding&quot; from the menu..
+        ///To exit this mode, push ESC..
         /// </summary>
         internal static string InfoClickForwardingContent {
             get {
@@ -555,7 +609,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable Click-Through fullscreen mode?.
+        ///   Looks up a localized string similar to Enable Click-Through mode?.
         /// </summary>
         internal static string InfoClickThrough {
             get {
@@ -575,7 +629,7 @@ namespace OnTopReplica {
         /// <summary>
         ///   Looks up a localized string similar to In this mode the fullscreen window will behave as a partially transparent overlay, allowing you to click on the other windows behind it.
         ///
-        ///To return to normal mode anytime, double click on the OnTopReplica icon in the tray area..
+        ///To return to normal mode anytime, activate OnTopReplica by clicking on the task bar (or the tray icon)..
         /// </summary>
         internal static string InfoClickThroughInformation {
             get {
@@ -584,7 +638,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No, use standard fullscreen
+        ///   Looks up a localized string similar to No, thank you.
         ///You can enable click-through later.
         /// </summary>
         internal static string InfoClickThroughNo {
@@ -684,20 +738,11 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Autofit on resize.
+        ///   Looks up a localized string similar to Advanced.
         /// </summary>
-        internal static string MenuAutofit {
+        internal static string MenuAdvanced {
             get {
-                return ResourceManager.GetString("MenuAutofit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Automatically fits the window to the thumbnail when you resize it..
-        /// </summary>
-        internal static string MenuAutofitTT {
-            get {
-                return ResourceManager.GetString("MenuAutofitTT", resourceCulture);
+                return ResourceManager.GetString("MenuAdvanced", resourceCulture);
             }
         }
         
@@ -720,7 +765,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click forwarding.
+        ///   Looks up a localized string similar to Enable Click forwarding.
         /// </summary>
         internal static string MenuClickForwarding {
             get {
@@ -734,6 +779,24 @@ namespace OnTopReplica {
         internal static string MenuClickForwardingTT {
             get {
                 return ResourceManager.GetString("MenuClickForwardingTT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Click-Through.
+        /// </summary>
+        internal static string MenuClickThrough {
+            get {
+                return ResourceManager.GetString("MenuClickThrough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnTopReplica will behave like a transparent overlay that lets your clicks through to the windows below..
+        /// </summary>
+        internal static string MenuClickThroughTT {
+            get {
+                return ResourceManager.GetString("MenuClickThroughTT", resourceCulture);
             }
         }
         
@@ -815,6 +878,24 @@ namespace OnTopReplica {
         internal static string MenuGlassTT {
             get {
                 return ResourceManager.GetString("MenuGlassTT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Switch mode.
+        /// </summary>
+        internal static string MenuGroupSwitch {
+            get {
+                return ResourceManager.GetString("MenuGroupSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnTopReplica will automatically clone a window from an user defined group, switching to the one least recently activated to the foreground..
+        /// </summary>
+        internal static string MenuGroupSwitchTT {
+            get {
+                return ResourceManager.GetString("MenuGroupSwitchTT", resourceCulture);
             }
         }
         
@@ -999,7 +1080,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Minimize to tray.
+        ///   Looks up a localized string similar to Minimize.
         /// </summary>
         internal static string MenuReduce {
             get {
@@ -1008,7 +1089,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reduces OnTopReplica to an icon in the tray..
+        ///   Looks up a localized string similar to Minimizes OnTopReplica to the task bar (or the tray)..
         /// </summary>
         internal static string MenuReduceTT {
             get {
@@ -1058,24 +1139,6 @@ namespace OnTopReplica {
         internal static string MenuResize {
             get {
                 return ResourceManager.GetString("MenuResize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Click-Through.
-        /// </summary>
-        internal static string MenuResizeClickThrough {
-            get {
-                return ResourceManager.GetString("MenuResizeClickThrough", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If the window is not completely opaque when turned to fullscreen mode, it will let all clicks &quot;fall through&quot; (like a transparent overlay)..
-        /// </summary>
-        internal static string MenuResizeClickThroughTT {
-            get {
-                return ResourceManager.GetString("MenuResizeClickThroughTT", resourceCulture);
             }
         }
         
@@ -1197,7 +1260,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Regions.
+        ///   Looks up a localized string similar to Regions:.
         /// </summary>
         internal static string RegionsTitle {
             get {

@@ -44,7 +44,7 @@
             this.groupBox1.Size = new System.Drawing.Size(228, 296);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Group switch mode";
+            this.groupBox1.Text = Strings.GroupSwitchModeTitle;
             // 
             // buttonCancel
             // 
@@ -53,7 +53,7 @@
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(70, 23);
             this.buttonCancel.TabIndex = 2;
-            this.buttonCancel.Text = "Disable";
+            this.buttonCancel.Text = Strings.GroupSwitchModeDisableButton;
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.Cancel_click);
             // 
@@ -65,7 +65,7 @@
             this.buttonEnable.Name = "buttonEnable";
             this.buttonEnable.Size = new System.Drawing.Size(134, 23);
             this.buttonEnable.TabIndex = 1;
-            this.buttonEnable.Text = "Enable group mode";
+            this.buttonEnable.Text = Strings.GroupSwitchModeEnableButton;
             this.buttonEnable.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonEnable.UseVisualStyleBackColor = true;
             this.buttonEnable.Click += new System.EventHandler(this.Enable_click);
@@ -90,7 +90,7 @@
             // 
             // colName
             // 
-            this.colName.Text = "Windows";
+            this.colName.Text = Strings.GroupSwitchModeWindows;
             this.colName.Width = 220;
             // 
             // labelStatus
@@ -101,7 +101,7 @@
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(219, 17);
             this.labelStatus.TabIndex = 3;
-            this.labelStatus.Text = "-";
+            this.labelStatus.Text = "";
             this.labelStatus.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // GroupSwitchPanel

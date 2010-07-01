@@ -1,110 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -190,11 +85,11 @@ You must run this application on Windows Vista Home Premium or better.</value>
   <data name="MenuAboutTT" xml:space="preserve">
     <value>Hides the main window and displays the "about" box.</value>
   </data>
-  <data name="MenuAutofit" xml:space="preserve">
-    <value>Autofit on resize</value>
+  <data name="GroupSwitchModeStatusDisabled" xml:space="preserve">
+    <value>Select multiple windows to enable.</value>
   </data>
-  <data name="MenuAutofitTT" xml:space="preserve">
-    <value>Automatically fits the window to the thumbnail when you resize it.</value>
+  <data name="GroupSwitchModeStatusEnabled" xml:space="preserve">
+    <value>Group switch mode is enabled.</value>
   </data>
   <data name="MenuClose" xml:space="preserve">
     <value>Close</value>
@@ -281,10 +176,10 @@ You must run this application on Windows Vista Home Premium or better.</value>
     <value>Toggles whether OnTopReplica should store its last position and size and use them when it is restarted.</value>
   </data>
   <data name="MenuReduce" xml:space="preserve">
-    <value>Minimize to tray</value>
+    <value>Minimize</value>
   </data>
   <data name="MenuReduceTT" xml:space="preserve">
-    <value>Reduces OnTopReplica to an icon in the tray.</value>
+    <value>Minimizes OnTopReplica to the task bar (or the tray).</value>
   </data>
   <data name="MenuRegion" xml:space="preserve">
     <value>Select region...</value>
@@ -365,7 +260,7 @@ Download size: {2} bytes</value>
     <value>Unable to check for updates.</value>
   </data>
   <data name="ErrorUpdateContent" xml:space="preserve">
-    <value>It appears that OnTopReplica wasn't installed using 'ClickOnce'. You'll have to update manually (visit &lt;a href="http://www.codeplex.com/ontopreplica"&gt;OnTopReplica's homepage&lt;/a&gt;).</value>
+    <value>It appears that OnTopReplica wasn't installed using 'ClickOnce'. You'll have to update manually (visit &lt;a href="http://ontopreplica.codeplex.com"&gt;OnTopReplica's homepage&lt;/a&gt;).</value>
   </data>
   <data name="InfoUpdated" xml:space="preserve">
     <value>OnTopReplica has been updated.</value>
@@ -383,7 +278,7 @@ Download size: {2} bytes</value>
     <value>No update available</value>
   </data>
   <data name="InfoClickThrough" xml:space="preserve">
-    <value>Enable Click-Through fullscreen mode?</value>
+    <value>Enable Click-Through mode?</value>
   </data>
   <data name="InfoClickThroughDetails" xml:space="preserve">
     <value>Click-through only works if it has been enabled in the Resize submenu and if the window is semi-transparent.</value>
@@ -391,26 +286,27 @@ Download size: {2} bytes</value>
   <data name="InfoClickThroughInformation" xml:space="preserve">
     <value>In this mode the fullscreen window will behave as a partially transparent overlay, allowing you to click on the other windows behind it.
 
-To return to normal mode anytime, double click on the OnTopReplica icon in the tray area.</value>
+To return to normal mode anytime, activate OnTopReplica by clicking on the task bar (or the tray icon).</value>
   </data>
   <data name="InfoClickThroughTitle" xml:space="preserve">
     <value>Click-Through mode</value>
   </data>
-  <data name="MenuResizeClickThrough" xml:space="preserve">
-    <value>Click-Through</value>
+  <data name="GroupSwitchModeWindows" xml:space="preserve">
+    <value>Windows</value>
+    <comment>Column Header of list, simply refers to available windows to be cloned</comment>
   </data>
-  <data name="MenuResizeClickThroughTT" xml:space="preserve">
-    <value>If the window is not completely opaque when turned to fullscreen mode, it will let all clicks "fall through" (like a transparent overlay).</value>
+  <data name="GroupSwitchModeTitle" xml:space="preserve">
+    <value>Group switch mode:</value>
   </data>
   <data name="InfoClickThroughNo" xml:space="preserve">
-    <value>No, use standard fullscreen
+    <value>No, thank you.
 You can enable click-through later</value>
   </data>
   <data name="InfoClickThroughOk" xml:space="preserve">
     <value>Use Click-Through</value>
   </data>
   <data name="MenuClickForwarding" xml:space="preserve">
-    <value>Click forwarding</value>
+    <value>Enable Click forwarding</value>
   </data>
   <data name="MenuClickForwardingTT" xml:space="preserve">
     <value>Enable "click forwarding" to the cloned window.</value>
@@ -422,7 +318,7 @@ You can enable click-through later</value>
     <value>Language</value>
   </data>
   <data name="RegionsTitle" xml:space="preserve">
-    <value>Regions</value>
+    <value>Regions:</value>
   </data>
   <data name="RegionsSaveButton" xml:space="preserve">
     <value>Save</value>
@@ -457,7 +353,7 @@ You can enable click-through later</value>
   <data name="InfoClickForwardingContent" xml:space="preserve">
     <value>If this mode is enabled, OnTopReplica will forward all left mouse clicks to the window that is being cloned (this will allow you to do basic mouse operations on the cloned window without having to activate it).
 
-To exit this mode, right-click on OnTopReplica and disable "Click forwarding" from the menu.</value>
+To exit this mode, push ESC.</value>
   </data>
   <data name="AskSettingReset" xml:space="preserve">
     <value>Reset settings?</value>
@@ -565,5 +461,26 @@ a:hover {
   </data>
   <data name="MenuChromeTT" xml:space="preserve">
     <value>Toggles the display of the window chrome.</value>
+  </data>
+  <data name="MenuClickThrough" xml:space="preserve">
+    <value>Enable Click-Through</value>
+  </data>
+  <data name="MenuClickThroughTT" xml:space="preserve">
+    <value>OnTopReplica will behave like a transparent overlay that lets your clicks through to the windows below.</value>
+  </data>
+  <data name="MenuGroupSwitch" xml:space="preserve">
+    <value>Group Switch mode</value>
+  </data>
+  <data name="MenuGroupSwitchTT" xml:space="preserve">
+    <value>OnTopReplica will automatically clone a window from an user defined group, switching to the one least recently activated to the foreground.</value>
+  </data>
+  <data name="GroupSwitchModeEnableButton" xml:space="preserve">
+    <value>Enable Group mode</value>
+  </data>
+  <data name="GroupSwitchModeDisableButton" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="MenuAdvanced" xml:space="preserve">
+    <value>Advanced</value>
   </data>
 </root>
