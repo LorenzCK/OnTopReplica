@@ -198,9 +198,11 @@ namespace OnTopReplica {
                 try {
                     Size sourceSize = ThumbnailOriginalSize;
                     _thumbnailSize = ComputeIdealSize(sourceSize, Size);
+
+                    _padWidth = (Size.Width - _thumbnailSize.Width) / 2;
                     _padHeight = (Size.Height - _thumbnailSize.Height) / 2;
 
-                    var target = new Rectangle(0, _padHeight, _thumbnailSize.Width, _thumbnailSize.Height);
+                    var target = new Rectangle(_padWidth, _padHeight, _thumbnailSize.Width, _thumbnailSize.Height);
                     Rectangle source = (_regionEnabled) ? _regionCurrent : new Rectangle(Point.Empty, _thumbnail.SourceSize);
 
                     _thumbnail.Update(target, source, ThumbnailOpacity, true, true);
@@ -221,9 +223,14 @@ namespace OnTopReplica {
         private Size ComputeIdealSize(Size sourceSize, Size clientSize) {
             double sourceRatio = (double)sourceSize.Width / (double)sourceSize.Height;
             double clientRatio = (double)clientSize.Width / (double)clientSize.Height;
-
-            Size ret = new Size(clientSize.Width, (int)((double)clientSize.Width / sourceRatio));
-            //TODO: enable width padding if width > height
+            
+            Size ret;
+            if (sourceRatio >= clientRatio) {
+                ret = new Size(clientSize.Width, (int)((double)clientSize.Width / sourceRatio));
+            }
+            else {
+                ret = new Size((int)((double)clientSize.Height * sourceRatio), clientSize.Height);
+            }
 
             return ret;
         }
