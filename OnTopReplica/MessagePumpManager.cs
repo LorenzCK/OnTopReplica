@@ -21,7 +21,9 @@ namespace OnTopReplica {
 
                     _processors.Add(t, instance);
                     
+#if DEBUG
                     Console.WriteLine("Registered message pump processor: {0}", t);
+#endif
                 }
             }
         }
