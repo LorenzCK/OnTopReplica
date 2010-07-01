@@ -118,8 +118,7 @@ namespace OnTopReplica {
         }
 
         void Thumbnail_CloneClick(object sender, CloneClickEventArgs e) {
-            //TODO: handle other mouse buttons
-            Win32Helper.InjectFakeMouseClick(_lastWindowHandle.Handle, e.ClientClickLocation, e.IsDoubleClick);
+            Win32Helper.InjectFakeMouseClick(_lastWindowHandle.Handle, e);
         }
 
     }

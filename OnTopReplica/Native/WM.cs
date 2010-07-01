@@ -14,6 +14,9 @@ namespace OnTopReplica.Native {
         public const int LBUTTONDOWN = 0x0201;
         public const int LBUTTONUP = 0x0202;
         public const int LBUTTONDBLCLK = 0x0203;
+        public const int RBUTTONDOWN = 0x0204;
+        public const int RBUTTONUP = 0x0205;
+        public const int RBUTTONDBLCLK = 0x0206;
         public const int NCLBUTTONUP = 0x00A2;
         public const int NCLBUTTONDOWN = 0x00A1;
         public const int NCLBUTTONDBLCLK = 0x00A3;
