@@ -203,7 +203,10 @@ namespace OnTopReplica {
 
             //ESCAPE
             else if (e.KeyCode == Keys.Escape) {
-                Console.WriteLine("Received ESC");
+
+#if DEBUG
+                Console.WriteLine("Received ESCAPE");
+#endif
 
                 //Disable click-through
                 if (ClickThroughEnabled) {

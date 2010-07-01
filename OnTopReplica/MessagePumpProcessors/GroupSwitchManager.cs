@@ -26,7 +26,7 @@ namespace OnTopReplica.MessagePumpProcessors {
             //Enable new hook
             if (!_active) {
                 if (!HookMethods.RegisterShellHookWindow(Form.Handle)) {
-                    Console.WriteLine("Failed to register shell hook window.");
+                    Console.Error.WriteLine("Failed to register shell hook window.");
                     return;
                 }
             }
@@ -41,7 +41,7 @@ namespace OnTopReplica.MessagePumpProcessors {
                 return;
 
             if (!HookMethods.DeregisterShellHookWindow(Form.Handle))
-                Console.WriteLine("Failed to deregister shell hook window.");
+                Console.Error.WriteLine("Failed to deregister shell hook window.");
 
             _active = false;
         }
@@ -53,7 +53,6 @@ namespace OnTopReplica.MessagePumpProcessors {
                     hookCode == HookMethods.HSHELL_RUDEAPPACTIVATED) {
          
                     IntPtr activeHandle = msg.LParam;
-                    Console.WriteLine("New foreground: {0}", activeHandle);
                     HandleForegroundWindowChange(activeHandle);
                 }
             }
@@ -66,17 +65,27 @@ namespace OnTopReplica.MessagePumpProcessors {
                     iActive = i;
             }
 
+#if DEBUG
+            Console.Write("New active window (h {0}). ", activeWindow);
+#endif
+
             if (iActive < 0) {
+#if DEBUG
                 //new foreground window is not tracked
                 Console.WriteLine("Active window is not tracked.");
+#endif
                 return;
             }
 
             //Get new handle to clone
             int iNewToClone = (iActive + 1) % _handles.Count;
 
+#if DEBUG
             Console.WriteLine("Tracked as {0}. Switching to {1}.", iActive, iNewToClone);
+#endif
 
+
+            //TODO: use real least-recently-used semantics
             Form.SetThumbnail(_handles[iNewToClone], null);
         }
 
