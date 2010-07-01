@@ -160,6 +160,8 @@ namespace OnTopReplica {
 			if(owner == null)
 				throw new Exception("Internal error: ThumbnailPanel.TopLevelControl is not a Form.");
 
+            _labelGlass.Visible = false;
+
 			_thumbnail = DwmManager.Register(owner, handle.Handle);
             ConstrainToRegion = false; //this also invokes a thumbnail update
 		}
@@ -172,6 +174,7 @@ namespace OnTopReplica {
 				_thumbnail.Close();
 
 			_thumbnail = null;
+            _labelGlass.Visible = true;
 		}
 
         /// <summary>

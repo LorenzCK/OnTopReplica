@@ -269,5 +269,12 @@ namespace OnTopReplica.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap xiao_wrench {
+            get {
+                object obj = ResourceManager.GetObject("xiao_wrench", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

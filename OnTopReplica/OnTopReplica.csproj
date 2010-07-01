@@ -132,6 +132,15 @@
     </Compile>
     <Compile Include="CloneClickEventArgs.cs" />
     <Compile Include="CloseRequestEventArgs.cs" />
+    <Compile Include="MainForm_Gui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm_MenuEvents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm_ChildForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MessagePumpManager.cs" />
     <Compile Include="MessagePumpProcessors\GroupSwitchManager.cs" />
     <Compile Include="IMessagePumpProcessor.cs" />
@@ -287,6 +296,7 @@
     <None Include="Assets\reduce.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\xiao_wrench.png" />
     <None Include="Assets\xiao_delete.png" />
     <None Include="Assets\xiao_add.png" />
     <None Include="Assets\xiao_ok.png" />
@@ -294,6 +304,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Assets\flag_danish.png" />
+    <None Include="Assets\71.png" />
     <Content Include="Assets\window_multiple16.ico" />
   </ItemGroup>
   <ItemGroup>
