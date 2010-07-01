@@ -12,13 +12,6 @@ namespace OnTopReplica.MessagePumpProcessors {
     
     class GroupSwitchManager : BaseMessagePumpProcessor {
 
-        public GroupSwitchManager() {
-            _hookMsgId = HookMethods.RegisterWindowMessage("SHELLHOOK");
-            if (_hookMsgId == 0)
-                Console.Error.WriteLine("Failed to register SHELLHOOK Windows message.");
-        }
-
-        uint _hookMsgId;
         bool _active = false;
         List<WindowHandleWrapper> _lruHandles;
 
@@ -29,14 +22,6 @@ namespace OnTopReplica.MessagePumpProcessors {
         public void EnableGroupMode(IList<WindowHandle> handles) {
             if (handles == null || handles.Count == 0)
                 return;
-
-            //Enable new hook
-            if (!_active) {
-                if (!HookMethods.RegisterShellHookWindow(Form.Handle)) {
-                    Console.Error.WriteLine("Failed to register shell hook window.");
-                    return;
-                }
-            }
 
             //Okey dokey, will now track handles
             TrackHandles(handles);
@@ -65,9 +50,6 @@ namespace OnTopReplica.MessagePumpProcessors {
             if (!_active)
                 return;
 
-            if (!HookMethods.DeregisterShellHookWindow(Form.Handle))
-                Console.Error.WriteLine("Failed to deregister shell hook window.");
-
             _lruHandles = null;
             _active = false;
         }
@@ -76,7 +58,7 @@ namespace OnTopReplica.MessagePumpProcessors {
         /// Processes the message pump.
         /// </summary>
         public override void Process(Message msg) {
-            if (_active && msg.Msg == _hookMsgId) {
+            if (_active && msg.Msg == HookMethods.WM_SHELLHOOKMESSAGE) {
                 int hookCode = msg.WParam.ToInt32();
                 if (hookCode == HookMethods.HSHELL_WINDOWACTIVATED ||
                     hookCode == HookMethods.HSHELL_RUDEAPPACTIVATED) {
