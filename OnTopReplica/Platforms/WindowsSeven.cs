@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Windows.Forms;
+using OnTopReplica.Native;
 using VistaControls.Dwm;
-using System.Windows.Forms;
 
 namespace OnTopReplica.Platforms {
     class WindowsSeven : WindowsVista {

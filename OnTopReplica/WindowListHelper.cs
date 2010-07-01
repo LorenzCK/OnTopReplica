@@ -12,7 +12,7 @@ namespace OnTopReplica {
             public StoredRegion Region { get; set; }
         }
 
-		const int cMaxWindowTitleLength = 55;
+		const int MaxWindowTitleLength = 55;
 
 		public static void PopulateMenu(Form ownerForm, WindowManager windowManager, ToolStrip menu,
                                         WindowHandle currentHandle, EventHandler clickHandler) {
@@ -37,8 +37,8 @@ namespace OnTopReplica {
 				var tsi = new ToolStripMenuItem();
 				
                 //Window title
-                if (h.Title.Length > cMaxWindowTitleLength) {
-					tsi.Text = h.Title.Substring(0, cMaxWindowTitleLength) + "...";
+                if (h.Title.Length > MaxWindowTitleLength) {
+					tsi.Text = h.Title.Substring(0, MaxWindowTitleLength) + "...";
 					tsi.ToolTipText = h.Title;
 				}
 				else
