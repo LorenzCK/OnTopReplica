@@ -50,7 +50,7 @@ namespace OnTopReplica {
 
             //Set native renderer on context menus
             Asztal.Szótár.NativeToolStripRenderer.SetToolStripRenderer(
-                menuContext, menuWindows, menuOpacity, menuResize, menuLanguages
+                menuContext, menuWindows, menuOpacity, menuResize, menuLanguages, menuFullscreenContext
             );
 
             //Hook keyboard handler
@@ -65,125 +65,6 @@ namespace OnTopReplica {
             hotKeyMgr.RegisterHotKey(Native.HotKeyModifiers.Control | Native.HotKeyModifiers.Shift,
                                      Keys.O, new Native.HotKeyMethods.HotKeyHandler(HotKeyOpenHandler));
         }
-
-        #region Child forms & controls events
-
-        EventHandler RequestClosingHandler;
-
-        const int SidePanelMargin = 1;
-        const int ScreenBorderMargin = 10;
-
-        bool _sidePanelDidMoveForm = false;
-        Point _sidePanelPreviousFormLocation;
-
-        /// <summary>
-        /// Opens a new side panel.
-        /// </summary>
-        /// <param name="panel">The side panel to embed.</param>
-        public void SetSidePanel(SidePanel panel) {
-            if (_currentSidePanel != null) {
-                CloseSidePanel();
-            }
-
-            _currentSidePanel = panel;
-            _currentSidePanel.OnFirstShown(this);
-
-            //Add and show
-            _sidePanelContainer.Controls.Add(panel);
-            _sidePanelContainer.Visible = _sidePanelContainer.Enabled = true;
-            panel.Show();
-
-            int intHorzMargin = panel.Margin.Horizontal + _sidePanelContainer.Padding.Horizontal; //internal margins for sidepanel
-            int intVertMargin = panel.Margin.Vertical + _sidePanelContainer.Padding.Vertical;
-
-            //Resize container
-            _sidePanelContainer.ClientSize = new Size(
-                panel.MinimumSize.Width + intHorzMargin,
-                ClientSize.Height
-            );
-
-            int rightHorzMargin = _sidePanelContainer.Width + SidePanelMargin; //horz margin between the two controls
-
-            //Resize rest
-            MinimumSize = new Size(
-                20 + panel.MinimumSize.Width + SidePanelMargin + intHorzMargin,
-                panel.MinimumSize.Height + intVertMargin
-            );
-            ClientSize = new Size(
-                ClientSize.Width + rightHorzMargin,
-                ClientSize.Height
-            );
-            ExtraPadding = new Padding(0, 0, rightHorzMargin, 0);
-            _thumbnailPanel.Size = new Size(
-                ClientSize.Width - rightHorzMargin,
-                ClientSize.Height
-            );
-            _sidePanelContainer.Location = new Point(
-                ClientSize.Width - rightHorzMargin,
-                0
-            );
-
-            //Move window if needed
-            var screenCurr = Screen.FromControl(this);
-            int pRight = Location.X + Width + ScreenBorderMargin;
-            if (pRight >= screenCurr.Bounds.Width) {
-                _sidePanelPreviousFormLocation = Location;
-                _sidePanelDidMoveForm = true;
-
-                Location = new Point(screenCurr.WorkingArea.Width - Width - ScreenBorderMargin, Location.Y);
-            }
-            else {
-                _sidePanelDidMoveForm = false;
-            }
-
-            //Hook event listener
-            if (RequestClosingHandler == null)
-                RequestClosingHandler = new EventHandler(SidePanel_RequestClosing);
-            panel.RequestClosing += RequestClosingHandler;
-        }
-
-        /// <summary>
-        /// Closes the current side panel.
-        /// </summary>
-        public void CloseSidePanel() {
-            if (_currentSidePanel == null)
-                return;
-
-            //Unhook listener
-            _currentSidePanel.RequestClosing -= RequestClosingHandler;
-
-            //Remove side panel
-            _currentSidePanel.OnClosing(this);
-            _sidePanelContainer.Controls.Clear();
-            _sidePanelContainer.Visible = _sidePanelContainer.Enabled = false;
-            _currentSidePanel = null;
-
-            //Resize
-            MinimumSize = new Size(20, 20);
-            ClientSize = new Size(
-                ClientSize.Width - _sidePanelContainer.Width - SidePanelMargin,
-                ClientSize.Height
-            );
-            ExtraPadding = new Padding(0);
-            _thumbnailPanel.Size = ClientSize;
-
-            //Move window back if needed
-            if (_sidePanelDidMoveForm) {
-                Location = _sidePanelPreviousFormLocation;
-                _sidePanelDidMoveForm = false;
-            }
-        }
-
-        void SidePanel_RequestClosing(object sender, EventArgs e) {
-            CloseSidePanel();
-        }
-
-        void Thumbnail_CloneClick(object sender, CloneClickEventArgs e) {
-            //TODO: handle other mouse buttons
-            Win32Helper.InjectFakeMouseClick(_lastWindowHandle.Handle, e.ClientClickLocation, e.IsDoubleClick);
-        }
-
-        #endregion
 
         #region Event override
 
@@ -211,6 +92,15 @@ namespace OnTopReplica {
                 new Margins(-1);
         }
 
+        protected override void OnActivated(EventArgs e) {
+            base.OnActivated(e);
+
+            //Deactivate click-through if reactivated
+            if (ClickThroughEnabled) {
+                ClickThroughEnabled = false;
+            }
+        }
+
         protected override void OnDeactivate(EventArgs e) {
             base.OnDeactivate(e);
 
@@ -228,6 +118,24 @@ namespace OnTopReplica {
             AdjustSize(change);
         }
 
+        protected override void OnMouseDoubleClick(MouseEventArgs e) {
+            base.OnMouseDoubleClick(e);
+
+            //This is handled by the WM_NCLBUTTONDBLCLK msg handler usually (because the GlassForm translates
+            //clicks on client to clicks on caption). But if fullscreen mode disables GlassForm dragging, we need
+            //this auxiliary handler to switch mode.
+            IsFullscreen = !IsFullscreen;
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e) {
+            base.OnMouseClick(e);
+
+            //Same story as above...
+            if (e.Button == System.Windows.Forms.MouseButtons.Right) {
+                OpenContextMenu();
+            }
+        }
+
         protected override void WndProc(ref Message m) {
             _msgPumpManager.PumpMessage(m);
 
@@ -235,7 +143,7 @@ namespace OnTopReplica {
                 case MessagingMethods.WM_NCRBUTTONUP:
                     //Open context menu if right button clicked on caption (i.e. all of the window area because of glass)
                     if (m.WParam.ToInt32() == MessagingMethods.HTCAPTION) {
-                        menuContext.Show(MousePosition);
+                        OpenContextMenu();
 
                         m.Result = IntPtr.Zero;
                         return;
@@ -251,6 +159,14 @@ namespace OnTopReplica {
                         return;
                     }
                     break;
+
+                case MessagingMethods.WM_NCHITTEST:
+                    //Make transparent to hit-testing if in click through mode
+                    if (ClickThroughEnabled) {
+                        m.Result = (IntPtr)MessagingMethods.HTTRANSPARENT;
+                        return;
+                    }
+                    break;
             }
 
             base.WndProc(ref m);
@@ -258,221 +174,7 @@ namespace OnTopReplica {
 
         #endregion
 
-        #region Menu Event Handling
-
-        private void Close_click(object sender, EventArgs e) {
-            this.Close();
-        }
-
-        private void Menu_opening(object sender, CancelEventArgs e) {
-            //Cancel if currently in "fullscreen" mode or a side panel is open
-            if (IsFullscreen || _currentSidePanel != null) {
-                e.Cancel = true;
-                return;
-            }
-
-            selectRegionToolStripMenuItem.Enabled = _thumbnailPanel.IsShowingThumbnail;
-            switchToWindowToolStripMenuItem.Enabled = _thumbnailPanel.IsShowingThumbnail;
-            resizeToolStripMenuItem.Enabled = _thumbnailPanel.IsShowingThumbnail;
-            chromeToolStripMenuItem.Checked = (FormBorderStyle == FormBorderStyle.Sizable);
-            forwardClicksToolStripMenuItem.Checked = _thumbnailPanel.ReportThumbnailClicks;
-        }
-
-        private void Menu_Close_click(object sender, EventArgs e) {
-            this.Close();
-        }
-
-        private void Menu_About_click(object sender, EventArgs e) {
-            this.Hide();
-
-            using (var box = new AboutForm()) {
-                box.Location = RecenterLocation(this, box);
-                box.ShowDialog();
-                Location = RecenterLocation(box, this);
-            }
-
-            this.Show();
-        }
-
-        private void Menu_Language_click(object sender, EventArgs e) {
-            ToolStripItem tsi = (ToolStripItem)sender;
-
-            string langCode = tsi.Tag as string;
-
-            if (Program.ForceGlobalLanguageChange(langCode))
-                this.Close();
-            else
-                MessageBox.Show("Error");
-        }
-
-        void Menu_Windows_itemclick(object sender, EventArgs e) {
-            //Ensure the menu is closed
-            menuContext.Close();
-
-            //Get clicked item and window index from tag
-            ToolStripItem tsi = (ToolStripItem)sender;
-
-            //Handle special "none" window
-            if (tsi.Tag == null) {
-                UnsetThumbnail();
-                return;
-            }
-
-            var selectionData = (WindowListHelper.WindowSelectionData)tsi.Tag;
-            SetThumbnail(selectionData.Handle, selectionData.Region);
-        }
-
-        private void Menu_Switch_click(object sender, EventArgs e) {
-            if (_lastWindowHandle == null)
-                return;
-
-            Program.Platform.HideForm(this);
-            Native.WindowManagerMethods.SetForegroundWindow(_lastWindowHandle.Handle);
-        }
-
-        private void Menu_Group_click(object sender, EventArgs e) {
-            SetSidePanel(new SidePanels.GroupSwitchPanel());
-        }
-
-        private void Menu_Forward_click(object sender, EventArgs e) {
-            if (Settings.Default.FirstTimeClickForwarding && !_thumbnailPanel.ReportThumbnailClicks) {
-                TaskDialog dlg = new TaskDialog(Strings.InfoClickForwarding, Strings.InfoClickForwardingTitle, Strings.InfoClickForwardingContent) {
-                    CommonButtons = TaskDialogButton.Yes | TaskDialogButton.No
-                };
-                if (dlg.Show(this).CommonButton == Result.No)
-                    return;
-
-                Settings.Default.FirstTimeClickForwarding = false;
-            }
-
-            _thumbnailPanel.ReportThumbnailClicks = !_thumbnailPanel.ReportThumbnailClicks;
-        }
-
-        private void Menu_Opacity_opening(object sender, CancelEventArgs e) {
-            ToolStripMenuItem[] items = {
-				toolStripMenuItem1,
-				toolStripMenuItem2,
-				toolStripMenuItem3,
-				toolStripMenuItem4
-			};
-
-            foreach (ToolStripMenuItem i in items) {
-                if ((double)i.Tag == this.Opacity)
-                    i.Checked = true;
-                else
-                    i.Checked = false;
-            }
-        }
-
-        private void Menu_Opacity_click(object sender, EventArgs e) {
-            //Get clicked menu item
-            ToolStripMenuItem tsi = sender as ToolStripMenuItem;
-
-            if (tsi != null) {
-                //Get opacity from the tag
-                this.Opacity = (double)tsi.Tag;
-            }
-        }
-
-        private void Menu_Region_click(object sender, EventArgs e) {
-            SetSidePanel(new OnTopReplica.SidePanels.RegionPanel());
-        }
-
-        private void Menu_Resize_opening(object sender, CancelEventArgs e) {
-            if (!_thumbnailPanel.IsShowingThumbnail)
-                e.Cancel = true;
-        }
-
-        private void Menu_Resize_Double(object sender, EventArgs e) {
-            FitToThumbnail(2.0);
-        }
-
-        private void Menu_Resize_FitToWindow(object sender, EventArgs e) {
-            FitToThumbnail(1.0);
-        }
-
-        private void Menu_Resize_Half(object sender, EventArgs e) {
-            FitToThumbnail(0.5);
-        }
-
-        private void Menu_Resize_Quarter(object sender, EventArgs e) {
-            FitToThumbnail(0.25);
-        }
-
-        private void Menu_Resize_Fullscreen(object sender, EventArgs e) {
-            IsFullscreen = true;
-        }
-
-        private void Menu_Position_TopLeft(object sender, EventArgs e) {
-            var screen = Screen.FromControl(this);
-
-            Location = new Point(
-                screen.WorkingArea.Left - ChromeBorderHorizontal,
-                screen.WorkingArea.Top - ChromeBorderVertical
-            );
-        }
-
-        private void Menu_Position_TopRight(object sender, EventArgs e) {
-            var screen = Screen.FromControl(this);
-
-            Location = new Point(
-                screen.WorkingArea.Width - Size.Width + ChromeBorderHorizontal,
-                screen.WorkingArea.Top - ChromeBorderVertical
-            );
-        }
-
-        private void Menu_Position_BottomLeft(object sender, EventArgs e) {
-            var screen = Screen.FromControl(this);
-
-            Location = new Point(
-                screen.WorkingArea.Left - ChromeBorderHorizontal,
-                screen.WorkingArea.Height - Size.Height + ChromeBorderVertical
-            );
-        }
-
-        private void Menu_Position_BottomRight(object sender, EventArgs e) {
-            var screen = Screen.FromControl(this);
-
-            Location = new Point(
-                screen.WorkingArea.Width - Size.Width + ChromeBorderHorizontal,
-                screen.WorkingArea.Height - Size.Height + ChromeBorderVertical
-            );
-        }
-
-        private void Menu_Reduce_click(object sender, EventArgs e) {
-            //Hide form in a platform specific way
-            Program.Platform.HideForm(this);
-        }
-
-        private void Menu_Windows_opening(object sender, EventArgs e) {
-            //Refresh window list
-            _windowManager.Refresh(WindowManager.EnumerationMode.TaskWindows);
-
-            WindowListHelper.PopulateMenu(this, _windowManager, menuWindows, _lastWindowHandle, new EventHandler(Menu_Windows_itemclick));
-        }
-
-        private void Menu_Chrome_click(object sender, EventArgs e) {
-            if (FormBorderStyle == FormBorderStyle.Sizable) {
-                FormBorderStyle = FormBorderStyle.None;
-                Location = new Point {
-                    X = Location.X + SystemInformation.FrameBorderSize.Width,
-                    Y = Location.Y + SystemInformation.FrameBorderSize.Height
-                };
-            }
-            else {
-                FormBorderStyle = FormBorderStyle.Sizable;
-                Location = new Point {
-                    X = Location.X - SystemInformation.FrameBorderSize.Width,
-                    Y = Location.Y - SystemInformation.FrameBorderSize.Height
-                };
-            }
-
-            Invalidate();
-        }
-
-        #endregion
-
-        #region Event handling
+        #region Keyboard event handling
 
         void Form_KeyUp(object sender, KeyEventArgs e) {
             //ALT
@@ -501,8 +203,14 @@ namespace OnTopReplica {
 
             //ESCAPE
             else if (e.KeyCode == Keys.Escape) {
+                Console.WriteLine("Received ESC");
+
+                //Disable click-through
+                if (ClickThroughEnabled) {
+                    ClickThroughEnabled = false;
+                }
                 //Toggle fullscreen
-                if (IsFullscreen) {
+                else if (IsFullscreen) {
                     IsFullscreen = false;
                 }
                 //Disable click forwarding
@@ -544,6 +252,7 @@ namespace OnTopReplica {
                 GlassEnabled = !value;
                 FormBorderStyle = (value) ? FormBorderStyle.None : FormBorderStyle.Sizable;
                 TopMost = !value;
+                HandleMouseMove = !value;
 
                 //Location and size
                 if (value) {
@@ -557,6 +266,7 @@ namespace OnTopReplica {
                 else {
                     Location = _preFullscreenLocation;
                     Size = _preFullscreenSize;
+                    RefreshAspectRatio();
                 }
 
                 _isFullscreen = value;
@@ -586,8 +296,8 @@ namespace OnTopReplica {
                 ThumbnailError(ex, false, Strings.ErrorUnableToCreateThumbnail);
             }
 
-            //Set aspect ratio (this will resize the form)
-            SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
+            //Set aspect ratio (this will resize the form), do not refresh if in fullscreen
+            SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize, !IsFullscreen);
         }
 
         /// <summary>
@@ -637,30 +347,12 @@ namespace OnTopReplica {
 
                 if (value.HasValue) {
                     _thumbnailPanel.SelectedRegion = value.Value;
-                    SetAspectRatio(value.Value.Size);
+                    SetAspectRatio(value.Value.Size, true);
                 }
                 else {
                     _thumbnailPanel.ConstrainToRegion = false;
-                    SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize);
+                    SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize, true);
                 }
-            }
-        }
-
-        /// <summary>
-        /// Gets the form's thumbnail panel.
-        /// </summary>
-        public ThumbnailPanel ThumbnailPanel {
-            get {
-                return _thumbnailPanel;
-            }
-        }
-
-        /// <summary>
-        /// Gets the form's message pump manager.
-        /// </summary>
-        public MessagePumpManager MessagePumpManager {
-            get {
-                return _msgPumpManager;
             }
         }
 
@@ -687,117 +379,51 @@ namespace OnTopReplica {
 
         #endregion
 
-        #region GUI stuff
+        #region Click-through
 
-        private Point RecenterLocation(Control original, Control final) {
-            int origX = original.Location.X + original.Size.Width / 2;
-            int origY = original.Location.Y + original.Size.Height / 2;
+        bool _clickThrough = false;
 
-            int finX = origX - final.Size.Width / 2;
-            int finY = origY - final.Size.Height / 2;
-
-            //Check boundaries
-            var screen = Screen.FromControl(final);
-            if (finX < screen.WorkingArea.X)
-                finX = screen.WorkingArea.X;
-            if (finX + final.Size.Width > screen.WorkingArea.Width)
-                finX = screen.WorkingArea.Width - final.Size.Width;
-            if (finY < screen.WorkingArea.Y)
-                finY = screen.WorkingArea.Y;
-            if (finY + final.Size.Height > screen.WorkingArea.Height)
-                finY = screen.WorkingArea.Height - final.Size.Height;
-
-            return new Point(finX, finY);
-        }
-
-        private int ChromeBorderVertical {
+        public bool ClickThroughEnabled {
             get {
-                if (FormBorderStyle == FormBorderStyle.Sizable)
-                    return SystemInformation.FrameBorderSize.Height;
-                else
-                    return 0;
+                return _clickThrough;
             }
-        }
+            set {
+                //Adjust opacity if fully opaque
+                if (value && Opacity == 1.0)
+                    Opacity = 0.75;
 
-        private int ChromeBorderHorizontal {
-            get {
-                if (FormBorderStyle == FormBorderStyle.Sizable)
-                    return SystemInformation.FrameBorderSize.Width;
-                else
-                    return 0;
+                //Enable transparency and force as top-most
+                TransparencyKey = (value) ? Color.Black : Color.Transparent;
+                if (value)
+                    TopMost = true;
+
+                _clickThrough = value;
             }
-        }
-
-        /// <summary>
-        /// Displays an error task dialog.
-        /// </summary>
-        /// <param name="mainInstruction">Main instruction of the error dialog.</param>
-        /// <param name="explanation">Detailed informations about the error.</param>
-        /// <param name="errorMessage">Expanded error codes/messages.</param>
-        private void ShowErrorDialog(string mainInstruction, string explanation, string errorMessage) {
-            TaskDialog dlg = new TaskDialog(mainInstruction, Strings.ErrorGenericTitle, explanation) {
-                CommonIcon = TaskDialogIcon.Stop,
-                IsExpanded = false
-            };
-
-            if (!string.IsNullOrEmpty(errorMessage)) {
-                dlg.ExpandedInformation = Strings.ErrorGenericInfoText + errorMessage;
-                dlg.ExpandedControlText = Strings.ErrorGenericInfoButton;
-            }
-
-            dlg.Show(this);
-        }
-
-        /// <summary>
-        /// Ensures that the main form is visible (either closing the fullscreen mode or reactivating from task icon).
-        /// </summary>
-        public void EnsureMainFormVisible() {
-            if (IsFullscreen)
-                IsFullscreen = false;
-
-            //Ensure main form is shown
-            WindowState = FormWindowState.Normal;
-            Show();
-            Activate();
-            TopMost = true;
-        }
-
-        /// <summary>
-        /// Opens a confirmation dialog to confirm whether to reset the main form or not.
-        /// </summary>
-        public void ResetMainFormWithConfirmation() {
-            var dlg = new TaskDialog(Strings.AskReset, Strings.AskResetTitle, Strings.AskResetContent);
-            dlg.UseCommandLinks = true;
-            dlg.CustomButtons = new CustomButton[] {
-				new CustomButton(Result.OK, Strings.AskResetButtonOk),
-				new CustomButton(Result.Cancel, Strings.ButtonCancel)
-			};
-            dlg.CommonIcon = TaskDialogIcon.Information;
-
-            if (dlg.Show(this).CommonButton == Result.OK) {
-                ResetMainForm();
-            }
-        }
-
-        /// <summary>
-        /// Resets the main form to its initial state.
-        /// </summary>
-        public void ResetMainForm() {
-            //Reset form settings
-            UnsetThumbnail();
-            CloseSidePanel();
-
-            //Reset location and size (edge of the screen, min size)
-            Point nuLoc = Screen.PrimaryScreen.WorkingArea.Location;
-            nuLoc.Offset(40, 40);
-            Location = nuLoc;
-            Size = MinimumSize;
-
-            this.Show();
-            this.Activate();
         }
 
         #endregion
 
+        #region Accessors
+
+        /// <summary>
+        /// Gets the form's thumbnail panel.
+        /// </summary>
+        public ThumbnailPanel ThumbnailPanel {
+            get {
+                return _thumbnailPanel;
+            }
+        }
+
+        /// <summary>
+        /// Gets the form's message pump manager.
+        /// </summary>
+        public MessagePumpManager MessagePumpManager {
+            get {
+                return _msgPumpManager;
+            }
+        }
+
+        #endregion
+        
     }
 }

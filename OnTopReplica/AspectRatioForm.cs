@@ -107,12 +107,16 @@ namespace OnTopReplica {
         }
 
         /// <summary>
-        /// Updates the aspect ratio of the form and forces a refresh.
+        /// Updates the aspect ratio of the form and optionally forces a refresh.
         /// </summary>
-        public void SetAspectRatio(Size aspectRatioSource) {
-            _keepAspectRatio = true; //set without updating
+        /// <param name="aspectRatioSource">Size from which aspect ratio should be computed.</param>
+        /// <param name="forceRefresh">True if the size of the form should be refreshed to match the new aspect ratio.</param>
+        public void SetAspectRatio(Size aspectRatioSource, bool forceRefresh) {
             AspectRatio = ((double)aspectRatioSource.Width / (double)aspectRatioSource.Height);
-            RefreshAspectRatio();
+            
+            if (forceRefresh) {
+                KeepAspectRatio = true;
+            }
         }
 
         #region Event overriding
