@@ -39,7 +39,7 @@ namespace OnTopReplica {
 					}
 					else {
 						//Fetch icon from window class
-                        hIcon = (IntPtr)WindowMethods.GetClassLongPtr(_handle, WindowMethods.ClassLong.IconSmall);
+                        hIcon = (IntPtr)WindowMethods.GetClassLong(_handle, WindowMethods.ClassLong.IconSmall);
 
 						if (hIcon.ToInt64() != 0) {
 							_icon = Icon.FromHandle(hIcon);

@@ -20,7 +20,7 @@ namespace OnTopReplica {
             selectRegionToolStripMenuItem.Enabled = showing;
             switchToWindowToolStripMenuItem.Enabled = showing;
             resizeToolStripMenuItem.Enabled = showing;
-            chromeToolStripMenuItem.Checked = (FormBorderStyle == FormBorderStyle.Sizable);
+            chromeToolStripMenuItem.Checked = (FormBorderStyle == _defaultBorderStyle);
             clickForwardingToolStripMenuItem.Checked = _thumbnailPanel.ReportThumbnailClicks;
             chromeToolStripMenuItem.Enabled = showing;
             clickThroughToolStripMenuItem.Enabled = showing;
@@ -38,6 +38,7 @@ namespace OnTopReplica {
             //Ensure the menu is closed
             menuContext.Close();
             menuFullscreenContext.Close();
+            menuWindows.Close();
 
             //Get clicked item and window index from tag
             ToolStripItem tsi = (ToolStripItem)sender;
@@ -179,7 +180,7 @@ namespace OnTopReplica {
         }
 
         private void Menu_Chrome_click(object sender, EventArgs e) {
-            if (FormBorderStyle == FormBorderStyle.Sizable) {
+            if (FormBorderStyle == _defaultBorderStyle) {
                 FormBorderStyle = FormBorderStyle.None;
                 Location = new Point {
                     X = Location.X + SystemInformation.FrameBorderSize.Width,
@@ -187,7 +188,7 @@ namespace OnTopReplica {
                 };
             }
             else {
-                FormBorderStyle = FormBorderStyle.Sizable;
+                FormBorderStyle = _defaultBorderStyle;
                 Location = new Point {
                     X = Location.X - SystemInformation.FrameBorderSize.Width,
                     Y = Location.Y - SystemInformation.FrameBorderSize.Height
