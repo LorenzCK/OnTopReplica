@@ -31,7 +31,7 @@ namespace OnTopReplica {
         private void Menu_Windows_opening(object sender, CancelEventArgs e) {
             _windowManager.Refresh(WindowManager.EnumerationMode.TaskWindows);
             WindowListHelper.PopulateMenu(this, _windowManager, (ToolStrip)sender,
-                _lastWindowHandle, new EventHandler(Menu_Windows_itemclick));
+                CurrentThumbnailWindowHandle, new EventHandler(Menu_Windows_itemclick));
         }
 
         void Menu_Windows_itemclick(object sender, EventArgs e) {
@@ -54,11 +54,11 @@ namespace OnTopReplica {
         }
 
         private void Menu_Switch_click(object sender, EventArgs e) {
-            if (_lastWindowHandle == null)
+            if (CurrentThumbnailWindowHandle == null)
                 return;
 
             Program.Platform.HideForm(this);
-            Native.WindowManagerMethods.SetForegroundWindow(_lastWindowHandle.Handle);
+            Native.WindowManagerMethods.SetForegroundWindow(CurrentThumbnailWindowHandle.Handle);
         }
 
         private void Menu_GroupSwitchMode_click(object sender, EventArgs e) {

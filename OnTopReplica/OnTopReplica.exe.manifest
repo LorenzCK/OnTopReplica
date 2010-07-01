@@ -20,7 +20,7 @@
         </application>
     </compatibility>
 
-    <assemblyIdentity processorArchitecture="*" type="win32" name="OnTopReplica"/>
+    <!--<assemblyIdentity processorArchitecture="*" type="win32" name="OnTopReplica"/>-->
 
     <description>Lightweight clone of a window.</description>
     <!--

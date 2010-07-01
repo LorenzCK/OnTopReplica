@@ -19,7 +19,6 @@ namespace OnTopReplica {
 
         //Window manager
         WindowManager _windowManager = new WindowManager();
-        WindowHandle _lastWindowHandle = null;
 
         //Message pump extension
         MessagePumpManager _msgPumpManager = new MessagePumpManager();
@@ -297,20 +296,20 @@ namespace OnTopReplica {
         /// <param name="region">Region of the window to clone.</param>
         public void SetThumbnail(WindowHandle handle, StoredRegion region) {
             try {
-                _lastWindowHandle = handle;
+                CurrentThumbnailWindowHandle = handle;
                 _thumbnailPanel.SetThumbnailHandle(handle);
 
                 if (region != null)
                     _thumbnailPanel.SelectedRegion = region.Rect;
                 else
                     _thumbnailPanel.ConstrainToRegion = false;
+
+                //Set aspect ratio (this will resize the form), do not refresh if in fullscreen
+                SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize, !IsFullscreen);
             }
             catch (Exception ex) {
                 ThumbnailError(ex, false, Strings.ErrorUnableToCreateThumbnail);
             }
-
-            //Set aspect ratio (this will resize the form), do not refresh if in fullscreen
-            SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize, !IsFullscreen);
         }
 
         /// <summary>
@@ -328,7 +327,7 @@ namespace OnTopReplica {
             if (handles.Count == 1)
                 return;
 
-            _lastWindowHandle = null;
+            CurrentThumbnailWindowHandle = null;
             _msgPumpManager.Get<MessagePumpProcessors.GroupSwitchManager>().EnableGroupMode(handles);
         }
 
@@ -337,7 +336,7 @@ namespace OnTopReplica {
         /// </summary>
         public void UnsetThumbnail() {
             //Unset handle
-            _lastWindowHandle = null;
+            CurrentThumbnailWindowHandle = null;
             _thumbnailPanel.UnsetThumbnail();
 
             //Disable aspect ratio
@@ -444,6 +443,14 @@ namespace OnTopReplica {
             get {
                 return menuWindows;
             }
+        }
+
+        /// <summary>
+        /// Retrieves the window handle of the currently cloned thumbnail.
+        /// </summary>
+        public WindowHandle CurrentThumbnailWindowHandle {
+            get;
+            private set;
         }
 
         #endregion
