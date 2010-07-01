@@ -14,7 +14,7 @@ namespace OnTopReplica.MessagePumpProcessors {
             Form = form;
         }
 
-        public abstract void Process(Message msg);
+        public abstract bool Process(ref Message msg);
 
         #endregion
 

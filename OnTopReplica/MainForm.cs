@@ -144,7 +144,8 @@ namespace OnTopReplica {
         }
 
         protected override void WndProc(ref Message m) {
-            _msgPumpManager.PumpMessage(m);
+            if (_msgPumpManager.PumpMessage(ref m))
+                return;
 
             switch (m.Msg) {
                 case WM.NCRBUTTONUP:
@@ -180,6 +181,8 @@ namespace OnTopReplica {
         }
 
         #endregion
+
+        const string Title = "OnTopReplica";
 
         #region Keyboard event handling
 

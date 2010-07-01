@@ -11,7 +11,7 @@ namespace OnTopReplica.MessagePumpProcessors {
     /// </summary>
     class WindowKeeper : BaseMessagePumpProcessor {
 
-        public override void Process(Message msg) {
+        public override bool Process(ref Message msg) {
             if (Form.CurrentThumbnailWindowHandle != null &&
                 msg.Msg == HookMethods.WM_SHELLHOOKMESSAGE) {
                 int hookCode = msg.WParam.ToInt32();
@@ -27,6 +27,8 @@ namespace OnTopReplica.MessagePumpProcessors {
                     }
                 }
             }
+
+            return false;
         }
 
         protected override void Shutdown() {

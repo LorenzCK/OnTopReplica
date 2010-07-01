@@ -26,14 +26,16 @@ namespace OnTopReplica.MessagePumpProcessors {
             _handlers[newKey] = handler;
         }
 
-        public override void Process(Message msg) {
+        public override bool Process(ref Message msg) {
             if (msg.Msg == HotKeyMethods.WM_HOTKEY) {
                 int keyId = msg.WParam.ToInt32();
                 if (!_handlers.ContainsKey(keyId))
-                    return;
+                    return false;
 
                 _handlers[keyId].Invoke();
             }
+
+            return false;
         }
 
         protected override void Shutdown() {

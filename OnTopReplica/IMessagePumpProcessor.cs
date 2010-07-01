@@ -9,7 +9,7 @@ namespace OnTopReplica {
 
         void Initialize(MainForm form);
 
-        void Process(Message msg);
+        bool Process(ref Message msg);
 
     }
 }
