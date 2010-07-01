@@ -1,110 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -187,6 +82,7 @@ a:hover {
   </data>
   <data name="AskUpdate" xml:space="preserve">
     <value>Installer OnTopReplica {0}?</value>
+    <comment>{0} update version</comment>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
     <value>&amp;Annuller</value>
@@ -208,9 +104,6 @@ a:hover {
   </data>
   <data name="AboutButtonCancelTT" xml:space="preserve">
     <value>Annuller updateringen</value>
-  </data>
-  <data name="MenuResizeClickThrough" xml:space="preserve">
-    <value>Gennemklik</value>
   </data>
   <data name="MenuWindowsWholeRegion" xml:space="preserve">
     <value>- hele -</value>
@@ -234,7 +127,7 @@ a:hover {
     <value>Viser OnTopReplica.</value>
   </data>
   <data name="ErrorUpdateContent" xml:space="preserve">
-    <value>OnTopReplica blev ikke installeret ved hjælp af 'ClickOnce'. Du bliver nødt til at opdatere manuelt (besøg &lt;a href="http://www.codeplex.com/ontopreplica"&gt;OnTopReplica's hjemmeside&lt;/a&gt;).</value>
+    <value>OnTopReplica blev ikke installeret ved hjælp af 'ClickOnce'. Du bliver nødt til at opdatere manuelt (besøg &lt;a href="http://ontopreplica.codeplex.com"&gt;OnTopReplica's hjemmeside&lt;/a&gt;).</value>
   </data>
   <data name="UpdateNow" xml:space="preserve">
     <value>Opdater nu!</value>
@@ -258,7 +151,7 @@ a:hover {
     <value>Altid øverst</value>
   </data>
   <data name="RegionsTitle" xml:space="preserve">
-    <value>Områder</value>
+    <value>Områder:</value>
   </data>
   <data name="RegionsHeight" xml:space="preserve">
     <value>Højde</value>
@@ -276,7 +169,9 @@ a:hover {
     <value>Genskab</value>
   </data>
   <data name="InfoClickForwardingContent" xml:space="preserve">
-    <value>Hvis denne funktion er aktiveret vil OnTopReplica vidersende alle venstr museklik til det klonede vindue (dette gør dig i stand til at udføre basis musefunktioner i det klonede vindue uden at skulle aktivere det).For at afslutte denne funktion skal du højreklikke på OnTopReplica og deaktivere "Click forwarding" i menuen.</value>
+    <value>Hvis denne funktion er aktiveret vil OnTopReplica vidersende alle venstr museklik til det klonede vindue (dette gør dig i stand til at udføre basis musefunktioner i det klonede vindue uden at skulle aktivere det).
+
+For at afslutte denne funktion skal du højreklikke på OnTopReplica og deaktivere "Click forwarding" i menuen.</value>
   </data>
   <data name="MenuPosition" xml:space="preserve">
     <value>Position</value>
@@ -288,7 +183,9 @@ a:hover {
     <value>Gem</value>
   </data>
   <data name="InfoClickThroughInformation" xml:space="preserve">
-    <value>I denne tilstand vil fuld skærm vinduet opføre sig som et delvist gennemsigtigt lag, hvilket gør dig i stand til at klikke på de underliggende vinduer.For at komme tilbage til normal tilstand, dobbeltklik på OnTopReplica ikonet i meddelelsesområdet på proceslinjen.</value>
+    <value>I denne tilstand vil fuld skærm vinduet opføre sig som et delvist gennemsigtigt lag, hvilket gør dig i stand til at klikke på de underliggende vinduer.
+
+For at komme tilbage til normal tilstand, dobbeltklik på OnTopReplica ikonet i meddelelsesområdet på proceslinjen.</value>
   </data>
   <data name="MenuCloseTT" xml:space="preserve">
     <value>Lukker OnTopReplica.</value>
@@ -341,9 +238,6 @@ a:hover {
   <data name="MenuOpacity" xml:space="preserve">
     <value>Uigennemsigtighed</value>
   </data>
-  <data name="MenuAutofit" xml:space="preserve">
-    <value>Autojuster når gendannes</value>
-  </data>
   <data name="InfoUpdatedContent" xml:space="preserve">
     <value>For at benytte den opdaterede udgave af OnTopReplica skal du genstarte programmet.</value>
   </data>
@@ -383,11 +277,9 @@ a:hover {
   <data name="InfoClickThroughOk" xml:space="preserve">
     <value>Brug gennem klik.</value>
   </data>
-  <data name="MenuResizeClickThroughTT" xml:space="preserve">
-    <value>Hvis vinduet ikke er helt uigennemsigtigt når fuldskærm aktiveres, vil det lade alle klik "falde igennem"(lige som en gennemsigtigt film).</value>
-  </data>
   <data name="AskUpdateButtonOk" xml:space="preserve">
     <value>FortsætInstaller OnTopReplica</value>
+    <comment>{0} update version</comment>
   </data>
   <data name="ErrorDetailsAero" xml:space="preserve">
     <value>Detaljer om Windows Aero</value>
@@ -426,7 +318,7 @@ a:hover {
     <value>En letvægts, live, miniature udgave af et vindue du vælger, der altid er øverst.</value>
   </data>
   <data name="ErrorUnableToCreateThumbnail" xml:space="preserve">
-    <value>Kan ikke lave miniature</value>
+    <value>Kan ikke lave miniature.</value>
   </data>
   <data name="ErrorNoDwmTitle" xml:space="preserve">
     <value>Skrivebords komposition ikke understøttet</value>
@@ -435,7 +327,8 @@ a:hover {
     <value>Kunne ikke passes til vinduet.</value>
   </data>
   <data name="InfoClickThroughNo" xml:space="preserve">
-    <value>Nej, brug standard fuldskærmDu kan aktivere gennem klik senere.</value>
+    <value>Nej.
+Du kan aktivere gennem klik senere.</value>
   </data>
   <data name="MenuOp50TT" xml:space="preserve">
     <value>Sætter OnTopReplica til 50% uigennemsigtighed.</value>
@@ -451,6 +344,9 @@ a:hover {
   </data>
   <data name="AskUpdateExpanded" xml:space="preserve">
     <value>Installeret version: {0}Tilgængelig version: {1}Download størrelse: {2} bytes</value>
+    <comment>{0} installed version number
+{1} online available version number
+{2} update size</comment>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Sprog</value>
@@ -486,7 +382,8 @@ a:hover {
     <value>Windows Aero effekter er ikke slået til</value>
   </data>
   <data name="ErrorNoDwm" xml:space="preserve">
-    <value>Windows Aero effekter er ikke understøttet af dit styresystem.Dette program kræver Windows Vista Home Premium eller bedre.</value>
+    <value>Windows Aero effekter er ikke understøttet af dit styresystem.
+Dette program kræver Windows Vista Home Premium eller bedre.</value>
   </data>
   <data name="Homepage" xml:space="preserve">
     <value>Hjemmeside: www.codeplex.com/ontopreplica.</value>
@@ -494,11 +391,8 @@ a:hover {
   <data name="MenuPosBottomLeft" xml:space="preserve">
     <value>Nederst venstre</value>
   </data>
-  <data name="MenuAutofitTT" xml:space="preserve">
-    <value>Passer automatisk vinduet til miniaturen når du gendanner det.</value>
-  </data>
   <data name="ErrorGenericInfoText" xml:space="preserve">
-    <value>Fejl:</value>
+    <value>Fejl: </value>
   </data>
   <data name="ErrorGenericTitle" xml:space="preserve">
     <value>Fejl</value>
@@ -547,5 +441,11 @@ a:hover {
   </data>
   <data name="InfoClickThroughDetails" xml:space="preserve">
     <value>Gennem klik virker kun hvis det er blevet aktiveret i gendan undermenuen og hvis vinduet er delvist gennemsigtigt.</value>
+  </data>
+  <data name="MenuClickThrough" xml:space="preserve">
+    <value>Klikke igennem</value>
+  </data>
+  <data name="MenuClickThroughTT" xml:space="preserve">
+    <value>OnTopReplica vil opføre sig som en gennemsigtig film der lader dig klikke igennem til de underliggende vinduer.</value>
   </data>
 </root>

@@ -152,13 +152,14 @@
             this.advancedToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.xiao_wrench;
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
             this.advancedToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.advancedToolStripMenuItem.Text = "Advanced";
+            this.advancedToolStripMenuItem.Text = Strings.MenuAdvanced;
             // 
             // forwardClicksToolStripMenuItem
             // 
             this.forwardClicksToolStripMenuItem.Name = "forwardClicksToolStripMenuItem";
             this.forwardClicksToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.forwardClicksToolStripMenuItem.Text = "Enable Click forwarding";
+            this.forwardClicksToolStripMenuItem.Text = Strings.MenuClickForwarding;
+            this.forwardClicksToolStripMenuItem.ToolTipText = Strings.MenuClickForwardingTT;
             this.forwardClicksToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuClickForwardingTT;
             this.forwardClicksToolStripMenuItem.Click += new System.EventHandler(this.Menu_ClickForwarding_click);
             // 
@@ -166,14 +167,16 @@
             // 
             this.clickthroughToolStripMenuItem.Name = "clickthroughToolStripMenuItem";
             this.clickthroughToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.clickthroughToolStripMenuItem.Text = "Enable Click-through";
+            this.clickthroughToolStripMenuItem.Text = Strings.MenuClickThrough;
+            this.clickthroughToolStripMenuItem.ToolTipText = Strings.MenuClickThroughTT;
             this.clickthroughToolStripMenuItem.Click += new System.EventHandler(this.Menu_ClickThrough_click);
             // 
             // dualWindowModeToolStripMenuItem
             // 
             this.dualWindowModeToolStripMenuItem.Name = "dualWindowModeToolStripMenuItem";
             this.dualWindowModeToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.dualWindowModeToolStripMenuItem.Text = "Group switch mode";
+            this.dualWindowModeToolStripMenuItem.Text = Strings.MenuGroupSwitch;
+            this.dualWindowModeToolStripMenuItem.ToolTipText = Strings.MenuGroupSwitchTT;
             this.dualWindowModeToolStripMenuItem.Click += new System.EventHandler(this.Menu_GroupSwitchMode_click);
             // 
             // menuContextOpacity
@@ -441,14 +444,15 @@
             this.fullSelectWindowToolStripMenuItem.DropDown = this.menuWindows;
             this.fullSelectWindowToolStripMenuItem.Name = "fullSelectWindowToolStripMenuItem";
             this.fullSelectWindowToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.fullSelectWindowToolStripMenuItem.Text = "Select window...";
+            this.fullSelectWindowToolStripMenuItem.Text = Strings.MenuWindows;
+            this.fullSelectWindowToolStripMenuItem.ToolTipText = Strings.MenuWindowsTT;
             // 
             // fullOpacityToolStripMenuItem
             // 
             this.fullOpacityToolStripMenuItem.DropDown = this.menuOpacity;
             this.fullOpacityToolStripMenuItem.Name = "fullOpacityToolStripMenuItem";
             this.fullOpacityToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.fullOpacityToolStripMenuItem.Text = "Opacity";
+            this.fullOpacityToolStripMenuItem.Text = Strings.MenuOpacity;
             // 
             // danskToolStripMenuItem
             // 
@@ -473,7 +477,8 @@
             // 
             this.enableClickthroughToolStripMenuItem.Name = "enableClickthroughToolStripMenuItem";
             this.enableClickthroughToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.enableClickthroughToolStripMenuItem.Text = "Enable Click-through";
+            this.enableClickthroughToolStripMenuItem.Text = Strings.MenuClickThrough;
+            this.enableClickthroughToolStripMenuItem.ToolTipText = Strings.MenuClickThroughTT;
             this.enableClickthroughToolStripMenuItem.Click += new System.EventHandler(this.Menu_ClickThrough_click);
             // 
             // fullExitToolStripMenuItem
@@ -481,7 +486,7 @@
             this.fullExitToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.close_new;
             this.fullExitToolStripMenuItem.Name = "fullExitToolStripMenuItem";
             this.fullExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fullExitToolStripMenuItem.Text = "Exit fullscreen mode";
+            this.fullExitToolStripMenuItem.Text = Strings.MenuQuitFullscreen;
             this.fullExitToolStripMenuItem.Click += new System.EventHandler(this.Menu_Fullscreen_ExitFullscreen_click);
             // 
             // MainForm

@@ -1,110 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -149,7 +44,7 @@ Tutte le impostazioni saranno perse.</value>
     <value>Windows Aero è disponibile soltanto su Windows Vista Home Premium o superiore.</value>
   </data>
   <data name="ErrorDwmOff" xml:space="preserve">
-    <value>Il servizio DWM non è attivo.</value>
+    <value>Il servizio di Desktop Composition Aero non è attivo.</value>
   </data>
   <data name="ErrorDwmOffContent" xml:space="preserve">
     <value>È necessario attivare la "composizione del desktop" (DWM) selezionando "Windows Aero" come tema utilizzato da Windows.
@@ -173,7 +68,7 @@ Per farlo, clicca col tasto destro del mouse sul desktop e poi su Personalizza.<
 È necessario utilizzare Windows Vista o superiore per avviare OnTopReplica.</value>
   </data>
   <data name="ErrorNoDwmTitle" xml:space="preserve">
-    <value>DWM non supportato</value>
+    <value>Desktop Composition (DWM) non supportato</value>
   </data>
   <data name="ErrorUnableToCreateThumbnail" xml:space="preserve">
     <value>Impossibile clonare la finestra.</value>
@@ -182,7 +77,7 @@ Per farlo, clicca col tasto destro del mouse sul desktop e poi su Personalizza.<
     <value>Impossibile adattare la finestra.</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Homepage: www.codeplex.com/ontopreplica.</value>
+    <value>Sito internet: www.codeplex.com/ontopreplica.</value>
   </data>
   <data name="MenuAbout" xml:space="preserve">
     <value>A proposito di...</value>
@@ -190,17 +85,17 @@ Per farlo, clicca col tasto destro del mouse sul desktop e poi su Personalizza.<
   <data name="MenuAboutTT" xml:space="preserve">
     <value>Nasconde la finestra principale e mostra una schermata di informazioni.</value>
   </data>
-  <data name="MenuAutofit" xml:space="preserve">
-    <value>Adatta automaticamente</value>
+  <data name="GroupSwitchModeStatusDisabled" xml:space="preserve">
+    <value>Seleziona più finestre per attivare.</value>
   </data>
-  <data name="MenuAutofitTT" xml:space="preserve">
-    <value>Adatta automaticamente la finestra al clone quando viene ridimensionata.</value>
+  <data name="GroupSwitchModeStatusEnabled" xml:space="preserve">
+    <value>Modalità Gruppo attivata.</value>
   </data>
   <data name="MenuClose" xml:space="preserve">
     <value>Chiudi</value>
   </data>
   <data name="MenuCloseTT" xml:space="preserve">
-    <value>Chiude OnTopReplica.</value>
+    <value>Termina OnTopReplica.</value>
   </data>
   <data name="MenuFitDouble" xml:space="preserve">
     <value>2:1 Doppio</value>
@@ -254,7 +149,7 @@ Per farlo, clicca col tasto destro del mouse sul desktop e poi su Personalizza.<
     <value>Apri</value>
   </data>
   <data name="MenuOpenTT" xml:space="preserve">
-    <value>Mostra OnTopReplica.</value>
+    <value>Attiva la finestra di OnTopReplica.</value>
   </data>
   <data name="MenuPosBottomLeft" xml:space="preserve">
     <value>In basso a sinistra</value>
@@ -281,7 +176,7 @@ Per farlo, clicca col tasto destro del mouse sul desktop e poi su Personalizza.<
     <value>Imposta se, al prossimo avvio di OnTopReplica, debbano essere ripristinati i valori di grandezza e posizione della finestra alla chiusura.</value>
   </data>
   <data name="MenuReduce" xml:space="preserve">
-    <value>Riduci ad icona</value>
+    <value>Minimizza</value>
   </data>
   <data name="MenuReduceTT" xml:space="preserve">
     <value>Riduce OnTopReplica ad un'icona nella barra delle applicazioni.</value>
@@ -302,7 +197,7 @@ Per farlo, clicca col tasto destro del mouse sul desktop e poi su Personalizza.<
     <value>Ridimensionamento</value>
   </data>
   <data name="MenuSwitch" xml:space="preserve">
-    <value>Alla finestra originale</value>
+    <value>Vai alla finestra originale</value>
   </data>
   <data name="MenuSwitchTT" xml:space="preserve">
     <value>Mostra la finestra originale e nasconde OnTopReplica.</value>
@@ -330,6 +225,7 @@ Per farlo, clicca col tasto destro del mouse sul desktop e poi su Personalizza.<
   </data>
   <data name="AskUpdate" xml:space="preserve">
     <value>Installare OnTopReplica {0}?</value>
+    <comment>{0} update version</comment>
   </data>
   <data name="AskUpdateButtonCancel" xml:space="preserve">
     <value>Annulla aggiornamento
@@ -338,6 +234,7 @@ OnTopReplica si aggiornerà in un secondo momento.</value>
   <data name="AskUpdateButtonOk" xml:space="preserve">
     <value>Continua
 Installa OnTopReplica {0}.</value>
+    <comment>{0} update version</comment>
   </data>
   <data name="AskUpdateContent" xml:space="preserve">
     <value>La nuova versione sarà scaricata ed installata automaticamente.</value>
@@ -346,6 +243,9 @@ Installa OnTopReplica {0}.</value>
     <value>Versione installata: {0}
 Versione disponibile: {1}
 Grandezza: {2} bytes</value>
+    <comment>{0} installed version number
+{1} online available version number
+{2} update size</comment>
   </data>
   <data name="AskUpdateTitle" xml:space="preserve">
     <value>Aggiornamento disponibile</value>
@@ -360,7 +260,7 @@ Grandezza: {2} bytes</value>
     <value>Impossibile controllare gli aggiornamenti.</value>
   </data>
   <data name="ErrorUpdateContent" xml:space="preserve">
-    <value>Sembra che OnTopReplica non sia stato installato usando 'ClickOnce'. Sarà necessario aggiornare manualmente il programma visitando &lt;a href="http://www.codeplex.com/ontopreplica"&gt;la homepage del progetto&lt;/a&gt;.</value>
+    <value>Sembra che OnTopReplica non sia stato installato usando 'ClickOnce'. Sarà necessario aggiornare manualmente il programma visitando &lt;a href="http://ontopreplica.codeplex.com"&gt;la homepage del progetto&lt;/a&gt;.</value>
   </data>
   <data name="InfoUpdated" xml:space="preserve">
     <value>OnTopReplica è stato aggiornato.</value>
@@ -372,7 +272,7 @@ Grandezza: {2} bytes</value>
     <value>Aggiornamento completato</value>
   </data>
   <data name="InfoUpToDate" xml:space="preserve">
-    <value>OnTopReplica è aggiornato.</value>
+    <value>La versione più aggiornata è già installata.</value>
   </data>
   <data name="InfoUpToDateTitle" xml:space="preserve">
     <value>Nessun aggiornamento disponibile</value>
@@ -384,25 +284,26 @@ Grandezza: {2} bytes</value>
     <value>La modalità "Click-Through" funziona solo se l'opzione è stata attivata e se la finestra è semitrasparente.</value>
   </data>
   <data name="InfoClickThroughInformation" xml:space="preserve">
-    <value>In questa modalità la finestra a tutto schermo si comporterà come una maschera semitrasparente che ti permette di cliccarle attraverso, sulle finestre sullo sfondo.
+    <value>In questa modalità la finestra clonata si comporterà come una maschera semitrasparente che permette di cliccare sulle finestre dietro di essa.
 
-Per tornare alla modalità normale in qualsiasi momento, fai doppio clic sull'icona nella barra delle applicazioni.</value>
+Per tornare alla modalità normale in qualsiasi momento, attiva OnTopReplica (dalla barra delle applicazioni).</value>
   </data>
   <data name="InfoClickThroughTitle" xml:space="preserve">
     <value>Modalità Click-Through</value>
   </data>
-  <data name="MenuResizeClickThrough" xml:space="preserve">
-    <value>Click-Through</value>
+  <data name="GroupSwitchModeWindows" xml:space="preserve">
+    <value>Finestre</value>
+    <comment>Column Header of list, simply refers to available windows to be cloned</comment>
   </data>
-  <data name="MenuResizeClickThroughTT" xml:space="preserve">
-    <value>Se la finestra non è completamente opaca quando passa a tutto schermo, i clic le passeranno attraverso (come una maschera semitrasparente).</value>
+  <data name="GroupSwitchModeTitle" xml:space="preserve">
+    <value>Modalità Gruppo di finestre:</value>
   </data>
   <data name="InfoClickThroughNo" xml:space="preserve">
-    <value>No, tutto schermo normale
+    <value>No, grazie.
 Puoi abilitare il Click-Through in futuro</value>
   </data>
   <data name="InfoClickThroughOk" xml:space="preserve">
-    <value>Usa Click-Through</value>
+    <value>Abilita Click-Through</value>
   </data>
   <data name="MenuClickForwarding" xml:space="preserve">
     <value>Inoltro dei clic</value>
@@ -417,7 +318,7 @@ Puoi abilitare il Click-Through in futuro</value>
     <value>Lingua</value>
   </data>
   <data name="RegionsTitle" xml:space="preserve">
-    <value>Regioni</value>
+    <value>Regioni:</value>
   </data>
   <data name="RegionsSaveButton" xml:space="preserve">
     <value>Salva</value>
@@ -444,7 +345,7 @@ Puoi abilitare il Click-Through in futuro</value>
     <value>Regioni memorizzate</value>
   </data>
   <data name="InfoClickForwarding" xml:space="preserve">
-    <value>Attivare l'inoltro dei clic?</value>
+    <value>Attivare la modalità di inoltro dei clic?</value>
   </data>
   <data name="InfoClickForwardingTitle" xml:space="preserve">
     <value>Inoltro dei clic</value>
@@ -452,7 +353,7 @@ Puoi abilitare il Click-Through in futuro</value>
   <data name="InfoClickForwardingContent" xml:space="preserve">
     <value>In questa modalità, OnTopReplica inoltrerà tutti i clic del pulsante sinistro sul clone della finestra alla finestra originale (questo permetterà di interagire in maniera basilare con la finestra clonata, senza averla in primo piano).
 
-Per uscire da questa modalità, fai clic col destro su OnTopReplica e disabilita "Inoltro dei clic" dal menu.</value>
+Per uscire da questa modalità, usa il tasto ESC.</value>
   </data>
   <data name="AskSettingReset" xml:space="preserve">
     <value>Resettare impostazioni?</value>
@@ -560,5 +461,26 @@ a:hover {
   </data>
   <data name="MenuChromeTT" xml:space="preserve">
     <value>Abilita o disabilita il bordo della finestra.</value>
+  </data>
+  <data name="MenuClickThrough" xml:space="preserve">
+    <value>Abilita Click-Through</value>
+  </data>
+  <data name="MenuClickThroughTT" xml:space="preserve">
+    <value>OnTopReplica si comporterà come una schermata trasparente, permettendo di cliccare sulle finestre al di sotto di essa.</value>
+  </data>
+  <data name="MenuGroupSwitch" xml:space="preserve">
+    <value>Modalità Gruppo di finestre</value>
+  </data>
+  <data name="MenuGroupSwitchTT" xml:space="preserve">
+    <value>OnTopReplica clonerà automaticamente una finestra di un gruppo, scegliendo quella che non è stata in primo piano da più tempo.</value>
+  </data>
+  <data name="GroupSwitchModeEnableButton" xml:space="preserve">
+    <value>Abilita modalità</value>
+  </data>
+  <data name="GroupSwitchModeDisableButton" xml:space="preserve">
+    <value>Disattiva</value>
+  </data>
+  <data name="MenuAdvanced" xml:space="preserve">
+    <value>Avanzate</value>
   </data>
 </root>

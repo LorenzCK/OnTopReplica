@@ -18,8 +18,8 @@ namespace OnTopReplica.SidePanels {
             LoadWindowList();
 
             labelStatus.Text = (ParentForm.MessagePumpManager.Get<GroupSwitchManager>().IsActive) ?
-                "Group switching is active." :
-                "Select multiple windows to enable.";
+                Strings.GroupSwitchModeStatusEnabled :
+                Strings.GroupSwitchModeStatusDisabled;
         }
 
         private void LoadWindowList() {

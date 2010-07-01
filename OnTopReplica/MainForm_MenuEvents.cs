@@ -15,11 +15,15 @@ namespace OnTopReplica {
                 return;
             }
 
-            selectRegionToolStripMenuItem.Enabled = _thumbnailPanel.IsShowingThumbnail;
-            switchToWindowToolStripMenuItem.Enabled = _thumbnailPanel.IsShowingThumbnail;
-            resizeToolStripMenuItem.Enabled = _thumbnailPanel.IsShowingThumbnail;
+            bool showing = _thumbnailPanel.IsShowingThumbnail;
+
+            selectRegionToolStripMenuItem.Enabled = showing;
+            switchToWindowToolStripMenuItem.Enabled = showing;
+            resizeToolStripMenuItem.Enabled = showing;
             chromeToolStripMenuItem.Checked = (FormBorderStyle == FormBorderStyle.Sizable);
             forwardClicksToolStripMenuItem.Checked = _thumbnailPanel.ReportThumbnailClicks;
+            chromeToolStripMenuItem.Enabled = showing;
+            advancedToolStripMenuItem.Enabled = showing;
         }
 
         private void Menu_Windows_opening(object sender, CancelEventArgs e) {
