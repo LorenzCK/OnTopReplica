@@ -66,10 +66,10 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(184, 189);
+            this.groupBox1.Size = new System.Drawing.Size(184, 170);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = Strings.RegionsTitle;
+            this.groupBox1.Text = "Regions:";
             // 
             // textRegionName
             // 
@@ -77,9 +77,9 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textRegionName.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textRegionName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textRegionName.Location = new System.Drawing.Point(6, 46);
+            this.textRegionName.Location = new System.Drawing.Point(6, 44);
             this.textRegionName.Name = "textRegionName";
-            this.textRegionName.Size = new System.Drawing.Size(119, 20);
+            this.textRegionName.Size = new System.Drawing.Size(174, 20);
             this.textRegionName.TabIndex = 11;
             this.textRegionName.Visible = false;
             this.textRegionName.ConfirmInput += new System.EventHandler(this.Save_confirm);
@@ -88,7 +88,7 @@
             // numH
             // 
             this.numH.Enabled = false;
-            this.numH.Location = new System.Drawing.Point(109, 122);
+            this.numH.Location = new System.Drawing.Point(109, 93);
             this.numH.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -107,7 +107,7 @@
             // numW
             // 
             this.numW.Enabled = false;
-            this.numW.Location = new System.Drawing.Point(109, 96);
+            this.numW.Location = new System.Drawing.Point(109, 67);
             this.numW.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -126,7 +126,7 @@
             // numY
             // 
             this.numY.Enabled = false;
-            this.numY.Location = new System.Drawing.Point(23, 122);
+            this.numY.Location = new System.Drawing.Point(23, 93);
             this.numY.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -145,7 +145,7 @@
             // numX
             // 
             this.numX.Enabled = false;
-            this.numX.Location = new System.Drawing.Point(23, 96);
+            this.numX.Location = new System.Drawing.Point(23, 67);
             this.numX.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -166,7 +166,7 @@
             this.buttonDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDone.Image = global::OnTopReplica.Properties.Resources.xiao_ok;
             this.buttonDone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonDone.Location = new System.Drawing.Point(108, 158);
+            this.buttonDone.Location = new System.Drawing.Point(108, 129);
             this.buttonDone.Name = "buttonDone";
             this.buttonDone.Size = new System.Drawing.Size(70, 23);
             this.buttonDone.TabIndex = 9;
@@ -178,7 +178,7 @@
             // buttonReset
             // 
             this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonReset.Location = new System.Drawing.Point(32, 158);
+            this.buttonReset.Location = new System.Drawing.Point(32, 129);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(70, 23);
             this.buttonReset.TabIndex = 8;
@@ -190,27 +190,27 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label6.Location = new System.Drawing.Point(71, 125);
+            this.label6.Location = new System.Drawing.Point(71, 96);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 9;
-            this.label6.Text = Strings.RegionsHeight;
+            this.label6.Text = "Height";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label7.Location = new System.Drawing.Point(71, 99);
+            this.label7.Location = new System.Drawing.Point(71, 70);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 8;
-            this.label7.Text = Strings.RegionsWidth;
+            this.label7.Text = "Width";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label3.Location = new System.Drawing.Point(6, 125);
+            this.label3.Location = new System.Drawing.Point(6, 96);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(14, 13);
             this.label3.TabIndex = 5;
@@ -220,7 +220,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label2.Location = new System.Drawing.Point(6, 99);
+            this.label2.Location = new System.Drawing.Point(6, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(14, 13);
             this.label2.TabIndex = 4;
@@ -230,18 +230,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 76);
+            this.label1.Location = new System.Drawing.Point(6, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = Strings.RegionsCurrentRegion;
+            this.label1.Text = "Current region:";
             // 
             // buttonDelete
             // 
             this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelete.Enabled = false;
             this.buttonDelete.Image = global::OnTopReplica.Properties.Resources.xiao_delete;
-            this.buttonDelete.Location = new System.Drawing.Point(155, 43);
+            this.buttonDelete.Location = new System.Drawing.Point(157, 18);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(23, 23);
             this.buttonDelete.TabIndex = 3;
@@ -253,7 +253,7 @@
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSave.Enabled = false;
             this.buttonSave.Image = global::OnTopReplica.Properties.Resources.xiao_add;
-            this.buttonSave.Location = new System.Drawing.Point(131, 43);
+            this.buttonSave.Location = new System.Drawing.Point(134, 18);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(23, 23);
             this.buttonSave.TabIndex = 1;
@@ -270,7 +270,7 @@
             this.comboRegions.FormattingEnabled = true;
             this.comboRegions.Location = new System.Drawing.Point(6, 19);
             this.comboRegions.Name = "comboRegions";
-            this.comboRegions.Size = new System.Drawing.Size(173, 21);
+            this.comboRegions.Size = new System.Drawing.Size(126, 21);
             this.comboRegions.TabIndex = 0;
             this.comboRegions.SelectedIndexChanged += new System.EventHandler(this.RegionCombo_index_change);
             // 
@@ -279,9 +279,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
-            this.MinimumSize = new System.Drawing.Size(184, 189);
+            this.MinimumSize = new System.Drawing.Size(184, 170);
             this.Name = "RegionPanel";
-            this.Size = new System.Drawing.Size(184, 189);
+            this.Size = new System.Drawing.Size(184, 170);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numH)).EndInit();

@@ -121,9 +121,6 @@
   <data name="flag_ita" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\flag_ita.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="window_opacity16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\window_opacity16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="close_new" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\x-oblique.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,9 +132,6 @@
   </data>
   <data name="window_multiple16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\window_multiple16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="regions" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\regions.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pos_null" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\pos_null.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,17 +145,11 @@
   <data name="pos_bottomleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\pos_bottomleft.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\back.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="xiao_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\xiao_up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\ok.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="window16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\window16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,7 +178,7 @@
   <data name="window_multiple161" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\window_multiple16.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="component" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="xiao_component" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\component.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="xiao_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -208,8 +196,26 @@
   <data name="xiao_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\xiao_delete.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="xiao_wrench" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\xiao_wrench.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="screenshot_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\screenshot-icon.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\newicon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="window_opacity" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\window_opacity_new.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="desktop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\desktop.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="regions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\regions_new.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="list" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\list.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

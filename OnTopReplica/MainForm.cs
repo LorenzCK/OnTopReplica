@@ -252,6 +252,8 @@ namespace OnTopReplica {
             set {
                 if (IsFullscreen == value)
                     return;
+                if (value && !_thumbnailPanel.IsShowingThumbnail)
+                    return;
 
                 CloseSidePanel(); //on switch, always hide side panels
                 GlassEnabled = !value;

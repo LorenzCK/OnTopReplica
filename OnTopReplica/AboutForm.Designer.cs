@@ -122,7 +122,7 @@
             // 
             this.buttonUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonUpdate.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUpdate.Image = global::OnTopReplica.Properties.Resources.component;
+            this.buttonUpdate.Image = global::OnTopReplica.Properties.Resources.xiao_component;
             this.buttonUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonUpdate.Location = new System.Drawing.Point(235, 79);
             this.buttonUpdate.Name = "buttonUpdate";
