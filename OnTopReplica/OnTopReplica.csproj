@@ -299,6 +299,7 @@
     <None Include="Assets\reduce.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\window_opacity_new.png" />
     <None Include="Assets\xiao_wrench.png" />
     <None Include="Assets\xiao_delete.png" />
     <None Include="Assets\xiao_add.png" />
@@ -307,7 +308,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Assets\flag_danish.png" />
-    <None Include="Assets\71.png" />
+    <None Include="Assets\newicon.png" />
+    <None Include="Assets\regions_new.png" />
+    <None Include="Assets\desktop.png" />
+    <None Include="Assets\list.png" />
+    <Content Include="Assets\screenshot-icon.ico" />
     <Content Include="Assets\window_multiple16.ico" />
   </ItemGroup>
   <ItemGroup>

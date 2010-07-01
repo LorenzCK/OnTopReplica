@@ -74,9 +74,9 @@ namespace OnTopReplica.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap component {
+        internal static System.Drawing.Bitmap desktop {
             get {
-                object obj = ResourceManager.GetObject("component", resourceCulture);
+                object obj = ResourceManager.GetObject("desktop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,17 +116,17 @@ namespace OnTopReplica.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap list {
+            get {
+                object obj = ResourceManager.GetObject("list", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon main_icon {
             get {
                 object obj = ResourceManager.GetObject("main_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap ok {
-            get {
-                object obj = ResourceManager.GetObject("ok", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -186,6 +186,13 @@ namespace OnTopReplica.Properties {
             }
         }
         
+        internal static System.Drawing.Icon screenshot_icon {
+            get {
+                object obj = ResourceManager.GetObject("screenshot_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap thumbs_up {
             get {
                 object obj = ResourceManager.GetObject("thumbs_up", resourceCulture);
@@ -214,9 +221,9 @@ namespace OnTopReplica.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap window_opacity16 {
+        internal static System.Drawing.Bitmap window_opacity {
             get {
-                object obj = ResourceManager.GetObject("window_opacity16", resourceCulture);
+                object obj = ResourceManager.GetObject("window_opacity", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -238,6 +245,13 @@ namespace OnTopReplica.Properties {
         internal static System.Drawing.Bitmap xiao_add {
             get {
                 object obj = ResourceManager.GetObject("xiao_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap xiao_component {
+            get {
+                object obj = ResourceManager.GetObject("xiao_component", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
