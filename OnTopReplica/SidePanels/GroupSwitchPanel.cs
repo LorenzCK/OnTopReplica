@@ -27,6 +27,7 @@ namespace OnTopReplica.SidePanels {
             manager.Refresh(WindowManager.EnumerationMode.TaskWindows);
 
             var imageList = new ImageList();
+            imageList.ColorDepth = ColorDepth.Depth32Bit;
             foreach (var w in manager.Windows) {
                 var item = new ListViewItem(w.Title) {
                     Tag = w
