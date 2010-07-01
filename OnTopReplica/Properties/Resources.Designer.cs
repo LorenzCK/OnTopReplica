@@ -116,17 +116,17 @@ namespace OnTopReplica.Properties {
             }
         }
         
+        internal static System.Drawing.Icon icon_new {
+            get {
+                object obj = ResourceManager.GetObject("icon_new", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap list {
             get {
                 object obj = ResourceManager.GetObject("list", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Icon main_icon {
-            get {
-                object obj = ResourceManager.GetObject("main_icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -186,13 +186,6 @@ namespace OnTopReplica.Properties {
             }
         }
         
-        internal static System.Drawing.Icon screenshot_icon {
-            get {
-                object obj = ResourceManager.GetObject("screenshot_icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap thumbs_up {
             get {
                 object obj = ResourceManager.GetObject("thumbs_up", resourceCulture);
@@ -211,13 +204,6 @@ namespace OnTopReplica.Properties {
             get {
                 object obj = ResourceManager.GetObject("window_multiple16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Icon window_multiple161 {
-            get {
-                object obj = ResourceManager.GetObject("window_multiple161", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
             }
         }
         

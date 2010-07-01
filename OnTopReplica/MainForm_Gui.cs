@@ -40,7 +40,7 @@ namespace OnTopReplica {
 
         private int ChromeBorderVertical {
             get {
-                if (FormBorderStyle == FormBorderStyle.Sizable)
+                if (FormBorderStyle == _defaultBorderStyle)
                     return SystemInformation.FrameBorderSize.Height;
                 else
                     return 0;
@@ -49,7 +49,7 @@ namespace OnTopReplica {
 
         private int ChromeBorderHorizontal {
             get {
-                if (FormBorderStyle == FormBorderStyle.Sizable)
+                if (FormBorderStyle == _defaultBorderStyle)
                     return SystemInformation.FrameBorderSize.Width;
                 else
                     return 0;
@@ -121,7 +121,7 @@ namespace OnTopReplica {
             Point nuLoc = Screen.PrimaryScreen.WorkingArea.Location;
             nuLoc.Offset(40, 40);
             Location = nuLoc;
-            Size = MinimumSize;
+            Size = new Size(240, 220);
 
             this.Show();
             this.Activate();

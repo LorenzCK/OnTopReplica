@@ -24,9 +24,15 @@ namespace OnTopReplica {
         //Message pump extension
         MessagePumpManager _msgPumpManager = new MessagePumpManager();
 
+        FormBorderStyle _defaultBorderStyle;
+
         public MainForm() {
             InitializeComponent();
             KeepAspectRatio = false;
+
+            //Store default values
+            _defaultBorderStyle = FormBorderStyle;
+            _nonClickThroughKey = TransparencyKey;
 
             //Thumbnail panel
             _thumbnailPanel = new ThumbnailPanel {
@@ -257,7 +263,7 @@ namespace OnTopReplica {
 
                 CloseSidePanel(); //on switch, always hide side panels
                 GlassEnabled = !value;
-                FormBorderStyle = (value) ? FormBorderStyle.None : FormBorderStyle.Sizable;
+                FormBorderStyle = (value) ? FormBorderStyle.None : _defaultBorderStyle;
                 TopMost = !value;
                 HandleMouseMove = !value;
 
@@ -389,6 +395,7 @@ namespace OnTopReplica {
         #region Click-through
 
         bool _clickThrough = false;
+        Color _nonClickThroughKey;
 
         public bool ClickThroughEnabled {
             get {
@@ -400,7 +407,7 @@ namespace OnTopReplica {
                     Opacity = 0.75;
 
                 //Enable transparency and force as top-most
-                TransparencyKey = (value) ? Color.Black : Color.Transparent;
+                TransparencyKey = (value) ? Color.Black : _nonClickThroughKey;
                 if (value)
                     TopMost = true;
 
@@ -427,6 +434,15 @@ namespace OnTopReplica {
         public MessagePumpManager MessagePumpManager {
             get {
                 return _msgPumpManager;
+            }
+        }
+
+        /// <summary>
+        /// Gets the form's window list drop down menu.
+        /// </summary>
+        public ContextMenuStrip MenuWindows {
+            get {
+                return menuWindows;
             }
         }
 

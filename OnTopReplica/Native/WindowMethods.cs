@@ -70,20 +70,43 @@ namespace OnTopReplica.Native {
 
         public static IntPtr GetWindowLong(IntPtr hWnd, WindowLong i) {
             if (IntPtr.Size == 8) {
-                return GetWindowLongPtr64(hWnd, (int)i);
+                return GetWindowLongPtr64(hWnd, i);
             }
             else {
-                return new IntPtr(GetWindowLong32(hWnd, (int)i));
+                return new IntPtr(GetWindowLong32(hWnd, i));
             }
         }
 
         [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
-        static extern int GetWindowLong32(IntPtr hWnd, int nIndex);
+        static extern int GetWindowLong32(IntPtr hWnd, WindowLong nIndex);
 
         [DllImport("user32.dll", EntryPoint = "GetWindowLongPtr")]
-        static extern IntPtr GetWindowLongPtr64(IntPtr hWnd, int nIndex);
+        static extern IntPtr GetWindowLongPtr64(IntPtr hWnd, WindowLong nIndex);
 
-        public static IntPtr GetClassLongPtr(IntPtr hWnd, ClassLong i) {
+        public static IntPtr SetWindowLong(IntPtr hWnd, WindowLong i, IntPtr dwNewLong) {
+            if (IntPtr.Size == 8) {
+                return SetWindowLongPtr64(hWnd, i, dwNewLong);
+            }
+            else {
+                return new IntPtr(SetWindowLong32(hWnd, i, dwNewLong.ToInt32()));
+            }
+        }
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowLong")]
+        static extern int SetWindowLong32(IntPtr hWnd, WindowLong nIndex, int dwNewLong);
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr")]
+        static extern IntPtr SetWindowLongPtr64(IntPtr hWnd, WindowLong nIndex, IntPtr dwNewLong);
+
+        #region Class styles
+
+        [DllImport("user32.dll", EntryPoint = "GetClassLongPtrW")]
+        static extern IntPtr GetClassLong64(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll", EntryPoint = "GetClassLongW")]
+        static extern int GetClassLong32(IntPtr hWnd, int nIndex);
+
+        public static IntPtr GetClassLong(IntPtr hWnd, ClassLong i) {
             if (IntPtr.Size == 8) {
                 return GetClassLong64(hWnd, (int)i);
             }
@@ -92,12 +115,7 @@ namespace OnTopReplica.Native {
             }
         }
 
-        [DllImport("user32.dll", EntryPoint = "GetClassLongPtrW")]
-        static extern IntPtr GetClassLong64(IntPtr hWnd, int nIndex);
-
-        [DllImport("user32.dll", EntryPoint = "GetClassLongW")]
-        static extern int GetClassLong32(IntPtr hWnd, int nIndex);
-
+        #endregion
 
         [DllImport("user32.dll")]
         public static extern IntPtr GetMenu(IntPtr hwnd);
