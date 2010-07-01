@@ -42,10 +42,14 @@ namespace OnTopReplica {
         /// Run the registered message pump processors.
         /// </summary>
         /// <param name="msg">Message to process.</param>
-        public void PumpMessage(Message msg) {
+        /// <returns>True if the message has been handled internally.</returns>
+        public bool PumpMessage(ref Message msg) {
             foreach (var processor in _processors.Values) {
-                processor.Process(msg);
+                if (processor.Process(ref msg))
+                    return true;
             }
+
+            return false;
         }
 
         /// <summary>

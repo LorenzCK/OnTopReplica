@@ -57,7 +57,7 @@ namespace OnTopReplica.MessagePumpProcessors {
         /// <summary>
         /// Processes the message pump.
         /// </summary>
-        public override void Process(Message msg) {
+        public override bool Process(ref Message msg) {
             if (_active && msg.Msg == HookMethods.WM_SHELLHOOKMESSAGE) {
                 int hookCode = msg.WParam.ToInt32();
                 if (hookCode == HookMethods.HSHELL_WINDOWACTIVATED ||
@@ -67,6 +67,8 @@ namespace OnTopReplica.MessagePumpProcessors {
                     HandleForegroundWindowChange(activeHandle);
                 }
             }
+
+            return false;
         }
 
         private void HandleForegroundWindowChange(IntPtr activeWindow) {
