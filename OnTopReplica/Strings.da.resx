@@ -82,7 +82,6 @@ a:hover {
   </data>
   <data name="AskUpdate" xml:space="preserve">
     <value>Installer OnTopReplica {0}?</value>
-    <comment>{0} update version</comment>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
     <value>&amp;Annuller</value>
@@ -279,7 +278,6 @@ For at komme tilbage til normal tilstand, dobbeltklik på OnTopReplica ikonet i 
   </data>
   <data name="AskUpdateButtonOk" xml:space="preserve">
     <value>FortsætInstaller OnTopReplica</value>
-    <comment>{0} update version</comment>
   </data>
   <data name="ErrorDetailsAero" xml:space="preserve">
     <value>Detaljer om Windows Aero</value>
@@ -344,9 +342,6 @@ Du kan aktivere gennem klik senere.</value>
   </data>
   <data name="AskUpdateExpanded" xml:space="preserve">
     <value>Installeret version: {0}Tilgængelig version: {1}Download størrelse: {2} bytes</value>
-    <comment>{0} installed version number
-{1} online available version number
-{2} update size</comment>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Sprog</value>

@@ -219,7 +219,6 @@ Tuto aplikaci je možné spouštět pouze na systémech Windows Vista Home Premi
   </data>
   <data name="AskUpdate" xml:space="preserve">
     <value>Instalovat OnTopReplica {0}?</value>
-    <comment>{0} update version</comment>
   </data>
   <data name="AskUpdateButtonCancel" xml:space="preserve">
     <value>Zrušit aktualizaci
@@ -228,7 +227,6 @@ Aplikace OnTopReplica vás vyzve k aktualizaci při dalším startu.</value>
   <data name="AskUpdateButtonOk" xml:space="preserve">
     <value>Pokračovat
 Instalovat OnTopReplica {0}.</value>
-    <comment>{0} update version</comment>
   </data>
   <data name="AskUpdateContent" xml:space="preserve">
     <value>Nová verze bude automaticky stažena a nainstalována.</value>
@@ -237,9 +235,6 @@ Instalovat OnTopReplica {0}.</value>
     <value>Nainstalovaná verze: {0}
 Dostupná verze: {1}
 Velikost pro stažení: {2} bajtů</value>
-    <comment>{0} installed version number
-{1} online available version number
-{2} update size</comment>
   </data>
   <data name="AskUpdateTitle" xml:space="preserve">
     <value>Nové aktualizace jsou k dispozici</value>

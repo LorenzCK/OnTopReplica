@@ -427,6 +427,25 @@ namespace OnTopReplica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OnTopReplica cannot run on your platform.
+        ///The application is compatible with Windows Vista and 7..
+        /// </summary>
+        internal static string ErrorUnsupportedPlatform {
+            get {
+                return ResourceManager.GetString("ErrorUnsupportedPlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported Platform.
+        /// </summary>
+        internal static string ErrorUnsupportedPlatformTitle {
+            get {
+                return ResourceManager.GetString("ErrorUnsupportedPlatformTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to check for updates..
         /// </summary>
         internal static string ErrorUpdate {

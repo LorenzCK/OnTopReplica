@@ -225,7 +225,6 @@ Per farlo, clicca col tasto destro del mouse sul desktop e poi su Personalizza.<
   </data>
   <data name="AskUpdate" xml:space="preserve">
     <value>Installare OnTopReplica {0}?</value>
-    <comment>{0} update version</comment>
   </data>
   <data name="AskUpdateButtonCancel" xml:space="preserve">
     <value>Annulla aggiornamento
@@ -234,7 +233,6 @@ OnTopReplica si aggiornerà in un secondo momento.</value>
   <data name="AskUpdateButtonOk" xml:space="preserve">
     <value>Continua
 Installa OnTopReplica {0}.</value>
-    <comment>{0} update version</comment>
   </data>
   <data name="AskUpdateContent" xml:space="preserve">
     <value>La nuova versione sarà scaricata ed installata automaticamente.</value>
@@ -243,9 +241,6 @@ Installa OnTopReplica {0}.</value>
     <value>Versione installata: {0}
 Versione disponibile: {1}
 Grandezza: {2} bytes</value>
-    <comment>{0} installed version number
-{1} online available version number
-{2} update size</comment>
   </data>
   <data name="AskUpdateTitle" xml:space="preserve">
     <value>Aggiornamento disponibile</value>
@@ -293,7 +288,6 @@ Per tornare alla modalità normale in qualsiasi momento, attiva OnTopReplica (da
   </data>
   <data name="GroupSwitchModeWindows" xml:space="preserve">
     <value>Finestre</value>
-    <comment>Column Header of list, simply refers to available windows to be cloned</comment>
   </data>
   <data name="GroupSwitchModeTitle" xml:space="preserve">
     <value>Modalità Gruppo di finestre:</value>
