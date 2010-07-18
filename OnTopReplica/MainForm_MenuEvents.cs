@@ -195,6 +195,7 @@ namespace OnTopReplica {
                 };
             }
 
+            Program.Platform.OnFormStateChange(this);
             Invalidate();
         }
 

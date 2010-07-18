@@ -7,8 +7,8 @@ namespace OnTopReplica.Platforms {
     class Other : PlatformSupport {
         
         public override bool CheckCompatibility() {
-            //TODO: better error message
-            MessageBox.Show(Strings.ErrorNoDwm, Strings.ErrorNoDwmTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(Strings.ErrorNoDwm, Strings.ErrorNoDwmTitle,
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
 
