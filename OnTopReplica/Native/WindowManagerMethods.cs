@@ -10,6 +10,9 @@ namespace OnTopReplica.Native {
     static class WindowManagerMethods {
 
         [DllImport("user32.dll")]
+        public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
         public static extern IntPtr RealChildWindowFromPoint(IntPtr parent, NPoint point);
 
         [return: MarshalAs(UnmanagedType.Bool)]

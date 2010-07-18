@@ -11,15 +11,7 @@ namespace OnTopReplica.Platforms {
             DwmManager.SetExludeFromPeek(form, true);
             DwmManager.SetDisallowPeek(form, true);
 
-            //This hides the app from ALT+TAB, but when minimized the window is shrunk on the bottom, right above the task bar (ugly)
-            /*Native.WindowMethods.SetWindowLong(form.Handle, WindowMethods.WindowLong.ExStyle,
-                            (IntPtr)WindowMethods.WindowExStyles.ToolWindow);*/
-
-            //This adds the task bar item, but hiding/showing again adds it back to alt+tab
-            /*var list = (ITaskbarList)new CoTaskbarList();
-            list.HrInit();
-            list.AddTab(form.Handle);
-            list.ActivateTab(form.Handle);            */
+            SetWindowStyle(form);
         }
 
         public override void InitApp() {
@@ -28,8 +20,31 @@ namespace OnTopReplica.Platforms {
         }
 
         public override void HideForm(MainForm form) {
-            form.WindowState = FormWindowState.Minimized;
+            form.Opacity = 0;
         }
+
+        public override bool IsHidden(MainForm form) {
+            return (form.Opacity == 0.0);
+        }
+
+        public override void RestoreForm(MainForm form) {
+            if (form.Opacity == 0.0)
+                form.Opacity = 1.0;
+            form.Show();
+            SetWindowStyle(form);
+        }
+
+        public override void OnFormStateChange(MainForm form) {
+            SetWindowStyle(form);
+        }
+
+        private void SetWindowStyle(MainForm form) {
+            //This hides the app from ALT+TAB
+            //Note that when minimized, it will be shown as an (ugly) minimized tool window
+            Native.WindowMethods.SetWindowLong(form.Handle, WindowMethods.WindowLong.ExStyle,
+                (IntPtr)WindowMethods.WindowExStyles.ToolWindow);
+        }
+
 
     }
 }
