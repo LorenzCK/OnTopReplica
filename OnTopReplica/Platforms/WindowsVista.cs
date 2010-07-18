@@ -25,7 +25,6 @@ namespace OnTopReplica.Platforms {
             
             //Do not show in task bar, but display notify icon
             //NOTE: this effectively makes Windows ignore the Flip 3D policy set above (on Windows 7)
-            //      weird...
             form.ShowInTaskbar = false;
 
             //Install tray icon

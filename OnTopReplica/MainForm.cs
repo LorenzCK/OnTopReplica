@@ -69,6 +69,8 @@ namespace OnTopReplica {
             var hotKeyMgr = _msgPumpManager.Get<MessagePumpProcessors.HotKeyManager>();
             hotKeyMgr.RegisterHotKey(Native.HotKeyModifiers.Control | Native.HotKeyModifiers.Shift,
                                      Keys.O, new Native.HotKeyMethods.HotKeyHandler(HotKeyOpenHandler));
+            hotKeyMgr.RegisterHotKey(Native.HotKeyModifiers.Control | Native.HotKeyModifiers.Shift,
+                                     Keys.C, new Native.HotKeyMethods.HotKeyHandler(HotKeyCloneHandler));
         }
 
         #region Event override
@@ -114,6 +116,8 @@ namespace OnTopReplica {
             if (ClickThroughEnabled) {
                 ClickThroughEnabled = false;
             }
+
+            Program.Platform.RestoreForm(this);
         }
 
         protected override void OnDeactivate(EventArgs e) {
@@ -122,6 +126,7 @@ namespace OnTopReplica {
             //HACK: sometimes, even if TopMost is true, the window loses its "always on top" status.
             //  This is an attempt of a fix that probably won't work...
             if (!IsFullscreen) { //fullscreen mode doesn't use TopMost
+                TopMost = false;
                 TopMost = true;
             }
         }
@@ -247,12 +252,20 @@ namespace OnTopReplica {
             if (IsFullscreen)
                 IsFullscreen = false;
 
-            if (Visible && WindowState != FormWindowState.Minimized) {
+            if (Program.Platform.IsHidden(this)) {
                 Program.Platform.HideForm(this);
             }
             else {
                 EnsureMainFormVisible();
             }
+        }
+
+        void HotKeyCloneHandler() {
+            var handle = Win32Helper.GetCurrentForegroundWindow();
+            if (handle.Handle == this.Handle)
+                return;
+
+            SetThumbnail(handle, null);
         }
 
         #endregion
@@ -295,6 +308,8 @@ namespace OnTopReplica {
                 }
 
                 _isFullscreen = value;
+
+                Program.Platform.OnFormStateChange(this);
             }
         }
 
@@ -417,6 +432,8 @@ namespace OnTopReplica {
                 //Adjust opacity if fully opaque
                 if (value && Opacity == 1.0)
                     Opacity = 0.75;
+                if (!value)
+                    Opacity = 1.0;
 
                 //Enable transparency and force as top-most
                 TransparencyKey = (value) ? Color.Black : _nonClickThroughKey;

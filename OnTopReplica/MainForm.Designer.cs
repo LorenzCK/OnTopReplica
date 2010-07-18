@@ -31,6 +31,7 @@
             this.menuContextWindows = new System.Windows.Forms.ToolStripMenuItem();
             this.menuWindows = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fullSelectWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.switchToWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectRegionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +44,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.fullOpacityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuResize = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.doubleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,8 +69,6 @@
             this.italianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContextClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.fullSelectWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fullOpacityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.danskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFullscreenContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.enableClickthroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,7 +115,7 @@
             this.menuWindows.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.noneToolStripMenuItem});
             this.menuWindows.Name = "menuWindows";
-            this.menuWindows.OwnerItem = this.fullSelectWindowToolStripMenuItem;
+            this.menuWindows.OwnerItem = this.menuContextWindows;
             this.menuWindows.Size = new System.Drawing.Size(118, 26);
             this.menuWindows.Opening += new System.ComponentModel.CancelEventHandler(this.Menu_Windows_opening);
             // 
@@ -124,6 +124,15 @@
             this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
             this.noneToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.noneToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuWindowsNone;
+            // 
+            // fullSelectWindowToolStripMenuItem
+            // 
+            this.fullSelectWindowToolStripMenuItem.DropDown = this.menuWindows;
+            this.fullSelectWindowToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.list;
+            this.fullSelectWindowToolStripMenuItem.Name = "fullSelectWindowToolStripMenuItem";
+            this.fullSelectWindowToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.fullSelectWindowToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuWindows;
+            this.fullSelectWindowToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuWindowsTT;
             // 
             // switchToWindowToolStripMenuItem
             // 
@@ -195,7 +204,7 @@
             this.toolStripMenuItem3,
             this.toolStripMenuItem4});
             this.menuOpacity.Name = "menuOpacity";
-            this.menuOpacity.OwnerItem = this.fullOpacityToolStripMenuItem;
+            this.menuOpacity.OwnerItem = this.menuContextOpacity;
             this.menuOpacity.ShowCheckMargin = true;
             this.menuOpacity.ShowImageMargin = false;
             this.menuOpacity.Size = new System.Drawing.Size(154, 92);
@@ -238,6 +247,14 @@
             this.toolStripMenuItem4.Text = global::OnTopReplica.Strings.MenuOp25;
             this.toolStripMenuItem4.ToolTipText = global::OnTopReplica.Strings.MenuOp25TT;
             this.toolStripMenuItem4.Click += new System.EventHandler(this.Menu_Opacity_click);
+            // 
+            // fullOpacityToolStripMenuItem
+            // 
+            this.fullOpacityToolStripMenuItem.DropDown = this.menuOpacity;
+            this.fullOpacityToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.window_opacity;
+            this.fullOpacityToolStripMenuItem.Name = "fullOpacityToolStripMenuItem";
+            this.fullOpacityToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.fullOpacityToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuOpacity;
             // 
             // resizeToolStripMenuItem
             // 
@@ -438,23 +455,6 @@
             this.menuContextClose.Size = new System.Drawing.Size(168, 22);
             this.menuContextClose.Text = global::OnTopReplica.Strings.MenuClose;
             this.menuContextClose.Click += new System.EventHandler(this.Menu_Close_click);
-            // 
-            // fullSelectWindowToolStripMenuItem
-            // 
-            this.fullSelectWindowToolStripMenuItem.DropDown = this.menuWindows;
-            this.fullSelectWindowToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.list;
-            this.fullSelectWindowToolStripMenuItem.Name = "fullSelectWindowToolStripMenuItem";
-            this.fullSelectWindowToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.fullSelectWindowToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuWindows;
-            this.fullSelectWindowToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuWindowsTT;
-            // 
-            // fullOpacityToolStripMenuItem
-            // 
-            this.fullOpacityToolStripMenuItem.DropDown = this.menuOpacity;
-            this.fullOpacityToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.window_opacity;
-            this.fullOpacityToolStripMenuItem.Name = "fullOpacityToolStripMenuItem";
-            this.fullOpacityToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.fullOpacityToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuOpacity;
             // 
             // danskToolStripMenuItem
             // 

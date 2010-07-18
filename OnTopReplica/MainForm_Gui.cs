@@ -85,11 +85,8 @@ namespace OnTopReplica {
             ClickThroughEnabled = false;
             Opacity = 1.0;
 
-            //Ensure main form is shown
-            WindowState = FormWindowState.Normal;
-            Show();
-            Activate();
-            TopMost = true;
+            //Restore main form in platform with dependent method
+            Program.Platform.RestoreForm(this);
         }
 
         /// <summary>
