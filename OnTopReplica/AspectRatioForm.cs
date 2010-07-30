@@ -127,7 +127,7 @@ namespace OnTopReplica {
             //Ensure that the ClientSize of the form is always respected
             //(not ensured by the WM_SIZING message alone because of rounding errors and the chrome space)
             if (KeepAspectRatio) {
-                var newHeight = (int)((ClientSize.Width - ExtraPadding.Horizontal) / AspectRatio + ExtraPadding.Vertical);
+                var newHeight = (int)Math.Round(((ClientSize.Width - ExtraPadding.Horizontal) / AspectRatio) + ExtraPadding.Vertical);
                 ClientSize = new Size(ClientSize.Width, newHeight);
             }
         }

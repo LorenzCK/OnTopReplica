@@ -152,7 +152,7 @@ namespace OnTopReplica {
         protected override void OnMouseClick(MouseEventArgs e) {
             base.OnMouseClick(e);
 
-            //Same story as above...
+            //Same story as above (OnMouseDoubleClick)
             if (e.Button == System.Windows.Forms.MouseButtons.Right) {
                 OpenContextMenu();
             }
@@ -393,6 +393,30 @@ namespace OnTopReplica {
                     _thumbnailPanel.ConstrainToRegion = false;
                     SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize, true);
                 }
+
+                FixPositionAndSize();
+            }
+        }
+
+        const int FixMargin = 10;
+
+        /// <summary>
+        /// Fixes the form's position and size, ensuring it is fully displayed in the current screen.
+        /// </summary>
+        private void FixPositionAndSize() {
+            var screen = Screen.FromControl(this);
+
+            if (Width > screen.WorkingArea.Width) {
+                Width = screen.WorkingArea.Width - FixMargin;
+            }
+            if (Height > screen.WorkingArea.Height) {
+                Height = screen.WorkingArea.Height - FixMargin;
+            }
+            if (Location.X + Width > screen.WorkingArea.Right) {
+                Location = new Point(screen.WorkingArea.Right - Width - FixMargin, Location.Y);
+            }
+            if (Location.Y + Height > screen.WorkingArea.Bottom) {
+                Location = new Point(Location.X, screen.WorkingArea.Bottom - Height - FixMargin);
             }
         }
 

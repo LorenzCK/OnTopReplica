@@ -67,6 +67,13 @@ namespace OnTopReplica.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap clickforwarding {
+            get {
+                object obj = ResourceManager.GetObject("clickforwarding", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap close_new {
             get {
                 object obj = ResourceManager.GetObject("close_new", resourceCulture);
@@ -105,6 +112,20 @@ namespace OnTopReplica.Properties {
         internal static System.Drawing.Bitmap flag_usa {
             get {
                 object obj = ResourceManager.GetObject("flag_usa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap fullscreen {
+            get {
+                object obj = ResourceManager.GetObject("fullscreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap groupmode {
+            get {
+                object obj = ResourceManager.GetObject("groupmode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -235,6 +256,13 @@ namespace OnTopReplica.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap xiao_arrow {
+            get {
+                object obj = ResourceManager.GetObject("xiao_arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap xiao_component {
             get {
                 object obj = ResourceManager.GetObject("xiao_component", resourceCulture);
@@ -252,6 +280,13 @@ namespace OnTopReplica.Properties {
         internal static System.Drawing.Bitmap xiao_down {
             get {
                 object obj = ResourceManager.GetObject("xiao_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap xiao_help {
+            get {
+                object obj = ResourceManager.GetObject("xiao_help", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
