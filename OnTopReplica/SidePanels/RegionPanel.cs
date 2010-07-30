@@ -15,7 +15,11 @@ namespace OnTopReplica.SidePanels {
 					comboRegions.Items.Add(o);
 				}
 			}
+
+            _regionDrawnHandler = new ThumbnailPanel.RegionDrawnHandler(ThumbnailPanel_RegionDrawn);
 		}
+
+        ThumbnailPanel.RegionDrawnHandler _regionDrawnHandler;
 
         public override void OnFirstShown(MainForm form) {
             base.OnFirstShown(form);
@@ -25,13 +29,14 @@ namespace OnTopReplica.SidePanels {
                 SetRegion(form.SelectedThumbnailRegion.Value);
 
             form.ThumbnailPanel.DrawMouseRegions = true;
-            form.ThumbnailPanel.RegionDrawn += new ThumbnailPanel.RegionDrawnHandler(ThumbnailPanel_RegionDrawn);
+            form.ThumbnailPanel.RegionDrawn += _regionDrawnHandler;
         }
 
         public override void OnClosing(MainForm form) {
             base.OnClosing(form);
 
             form.ThumbnailPanel.DrawMouseRegions = false;
+            form.ThumbnailPanel.RegionDrawn -= _regionDrawnHandler;
         }
 
         void ThumbnailPanel_RegionDrawn(object sender, Rectangle region) {

@@ -10,10 +10,6 @@ namespace OnTopReplica {
         EventHandler RequestClosingHandler;
 
         const int SidePanelMargin = 1;
-        const int ScreenBorderMargin = 10;
-
-        bool _sidePanelDidMoveForm = false;
-        Point _sidePanelPreviousFormLocation;
 
         /// <summary>
         /// Opens a new side panel.
@@ -63,17 +59,7 @@ namespace OnTopReplica {
             );
 
             //Move window if needed
-            var screenCurr = Screen.FromControl(this);
-            int pRight = Location.X + Width + ScreenBorderMargin;
-            if (pRight >= screenCurr.Bounds.Width) {
-                _sidePanelPreviousFormLocation = Location;
-                _sidePanelDidMoveForm = true;
-
-                Location = new Point(screenCurr.WorkingArea.Width - Width - ScreenBorderMargin, Location.Y);
-            }
-            else {
-                _sidePanelDidMoveForm = false;
-            }
+            FixPositionAndSize();
 
             //Hook event listener
             if (RequestClosingHandler == null)
@@ -105,12 +91,6 @@ namespace OnTopReplica {
             );
             ExtraPadding = new Padding(0);
             _thumbnailPanel.Size = ClientSize;
-
-            //Move window back if needed
-            if (_sidePanelDidMoveForm) {
-                Location = _sidePanelPreviousFormLocation;
-                _sidePanelDidMoveForm = false;
-            }
         }
 
         void SidePanel_RequestClosing(object sender, EventArgs e) {

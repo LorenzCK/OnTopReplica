@@ -299,6 +299,11 @@
     <None Include="Assets\reduce.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\fullscreen.png" />
+    <None Include="Assets\clickforwarding.png" />
+    <None Include="Assets\groupmode.png" />
+    <Content Include="Assets\xiao_arrow.png" />
+    <None Include="Assets\xiao_help.png" />
     <None Include="Assets\window_opacity_new.png" />
     <None Include="Assets\xiao_wrench.png" />
     <None Include="Assets\xiao_delete.png" />
