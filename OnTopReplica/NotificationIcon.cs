@@ -26,7 +26,7 @@ namespace OnTopReplica {
                 new ToolStripMenuItem(Strings.MenuOpen, Resources.icon, TaskIconOpen_click) {
                     ToolTipText = Strings.MenuOpenTT,
                 },
-                new ToolStripMenuItem(Strings.MenuWindows, Resources.window16){
+                new ToolStripMenuItem(Strings.MenuWindows, Resources.list){
                     DropDown = Form.MenuWindows,
                     ToolTipText = Strings.MenuWindowsTT
                 },
