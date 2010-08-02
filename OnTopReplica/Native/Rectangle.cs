@@ -40,5 +40,12 @@ namespace OnTopReplica.Native {
         public System.Drawing.Rectangle ToRectangle() {
             return new System.Drawing.Rectangle(Left, Top, Right - Left, Bottom - Top);
         }
+
+        public System.Drawing.Size Size {
+            get {
+                return new System.Drawing.Size(Width, Height);
+            }
+        }
+
     }
 }

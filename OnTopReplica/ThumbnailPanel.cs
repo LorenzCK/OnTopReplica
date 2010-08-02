@@ -116,8 +116,12 @@ namespace OnTopReplica {
         /// </summary>
         public Size ThumbnailOriginalSize {
             get {
-                if (_thumbnail != null && !_thumbnail.IsInvalid)
-                    return (_regionEnabled) ? _regionCurrent.Size : _thumbnail.SourceSize;
+                if (_thumbnail != null && !_thumbnail.IsInvalid) {
+                    if (_regionEnabled)
+                        return _regionCurrent.Size;
+
+                    return _thumbnail.SourceSize;
+                }
                 else
                     throw new Exception(Strings.ErrorNoThumbnail);
             }
