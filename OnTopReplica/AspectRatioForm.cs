@@ -38,7 +38,7 @@ namespace OnTopReplica {
         /// <summary>
         /// Gets or sets the form's aspect ratio that will be kept automatically when resizing.
         /// </summary>
-        [Description("Determins this form's fixed aspect ratio."), Category("Appearance"), DefaultValue(1.0)]
+        [Description("Determines this form's fixed aspect ratio."), Category("Appearance"), DefaultValue(1.0)]
         public double AspectRatio {
             get {
                 return _aspectRatio;
@@ -170,7 +170,7 @@ namespace OnTopReplica {
                     rc.Top = rc.Bottom - (int)(width / AspectRatio) - ExtraPadding.Vertical - clientSizeConversionHeight;
                 }
 
-                Marshal.StructureToPtr(rc, m.LParam, true);
+                Marshal.StructureToPtr(rc, m.LParam, false);
             }
 
             base.WndProc(ref m);

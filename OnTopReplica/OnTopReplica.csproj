@@ -14,15 +14,15 @@
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>Assets\icon-new.ico</ApplicationIcon>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
     <TargetZone>Internet</TargetZone>
     <StartupObject>OnTopReplica.Program</StartupObject>
     <ExcludedPermissions>
     </ExcludedPermissions>
     <SignAssembly>false</SignAssembly>
-    <ManifestCertificateThumbprint>DB79D77572EF10838D6A2CECDDE738C6570E7995</ManifestCertificateThumbprint>
-    <ManifestKeyFile>OnTopReplica_TemporaryKey.pfx</ManifestKeyFile>
-    <SignManifests>true</SignManifests>
+    <ManifestCertificateThumbprint>A305A505E19CF40E069521C80C13AB3C900EDB7C</ManifestCertificateThumbprint>
+    <ManifestKeyFile>OnTopReplica_1_TemporaryKey.pfx</ManifestKeyFile>
+    <SignManifests>false</SignManifests>
     <TargetFrameworkSubset>
     </TargetFrameworkSubset>
     <FileUpgradeFlags>
@@ -44,11 +44,11 @@
     <TargetCulture>en</TargetCulture>
     <ProductName>OnTopReplica</ProductName>
     <PublisherName>Lorenz Cuno Klopfenstein</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>3.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>3.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -82,30 +82,10 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>OnTopReplica.exe.manifest</ApplicationManifest>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -179,25 +159,10 @@
     <Compile Include="Platforms\WindowsSeven.cs" />
     <Compile Include="Platforms\WindowsVista.cs" />
     <Compile Include="Platforms\WindowsXp.cs" />
-    <Compile Include="Strings.cs.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.cs.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.da.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.da.resx</DependentUpon>
-    </Compile>
     <Compile Include="Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.it.Designer.cs">
-      <DependentUpon>Strings.it.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="FocusedTextBox.cs">
       <SubType>Component</SubType>
@@ -255,6 +220,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="OnTopReplica.exe.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -275,6 +241,9 @@
     <Compile Include="ThumbnailPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Update\UpdateCheckCompletedEventArgs.cs" />
+    <Compile Include="Update\UpdateInformation.cs" />
+    <Compile Include="Update\UpdateManager.cs" />
     <Compile Include="Win32Helper.cs" />
     <Compile Include="WindowHandle.cs" />
     <Compile Include="WindowListHelper.cs" />
@@ -309,9 +278,6 @@
     <None Include="Assets\xiao_delete.png" />
     <None Include="Assets\xiao_add.png" />
     <None Include="Assets\xiao_ok.png" />
-    <None Include="OnTopReplica.exe.manifest">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Assets\flag_danish.png" />
     <None Include="Assets\newicon.png" />
     <None Include="Assets\regions_new.png" />
@@ -359,7 +325,6 @@
     <None Include="Assets\flag_czech.png" />
     <Content Include="Assets\icon.ico" />
     <None Include="Assets\regions.png" />
-    <None Include="OnTopReplica_TemporaryKey.pfx" />
     <None Include="Assets\x-oblique.png" />
     <None Include="Assets\xiao_up.png" />
     <None Include="Assets\xiao_down.png" />
@@ -373,6 +338,46 @@
     <None Include="Assets\icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <PublishFile Include="Assets\icon.ico">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Assets\screenshot-icon.ico">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Assets\window_multiple16.ico">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Assets\xiao_arrow.png">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
     <PublishFile Include="cs\OnTopReplica.resources">
       <Visible>False</Visible>
       <Group>

@@ -29,7 +29,6 @@
             this.themedLabel2 = new VistaControls.ThemeText.ThemedLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonReset = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.progressBar1 = new VistaControls.ProgressBar();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonExpander = new System.Windows.Forms.Button();
@@ -72,7 +71,6 @@
             this.panel1.BackgroundImage = global::OnTopReplica.Properties.Resources.back;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.buttonReset);
-            this.panel1.Controls.Add(this.buttonCancel);
             this.panel1.Controls.Add(this.progressBar1);
             this.panel1.Controls.Add(this.buttonUpdate);
             this.panel1.Controls.Add(this.buttonExpander);
@@ -95,19 +93,6 @@
             this.buttonReset.TabIndex = 14;
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.ResetClick);
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonCancel.Image = ((System.Drawing.Image)(resources.GetObject("buttonCancel.Image")));
-            this.buttonCancel.Location = new System.Drawing.Point(211, 79);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(23, 23);
-            this.buttonCancel.TabIndex = 3;
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Visible = false;
-            this.buttonCancel.Click += new System.EventHandler(this.Abort_click);
             // 
             // progressBar1
             // 
@@ -242,7 +227,6 @@
 		private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonUpdate;
-		private System.Windows.Forms.Button buttonCancel;
 		private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.Button buttonReset;
         private VistaControls.ProgressBar progressBar1;
