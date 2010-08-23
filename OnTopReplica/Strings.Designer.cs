@@ -213,7 +213,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install OnTopReplica {0}?.
+        ///   Looks up a localized string similar to Download OnTopReplica {0}?.
         /// </summary>
         internal static string AskUpdate {
             get {
@@ -232,7 +232,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proceed
+        ///   Looks up a localized string similar to Download
         ///Install OnTopReplica {0}..
         /// </summary>
         internal static string AskUpdateButtonOk {
@@ -242,7 +242,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The new version will be automatically downloaded and installed..
+        ///   Looks up a localized string similar to The new version can be downloaded and installed from the official website..
         /// </summary>
         internal static string AskUpdateContent {
             get {
@@ -252,8 +252,7 @@ namespace OnTopReplica {
         
         /// <summary>
         ///   Looks up a localized string similar to Installed version: {0}
-        ///Available version: {1}
-        ///Download size: {2} bytes.
+        ///Available version: {1}.
         /// </summary>
         internal static string AskUpdateExpanded {
             get {
@@ -325,7 +324,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;Desktop Composition&apos; is not enabled..
+        ///   Looks up a localized string similar to Desktop Composition&apos; is not enabled..
         /// </summary>
         internal static string ErrorDwmOff {
             get {
@@ -381,7 +380,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;Desktop Composition&apos; is not supported on your Operating System.
+        ///   Looks up a localized string similar to Desktop Composition&apos; is not supported on your Operating System.
         ///You must run this application on Windows Vista Home Premium or better..
         /// </summary>
         internal static string ErrorNoDwm {
@@ -427,25 +426,6 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OnTopReplica cannot run on your platform.
-        ///The application is compatible with Windows Vista and 7..
-        /// </summary>
-        internal static string ErrorUnsupportedPlatform {
-            get {
-                return ResourceManager.GetString("ErrorUnsupportedPlatform", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unsupported Platform.
-        /// </summary>
-        internal static string ErrorUnsupportedPlatformTitle {
-            get {
-                return ResourceManager.GetString("ErrorUnsupportedPlatformTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unable to check for updates..
         /// </summary>
         internal static string ErrorUpdate {
@@ -460,6 +440,15 @@ namespace OnTopReplica {
         internal static string ErrorUpdateContent {
             get {
                 return ResourceManager.GetString("ErrorUpdateContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnTopReplica was unable to check whether an updated version is available. Make sure you are connected to the Internet. If you are, the website may be temporarily down..
+        /// </summary>
+        internal static string ErrorUpdateContentGeneric {
+            get {
+                return ResourceManager.GetString("ErrorUpdateContentGeneric", resourceCulture);
             }
         }
         

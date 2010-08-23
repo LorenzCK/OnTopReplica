@@ -7,6 +7,7 @@ using VistaControls.Dwm;
 using VistaControls.TaskDialog;
 using System.Collections.Generic;
 using OnTopReplica.Native;
+using OnTopReplica.Update;
 
 namespace OnTopReplica {
 
@@ -17,10 +18,8 @@ namespace OnTopReplica {
         SidePanel _currentSidePanel = null;
         Panel _sidePanelContainer;
 
-        //Window manager
+        //Managers
         WindowManager _windowManager = new WindowManager();
-
-        //Message pump extension
         MessagePumpManager _msgPumpManager = new MessagePumpManager();
 
         FormBorderStyle _defaultBorderStyle;
@@ -58,10 +57,6 @@ namespace OnTopReplica {
                 menuContext, menuWindows, menuOpacity, menuResize, menuLanguages, menuFullscreenContext
             );
 
-            //Hook keyboard handler
-            this.KeyUp += new KeyEventHandler(Form_KeyUp);
-            this.KeyPreview = true;
-
             //Init message pump extensions
             _msgPumpManager.Initialize(this);
 
@@ -71,6 +66,10 @@ namespace OnTopReplica {
                                      Keys.O, new Native.HotKeyMethods.HotKeyHandler(HotKeyOpenHandler));
             hotKeyMgr.RegisterHotKey(Native.HotKeyModifiers.Control | Native.HotKeyModifiers.Shift,
                                      Keys.C, new Native.HotKeyMethods.HotKeyHandler(HotKeyCloneHandler));
+
+            //Hook keyboard handler
+            this.KeyUp += new KeyEventHandler(Form_KeyUp);
+            this.KeyPreview = true;
         }
 
         #region Event override
@@ -159,8 +158,11 @@ namespace OnTopReplica {
         }
 
         protected override void WndProc(ref Message m) {
-            if (_msgPumpManager.PumpMessage(ref m))
-                return;
+            if (_msgPumpManager != null) {
+                if (_msgPumpManager.PumpMessage(ref m)) {
+                    return;
+                }
+            }
 
             switch (m.Msg) {
                 case WM.NCRBUTTONUP:
@@ -252,7 +254,7 @@ namespace OnTopReplica {
             if (IsFullscreen)
                 IsFullscreen = false;
 
-            if (Program.Platform.IsHidden(this)) {
+            if (!Program.Platform.IsHidden(this)) {
                 Program.Platform.HideForm(this);
             }
             else {

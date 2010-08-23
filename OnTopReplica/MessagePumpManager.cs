@@ -19,22 +19,27 @@ namespace OnTopReplica {
         public void Initialize(MainForm form) {
             Form = form;
 
+            //Register window shell hook
+            if (!HookMethods.RegisterShellHookWindow(form.Handle)) {
+                Console.Error.WriteLine("Failed to register shell hook window.");
+            }
+            else {
+#if DEBUG
+                Console.WriteLine("Shell hook window registered successfully.");
+#endif
+            }
+
             foreach (var t in Assembly.GetExecutingAssembly().GetTypes()) {
                 if (typeof(IMessagePumpProcessor).IsAssignableFrom(t) && !t.IsAbstract) {
                     var instance = (IMessagePumpProcessor)Activator.CreateInstance(t);
                     instance.Initialize(form);
 
-                    _processors.Add(t, instance);
+                    _processors[t] = instance;
                     
 #if DEBUG
                     Console.WriteLine("Registered message pump processor: {0}", t);
 #endif
                 }
-            }
-
-            //Register window shell hook
-            if (!HookMethods.RegisterShellHookWindow(form.Handle)) {
-                Console.Error.WriteLine("Failed to register shell hook window.");
             }
         }
 
@@ -54,7 +59,7 @@ namespace OnTopReplica {
 
         /// <summary>
         /// Get the instance of a registered message pump processor.
-        /// Throw if instance not found.
+        /// Throws if instance not found.
         /// </summary>
         public T Get<T>() {
             return (T)_processors[typeof(T)];
@@ -64,7 +69,7 @@ namespace OnTopReplica {
 
         public void Dispose() {
             if (!HookMethods.DeregisterShellHookWindow(Form.Handle)) {
-                Console.Error.WriteLine("Failed to deregister sheel hook window.");
+                Console.Error.WriteLine("Failed to deregister shell hook window.");
             }
 
             foreach (var processor in _processors.Values) {
@@ -74,5 +79,7 @@ namespace OnTopReplica {
         }
 
         #endregion
+
     }
+
 }

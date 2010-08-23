@@ -72,7 +72,7 @@ namespace OnTopReplica {
         /// Gets whether the form is currently hidden or not.
         /// </summary>
         public virtual bool IsHidden(MainForm form) {
-            return form.Visible;
+            return !form.Visible;
         }
 
         /// <summary>
@@ -104,5 +104,6 @@ namespace OnTopReplica {
         }
 
         #endregion
+
     }
 }

@@ -8,6 +8,7 @@ using System.Deployment.Application;
 using System;
 using VistaControls.TaskDialog;
 using System.ComponentModel;
+using OnTopReplica.Update;
 
 namespace OnTopReplica {
 	public partial class AboutForm : GlassForm {
@@ -16,7 +17,6 @@ namespace OnTopReplica {
 			InitializeComponent();
 
             //Tooltips
-            toolTip.SetToolTip(buttonCancel, Strings.AboutButtonCancelTT);
             toolTip.SetToolTip(buttonExpander, Strings.AboutButtonExpanderTT);
             toolTip.SetToolTip(buttonReset, Strings.AboutButtonResetTT);
             toolTip.SetToolTip(buttonUpdate, Strings.AboutButtonUpdateTT);
@@ -33,12 +33,8 @@ namespace OnTopReplica {
             //Update title
 			themedLabel2.Text = "v" + Application.ProductVersion.Substring(0, 3);
 
-			//Create event handlers
-			handlerProgressChange = new DeploymentProgressChangedEventHandler(CurrentDeployment_CheckForUpdateProgressChanged);
-			handlerProgressComplete = new CheckForUpdateCompletedEventHandler(CurrentDeployment_CheckForUpdateCompleted);
-
-			handlerUpdateChange = new DeploymentProgressChangedEventHandler(deployment_UpdateProgressChanged);
-			handlerUpdateComplete = new AsyncCompletedEventHandler(deployment_UpdateCompleted);
+			//Add update event handling
+            _updateManager.UpdateCheckCompleted += new EventHandler<UpdateCheckCompletedEventArgs>(UpdateManager_UpdateCheckCompleted);
 		}
 
 		protected override void OnKeyUp(KeyEventArgs e) {
@@ -102,207 +98,44 @@ namespace OnTopReplica {
 
 		#region Updating
 
-		bool _isChecking = false;
-		bool _isUpdating = false;
+        UpdateManager _updateManager = new UpdateManager();
 
 		private void Update_click(object sender, System.EventArgs e) {
-			ApplicationDeployment deployment = null;
-			try {
-				deployment = ApplicationDeployment.CurrentDeployment;
-			}
-			catch (InvalidDeploymentException ex) {
-				var dlg = new TaskDialog(Strings.ErrorUpdate, Strings.ErrorGenericTitle, Strings.ErrorUpdateContent);
-				dlg.EnableHyperlinks = true;
-				dlg.CommonIcon = TaskDialogIcon.Stop;
-				dlg.CommonButtons = TaskDialogButton.Close;
-				dlg.ExpandedControlText = Strings.ErrorDetailButton;
-				dlg.ExpandedInformation = ex.Message;
-				dlg.HyperlinkClick += new EventHandler<HyperlinkEventArgs>(dlg_HyperlinkClick);
-				dlg.Show(this);
-
-				return;
-			}
-			catch(Exception ex) {
-				ShowGenericError(Strings.ErrorGenericTitle, Strings.ErrorUpdate, ex);
-
-				return;
-			}
-
-			CheckForUpdate(deployment);
+            CheckForUpdate();
 		}
 
-		private void Abort_click(object sender, EventArgs e) {
-			StopUpdate();
-		}
+        delegate void GuiAction();
 
-		void dlg_HyperlinkClick(object sender, HyperlinkEventArgs e) {
-			Process.Start(e.Url);
-		}
+        void UpdateManager_UpdateCheckCompleted(object sender, UpdateCheckCompletedEventArgs e) {
+            Invoke(new GuiAction(() => {
+                if (e.Success) {
+                    _updateManager.HandleUpdateCheck(this, e.Information, true);
+                }
+                else {
+                    var dlg = new TaskDialog(Strings.ErrorUpdate, Strings.ErrorUpdate, Strings.ErrorUpdateContentGeneric) {
+                        CommonIcon = TaskDialogIcon.Stop,
+                        CommonButtons = TaskDialogButton.OK
+                    };
+                    dlg.Show(this);
+                }
 
-		public void CheckForUpdate(ApplicationDeployment deployment) {
-			//Add event handlers
-			deployment.CheckForUpdateProgressChanged += handlerProgressChange;
-			deployment.CheckForUpdateCompleted += handlerProgressComplete;
+                UpdateStopped();
+            }));
+        }
 
+		public void CheckForUpdate() {
 			//Update GUI
 			buttonUpdate.Visible = false;
 			progressBar1.Visible = true;
-			progressBar1.Value = 0;
-			buttonCancel.Visible = true;
+            progressBar1.Value = 50;
 
-			_isChecking = true;
-
-			try {
-				deployment.CheckForUpdateAsync();
-			}
-			catch (Exception ex) {
-				ShowGenericError(Strings.ErrorGenericTitle, Strings.ErrorUpdate, ex);
-
-				StopUpdate();
-			}
+            _updateManager.CheckForUpdate();
 		}
 
-		public void InstallUpdate(ApplicationDeployment deployment) {
-			//Add event handlers
-			deployment.UpdateProgressChanged += handlerUpdateChange;
-			deployment.UpdateCompleted += handlerUpdateComplete;
-
-			//Update GUI
-			buttonUpdate.Visible = false;
-			progressBar1.Visible = true;
-			progressBar1.Value = 0;
-			buttonCancel.Visible = true;
-
-			_isUpdating = true;
-
-			try {
-				deployment.UpdateAsync();
-			}
-			catch (Exception ex) {
-				ShowGenericError(Strings.ErrorGenericTitle, Strings.ErrorUpdate, ex);
-
-				StopUpdate();
-			}
-		}
-
-		void StopUpdate() {
+		void UpdateStopped() {
 			//Reset UI
 			progressBar1.Visible = false;
-			buttonCancel.Visible = false;
 			buttonUpdate.Visible = true;
-
-			try {
-				ApplicationDeployment deployment = ApplicationDeployment.CurrentDeployment;
-
-				//Remove all handlers
-				deployment.CheckForUpdateProgressChanged -= handlerProgressChange;
-				deployment.CheckForUpdateCompleted -= handlerProgressComplete;
-
-				//Abort anything
-				if (_isChecking)
-					deployment.CheckForUpdateAsyncCancel();
-				if (_isUpdating)
-					deployment.UpdateAsyncCancel();
-			}
-			catch {
-				return;
-			}
-			finally {
-				_isChecking = false;
-				_isUpdating = false;
-			}
-		}
-
-		DeploymentProgressChangedEventHandler handlerProgressChange;
-		CheckForUpdateCompletedEventHandler handlerProgressComplete;
-
-		void CurrentDeployment_CheckForUpdateProgressChanged(object sender, DeploymentProgressChangedEventArgs e) {
-			progressBar1.Value = e.ProgressPercentage;
-		}
-
-		void CurrentDeployment_CheckForUpdateCompleted(object sender, CheckForUpdateCompletedEventArgs e) {
-			progressBar1.Value = 100;
-			_isChecking = false;
-
-			if (e.Error != null) {
-				ShowGenericError(Strings.ErrorGenericTitle, Strings.ErrorUpdate, e.Error);
-
-				StopUpdate();
-				return;
-			}
-
-			if (e.Cancelled)
-				//Already was aborted
-				return;
-
-			ApplicationDeployment deployment = null;
-			try {
-				deployment = ApplicationDeployment.CurrentDeployment;
-			}
-			catch {
-				//Internal (weird?) error, simply abort
-				StopUpdate();
-				return;
-			}
-
-			if (e.UpdateAvailable) {
-				//Install right away if required
-				if (e.IsUpdateRequired)
-					InstallUpdate(deployment);
-
-				//Ask user
-				var dlg = new TaskDialog(string.Format(Strings.AskUpdate, e.AvailableVersion.ToString()), Strings.AskUpdateTitle, Strings.AskUpdateContent);
-				dlg.CommonIcon = TaskDialogIcon.Information;
-				dlg.UseCommandLinks = true;
-				dlg.CustomButtons = new CustomButton[] {
-					new CustomButton(Result.OK, string.Format(Strings.AskUpdateButtonOk, e.AvailableVersion.ToString())),
-					new CustomButton(Result.Cancel, Strings.AskUpdateButtonCancel)
-				};
-				dlg.ExpandedInformation = string.Format(Strings.AskUpdateExpanded, Application.ProductVersion, e.AvailableVersion.ToString(), e.UpdateSizeBytes);
-				dlg.ExpandedControlText = Strings.ErrorDetailButton;
-
-				if (dlg.Show(this).CommonButton == Result.OK)
-					InstallUpdate(deployment);
-				else
-					StopUpdate();
-			}
-			else {
-				var dlg = new TaskDialog(Strings.InfoUpToDate, Strings.InfoUpToDateTitle);
-				dlg.CustomIcon = Icon.FromHandle(Resources.thumbs_up.GetHicon());
-				dlg.CommonButtons = TaskDialogButton.Close;
-				dlg.Show(this);
-
-				StopUpdate();
-			}
-		}
-
-		DeploymentProgressChangedEventHandler handlerUpdateChange;
-		AsyncCompletedEventHandler handlerUpdateComplete;
-
-		void deployment_UpdateProgressChanged(object sender, DeploymentProgressChangedEventArgs e) {
-			progressBar1.Value = e.ProgressPercentage;
-		}
-
-		void deployment_UpdateCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e) {
-			progressBar1.Value = 100;
-			_isUpdating = false;
-
-			if (e.Error != null) {
-				ShowGenericError(Strings.ErrorGenericTitle, Strings.ErrorUpdate, e.Error);
-
-				StopUpdate();
-				return;
-			}
-
-			if (e.Cancelled)
-				return;
-
-			var dlg = new TaskDialog(Strings.InfoUpdated, Strings.InfoUpdatedTitle, Strings.InfoUpdatedContent);
-			dlg.CustomIcon = Icon.FromHandle(Resources.thumbs_up.GetHicon());
-			dlg.CommonButtons = TaskDialogButton.Close;
-			dlg.Show(this);
-
-			StopUpdate();
 		}
 
 		#endregion

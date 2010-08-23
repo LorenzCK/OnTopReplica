@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Drawing;
 using System.IO;
 using VistaControls.TaskDialog;
+using OnTopReplica.Update;
 
 namespace OnTopReplica {
     
@@ -16,6 +17,10 @@ namespace OnTopReplica {
 
         static CultureInfo _languageChangeCode = Settings.Default.Language;
 
+        static UpdateManager _updateManager;
+
+        static MainForm _mainForm;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -24,20 +29,25 @@ namespace OnTopReplica {
             //Hook abort handler
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
             //Initialize and check for platform support
             Platform = PlatformSupport.Create();
             if (!Platform.CheckCompatibility())
                 return;
             Platform.InitApp();
 
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             //Update settings if needed
             if (Settings.Default.MustUpdate) {
                 Settings.Default.Upgrade();
                 Settings.Default.MustUpdate = false;
             }
+            
+            //Start update request
+            _updateManager = new UpdateManager();
+            _updateManager.UpdateCheckCompleted += new EventHandler<UpdateCheckCompletedEventArgs>(UpdateCheckCompleted);
+            _updateManager.CheckForUpdate();
 
             bool mustReloadForm = false;
             Point reloadLocation = new Point();
@@ -49,23 +59,39 @@ namespace OnTopReplica {
                 Settings.Default.Language = _languageChangeCode;
                 _languageChangeCode = null;
 
-                Form form = new MainForm();
+                _mainForm = new MainForm();
                 if (mustReloadForm) {
-                    form.Location = reloadLocation;
-                    form.Size = reloadSize;
+                    _mainForm.Location = reloadLocation;
+                    _mainForm.Size = reloadSize;
                 }
 
-                Application.Run(form);
+                Application.Run(_mainForm);
 
                 //Enable reloading on next loop
                 mustReloadForm = true;
-                reloadLocation = form.Location;
-                reloadSize = form.Size;
+                reloadLocation = _mainForm.Location;
+                reloadSize = _mainForm.Size;
             }
             while (_languageChangeCode != null);
 
             //Persist settings
             Settings.Default.Save();
+        }
+
+        delegate void GuiAction();
+
+        static void UpdateCheckCompleted(object sender, UpdateCheckCompletedEventArgs e) {
+            //Budy waiting for form (ugly)
+            while (_mainForm == null || !_mainForm.IsHandleCreated) ;
+
+            _mainForm.Invoke(new GuiAction(() => {
+                if (e.Success) {
+                    _updateManager.HandleUpdateCheck(_mainForm, e.Information, false);
+                }
+                else {
+                    Console.Error.WriteLine("Failed to check for updates: {0}", e.Error);
+                }
+            }));
         }
 
         /// <summary>

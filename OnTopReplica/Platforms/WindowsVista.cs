@@ -25,6 +25,7 @@ namespace OnTopReplica.Platforms {
             
             //Do not show in task bar, but display notify icon
             //NOTE: this effectively makes Windows ignore the Flip 3D policy set above (on Windows 7)
+            //NOTE: this also makes HotKey registration critically fail on Windows 7
             form.ShowInTaskbar = false;
 
             //Install tray icon
