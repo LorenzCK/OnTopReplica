@@ -21,6 +21,7 @@ namespace OnTopReplica {
         //Managers
         WindowManager _windowManager = new WindowManager();
         MessagePumpManager _msgPumpManager = new MessagePumpManager();
+        UpdateManager _updateManager = new UpdateManager();
 
         FormBorderStyle _defaultBorderStyle;
 
@@ -72,6 +73,19 @@ namespace OnTopReplica {
             this.KeyPreview = true;
         }
 
+        delegate void GuiAction();
+
+        void UpdateManager_CheckCompleted(object sender, UpdateCheckCompletedEventArgs e) {
+            this.Invoke(new GuiAction(() => {
+                if (e.Success) {
+                    _updateManager.HandleUpdateCheck(this, e.Information, false);
+                }
+                else {
+                    Console.WriteLine("Failed to check for updates: {0}", e.Error);
+                }
+            }));
+        }
+
         #region Event override
 
         protected override CreateParams CreateParams {
@@ -92,6 +106,10 @@ namespace OnTopReplica {
 
             //Glassify window
             GlassEnabled = true;
+
+            //Check for updates
+            _updateManager.UpdateCheckCompleted += new EventHandler<UpdateCheckCompletedEventArgs>(UpdateManager_CheckCompleted);
+            _updateManager.CheckForUpdate();
         }
 
         protected override void OnClosing(CancelEventArgs e) {

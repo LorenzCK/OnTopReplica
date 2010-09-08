@@ -127,7 +127,6 @@ namespace OnTopReplica {
 			//Update GUI
 			buttonUpdate.Visible = false;
 			progressBar1.Visible = true;
-            progressBar1.Value = 50;
 
             _updateManager.CheckForUpdate();
 		}

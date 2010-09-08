@@ -8,6 +8,7 @@ using System.Reflection;
 using VistaControls.TaskDialog;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace OnTopReplica.Update {
     
@@ -16,29 +17,25 @@ namespace OnTopReplica.Update {
         const string UpdateManifestUrl = "http://www.klopfenstein.net/public/Uploads/ontopreplica/update.xml";
 
         public void CheckForUpdate() {
-            //Build web request
-            var request = (HttpWebRequest)HttpWebRequest.Create(UpdateManifestUrl);
-            request.AllowAutoRedirect = true;
-            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-            request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(o => {
+                //Build web request
+                var request = (HttpWebRequest)HttpWebRequest.Create(UpdateManifestUrl);
+                request.AllowAutoRedirect = true;
+                request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+                request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
 
-            //Begin async request...
-            request.BeginGetResponse(new AsyncCallback(EndCheckForUpdate), request);
-        }
+                try {
+                    //Begin request
+                    var response = request.GetResponse();
+                    var info = UpdateInformation.Deserialize(response.GetResponseStream());
 
-        private void EndCheckForUpdate(IAsyncResult result) {
-            HttpWebRequest request = (HttpWebRequest)result.AsyncState;
-
-            try {
-                var response = request.EndGetResponse(result);
-                var info = UpdateInformation.Deserialize(response.GetResponseStream());
-
-                OnUpdateCheckSuccess(info);
-            }
-            catch (Exception ex) {
-                OnUpdateCheckError(ex);
-                return;
-            }
+                    OnUpdateCheckSuccess(info);
+                }
+                catch (Exception ex) {
+                    OnUpdateCheckError(ex);
+                    return;
+                }
+            }));
         }
 
         public event EventHandler<UpdateCheckCompletedEventArgs> UpdateCheckCompleted;
@@ -67,7 +64,7 @@ namespace OnTopReplica.Update {
         /// Handles the results of an update check. Must be called from main GUI thread.
         /// </summary>
         /// <param name="information">The retrieved update information.</param>
-        /// <param name="verbose">Determines if the lack of updated should be notified to the user.</param>
+        /// <param name="verbose">Determines if the lack of updates should be notified to the user.</param>
         public void HandleUpdateCheck(Form parent, UpdateInformation information, bool verbose) {
             if (information == null)
                 return;

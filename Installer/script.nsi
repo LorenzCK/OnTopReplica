@@ -14,6 +14,7 @@ RequestExecutionLevel user
 !define START_LINK_RUN "$STARTMENU\Programs\OnTopReplica\OnTopReplica.lnk"
 !define START_LINK_UNINSTALLER "$STARTMENU\Programs\OnTopReplica\Uninstall OnTopReplica.lnk"
 !define UNINSTALLER_NAME "OnTopReplica-Uninstall.exe"
+!define WEBSITE_LINK "http://www.klopfenstein.net/lorenz.aspx/ontopreplica"
 
 # GRAPHICS
 !define MUI_ICON "..\OnTopReplica\Assets\icon-new.ico"
@@ -51,12 +52,18 @@ RequestExecutionLevel user
 Function RegisterApplication
 	;Register uninstaller into Add/Remove panel (for local user only)
 	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayName" "OnTopReplica"
-	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayIcon" "$INSTDIR\${UNINSTALLER_NAME}"
+	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayIcon" "$\"$INSTDIR\OnTopReplica.exe$\""
 	WriteRegStr HKCU "${REG_UNINSTALL}" "Publisher" "Lorenz Cuno Klopfenstein"
-	WriteRegStr HKCU "${REG_UNINSTALL}" "InstallSource" "$EXEDIR\"
+	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayVersion" "3.1.0.0"
+	WriteRegDWord HKCU "${REG_UNINSTALL}" "EstimatedSize" 800 ;KB
+	WriteRegStr HKCU "${REG_UNINSTALL}" "HelpLink" "${WEBSITE_LINK}"
+	WriteRegStr HKCU "${REG_UNINSTALL}" "URLInfoAbout" "${WEBSITE_LINK}"
+	WriteRegStr HKCU "${REG_UNINSTALL}" "InstallLocation" "$\"$INSTDIR$\""
+	WriteRegStr HKCU "${REG_UNINSTALL}" "InstallSource" "$\"$EXEDIR$\""
 	WriteRegDWord HKCU "${REG_UNINSTALL}" "NoModify" 1
 	WriteRegDWord HKCU "${REG_UNINSTALL}" "NoRepair" 1
-	WriteRegStr HKCU "${REG_UNINSTALL}" "UninstallString" "$INSTDIR\${UNINSTALLER_NAME}"
+	WriteRegStr HKCU "${REG_UNINSTALL}" "UninstallString" "$\"$INSTDIR\${UNINSTALLER_NAME}$\""
+	WriteRegStr HKCU "${REG_UNINSTALL}" "Comments" "Uninstalls OnTopReplica."
 	
 	;Links
 	SetShellVarContext current

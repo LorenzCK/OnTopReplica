@@ -44,11 +44,6 @@ namespace OnTopReplica {
                 Settings.Default.MustUpdate = false;
             }
             
-            //Start update request
-            _updateManager = new UpdateManager();
-            _updateManager.UpdateCheckCompleted += new EventHandler<UpdateCheckCompletedEventArgs>(UpdateCheckCompleted);
-            _updateManager.CheckForUpdate();
-
             bool mustReloadForm = false;
             Point reloadLocation = new Point();
             Size reloadSize = new Size();
@@ -76,22 +71,6 @@ namespace OnTopReplica {
 
             //Persist settings
             Settings.Default.Save();
-        }
-
-        delegate void GuiAction();
-
-        static void UpdateCheckCompleted(object sender, UpdateCheckCompletedEventArgs e) {
-            //Budy waiting for form (ugly)
-            while (_mainForm == null || !_mainForm.IsHandleCreated) ;
-
-            _mainForm.Invoke(new GuiAction(() => {
-                if (e.Success) {
-                    _updateManager.HandleUpdateCheck(_mainForm, e.Information, false);
-                }
-                else {
-                    Console.Error.WriteLine("Failed to check for updates: {0}", e.Error);
-                }
-            }));
         }
 
         /// <summary>
