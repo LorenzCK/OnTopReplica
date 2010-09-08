@@ -4,6 +4,9 @@ using System.Text;
 
 namespace OnTopReplica {
 
+    /// <summary>
+    /// Poor man's LINQ.
+    /// </summary>
     static class EnumerationExtensions {
 
         public static bool Contains<T>(IEnumerable<T> collection, T value){
