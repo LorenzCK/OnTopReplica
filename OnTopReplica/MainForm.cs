@@ -106,6 +106,10 @@ namespace OnTopReplica {
 
             //Glassify window
             GlassEnabled = true;
+        }
+
+        protected override void OnHandleCreated(EventArgs e) {
+            base.OnHandleCreated(e);
 
             //Check for updates
             _updateManager.UpdateCheckCompleted += new EventHandler<UpdateCheckCompletedEventArgs>(UpdateManager_CheckCompleted);
