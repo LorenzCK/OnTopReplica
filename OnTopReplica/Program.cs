@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using VistaControls.TaskDialog;
 using OnTopReplica.Update;
+using System.Reflection;
 
 namespace OnTopReplica {
     
@@ -106,6 +107,7 @@ namespace OnTopReplica {
                     sw.WriteLine("Last exception:");
                     sw.WriteLine(e.ExceptionObject.ToString());
                     sw.WriteLine();
+                    sw.WriteLine("OnTopReplica v. {0}", Assembly.GetEntryAssembly().GetName().Version);
                     sw.WriteLine("OS: {0}", Environment.OSVersion.ToString());
                     sw.WriteLine(".NET: {0}", Environment.Version.ToString());
                     sw.WriteLine("Aero DWM: {0}", VistaControls.OsSupport.IsCompositionEnabled);
