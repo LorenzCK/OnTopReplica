@@ -39,10 +39,12 @@ namespace OnTopReplica.Platforms {
         }
 
         private void SetWindowStyle(MainForm form) {
-            //This hides the app from ALT+TAB
-            //Note that when minimized, it will be shown as an (ugly) minimized tool window
-            Native.WindowMethods.SetWindowLong(form.Handle, WindowMethods.WindowLong.ExStyle,
-                (IntPtr)WindowMethods.WindowExStyles.ToolWindow);
+            if (!form.IsFullscreen) {
+                //This hides the app from ALT+TAB
+                //Note that when minimized, it will be shown as an (ugly) minimized tool window
+                Native.WindowMethods.SetWindowLong(form.Handle, WindowMethods.WindowLong.ExStyle,
+                    (IntPtr)WindowMethods.WindowExStyles.ToolWindow);
+            }
         }
 
 
