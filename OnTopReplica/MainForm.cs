@@ -122,12 +122,14 @@ namespace OnTopReplica {
             base.OnClosing(e);
         }
 
+        Margins fullMargins = new Margins(-1);
+
         protected override void OnResize(EventArgs e) {
             base.OnResize(e);
 
             this.GlassMargins = (_currentSidePanel != null) ?
                 new Margins(ClientSize.Width - _sidePanelContainer.Width, 0, 0, 0) :
-                new Margins(-1);
+                fullMargins;
         }
 
         protected override void OnActivated(EventArgs e) {
