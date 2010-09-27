@@ -68,8 +68,7 @@ namespace OnTopReplica {
             hotKeyMgr.RegisterHotKey(Native.HotKeyModifiers.Control | Native.HotKeyModifiers.Shift,
                                      Keys.C, new Native.HotKeyMethods.HotKeyHandler(HotKeyCloneHandler));
 
-            //Hook keyboard handler
-            this.KeyUp += new KeyEventHandler(Form_KeyUp);
+            //Set to Key event preview
             this.KeyPreview = true;
         }
 
@@ -211,7 +210,7 @@ namespace OnTopReplica {
 
                 case WM.NCHITTEST:
                     //Make transparent to hit-testing if in click through mode
-                    if (ClickThroughEnabled) {
+                    if (ClickThroughEnabled && (ModifierKeys & Keys.Alt) != Keys.Alt) {
                         m.Result = (IntPtr)HT.TRANSPARENT;
                         return;
                     }
@@ -227,7 +226,9 @@ namespace OnTopReplica {
 
         #region Keyboard event handling
 
-        void Form_KeyUp(object sender, KeyEventArgs e) {
+        protected override void OnKeyUp(KeyEventArgs e) {
+            base.OnKeyUp(e);
+
             //ALT
             if (e.Modifiers == Keys.Alt) {
                 if (e.KeyCode == Keys.Enter) {

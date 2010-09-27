@@ -139,11 +139,12 @@ namespace OnTopReplica {
         protected override void WndProc(ref Message m) {
             base.WndProc(ref m);
 
-            //Make transparent to hit-testing if clicks must not be registered
-            if (m.Msg == WM.NCHITTEST && m.Result.ToInt32() == HT.CLIENT &&
-                !DrawMouseRegions && !ReportThumbnailClicks) {
-                
-                m.Result = new IntPtr(HT.TRANSPARENT);
+            //Check whether this is a hit-test on "client" surface
+            if (m.Msg == WM.NCHITTEST && m.Result.ToInt32() == HT.CLIENT) {
+                //Check whether clicks must be reported
+                if(!DrawMouseRegions && !ReportThumbnailClicks /*&& !InputMethods.IsKeyPressed(VirtualKeyState.VK_SHIFT)*/){
+                    m.Result = new IntPtr(HT.TRANSPARENT);
+                }
             }
         }
 
@@ -310,7 +311,7 @@ namespace OnTopReplica {
 		}
 
 		protected override void OnMouseUp(MouseEventArgs e) {
-			if (_drawMouseRegions && e.Button == MouseButtons.Left) {
+			if (DrawMouseRegions && e.Button == MouseButtons.Left) {
                 //Region completed
 				_drawingRegion = false;
                 _drawingSuspended = false;
