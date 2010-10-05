@@ -46,7 +46,7 @@ namespace OnTopReplica.SidePanels {
         public override void OnClosing(MainForm form) {
             base.OnClosing(form);
 
-            if (_enableOnClose) {
+            if (_enableOnClose && listWindows.SelectedItems.Count > 0) {
                 List<WindowHandle> ret = new List<WindowHandle>();
                 foreach (ListViewItem i in listWindows.SelectedItems) {
                     ret.Add((WindowHandle)i.Tag);
