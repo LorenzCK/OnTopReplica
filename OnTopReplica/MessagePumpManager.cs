@@ -4,6 +4,7 @@ using System.Text;
 using System.Reflection;
 using System.Windows.Forms;
 using OnTopReplica.Native;
+using OnTopReplica.MessagePumpProcessors;
 
 namespace OnTopReplica {
     class MessagePumpManager : IDisposable {
@@ -11,6 +12,15 @@ namespace OnTopReplica {
         Dictionary<Type, IMessagePumpProcessor> _processors = new Dictionary<Type, IMessagePumpProcessor>();
 
         public MainForm Form { get; private set; }
+
+        private void Register(IMessagePumpProcessor processor, MainForm form) {
+            _processors[processor.GetType()] = processor;
+            processor.Initialize(form);
+
+#if DEBUG
+            Console.WriteLine("Registered message pump processor: {0}", processor.GetType());
+#endif
+        }
 
         /// <summary>
         /// Instantiates all message pump processors and registers them on the main form.
@@ -29,18 +39,10 @@ namespace OnTopReplica {
 #endif
             }
 
-            foreach (var t in Assembly.GetExecutingAssembly().GetTypes()) {
-                if (typeof(IMessagePumpProcessor).IsAssignableFrom(t) && !t.IsAbstract) {
-                    var instance = (IMessagePumpProcessor)Activator.CreateInstance(t);
-                    instance.Initialize(form);
-
-                    _processors[t] = instance;
-                    
-#if DEBUG
-                    Console.WriteLine("Registered message pump processor: {0}", t);
-#endif
-                }
-            }
+            //Register message pump processors
+            Register(new WindowKeeper(), form);
+            Register(new HotKeyManager(), form);
+            Register(new GroupSwitchManager(), form);
         }
 
         /// <summary>
