@@ -124,7 +124,6 @@
     <Compile Include="MessagePumpProcessors\GroupSwitchManager.cs" />
     <Compile Include="IMessagePumpProcessor.cs" />
     <Compile Include="MessagePumpProcessors\BaseMessagePumpProcessor.cs" />
-    <None Include="MessagePumpProcessors\TitleSetter.cs" />
     <Compile Include="MessagePumpProcessors\WindowKeeper.cs" />
     <Compile Include="Native\ErrorMethods.cs" />
     <Compile Include="Native\HookMethods.cs" />
@@ -149,6 +148,7 @@
     <Compile Include="SidePanels\GroupSwitchPanel.Designer.cs">
       <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="StartupOptions\Options.cs" />
     <Compile Include="StoredRegionComparer.cs" />
     <Compile Include="Native\WindowsSevenMethods.cs" />
     <None Include="Native\CommonControls.cs" />
