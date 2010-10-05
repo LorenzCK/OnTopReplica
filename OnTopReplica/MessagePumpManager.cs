@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Windows.Forms;
-using OnTopReplica.Native;
 using OnTopReplica.MessagePumpProcessors;
+using OnTopReplica.Native;
 
 namespace OnTopReplica {
     class MessagePumpManager : IDisposable {
