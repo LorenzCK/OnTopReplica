@@ -301,6 +301,7 @@ namespace OnTopReplica {
         bool _isFullscreen = false;
         Point _preFullscreenLocation;
         Size _preFullscreenSize;
+        FormBorderStyle _preFullscreenBorderStyle;
 
         public bool IsFullscreen {
             get {
@@ -313,25 +314,29 @@ namespace OnTopReplica {
                     return;
 
                 CloseSidePanel(); //on switch, always hide side panels
-                GlassEnabled = !value;
-                FormBorderStyle = (value) ? FormBorderStyle.None : _defaultBorderStyle;
-                TopMost = !value;
-                HandleMouseMove = !value;
 
                 //Location and size
                 if (value) {
                     _preFullscreenLocation = Location;
-                    _preFullscreenSize = Size;
+                    _preFullscreenSize = ClientSize;
+                    _preFullscreenBorderStyle = FormBorderStyle;
 
                     var currentScreen = Screen.FromControl(this);
+                    FormBorderStyle = FormBorderStyle.None;
                     Size = currentScreen.WorkingArea.Size;
                     Location = currentScreen.WorkingArea.Location;
                 }
                 else {
+                    FormBorderStyle = _preFullscreenBorderStyle;
                     Location = _preFullscreenLocation;
-                    Size = _preFullscreenSize;
+                    ClientSize = _preFullscreenSize;
                     RefreshAspectRatio();
                 }
+
+                //Common
+                GlassEnabled = !value;
+                TopMost = !value;
+                HandleMouseMove = !value;
 
                 _isFullscreen = value;
 
