@@ -13,11 +13,11 @@ namespace OnTopReplica {
 		}
 
 		public StoredRegion(Rectangle r, string n) {
-			Rect = r;
+			Bounds = r;
 			Name = n;
 		}
 
-		public Rectangle Rect {
+		public Rectangle Bounds {
 			get;
 			set;
 		}
@@ -47,14 +47,14 @@ namespace OnTopReplica {
 			reader.Read();
 
 			XmlSerializer x = new XmlSerializer(typeof(Rectangle));
-			Rect = (Rectangle)x.Deserialize(reader);
+			Bounds = (Rectangle)x.Deserialize(reader);
 		}
 
 		public void WriteXml(System.Xml.XmlWriter writer) {
 			writer.WriteAttributeString("name", Name);
 
 			XmlSerializer x = new XmlSerializer(typeof(Rectangle));
-			x.Serialize(writer, Rect);
+			x.Serialize(writer, Bounds);
 		}
 
 		#endregion

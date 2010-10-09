@@ -165,6 +165,13 @@ namespace OnTopReplica.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap pos_center {
+            get {
+                object obj = ResourceManager.GetObject("pos_center", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap pos_null {
             get {
                 object obj = ResourceManager.GetObject("pos_null", resourceCulture);
