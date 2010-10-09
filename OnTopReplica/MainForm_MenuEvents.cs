@@ -20,8 +20,8 @@ namespace OnTopReplica {
             selectRegionToolStripMenuItem.Enabled = showing;
             switchToWindowToolStripMenuItem.Enabled = showing;
             resizeToolStripMenuItem.Enabled = showing;
-            chromeToolStripMenuItem.Checked = (FormBorderStyle == _defaultBorderStyle);
-            clickForwardingToolStripMenuItem.Checked = _thumbnailPanel.ReportThumbnailClicks;
+            chromeToolStripMenuItem.Checked = IsChromeVisible;
+            clickForwardingToolStripMenuItem.Checked = ClickForwardingEnabled;
             chromeToolStripMenuItem.Enabled = showing;
             clickThroughToolStripMenuItem.Enabled = showing;
             clickForwardingToolStripMenuItem.Enabled = showing;
@@ -50,7 +50,9 @@ namespace OnTopReplica {
             }
 
             var selectionData = (WindowListHelper.WindowSelectionData)tsi.Tag;
-            SetThumbnail(selectionData.Handle, selectionData.Region);
+            Rectangle? bounds = (selectionData.Region != null)
+                ? (Rectangle?)selectionData.Region.Bounds : null;
+            SetThumbnail(selectionData.Handle, bounds);
         }
 
         private void Menu_Switch_click(object sender, EventArgs e) {
@@ -66,17 +68,7 @@ namespace OnTopReplica {
         }
 
         private void Menu_ClickForwarding_click(object sender, EventArgs e) {
-            if (Settings.Default.FirstTimeClickForwarding && !_thumbnailPanel.ReportThumbnailClicks) {
-                TaskDialog dlg = new TaskDialog(Strings.InfoClickForwarding, Strings.InfoClickForwardingTitle, Strings.InfoClickForwardingContent) {
-                    CommonButtons = TaskDialogButton.Yes | TaskDialogButton.No
-                };
-                if (dlg.Show(this).CommonButton == Result.No)
-                    return;
-
-                Settings.Default.FirstTimeClickForwarding = false;
-            }
-
-            _thumbnailPanel.ReportThumbnailClicks = !_thumbnailPanel.ReportThumbnailClicks;
+            ClickForwardingEnabled = !ClickForwardingEnabled;
         }
 
         private void Menu_ClickThrough_click(object sender, EventArgs e) {
@@ -138,40 +130,37 @@ namespace OnTopReplica {
             IsFullscreen = true;
         }
 
-        private void Menu_Position_TopLeft(object sender, EventArgs e) {
-            var screen = Screen.FromControl(this);
+        private void Menu_Position_Opening(object sender, EventArgs e) {
+            disabledToolStripMenuItem.Checked = (PositionLock == null);
+            topLeftToolStripMenuItem.Checked = (PositionLock == ScreenPosition.TopLeft);
+            topRightToolStripMenuItem.Checked = (PositionLock == ScreenPosition.TopRight);
+            centerToolStripMenuItem.Checked = (PositionLock == ScreenPosition.Center);
+            bottomLeftToolStripMenuItem.Checked = (PositionLock == ScreenPosition.BottomLeft);
+            bottomRightToolStripMenuItem.Checked = (PositionLock == ScreenPosition.BottomRight);
+        }
 
-            Location = new Point(
-                screen.WorkingArea.Left - ChromeBorderHorizontal,
-                screen.WorkingArea.Top - ChromeBorderVertical
-            );
+        private void Menu_Position_Disable(object sender, EventArgs e) {
+            PositionLock = null;
+        }
+
+        private void Menu_Position_TopLeft(object sender, EventArgs e) {
+            PositionLock = ScreenPosition.TopLeft;
         }
 
         private void Menu_Position_TopRight(object sender, EventArgs e) {
-            var screen = Screen.FromControl(this);
+            PositionLock = ScreenPosition.TopRight;
+        }
 
-            Location = new Point(
-                screen.WorkingArea.Width - Size.Width + ChromeBorderHorizontal,
-                screen.WorkingArea.Top - ChromeBorderVertical
-            );
+        private void Menu_Position_Center(object sender, EventArgs e) {
+            PositionLock = ScreenPosition.Center;
         }
 
         private void Menu_Position_BottomLeft(object sender, EventArgs e) {
-            var screen = Screen.FromControl(this);
-
-            Location = new Point(
-                screen.WorkingArea.Left - ChromeBorderHorizontal,
-                screen.WorkingArea.Height - Size.Height + ChromeBorderVertical
-            );
+            PositionLock = ScreenPosition.BottomLeft;
         }
 
         private void Menu_Position_BottomRight(object sender, EventArgs e) {
-            var screen = Screen.FromControl(this);
-
-            Location = new Point(
-                screen.WorkingArea.Width - Size.Width + ChromeBorderHorizontal,
-                screen.WorkingArea.Height - Size.Height + ChromeBorderVertical
-            );
+            PositionLock = ScreenPosition.BottomRight;
         }
 
         private void Menu_Reduce_click(object sender, EventArgs e) {
@@ -180,23 +169,7 @@ namespace OnTopReplica {
         }
 
         private void Menu_Chrome_click(object sender, EventArgs e) {
-            if (FormBorderStyle == _defaultBorderStyle) {
-                FormBorderStyle = FormBorderStyle.None;
-                Location = new Point {
-                    X = Location.X + SystemInformation.FrameBorderSize.Width,
-                    Y = Location.Y + SystemInformation.FrameBorderSize.Height
-                };
-            }
-            else {
-                FormBorderStyle = _defaultBorderStyle;
-                Location = new Point {
-                    X = Location.X - SystemInformation.FrameBorderSize.Width,
-                    Y = Location.Y - SystemInformation.FrameBorderSize.Height
-                };
-            }
-
-            Program.Platform.OnFormStateChange(this);
-            Invalidate();
+            IsChromeVisible = !IsChromeVisible;
         }
 
         private void Menu_Language_click(object sender, EventArgs e) {

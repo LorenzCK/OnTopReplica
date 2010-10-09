@@ -15,4 +15,7 @@
   <PropertyGroup>
     <EnableSecurityDebugging>false</EnableSecurityDebugging>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartArguments>/windowId=459573 /r=20,20,100,80</StartArguments>
+  </PropertyGroup>
 </Project>
