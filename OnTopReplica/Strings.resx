@@ -281,7 +281,7 @@ You must run this application on Windows Vista Home Premium or better.</value>
     <value>No thumbnail loaded.</value>
   </data>
   <data name="ErrorUnableToCreateThumbnail" xml:space="preserve">
-    <value>Unable to create thumbnail.</value>
+    <value>Unable to create thumbnail</value>
   </data>
   <data name="ErrorUnableToFit" xml:space="preserve">
     <value>Unable to fit window.</value>
