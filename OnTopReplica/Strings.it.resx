@@ -281,7 +281,7 @@ Per farlo, clicca col tasto destro del mouse sul desktop e poi su Personalizza.<
     <value>Nessuna finestra clonata al momento.</value>
   </data>
   <data name="ErrorUnableToCreateThumbnail" xml:space="preserve">
-    <value>Impossibile clonare la finestra.</value>
+    <value>Impossibile clonare la finestra</value>
   </data>
   <data name="ErrorUnableToFit" xml:space="preserve">
     <value>Impossibile adattare la finestra.</value>
