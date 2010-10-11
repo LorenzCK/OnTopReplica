@@ -29,8 +29,9 @@ namespace OnTopReplica {
         }
 
         private void Menu_Windows_opening(object sender, CancelEventArgs e) {
-            _windowManager.Refresh(WindowManager.EnumerationMode.TaskWindows);
-            WindowListHelper.PopulateMenu(this, _windowManager, (ToolStrip)sender,
+            _windowSeeker.Refresh();
+            var menu = (ToolStrip)sender;
+            menu.PopulateMenu(this, _windowSeeker,
                 CurrentThumbnailWindowHandle, new EventHandler(Menu_Windows_itemclick));
         }
 

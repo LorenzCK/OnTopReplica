@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using OnTopReplica.Properties;
 using System.Collections.Generic;
 using OnTopReplica.MessagePumpProcessors;
+using OnTopReplica.WindowSeekers;
 
 namespace OnTopReplica.SidePanels {
 	partial class GroupSwitchPanel : SidePanel {
@@ -23,8 +24,8 @@ namespace OnTopReplica.SidePanels {
         }
 
         private void LoadWindowList() {
-            var manager = new WindowManager();
-            manager.Refresh(WindowManager.EnumerationMode.TaskWindows);
+            var manager = new TaskWindowSeeker();
+            manager.Refresh();
 
             var imageList = new ImageList();
             imageList.ColorDepth = ColorDepth.Depth32Bit;

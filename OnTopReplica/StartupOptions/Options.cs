@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.IO;
+using OnTopReplica.WindowSeekers;
 
 namespace OnTopReplica.StartupOptions {
 
@@ -94,7 +95,12 @@ namespace OnTopReplica.StartupOptions {
                 handle = WindowHandle.FromHandle(WindowId.Value);
             }
             else if (WindowTitle != null) {
-                //TODO
+                var seeker = new ByTitleWindowSeeker(WindowTitle) {
+                    OwnerHandle = form.Handle
+                };
+                seeker.Refresh();
+
+                handle = seeker.Windows.FirstOrDefault();
             }
             else if (WindowClass != null) {
                 //TODO

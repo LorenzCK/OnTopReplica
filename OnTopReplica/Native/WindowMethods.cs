@@ -37,6 +37,17 @@ namespace OnTopReplica.Native {
                 return String.Empty;
         }
 
+        const int MaxClassLength = 255;
+
+        public static string GetWindowClass(IntPtr hwnd) {
+            var sb = new StringBuilder(MaxClassLength + 1);
+            RealGetWindowClass(hwnd, sb, MaxClassLength);
+            return sb.ToString();
+        }
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        static extern uint RealGetWindowClass(IntPtr hwnd, [Out] StringBuilder lpString, uint maxCount);
+
         public enum WindowLong {
             WndProc = (-4),
             HInstance = (-6),

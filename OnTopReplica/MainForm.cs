@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using OnTopReplica.Native;
 using OnTopReplica.Update;
 using OnTopReplica.StartupOptions;
+using OnTopReplica.WindowSeekers;
 
 namespace OnTopReplica {
 
@@ -20,7 +21,7 @@ namespace OnTopReplica {
         Panel _sidePanelContainer;
 
         //Managers
-        WindowManager _windowManager = new WindowManager();
+        BaseWindowSeeker _windowSeeker = new TaskWindowSeeker();
         MessagePumpManager _msgPumpManager = new MessagePumpManager();
         UpdateManager _updateManager = new UpdateManager();
 
@@ -104,6 +105,8 @@ namespace OnTopReplica {
 
         protected override void OnHandleCreated(EventArgs e){
  	        base.OnHandleCreated(e);
+
+            _windowSeeker.OwnerHandle = this.Handle;
 
             //Platform specific form initialization
             Program.Platform.InitForm(this);
@@ -372,7 +375,8 @@ namespace OnTopReplica {
                 _thumbnailPanel.SetThumbnailHandle(handle);
 
 #if DEBUG
-                Console.WriteLine("Cloning window HWND {0}.", handle.Handle);
+                string windowClass = WindowMethods.GetWindowClass(handle.Handle);
+                Console.WriteLine("Cloning window HWND {0} of class {1}.", handle.Handle, windowClass);
 #endif
 
                 if (region.HasValue)

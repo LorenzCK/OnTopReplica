@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="CloneClickEventArgs.cs" />
     <Compile Include="CloseRequestEventArgs.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="ExtensionAttribute.cs" />
     <Compile Include="MainForm_Features.cs">
       <SubType>Form</SubType>
@@ -134,6 +135,10 @@
     <Compile Include="Native\HookMethods.cs" />
     <Compile Include="Native\HotKeyMethods.cs" />
     <Compile Include="Native\HT.cs" />
+    <Compile Include="Pair.cs" />
+    <Compile Include="WindowSeekers\BaseWindowSeeker.cs" />
+    <Compile Include="WindowSeekers\ByTitleWindowSeeker.cs" />
+    <Compile Include="WindowSeekers\TaskWindowSeeker.cs" />
     <None Include="Native\ITaskBarList.cs" />
     <Compile Include="Native\MessagingMethods.cs" />
     <Compile Include="Native\MK.cs" />
@@ -273,7 +278,6 @@
     <Compile Include="Win32Helper.cs" />
     <Compile Include="WindowHandle.cs" />
     <Compile Include="WindowListHelper.cs" />
-    <Compile Include="WindowManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\windows.png" />
