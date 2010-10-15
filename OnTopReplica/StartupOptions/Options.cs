@@ -16,6 +16,7 @@ namespace OnTopReplica.StartupOptions {
             Status = CliStatus.Ok;
             Opacity = 255;
             DisableChrome = false;
+            MustBeVisible = false;
         }
 
         #region Position and size
@@ -37,6 +38,8 @@ namespace OnTopReplica.StartupOptions {
         public string WindowClass { get; set; }
 
         public Rectangle? Region { get; set; }
+
+        public bool MustBeVisible { get; set; }
 
         #endregion
 
@@ -96,14 +99,21 @@ namespace OnTopReplica.StartupOptions {
             }
             else if (WindowTitle != null) {
                 var seeker = new ByTitleWindowSeeker(WindowTitle) {
-                    OwnerHandle = form.Handle
+                    OwnerHandle = form.Handle,
+                    SkipNotVisibleWindows = MustBeVisible
                 };
                 seeker.Refresh();
 
                 handle = seeker.Windows.FirstOrDefault();
             }
             else if (WindowClass != null) {
-                //TODO
+                var seeker = new ByClassWindowSeeker(WindowClass) {
+                    OwnerHandle = form.Handle,
+                    SkipNotVisibleWindows = MustBeVisible
+                };
+                seeker.Refresh();
+
+                handle = seeker.Windows.FirstOrDefault();
             }
             if (handle != null) {
                 form.SetThumbnail(handle, Region);

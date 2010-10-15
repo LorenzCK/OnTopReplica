@@ -82,6 +82,8 @@ namespace OnTopReplica {
             while (_languageChangeCode != null);
 
             //Persist settings
+            Settings.Default.RestoreLastPosition = reloadLocation;
+            Settings.Default.RestoreLastSize = reloadSize;
             Settings.Default.Save();
         }
 

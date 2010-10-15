@@ -20,15 +20,13 @@ namespace OnTopReplica.WindowSeekers {
             if (string.IsNullOrEmpty(title))
                 return false;
 
-            if (WindowManagerMethods.IsWindowVisible(hwnd)) {
-                if ((long)WindowManagerMethods.GetParent(hwnd) == 0) {
-                    bool hasOwner = (long)WindowManagerMethods.GetWindow(hwnd, WindowManagerMethods.GetWindowMode.GW_OWNER) != 0;
-                    WindowMethods.WindowExStyles exStyle = (WindowMethods.WindowExStyles)WindowMethods.GetWindowLong(hwnd, WindowMethods.WindowLong.ExStyle);
+            if ((long)WindowManagerMethods.GetParent(hwnd) == 0) {
+                bool hasOwner = (long)WindowManagerMethods.GetWindow(hwnd, WindowManagerMethods.GetWindowMode.GW_OWNER) != 0;
+                WindowMethods.WindowExStyles exStyle = (WindowMethods.WindowExStyles)WindowMethods.GetWindowLong(hwnd, WindowMethods.WindowLong.ExStyle);
 
-                    if (((exStyle & WindowMethods.WindowExStyles.ToolWindow) == 0 && !hasOwner) || //unowned non-tool window
-                        ((exStyle & WindowMethods.WindowExStyles.AppWindow) == WindowMethods.WindowExStyles.AppWindow && hasOwner)) { //owned application window
-                        return true;
-                    }
+                if (((exStyle & WindowMethods.WindowExStyles.ToolWindow) == 0 && !hasOwner) || //unowned non-tool window
+                    ((exStyle & WindowMethods.WindowExStyles.AppWindow) == WindowMethods.WindowExStyles.AppWindow && hasOwner)) { //owned application window
+                    return true;
                 }
             }
 

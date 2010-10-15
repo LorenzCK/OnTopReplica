@@ -68,22 +68,18 @@ namespace OnTopReplica {
             }
             set {
                 if (!value) {
+                    Location = new Point {
+                        X = Location.X + SystemInformation.FrameBorderSize.Width,
+                        Y = Location.Y + SystemInformation.FrameBorderSize.Height
+                    };
                     FormBorderStyle = FormBorderStyle.None;
-                    if (IsChromeVisible) {
-                        Location = new Point {
-                            X = Location.X + SystemInformation.FrameBorderSize.Width,
-                            Y = Location.Y + SystemInformation.FrameBorderSize.Height
-                        };
-                    }
                 }
                 else if(value) {
+                    Location = new Point {
+                        X = Location.X - SystemInformation.FrameBorderSize.Width,
+                        Y = Location.Y - SystemInformation.FrameBorderSize.Height
+                    };
                     FormBorderStyle = FormBorderStyle.SizableToolWindow;
-                    if (!IsChromeVisible) {
-                        Location = new Point {
-                            X = Location.X - SystemInformation.FrameBorderSize.Width,
-                            Y = Location.Y - SystemInformation.FrameBorderSize.Height
-                        };
-                    }
                 }
 
                 Program.Platform.OnFormStateChange(this);

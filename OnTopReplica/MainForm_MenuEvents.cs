@@ -109,6 +109,8 @@ namespace OnTopReplica {
         private void Menu_Resize_opening(object sender, CancelEventArgs e) {
             if (!_thumbnailPanel.IsShowingThumbnail)
                 e.Cancel = true;
+
+            restorePositionAndSizeToolStripMenuItem.Checked = Settings.Default.RestoreSizeAndPosition;
         }
 
         private void Menu_Resize_Double(object sender, EventArgs e) {
@@ -129,6 +131,10 @@ namespace OnTopReplica {
 
         private void Menu_Resize_Fullscreen(object sender, EventArgs e) {
             IsFullscreen = true;
+        }
+
+        private void Menu_Resize_RecallPosition_click(object sender, EventArgs e) {
+            Settings.Default.RestoreSizeAndPosition = !Settings.Default.RestoreSizeAndPosition;
         }
 
         private void Menu_Position_Opening(object sender, EventArgs e) {

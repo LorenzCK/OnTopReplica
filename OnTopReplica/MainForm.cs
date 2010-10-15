@@ -21,7 +21,9 @@ namespace OnTopReplica {
         Panel _sidePanelContainer;
 
         //Managers
-        BaseWindowSeeker _windowSeeker = new TaskWindowSeeker();
+        BaseWindowSeeker _windowSeeker = new TaskWindowSeeker {
+            SkipNotVisibleWindows = true
+        };
         MessagePumpManager _msgPumpManager = new MessagePumpManager();
         UpdateManager _updateManager = new UpdateManager();
 

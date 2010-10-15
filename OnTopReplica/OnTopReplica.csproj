@@ -137,6 +137,7 @@
     <Compile Include="Native\HT.cs" />
     <Compile Include="Pair.cs" />
     <Compile Include="WindowSeekers\BaseWindowSeeker.cs" />
+    <Compile Include="WindowSeekers\ByClassWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByTitleWindowSeeker.cs" />
     <Compile Include="WindowSeekers\TaskWindowSeeker.cs" />
     <None Include="Native\ITaskBarList.cs" />
