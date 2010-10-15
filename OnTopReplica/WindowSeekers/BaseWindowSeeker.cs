@@ -39,6 +39,9 @@ namespace OnTopReplica.WindowSeekers {
             if (hwnd == OwnerHandle)
                 return true;
 
+            if (SkipNotVisibleWindows && !WindowManagerMethods.IsWindowVisible(hwnd))
+                return true;
+
             //Extract basic properties
             string title = WindowMethods.GetWindowText(hwnd);
 
@@ -66,6 +69,11 @@ namespace OnTopReplica.WindowSeekers {
         /// Windows with this handle will be automatically skipped.
         /// </remarks>
         public IntPtr OwnerHandle { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether not visible windows should be skipped.
+        /// </summary>
+        public bool SkipNotVisibleWindows { get; set; }
 
     }
 

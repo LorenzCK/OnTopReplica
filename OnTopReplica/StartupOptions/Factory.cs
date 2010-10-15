@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.ComponentModel;
+using OnTopReplica.Properties;
 
 namespace OnTopReplica.StartupOptions {
     class Factory {
 
         static Factory() {
-            //Custom type conversions
+            //Custom type conversion attributes
             TypeDescriptor.AddAttributes(typeof(Size), new TypeConverterAttribute(typeof(SizeConverter)));
             TypeDescriptor.AddAttributes(typeof(ScreenPosition), new TypeConverterAttribute(typeof(ScreenPositionConverter)));
             TypeDescriptor.AddAttributes(typeof(Rectangle), new TypeConverterAttribute(typeof(RectangleConverter)));
@@ -17,9 +18,18 @@ namespace OnTopReplica.StartupOptions {
         public static Options CreateOptions(string[] args) {
             var options = new Options();
 
+            LoadSettings(options);
+
             ParseCommandLine(args, options);
 
             return options;
+        }
+
+        private static void LoadSettings(Options options) {
+            if (Settings.Default.RestoreSizeAndPosition) {
+                options.StartLocation = Settings.Default.RestoreLastPosition;
+                options.StartSize = Settings.Default.RestoreLastSize;
+            }
         }
 
         private static void ParseCommandLine(string[] args, Options options) {
@@ -32,6 +42,9 @@ namespace OnTopReplica.StartupOptions {
                 })
                 .Add<string>("windowClass=", "{CLASS} of the window to be cloned.", s => {
                     options.WindowClass = s;
+                })
+                .Add("v|visible", "If set, only clones windows that are visible.", s => {
+                    options.MustBeVisible = true;
                 })
                 .Add<Size>("size=", "Target {SIZE} of the cloned thumbnail.", s => {
                     options.StartSize = s;
@@ -50,10 +63,10 @@ namespace OnTopReplica.StartupOptions {
                 .Add<byte>("o|opacity=", "Opacity of the window (0-255).", opacity => {
                     options.Opacity = opacity;
                 })
-                .Add("cf|clickForward", "Enables click forwarding.", s => {
+                .Add("clickForwarding", "Enables click forwarding.", s => {
                     options.EnableClickForwarding = true;
                 })
-                .Add("noch|chromeOff", "Disables the window's chrome (border).", s => {
+                .Add("chromeOff", "Disables the window's chrome (border).", s => {
                     options.DisableChrome = true;
                 })
                 .Add("h|help|?", "Show command line help.", s => {
