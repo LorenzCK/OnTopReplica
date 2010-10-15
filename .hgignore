@@ -2,6 +2,6 @@ glob:OnTopReplica.suo
 glob:bin/*
 glob:obj/*
 glob:publish/*
-glob:OnTopReplica/Assets/Thumbs.db
+glob:*Thumbs.db
 glob:*.psd
 glob:Installer/OnTopReplica-Setup.exe

@@ -141,10 +141,12 @@
     <Compile Include="WindowSeekers\ByTitleWindowSeeker.cs" />
     <Compile Include="WindowSeekers\TaskWindowSeeker.cs" />
     <None Include="Native\ITaskBarList.cs" />
+    <Compile Include="Native\InputMethods.cs" />
     <Compile Include="Native\MessagingMethods.cs" />
     <Compile Include="Native\MK.cs" />
     <Compile Include="Native\Point.cs" />
     <Compile Include="Native\Rectangle.cs" />
+    <Compile Include="Native\VirtualKeyState.cs" />
     <Compile Include="Native\WindowManagerMethods.cs" />
     <Compile Include="Native\WindowMethods.cs" />
     <Compile Include="Native\WM.cs" />
