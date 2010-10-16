@@ -48,7 +48,7 @@
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>3.0.2.%2a</ApplicationVersion>
+    <ApplicationVersion>3.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -106,11 +106,17 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Actions.cs" />
     <Compile Include="AspectRatioForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CloneClickEventArgs.cs" />
     <Compile Include="CloseRequestEventArgs.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="ExtensionAttribute.cs" />
+    <Compile Include="MainForm_Features.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm_Gui.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,12 +130,16 @@
     <Compile Include="MessagePumpProcessors\GroupSwitchManager.cs" />
     <Compile Include="IMessagePumpProcessor.cs" />
     <Compile Include="MessagePumpProcessors\BaseMessagePumpProcessor.cs" />
-    <None Include="MessagePumpProcessors\TitleSetter.cs" />
     <Compile Include="MessagePumpProcessors\WindowKeeper.cs" />
     <Compile Include="Native\ErrorMethods.cs" />
     <Compile Include="Native\HookMethods.cs" />
     <Compile Include="Native\HotKeyMethods.cs" />
     <Compile Include="Native\HT.cs" />
+    <Compile Include="Pair.cs" />
+    <Compile Include="WindowSeekers\BaseWindowSeeker.cs" />
+    <Compile Include="WindowSeekers\ByClassWindowSeeker.cs" />
+    <Compile Include="WindowSeekers\ByTitleWindowSeeker.cs" />
+    <Compile Include="WindowSeekers\TaskWindowSeeker.cs" />
     <None Include="Native\ITaskBarList.cs" />
     <Compile Include="Native\InputMethods.cs" />
     <Compile Include="Native\MessagingMethods.cs" />
@@ -141,7 +151,9 @@
     <Compile Include="Native\WindowMethods.cs" />
     <Compile Include="Native\WM.cs" />
     <Compile Include="Native\WMSZ.cs" />
+    <Compile Include="NDesk\Options\Options.cs" />
     <Compile Include="NotificationIcon.cs" />
+    <Compile Include="ScreenPosition.cs" />
     <Compile Include="SidePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -151,6 +163,18 @@
     <Compile Include="SidePanels\GroupSwitchPanel.Designer.cs">
       <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="StartupOptions\CliStatus.cs" />
+    <Compile Include="StartupOptions\CommandLineReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartupOptions\CommandLineReportForm.Designer.cs">
+      <DependentUpon>CommandLineReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StartupOptions\RectangleConverter.cs" />
+    <Compile Include="StartupOptions\Factory.cs" />
+    <Compile Include="StartupOptions\Options.cs" />
+    <Compile Include="StartupOptions\ScreenPositionConverter.cs" />
+    <Compile Include="StartupOptions\SizeConverter.cs" />
     <Compile Include="StoredRegionComparer.cs" />
     <Compile Include="Native\WindowsSevenMethods.cs" />
     <None Include="Native\CommonControls.cs" />
@@ -185,6 +209,9 @@
     <EmbeddedResource Include="SidePanels\GroupSwitchPanel.resx">
       <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartupOptions\CommandLineReportForm.resx">
+      <DependentUpon>CommandLineReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.cs.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -240,6 +267,11 @@
     </Compile>
     <Compile Include="StoredRegion.cs" />
     <Compile Include="StoredRegionArray.cs" />
+    <Compile Include="Strings.it.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.it.resx</DependentUpon>
+    </Compile>
     <Compile Include="ThumbnailPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -249,7 +281,6 @@
     <Compile Include="Win32Helper.cs" />
     <Compile Include="WindowHandle.cs" />
     <Compile Include="WindowListHelper.cs" />
-    <Compile Include="WindowManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\windows.png" />
@@ -273,6 +304,7 @@
     <None Include="Assets\fullscreen.png" />
     <None Include="Assets\clickforwarding.png" />
     <None Include="Assets\groupmode.png" />
+    <None Include="Assets\pos_center.png" />
     <Content Include="Assets\xiao_arrow.png" />
     <None Include="Assets\xiao_help.png" />
     <None Include="Assets\window_opacity_new.png" />

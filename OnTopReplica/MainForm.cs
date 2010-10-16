@@ -8,6 +8,8 @@ using VistaControls.TaskDialog;
 using System.Collections.Generic;
 using OnTopReplica.Native;
 using OnTopReplica.Update;
+using OnTopReplica.StartupOptions;
+using OnTopReplica.WindowSeekers;
 
 namespace OnTopReplica {
 
@@ -19,18 +21,23 @@ namespace OnTopReplica {
         Panel _sidePanelContainer;
 
         //Managers
-        WindowManager _windowManager = new WindowManager();
+        BaseWindowSeeker _windowSeeker = new TaskWindowSeeker {
+            SkipNotVisibleWindows = true
+        };
         MessagePumpManager _msgPumpManager = new MessagePumpManager();
         UpdateManager _updateManager = new UpdateManager();
 
-        FormBorderStyle _defaultBorderStyle;
+        Options _startupOptions;
 
-        public MainForm() {
+        public MainForm(Options startupOptions) {
+            _startupOptions = startupOptions;
+            
+            //WinForms init pass
             InitializeComponent();
             KeepAspectRatio = false;
+            GlassEnabled = true;
 
             //Store default values
-            _defaultBorderStyle = FormBorderStyle;
             _nonClickThroughKey = TransparencyKey;
 
             //Thumbnail panel
@@ -97,18 +104,20 @@ namespace OnTopReplica {
             }
         }
 
-        protected override void OnShown(EventArgs e) {
-            base.OnShown(e);
+        protected override void OnHandleCreated(EventArgs e){
+ 	        base.OnHandleCreated(e);
+
+            _windowSeeker.OwnerHandle = this.Handle;
 
             //Platform specific form initialization
             Program.Platform.InitForm(this);
-
-            //Glassify window
-            GlassEnabled = true;
         }
 
-        protected override void OnHandleCreated(EventArgs e) {
-            base.OnHandleCreated(e);
+        protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+
+            //Apply startup options
+            _startupOptions.Apply(this);
 
             //Check for updates
             _updateManager.UpdateCheckCompleted += new EventHandler<UpdateCheckCompletedEventArgs>(UpdateManager_CheckCompleted);
@@ -131,10 +140,19 @@ namespace OnTopReplica {
                 fullMargins;
         }
 
+        protected override void OnResizeEnd(EventArgs e) {
+            base.OnResizeEnd(e);
+
+            //If locked in position, move accordingly
+            if (PositionLock.HasValue) {
+                this.SetScreenPosition(PositionLock.Value);
+            }
+        }
+
         protected override void OnActivated(EventArgs e) {
             base.OnActivated(e);
 
-            //Deactivate click-through if reactivated
+            //Deactivate click-through if form is reactivated
             if (ClickThroughEnabled) {
                 ClickThroughEnabled = false;
             }
@@ -146,7 +164,7 @@ namespace OnTopReplica {
             base.OnDeactivate(e);
 
             //HACK: sometimes, even if TopMost is true, the window loses its "always on top" status.
-            //  This is an attempt of a fix that probably won't work...
+            //  This is a fix attempt that probably won't work...
             if (!IsFullscreen) { //fullscreen mode doesn't use TopMost
                 TopMost = false;
                 TopMost = true;
@@ -269,8 +287,8 @@ namespace OnTopReplica {
                     IsFullscreen = false;
                 }
                 //Disable click forwarding
-                else if (_thumbnailPanel.ReportThumbnailClicks) {
-                    _thumbnailPanel.ReportThumbnailClicks = false;
+                else if (ClickForwardingEnabled) {
+                    ClickForwardingEnabled = false;
                 }
             }
         }
@@ -302,6 +320,7 @@ namespace OnTopReplica {
         bool _isFullscreen = false;
         Point _preFullscreenLocation;
         Size _preFullscreenSize;
+        FormBorderStyle _preFullscreenBorderStyle;
 
         public bool IsFullscreen {
             get {
@@ -314,25 +333,29 @@ namespace OnTopReplica {
                     return;
 
                 CloseSidePanel(); //on switch, always hide side panels
-                GlassEnabled = !value;
-                FormBorderStyle = (value) ? FormBorderStyle.None : _defaultBorderStyle;
-                TopMost = !value;
-                HandleMouseMove = !value;
 
                 //Location and size
                 if (value) {
                     _preFullscreenLocation = Location;
-                    _preFullscreenSize = Size;
+                    _preFullscreenSize = ClientSize;
+                    _preFullscreenBorderStyle = FormBorderStyle;
 
                     var currentScreen = Screen.FromControl(this);
+                    FormBorderStyle = FormBorderStyle.None;
                     Size = currentScreen.WorkingArea.Size;
                     Location = currentScreen.WorkingArea.Location;
                 }
                 else {
+                    FormBorderStyle = _preFullscreenBorderStyle;
                     Location = _preFullscreenLocation;
-                    Size = _preFullscreenSize;
+                    ClientSize = _preFullscreenSize;
                     RefreshAspectRatio();
                 }
+
+                //Common
+                GlassEnabled = !value;
+                TopMost = !value;
+                HandleMouseMove = !value;
 
                 _isFullscreen = value;
 
@@ -349,13 +372,18 @@ namespace OnTopReplica {
         /// </summary>
         /// <param name="handle">Handle to the window to clone.</param>
         /// <param name="region">Region of the window to clone.</param>
-        public void SetThumbnail(WindowHandle handle, StoredRegion region) {
+        public void SetThumbnail(WindowHandle handle, Rectangle? region) {
             try {
                 CurrentThumbnailWindowHandle = handle;
                 _thumbnailPanel.SetThumbnailHandle(handle);
 
-                if (region != null)
-                    _thumbnailPanel.SelectedRegion = region.Rect;
+#if DEBUG
+                string windowClass = WindowMethods.GetWindowClass(handle.Handle);
+                Console.WriteLine("Cloning window HWND {0} of class {1}.", handle.Handle, windowClass);
+#endif
+
+                if (region.HasValue)
+                    _thumbnailPanel.SelectedRegion = region.Value;
                 else
                     _thumbnailPanel.ConstrainToRegion = false;
 
@@ -465,33 +493,6 @@ namespace OnTopReplica {
             }
             catch (Exception ex) {
                 ThumbnailError(ex, false, Strings.ErrorUnableToFit);
-            }
-        }
-
-        #endregion
-
-        #region Click-through
-
-        bool _clickThrough = false;
-        Color _nonClickThroughKey;
-
-        public bool ClickThroughEnabled {
-            get {
-                return _clickThrough;
-            }
-            set {
-                //Adjust opacity if fully opaque
-                if (value && Opacity == 1.0)
-                    Opacity = 0.75;
-                if (!value)
-                    Opacity = 1.0;
-
-                //Enable transparency and force as top-most
-                TransparencyKey = (value) ? Color.Black : _nonClickThroughKey;
-                if (value)
-                    TopMost = true;
-
-                _clickThrough = value;
             }
         }
 

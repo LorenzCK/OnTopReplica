@@ -132,25 +132,37 @@ namespace OnTopReplica.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool RestoreSizeAndPosition {
             get {
-                return ((string)(this["Setting"]));
+                return ((bool)(this["RestoreSizeAndPosition"]));
             }
             set {
-                this["Setting"] = value;
+                this["RestoreSizeAndPosition"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size RestoreLastSize {
             get {
-                return ((string)(this["Setting1"]));
+                return ((global::System.Drawing.Size)(this["RestoreLastSize"]));
             }
             set {
-                this["Setting1"] = value;
+                this["RestoreLastSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point RestoreLastPosition {
+            get {
+                return ((global::System.Drawing.Point)(this["RestoreLastPosition"]));
+            }
+            set {
+                this["RestoreLastPosition"] = value;
             }
         }
     }

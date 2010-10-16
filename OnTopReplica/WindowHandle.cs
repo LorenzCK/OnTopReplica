@@ -8,7 +8,8 @@ namespace OnTopReplica {
 
 	/// <summary>Helper class that keeps a window handle (HWND), the title of the window and can load its icon.</summary>
 	public class WindowHandle : System.Windows.Forms.IWin32Window {
-		IntPtr _handle;
+		
+        IntPtr _handle;
 		string _title;
 
 		public WindowHandle(IntPtr p, string title) {
@@ -80,6 +81,14 @@ namespace OnTopReplica {
 		}
 
 		#endregion
+
+        /// <summary>
+        /// Creates a new windowHandle instance from a given IntPtr handle.
+        /// </summary>
+        /// <param name="handle">Handle value.</param>
+        public static WindowHandle FromHandle(IntPtr handle) {
+            return new WindowHandle(handle, string.Empty);
+        }
 
 	}
 }
