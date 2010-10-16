@@ -9,6 +9,7 @@ using System.IO;
 using VistaControls.TaskDialog;
 using OnTopReplica.Update;
 using System.Reflection;
+using OnTopReplica.StartupOptions;
 
 namespace OnTopReplica {
     
@@ -26,7 +27,7 @@ namespace OnTopReplica {
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main() {
+        static void Main(string[] args) {
             //Hook abort handler
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
@@ -44,6 +45,16 @@ namespace OnTopReplica {
                 Settings.Default.Upgrade();
                 Settings.Default.MustUpdate = false;
             }
+
+            //Load startup options
+            var options = StartupOptions.Factory.CreateOptions(args);
+            string optionsMessage = options.DebugMessage;
+            if (!string.IsNullOrEmpty(optionsMessage)) { //show dialog if debug message present or if parsing failed
+                var dlg = new CommandLineReportForm(options.Status, optionsMessage);
+                dlg.ShowDialog();
+            }
+            if (options.Status == CliStatus.Information || options.Status == CliStatus.Error)
+                return;
             
             bool mustReloadForm = false;
             Point reloadLocation = new Point();
@@ -55,7 +66,7 @@ namespace OnTopReplica {
                 Settings.Default.Language = _languageChangeCode;
                 _languageChangeCode = null;
 
-                _mainForm = new MainForm();
+                _mainForm = new MainForm(options);
                 if (mustReloadForm) {
                     _mainForm.Location = reloadLocation;
                     _mainForm.Size = reloadSize;
@@ -71,6 +82,8 @@ namespace OnTopReplica {
             while (_languageChangeCode != null);
 
             //Persist settings
+            Settings.Default.RestoreLastPosition = reloadLocation;
+            Settings.Default.RestoreLastSize = reloadSize;
             Settings.Default.Save();
         }
 

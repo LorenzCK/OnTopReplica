@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using OnTopReplica.Properties;
+using OnTopReplica.WindowSeekers;
 
 namespace OnTopReplica {
+    /// <summary>
+    /// Extension methods used to apply a window list to a menu.
+    /// </summary>
 	static class WindowListHelper {
 
         public class WindowSelectionData {
@@ -14,7 +18,15 @@ namespace OnTopReplica {
 
 		const int MaxWindowTitleLength = 55;
 
-		public static void PopulateMenu(Form ownerForm, WindowManager windowManager, ToolStrip menu,
+        /// <summary>
+        /// Populates the menu with a list of windows.
+        /// </summary>
+        /// <param name="menu">The menu to populate.</param>
+        /// <param name="ownerForm">The owning form.</param>
+        /// <param name="windowManager">The window manager that provides the windows list.</param>
+        /// <param name="currentHandle">The currently used window (will be checked in the list).</param>
+        /// <param name="clickHandler">Event handler for clicks on window items.</param>
+		public static void PopulateMenu(this ToolStrip menu, Form ownerForm, BaseWindowSeeker windowManager,
                                         WindowHandle currentHandle, EventHandler clickHandler) {
             var regions = GetRegions();
 

@@ -38,18 +38,24 @@ namespace OnTopReplica {
             return new Point(finX, finY);
         }
 
-        private int ChromeBorderVertical {
+        /// <summary>
+        /// Gets the window's vertical chrome size.
+        /// </summary>
+        public int ChromeBorderVertical {
             get {
-                if (FormBorderStyle == _defaultBorderStyle)
+                if (IsChromeVisible)
                     return SystemInformation.FrameBorderSize.Height;
                 else
                     return 0;
             }
         }
 
-        private int ChromeBorderHorizontal {
+        /// <summary>
+        /// Gets the window's horizontal chrome size.
+        /// </summary>
+        public int ChromeBorderHorizontal {
             get {
-                if (FormBorderStyle == _defaultBorderStyle)
+                if (IsChromeVisible)
                     return SystemInformation.FrameBorderSize.Width;
                 else
                     return 0;

@@ -1025,7 +1025,25 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Position.
+        ///   Looks up a localized string similar to Center.
+        /// </summary>
+        internal static string MenuPosCenter {
+            get {
+                return ResourceManager.GetString("MenuPosCenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        internal static string MenuPosDisabled {
+            get {
+                return ResourceManager.GetString("MenuPosDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position lock.
         /// </summary>
         internal static string MenuPosition {
             get {

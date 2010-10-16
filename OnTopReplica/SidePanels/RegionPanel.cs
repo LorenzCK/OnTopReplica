@@ -55,7 +55,7 @@ namespace OnTopReplica.SidePanels {
                 return;
             }
 
-            SetRegion(region.Rect);
+            SetRegion(region.Bounds);
 
             //Select right combobox
             if (comboRegions.Items.Contains(region)) {
@@ -207,7 +207,7 @@ namespace OnTopReplica.SidePanels {
                 if (region == null)
                     return;
 
-                SetRegion(region.Rect);
+                SetRegion(region.Bounds);
             }
         }
 
