@@ -143,10 +143,7 @@ namespace OnTopReplica {
         protected override void OnResizeEnd(EventArgs e) {
             base.OnResizeEnd(e);
 
-            //If locked in position, move accordingly
-            if (PositionLock.HasValue) {
-                this.SetScreenPosition(PositionLock.Value);
-            }
+            RefreshScreenLock();
         }
 
         protected override void OnActivated(EventArgs e) {
@@ -177,6 +174,7 @@ namespace OnTopReplica {
             if (!IsFullscreen) {
                 int change = (int)(e.Delta / 6.0); //assumes a mouse wheel "tick" is in the 80-120 range
                 AdjustSize(change);
+                RefreshScreenLock();
             }
         }
 
