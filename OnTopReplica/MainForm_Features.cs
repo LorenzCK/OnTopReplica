@@ -108,6 +108,16 @@ namespace OnTopReplica {
             }
         }
 
+        /// <summary>
+        /// Refreshes window position if in lock mode.
+        /// </summary>
+        private void RefreshScreenLock() {
+            //If locked in position, move accordingly
+            if (PositionLock.HasValue) {
+                this.SetScreenPosition(PositionLock.Value);
+            }
+        }
+
         #endregion
 
     }
