@@ -13,16 +13,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutButtonCancelTT" xml:space="preserve">
-    <value>Cancelar actualización</value>
+    <value>Cancela el progreso de actualización.</value>
   </data>
   <data name="AboutButtonExpanderTT" xml:space="preserve">
-    <value>Mostrar detalles acerca de OnTopReplica</value>
+    <value>Muestra detalles acerca de OnTopReplica.</value>
   </data>
   <data name="AboutButtonResetTT" xml:space="preserve">
-    <value>Reiniciar la configuración de OnTopReplica</value>
+    <value>Reinicia la configuración de OnTopReplica a sus valores iniciales.</value>
   </data>
   <data name="AboutButtonUpdateTT" xml:space="preserve">
-    <value>Actualizar OnTopReplica ahora</value>
+    <value>Actualiza OnTopReplica ahora.</value>
   </data>
   <data name="AboutDetails" xml:space="preserve">
     <value>&lt;html&gt;
@@ -85,6 +85,394 @@ a:hover {
   </data>
   <data name="AskResetButtonOk" xml:space="preserve">
     <value>&amp;Reiniciar
-Todas las configuraciones se perderán.</value>
+Todos los ajustes se perderán.</value>
+  </data>
+  <data name="AskResetContent" xml:space="preserve">
+    <value>Puede ser usado para reiniciar todos los ajustes si se ha perdido el control sobre las ventanas o se ha movido más allá de los bordes de la pantalla.</value>
+  </data>
+  <data name="AskResetTitle" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="AskSettingReset" xml:space="preserve">
+    <value>¿Reiniciar los ajustes?</value>
+  </data>
+  <data name="AskSettingResetContent" xml:space="preserve">
+    <value>Esta acción borrará todos los ajustes de OnTopReplica tras la instalación, volviendo a la configuración inicial (toda la información guardada, como las regiones personalizadas se perderán).</value>
+  </data>
+  <data name="AskSettingResetTitle" xml:space="preserve">
+    <value>Reiniciar ajustes</value>
+  </data>
+  <data name="AskUpdate" xml:space="preserve">
+    <value>Descargar OnTopReplica {0}?</value>
+    <comment>{0} update version</comment>
+  </data>
+  <data name="AskUpdateButtonCancel" xml:space="preserve">
+    <value>Cancelar actualización
+OnTopReplica le preguntará la próxima vez que se ejecute.</value>
+  </data>
+  <data name="AskUpdateButtonOk" xml:space="preserve">
+    <value>Descargar
+Instalar OnTopReplica {0}</value>
+    <comment>{0} update version</comment>
+  </data>
+  <data name="AskUpdateContent" xml:space="preserve">
+    <value>La nueva versión puede ser descargada e instalada del sitio oficial.</value>
+  </data>
+  <data name="AskUpdateExpanded" xml:space="preserve">
+    <value>Versión instalada: {0}
+Versión disponible: {1}</value>
+    <comment>{0} installed version number
+{1} online available version number</comment>
+  </data>
+  <data name="AskUpdateTitle" xml:space="preserve">
+    <value>Actualización disponible</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>&amp;Cancelar</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Creado por: Lorenz Cuno Klopfenstein.</value>
+  </data>
+  <data name="DrawRegions" xml:space="preserve">
+    <value>Crea una región utilizando el ratón.</value>
+  </data>
+  <data name="ErrorDetailButton" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
+  <data name="ErrorDetailsAero" xml:space="preserve">
+    <value>Detalles en Windows Aero</value>
+  </data>
+  <data name="ErrorDetailsAeroInfo" xml:space="preserve">
+    <value>Windows Aero sólo está disponible en Windows Vista o 7, en su versión Home Premium o superior.</value>
+  </data>
+  <data name="ErrorDwmOff" xml:space="preserve">
+    <value>La Composición de Escritorio no está activada.</value>
+  </data>
+  <data name="ErrorDwmOffContent" xml:space="preserve">
+    <value>Debe activar la Composición de Escritorio seleccionando "Windows Aero" como tema utilizado en Windows.
+
+Para ello, click derecho en el escritorio y buscar la opción en Personalizar.</value>
+  </data>
+  <data name="ErrorGenericInfoButton" xml:space="preserve">
+    <value>Detalles del error</value>
+  </data>
+  <data name="ErrorGenericInfoText" xml:space="preserve">
+    <value>Error:</value>
+  </data>
+  <data name="ErrorGenericThumbnailHandleError" xml:space="preserve">
+    <value>Parece que la ventana seleccionada ha sido cerrada o ya no es válida.</value>
+  </data>
+  <data name="ErrorGenericTitle" xml:space="preserve">
+    <value>Error:</value>
+  </data>
+  <data name="ErrorNoDwm" xml:space="preserve">
+    <value>La Composición de Escritorio no está soportada en su Sistema Operativo.
+Es necesario utilizar Windows Vista o 7 en su versión Home Premium o superior.</value>
+  </data>
+  <data name="ErrorNoDwmTitle" xml:space="preserve">
+    <value>Composición de Escritorio no soportada</value>
+  </data>
+  <data name="ErrorNoThumbnail" xml:space="preserve">
+    <value>No se ha clonado ninguna ventana.</value>
+  </data>
+  <data name="ErrorUnableToCreateThumbnail" xml:space="preserve">
+    <value>Imposible clonar la ventana.</value>
+  </data>
+  <data name="ErrorUnableToFit" xml:space="preserve">
+    <value>Imposible adaptar la ventana.</value>
+  </data>
+  <data name="ErrorUpdate" xml:space="preserve">
+    <value>No se ha podido buscar actualizaciones.</value>
+  </data>
+  <data name="ErrorUpdateContent" xml:space="preserve">
+    <value>Parece que OnTopReplica no ha podido ser instalado mediante "ClickOnce". Tendrá que actualizar manualmente visitando &lt;a href="http://ontopreplica.codeplex.com"&gt;la homepage del progetto&lt;/a&gt;.</value>
+  </data>
+  <data name="ErrorUpdateContentGeneric" xml:space="preserve">
+    <value>OnTopReplica no ha podido comprobar si hay una actualización disponible. Asegúrese de que está conectado a Internet. Si lo está, quizá la página oficial está temporalmente no disponible.</value>
+  </data>
+  <data name="FullscreenMode" xml:space="preserve">
+    <value>Modo</value>
+  </data>
+  <data name="FullscreenModeAlwaysOnTop" xml:space="preserve">
+    <value>Siempre encima</value>
+  </data>
+  <data name="FullscreenModeAlwaysOnTopTT" xml:space="preserve">
+    <value>OnTopReplica permanece siempre encima.</value>
+  </data>
+  <data name="FullscreenModeClickThrough" xml:space="preserve">
+    <value>Click a través</value>
+  </data>
+  <data name="FullscreenModeClickThroughTT" xml:space="preserve">
+    <value>OnTopReplica se comporta como una ventana transparente a través de la cual puede clickar lo que se encuentra detrás.</value>
+  </data>
+  <data name="FullscreenModeNormal" xml:space="preserve">
+    <value>Ventana standard</value>
+  </data>
+  <data name="FullscreenModeNormalTT" xml:space="preserve">
+    <value>OnTopReplica se comporta como una ventana corriente de Windows, por lo tanto puede estar en segundo plano.</value>
+  </data>
+  <data name="FullscreenTitle" xml:space="preserve">
+    <value>OnTopReplica a pantalla completa</value>
+  </data>
+  <data name="GroupSwitchModeDisableButton" xml:space="preserve">
+    <value>Desactivar</value>
+  </data>
+  <data name="GroupSwitchModeEnableButton" xml:space="preserve">
+    <value>Activar el modo en grupo</value>
+  </data>
+  <data name="GroupSwitchModeStatusDisabled" xml:space="preserve">
+    <value>Seleccionar varias ventanas para activar.</value>
+  </data>
+  <data name="GroupSwitchModeStatusEnabled" xml:space="preserve">
+    <value>Modo en grupo activado</value>
+  </data>
+  <data name="GroupSwitchModeTitle" xml:space="preserve">
+    <value>Modo en grupo:</value>
+  </data>
+  <data name="GroupSwitchModeWindows" xml:space="preserve">
+    <value>Ventanas</value>
+    <comment>Column Header of list, simply refers to available windows to be cloned</comment>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Sitio oficial: www.codeplex.com/ontopreplica.</value>
+  </data>
+  <data name="InfoClickForwarding" xml:space="preserve">
+    <value>Desea activar el "Click en la ventana clonada"?</value>
+  </data>
+  <data name="InfoClickForwardingContent" xml:space="preserve">
+    <value>Si este modo está activado, OnTopReplica permitirá hacer click en la ventana clonada (de esta forma se podrán hacer operaciones básicas con el ratón sin tener que activar la ventana original).
+
+Para salir de este modo, pulsar ESC.</value>
+  </data>
+  <data name="InfoClickForwardingTitle" xml:space="preserve">
+    <value>Click en la ventana clonada</value>
+  </data>
+  <data name="InfoClickThrough" xml:space="preserve">
+    <value>Activar el modo Click a través?</value>
+  </data>
+  <data name="InfoClickThroughDetails" xml:space="preserve">
+    <value>Click a través solo funciona si se ha activado y la ventana es semi-transparente.</value>
+  </data>
+  <data name="InfoClickThroughInformation" xml:space="preserve">
+    <value>En este modo, la ventana clonada se volverá ventana parcialmente transparente, permitiendo hacer click en las otras ventanas de detrás.
+
+Para volver al modo normal en cualquier momento, activar OnTopReplica clickando en la barra de tareas (o en el icono del sistema).</value>
+  </data>
+  <data name="InfoClickThroughNo" xml:space="preserve">
+    <value>No, gracias.
+Se podrá activar Click a través más tarde</value>
+  </data>
+  <data name="InfoClickThroughOk" xml:space="preserve">
+    <value>Utilizar Click a través</value>
+  </data>
+  <data name="InfoClickThroughTitle" xml:space="preserve">
+    <value>Modo Click a través</value>
+  </data>
+  <data name="InfoUpdated" xml:space="preserve">
+    <value>OnTopReplica ha sido actualizado.</value>
+  </data>
+  <data name="InfoUpdatedContent" xml:space="preserve">
+    <value>Para poder utilizar la versión actualizada de OnTopReplica se ha de reiniciar la aplicación.</value>
+  </data>
+  <data name="InfoUpdatedTitle" xml:space="preserve">
+    <value>Actualización correcta.</value>
+  </data>
+  <data name="InfoUpToDate" xml:space="preserve">
+    <value>OnTopReplica está actualizado.</value>
+  </data>
+  <data name="InfoUpToDateTitle" xml:space="preserve">
+    <value>No hay actualizaciones disponibles</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="MenuAbout" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="MenuAboutTT" xml:space="preserve">
+    <value>Oculta la ventana principal y muestra la ventana de "Acerca de"</value>
+  </data>
+  <data name="MenuAdvanced" xml:space="preserve">
+    <value>Avanzado</value>
+  </data>
+  <data name="MenuChrome" xml:space="preserve">
+    <value>Marco</value>
+  </data>
+  <data name="MenuChromeTT" xml:space="preserve">
+    <value>Activa o desactiva el marco de la ventana.</value>
+  </data>
+  <data name="MenuClickForwarding" xml:space="preserve">
+    <value>Activar Click en la ventana clonada</value>
+  </data>
+  <data name="MenuClickForwardingTT" xml:space="preserve">
+    <value>Activa "Click en la ventana clonada" en la ventana que se ha clonado.</value>
+  </data>
+  <data name="MenuClickThrough" xml:space="preserve">
+    <value>Activar Click a través</value>
+  </data>
+  <data name="MenuClickThroughTT" xml:space="preserve">
+    <value>OnTopReplica se comporta como una ventana transparente a través de la cual puede hacer click sobre lo que se encuentra detrás.</value>
+  </data>
+  <data name="MenuClose" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="MenuCloseTT" xml:space="preserve">
+    <value>Cierra OnToopReplica</value>
+  </data>
+  <data name="MenuFitDouble" xml:space="preserve">
+    <value>2:1 Doble</value>
+  </data>
+  <data name="MenuFitFullscreen" xml:space="preserve">
+    <value>Pantalla completa</value>
+  </data>
+  <data name="MenuFitHalf" xml:space="preserve">
+    <value>1:2 Mitad</value>
+  </data>
+  <data name="MenuFitOriginal" xml:space="preserve">
+    <value>1:1 Tamaño original</value>
+  </data>
+  <data name="MenuFitQuarter" xml:space="preserve">
+    <value>1:4 Un cuarto</value>
+  </data>
+  <data name="MenuGlass" xml:space="preserve">
+    <value>Efecto vidrio</value>
+  </data>
+  <data name="MenuGlassTT" xml:space="preserve">
+    <value>Activa o desactiva el efecto vidrio.</value>
+  </data>
+  <data name="MenuGroupSwitch" xml:space="preserve">
+    <value>Modo en grupo</value>
+  </data>
+  <data name="MenuGroupSwitchTT" xml:space="preserve">
+    <value>OnTopReplica clonará automáticamente una ventana de un grupo definido, eligiendo la que no ha estado en primer plano durante más tiempo.</value>
+  </data>
+  <data name="MenuOp100" xml:space="preserve">
+    <value>100% (opaco)</value>
+  </data>
+  <data name="MenuOp100TT" xml:space="preserve">
+    <value>OnTopReplica será totalmente opaco.</value>
+  </data>
+  <data name="MenuOp25TT" xml:space="preserve">
+    <value>Establece OnTopReplica al 25% de opacidad.</value>
+  </data>
+  <data name="MenuOp50TT" xml:space="preserve">
+    <value>Establece OnTopReplica al 50% de opacidad.</value>
+  </data>
+  <data name="MenuOp75TT" xml:space="preserve">
+    <value>Establece OnTopReplica al 75% de opacidad.</value>
+  </data>
+  <data name="MenuOpacity" xml:space="preserve">
+    <value>Opacidad</value>
+  </data>
+  <data name="MenuOpen" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="MenuOpenTT" xml:space="preserve">
+    <value>Muestra OnTopReplica.</value>
+  </data>
+  <data name="MenuPosBottomLeft" xml:space="preserve">
+    <value>Abajo a la izquierda</value>
+  </data>
+  <data name="MenuPosBottomRight" xml:space="preserve">
+    <value>Abajo a la derecha</value>
+  </data>
+  <data name="MenuPosition" xml:space="preserve">
+    <value>Posición</value>
+  </data>
+  <data name="MenuPositionTT" xml:space="preserve">
+    <value>Posiciona automáticamente OnTopReplica sobre el monitor actual.</value>
+  </data>
+  <data name="MenuPosTopLeft" xml:space="preserve">
+    <value>Arriba a la izquierda</value>
+  </data>
+  <data name="MenuPosTopRight" xml:space="preserve">
+    <value>Arriba a la derecha</value>
+  </data>
+  <data name="MenuQuitFullscreen" xml:space="preserve">
+    <value>Salir del modo pantalla completa</value>
+  </data>
+  <data name="MenuRecall" xml:space="preserve">
+    <value>Restaurar última posición y tamaño</value>
+  </data>
+  <data name="MenuRecallTT" xml:space="preserve">
+    <value>Activa o desactiva si OnTopReplica debe guardar la última posición y tamaño y usarla cuando se reinicie.</value>
+  </data>
+  <data name="MenuReduce" xml:space="preserve">
+    <value>Minimizar</value>
+  </data>
+  <data name="MenuReduceTT" xml:space="preserve">
+    <value>Minimiza OnTopReplica a la barra de tareas (o de sistema).</value>
+  </data>
+  <data name="MenuRegion" xml:space="preserve">
+    <value>Seleccionar región</value>
+  </data>
+  <data name="MenuRegionTT" xml:space="preserve">
+    <value>Activa o desactiva "Seleccionar región", que permite seleccionar una región específica de la ventana clonada.</value>
+  </data>
+  <data name="MenuReset" xml:space="preserve">
+    <value>Reiniciar ventana</value>
+  </data>
+  <data name="MenuResetTT" xml:space="preserve">
+    <value>Reinicia los ajustes de OnTopReplica y la ventana principal</value>
+  </data>
+  <data name="MenuResize" xml:space="preserve">
+    <value>Cambiar tamaño</value>
+  </data>
+  <data name="MenuSwitch" xml:space="preserve">
+    <value>Ir a la ventana original</value>
+  </data>
+  <data name="MenuSwitchTT" xml:space="preserve">
+    <value>Activa la ventana original y ocuta OnTopReplica.</value>
+  </data>
+  <data name="MenuWindows" xml:space="preserve">
+    <value>Seleccionar ventana</value>
+  </data>
+  <data name="MenuWindowsNone" xml:space="preserve">
+    <value>- ninguna -</value>
+  </data>
+  <data name="MenuWindowsTT" xml:space="preserve">
+    <value>Muestra una lista de ventanas que se pueden clonar.</value>
+  </data>
+  <data name="MenuWindowsWholeRegion" xml:space="preserve">
+    <value>- entera -</value>
+  </data>
+  <data name="RegionsCurrentRegion" xml:space="preserve">
+    <value>Región actual:</value>
+  </data>
+  <data name="RegionsDeleteButton" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="RegionsDoneButton" xml:space="preserve">
+    <value>Hecho</value>
+  </data>
+  <data name="RegionsHeight" xml:space="preserve">
+    <value>Altura</value>
+  </data>
+  <data name="RegionsResetButton" xml:space="preserve">
+    <value>Reiniciar ventana</value>
+  </data>
+  <data name="RegionsSaveButton" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="RegionsStoredRegions" xml:space="preserve">
+    <value>Regiones guardadas</value>
+  </data>
+  <data name="RegionsTitle" xml:space="preserve">
+    <value>Regiones:</value>
+  </data>
+  <data name="RegionsWidth" xml:space="preserve">
+    <value>Anchura</value>
+  </data>
+  <data name="RightClick" xml:space="preserve">
+    <value>Click derecho para empezar...</value>
+  </data>
+  <data name="Slogan" xml:space="preserve">
+    <value>Una copia ligera de la ventana en tiempo real de una ventana a su elección.</value>
+  </data>
+  <data name="UpdateDisclaimer" xml:space="preserve">
+    <value>OnTopReplica busca actualizaciones automáticamente.</value>
+  </data>
+  <data name="UpdateNow" xml:space="preserve">
+    <value>Actualizar ahora!</value>
   </data>
 </root>
