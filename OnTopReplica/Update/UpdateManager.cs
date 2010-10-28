@@ -95,7 +95,7 @@ namespace OnTopReplica.Update {
                 var dlg = new TaskDialog(Strings.InfoUpToDate, Strings.InfoUpToDateTitle) {
                     CommonButtons = TaskDialogButton.OK,
                     CommonIcon = TaskDialogIcon.Information,
-                    Footer = information.LatestVersion.ToString()
+                    //Footer = information.LatestVersion.ToString()
                 };
                 dlg.Show();
             }

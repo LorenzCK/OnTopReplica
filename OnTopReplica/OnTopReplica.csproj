@@ -221,6 +221,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.da.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings.es.resx" />
     <EmbeddedResource Include="Strings.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.it.Designer.cs</LastGenOutput>
@@ -305,6 +306,7 @@
     <None Include="Assets\clickforwarding.png" />
     <None Include="Assets\groupmode.png" />
     <None Include="Assets\pos_center.png" />
+    <None Include="Assets\flag_spanish.png" />
     <Content Include="Assets\xiao_arrow.png" />
     <None Include="Assets\xiao_help.png" />
     <None Include="Assets\window_opacity_new.png" />

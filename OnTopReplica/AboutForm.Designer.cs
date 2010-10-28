@@ -49,7 +49,7 @@
             this.themedLabel1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.themedLabel1.Size = new System.Drawing.Size(200, 40);
             this.themedLabel1.TabIndex = 0;
-            this.themedLabel1.Text = "OnTopReplica";
+            this.themedLabel1.Text = Strings.ApplicationName;
             // 
             // themedLabel2
             // 
@@ -138,8 +138,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(199, 31);
             this.label1.TabIndex = 13;
-            this.label1.Text = "OnTopReplica automatically checks for updates. No information is logged at any po" +
-                "int.";
+            this.label1.Text = Strings.UpdateDisclaimer;
             // 
             // linkLabel2
             // 
@@ -152,7 +151,7 @@
             this.linkLabel2.Size = new System.Drawing.Size(252, 21);
             this.linkLabel2.TabIndex = 1;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Homepage: www.codeplex.com/ontopreplica.";
+            this.linkLabel2.Text = Strings.Homepage;
             this.linkLabel2.UseCompatibleTextRendering = true;
             this.linkLabel2.VisitedLinkColor = System.Drawing.Color.Blue;
             // 
@@ -168,7 +167,7 @@
             this.linkLabel1.Size = new System.Drawing.Size(212, 21);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Created by: Lorenz Cuno Klopfenstein.";
+            this.linkLabel1.Text = Strings.CreatedBy;
             this.linkLabel1.UseCompatibleTextRendering = true;
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Blue;
             // 
@@ -180,7 +179,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(287, 33);
             this.label2.TabIndex = 10;
-            this.label2.Text = "A lightweight, real-time, always on top thumbnail of a window of your choice.";
+            this.label2.Text = Strings.Slogan;
             // 
             // webBrowser
             // 
