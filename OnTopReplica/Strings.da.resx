@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutButtonCancelTT" xml:space="preserve">
+    <value>Annuller updateringen</value>
+  </data>
+  <data name="AboutButtonExpanderTT" xml:space="preserve">
+    <value>Vis detaljer om OnTopReplica.</value>
+  </data>
+  <data name="AboutButtonResetTT" xml:space="preserve">
+    <value>Nulstil alle OnTopReplica indstillinger.</value>
+  </data>
+  <data name="AboutButtonUpdateTT" xml:space="preserve">
+    <value>Opdater OnTopReplica nu.</value>
+  </data>
+  <data name="AboutDetails" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;style type="text/css"&gt;
+body {
+	font-family: Segoe UI, Arial, sans-serif;
+	font-size: 0.8em;
+	margin: 0;
+padding: 0.75em;
+}
+h1 {
+	font-size: 1.4em;
+	font-weight: bold;
+	
+	margin: 1em 0 0.4em 0;
+	padding: 0;
+}
+p {
+	margin: 0.5em 0 0.5em 1em;
+	padding: 0;
+}
+a {
+	font-weight: bold;
+	color: blue;
+}
+a:hover {
+	color: red;
+}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	
+	&lt;body&gt;
+	
+		&lt;h1&gt;Licens&lt;/h1&gt;
+		
+		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; er licenseret under &lt;a href="http://opensource.org/licenses/ms-rl.html"&gt;Microsoft Reciprocal License (Ms-RL)&lt;/a&gt;.&lt;/p&gt;
+		&lt;p&gt;Dem originale kildekode kan findes på &lt;a href="http://www.codeplex.com/ontopreplica"&gt;projektets hjemmeside på CodePlex&lt;/a&gt;.&lt;/p&gt;
+		
+		&lt;h1&gt;Credits&lt;/h1&gt;
+		
+		&lt;p&gt;OnTopReplica er inspireret af &lt;a href="http://insentient.net"&gt;Switcher&lt;/a&gt; og andre DWM baserede applikationer.&lt;/p&gt;
+
+		&lt;p&gt;Alle Vista funktioner er del af &lt;a href="http://www.codeplex.com/windowsformsaero"&gt;WindowsFormsAero biblioteket&lt;/a&gt; for .NET.&lt;/p&gt;
+
+		&lt;p&gt;Lidt eksempel kode er taget fra &lt;a href="http://www.ookii.org"&gt;Ookii&lt;/a&gt; på Channel9.&lt;/p&gt;
+
+		&lt;p&gt;NativeToolstripRenderer class er taget fra &lt;a href="http://wp.asztal.net/2007/12/vista-style-menus-in-dotnet/"&gt;asztal.net&lt;/a&gt;.&lt;/p&gt;
+
+		&lt;p&gt;Lidt ikoner fra &lt;a href="http://www.vistaico.com"&gt;VistaICO.com&lt;/a&gt; og Xiao ikon sættet.&lt;/p&gt;
+	
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>OnTopReplica</value>
+  </data>
+  <data name="AskReset" xml:space="preserve">
+    <value>Nulstil vinduet helt?</value>
+  </data>
+  <data name="AskResetButtonOk" xml:space="preserve">
+    <value>&amp;NulstilAlle ændringer vil blive tabt.</value>
+  </data>
+  <data name="AskResetContent" xml:space="preserve">
+    <value>Kan bruges til at nulstille alle indstillinger hvis du mister kontrollen over vinduet eller hvis det er flyttet uden for skærmen.</value>
+  </data>
+  <data name="AskResetTitle" xml:space="preserve">
+    <value>Nulstil</value>
+  </data>
+  <data name="AskSettingReset" xml:space="preserve">
+    <value>Nulstil indstillinger?</value>
+  </data>
+  <data name="AskSettingResetContent" xml:space="preserve">
+    <value>Dette nulstiller OnTopReplica til standard indstillingerne (alle gemte informationer, som gemte områder, vil blive slettet).</value>
+  </data>
+  <data name="AskSettingResetTitle" xml:space="preserve">
+    <value>Nulstil indstillingerne</value>
+  </data>
+  <data name="AskUpdate" xml:space="preserve">
+    <value>Installer OnTopReplica {0}?</value>
+    <comment>{0} update version</comment>
+  </data>
+  <data name="AskUpdateButtonCancel" xml:space="preserve">
+    <value>Annuller opdateringenOnTopReplica påminder dig igen næste gang det startes.</value>
+  </data>
+  <data name="AskUpdateButtonOk" xml:space="preserve">
+    <value>FortsætInstaller OnTopReplica</value>
+    <comment>{0} update version</comment>
+  </data>
+  <data name="AskUpdateContent" xml:space="preserve">
+    <value>Den nye version vil automatiskt blive downloaded og installeret.</value>
+  </data>
+  <data name="AskUpdateExpanded" xml:space="preserve">
+    <value>Installeret version: {0}
+Tilgængelig version: {1}</value>
+    <comment>{0} installed version number
+{1} online available version number</comment>
+  </data>
+  <data name="AskUpdateTitle" xml:space="preserve">
+    <value>Opdatering tilgængelig.</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>&amp;Annuller</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Lavet af: Lorenz Cuno Klopfenstein.</value>
+  </data>
+  <data name="DrawRegions" xml:space="preserve">
+    <value>Tegn områder med musen</value>
+  </data>
+  <data name="ErrorDetailButton" xml:space="preserve">
+    <value>Detaljer</value>
+  </data>
+  <data name="ErrorDetailsAero" xml:space="preserve">
+    <value>Detaljer om Windows Aero</value>
+  </data>
+  <data name="ErrorDetailsAeroInfo" xml:space="preserve">
+    <value>Windows Aero er kun tilgængelig op Windows Vista Home Premium eller højere.</value>
+  </data>
+  <data name="ErrorDwmOff" xml:space="preserve">
+    <value>Windows Aero effekter er ikke slået til</value>
+  </data>
+  <data name="ErrorDwmOffContent" xml:space="preserve">
+    <value>Du skal aktiverere "Windows Aero" som tema i Windows.For at gøre dette skal du højreklikke på skrivebordet og vælge personlige indstillinger.</value>
+  </data>
+  <data name="ErrorGenericInfoButton" xml:space="preserve">
+    <value>Fejl detaljer.</value>
+  </data>
+  <data name="ErrorGenericInfoText" xml:space="preserve">
+    <value>Fejl: </value>
+  </data>
+  <data name="ErrorGenericThumbnailHandleError" xml:space="preserve">
+    <value>Vinduet du har valgt er lukket eller er ikke gyldigt mere.</value>
+  </data>
+  <data name="ErrorGenericTitle" xml:space="preserve">
+    <value>Fejl</value>
+  </data>
+  <data name="ErrorNoDwm" xml:space="preserve">
+    <value>Windows Aero effekter er ikke understøttet af dit styresystem.
+Dette program kræver Windows Vista Home Premium eller bedre.</value>
+  </data>
+  <data name="ErrorNoDwmTitle" xml:space="preserve">
+    <value>Skrivebords komposition ikke understøttet</value>
+  </data>
+  <data name="ErrorNoThumbnail" xml:space="preserve">
+    <value>Ingen miniature indlæst.</value>
+  </data>
+  <data name="ErrorUnableToCreateThumbnail" xml:space="preserve">
+    <value>Kan ikke lave miniature</value>
+  </data>
+  <data name="ErrorUnableToFit" xml:space="preserve">
+    <value>Kunne ikke passes til vinduet.</value>
+  </data>
+  <data name="ErrorUpdate" xml:space="preserve">
+    <value>Kan ikke søge efter opdateringer.</value>
+  </data>
+  <data name="ErrorUpdateContent" xml:space="preserve">
+    <value>OnTopReplica blev ikke installeret ved hjælp af 'ClickOnce'. Du bliver nødt til at opdatere manuelt (besøg &lt;a href="http://ontopreplica.codeplex.com"&gt;OnTopReplica's hjemmeside&lt;/a&gt;).</value>
+  </data>
+  <data name="FullscreenMode" xml:space="preserve">
+    <value>Tilstande</value>
+  </data>
+  <data name="FullscreenModeAlwaysOnTop" xml:space="preserve">
+    <value>Altid øverst</value>
+  </data>
+  <data name="FullscreenModeAlwaysOnTopTT" xml:space="preserve">
+    <value>Får OnTopReplica til altid at være øverst.</value>
+  </data>
+  <data name="FullscreenModeClickThrough" xml:space="preserve">
+    <value>Klikke igennem</value>
+  </data>
+  <data name="FullscreenModeClickThroughTT" xml:space="preserve">
+    <value>OnTopReplica vil opføre sig som en gennemsigtig film der lader dig klikke igennem til de underliggende vinduer.</value>
+  </data>
+  <data name="FullscreenModeNormal" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="FullscreenModeNormalTT" xml:space="preserve">
+    <value>Opfører sig som et almindeligt vindue. Du kan trække andre viduer ind over OnTopReplica.</value>
+  </data>
+  <data name="FullscreenTitle" xml:space="preserve">
+    <value>OnTopReplica fuld skærm</value>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Hjemmeside: www.codeplex.com/ontopreplica.</value>
+  </data>
+  <data name="InfoClickForwarding" xml:space="preserve">
+    <value>Ønsker du at aktivere "click forwarding"?</value>
+  </data>
+  <data name="InfoClickForwardingContent" xml:space="preserve">
+    <value>Hvis denne funktion er aktiveret vil OnTopReplica vidersende alle venstr museklik til det klonede vindue (dette gør dig i stand til at udføre basis musefunktioner i det klonede vindue uden at skulle aktivere det).
+
+For at afslutte denne funktion skal du højreklikke på OnTopReplica og deaktivere "Click forwarding" i menuen.</value>
+  </data>
+  <data name="InfoClickForwardingTitle" xml:space="preserve">
+    <value>Click forwarding</value>
+  </data>
+  <data name="InfoClickThrough" xml:space="preserve">
+    <value>Ønskes gennem klik i fuldskærms tilstand?</value>
+  </data>
+  <data name="InfoClickThroughDetails" xml:space="preserve">
+    <value>Gennem klik virker kun hvis det er blevet aktiveret i gendan undermenuen og hvis vinduet er delvist gennemsigtigt.</value>
+  </data>
+  <data name="InfoClickThroughInformation" xml:space="preserve">
+    <value>I denne tilstand vil fuld skærm vinduet opføre sig som et delvist gennemsigtigt lag, hvilket gør dig i stand til at klikke på de underliggende vinduer.
+
+For at komme tilbage til normal tilstand, dobbeltklik på OnTopReplica ikonet i meddelelsesområdet på proceslinjen.</value>
+  </data>
+  <data name="InfoClickThroughNo" xml:space="preserve">
+    <value>Nej.
+Du kan aktivere gennem klik senere.</value>
+  </data>
+  <data name="InfoClickThroughOk" xml:space="preserve">
+    <value>Brug gennem klik.</value>
+  </data>
+  <data name="InfoClickThroughTitle" xml:space="preserve">
+    <value>Gennem klik tilstand</value>
+  </data>
+  <data name="InfoUpdated" xml:space="preserve">
+    <value>OnTopReplica er blevet opdateret.</value>
+  </data>
+  <data name="InfoUpdatedContent" xml:space="preserve">
+    <value>For at benytte den opdaterede udgave af OnTopReplica skal du genstarte programmet.</value>
+  </data>
+  <data name="InfoUpdatedTitle" xml:space="preserve">
+    <value>Opdatering fuldført</value>
+  </data>
+  <data name="InfoUpToDate" xml:space="preserve">
+    <value>OnTopReplice er opdateret.</value>
+  </data>
+  <data name="InfoUpToDateTitle" xml:space="preserve">
+    <value>Ingen opdateringer er tilgængelige</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Sprog</value>
+  </data>
+  <data name="MenuAbout" xml:space="preserve">
+    <value>Om...</value>
+  </data>
+  <data name="MenuAboutTT" xml:space="preserve">
+    <value>Skjuler hoved vinduet og viser om boxen.</value>
+  </data>
+  <data name="MenuChrome" xml:space="preserve">
+    <value>Krom</value>
+  </data>
+  <data name="MenuChromeTT" xml:space="preserve">
+    <value>Vælger Chrome kanten rundt om vinduet til/fra</value>
+  </data>
+  <data name="MenuClickForwarding" xml:space="preserve">
+    <value>Click forwarding</value>
+  </data>
+  <data name="MenuClickForwardingTT" xml:space="preserve">
+    <value>Aktiver "click forwarding" til det klonede vindue</value>
+  </data>
+  <data name="MenuClickThrough" xml:space="preserve">
+    <value>Klikke igennem</value>
+  </data>
+  <data name="MenuClickThroughTT" xml:space="preserve">
+    <value>OnTopReplica vil opføre sig som en gennemsigtig film der lader dig klikke igennem til de underliggende vinduer.</value>
+  </data>
+  <data name="MenuClose" xml:space="preserve">
+    <value>Luk</value>
+  </data>
+  <data name="MenuCloseTT" xml:space="preserve">
+    <value>Lukker OnTopReplica.</value>
+  </data>
+  <data name="MenuFitDouble" xml:space="preserve">
+    <value>2:1 dobbelt</value>
+  </data>
+  <data name="MenuFitFullscreen" xml:space="preserve">
+    <value>Fuld skærm</value>
+  </data>
+  <data name="MenuFitHalf" xml:space="preserve">
+    <value>1:2 halv</value>
+  </data>
+  <data name="MenuFitOriginal" xml:space="preserve">
+    <value>1:1 Pas til vinduet</value>
+  </data>
+  <data name="MenuFitQuarter" xml:space="preserve">
+    <value>1:4 kvart</value>
+  </data>
+  <data name="MenuGlass" xml:space="preserve">
+    <value>Glas</value>
+  </data>
+  <data name="MenuGlassTT" xml:space="preserve">
+    <value>Vælger "glas tilstand" til/fra</value>
+  </data>
+  <data name="MenuOp100" xml:space="preserve">
+    <value>100% (uigennemsigtig)</value>
+  </data>
+  <data name="MenuOp100TT" xml:space="preserve">
+    <value>Sæt OnTopReplica til at være helt uigennemsigtig.</value>
+  </data>
+  <data name="MenuOp25" xml:space="preserve">
+    <value>25%</value>
+  </data>
+  <data name="MenuOp25TT" xml:space="preserve">
+    <value>Sætter OnTopReplica til 25% uigennemsigtighed.</value>
+  </data>
+  <data name="MenuOp50" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="MenuOp50TT" xml:space="preserve">
+    <value>Sætter OnTopReplica til 50% uigennemsigtighed.</value>
+  </data>
+  <data name="MenuOp75" xml:space="preserve">
+    <value>75%</value>
+  </data>
+  <data name="MenuOp75TT" xml:space="preserve">
+    <value>Sætter OnTopReplica til 75% uigennemsigtighed.</value>
+  </data>
+  <data name="MenuOpacity" xml:space="preserve">
+    <value>Uigennemsigtighed</value>
+  </data>
+  <data name="MenuOpen" xml:space="preserve">
+    <value>åben</value>
+  </data>
+  <data name="MenuOpenTT" xml:space="preserve">
+    <value>Viser OnTopReplica.</value>
+  </data>
+  <data name="MenuPosBottomLeft" xml:space="preserve">
+    <value>Nederst venstre</value>
+  </data>
+  <data name="MenuPosBottomRight" xml:space="preserve">
+    <value>Nederst højre</value>
+  </data>
+  <data name="MenuPosition" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="MenuPositionTT" xml:space="preserve">
+    <value>Sæt OnTopReplica automatiskt på den aktuelle skærm.</value>
+  </data>
+  <data name="MenuPosTopLeft" xml:space="preserve">
+    <value>Øverst venstre</value>
+  </data>
+  <data name="MenuPosTopRight" xml:space="preserve">
+    <value>Øverst højre</value>
+  </data>
+  <data name="MenuQuitFullscreen" xml:space="preserve">
+    <value>Afslut fuldskærm tilstand.</value>
+  </data>
+  <data name="MenuRecall" xml:space="preserve">
+    <value>Gendan sidste position og størrelse</value>
+  </data>
+  <data name="MenuRecallTT" xml:space="preserve">
+    <value>Vælger om OnTopReplica skal gemme sidst brugte størrelse og position, til næste gang det starter op.</value>
+  </data>
+  <data name="MenuReduce" xml:space="preserve">
+    <value>Minimer til systembakken.</value>
+  </data>
+  <data name="MenuReduceTT" xml:space="preserve">
+    <value>Minimere OnTopReplica til systembakken.</value>
+  </data>
+  <data name="MenuRegion" xml:space="preserve">
+    <value>Vælg område...</value>
+  </data>
+  <data name="MenuRegionTT" xml:space="preserve">
+    <value>Skifter til "område tilstand", der tillader dig at vælge et begrænset område af kildens vindue som miniature.</value>
+  </data>
+  <data name="MenuReset" xml:space="preserve">
+    <value>Nulstil vinduet</value>
+  </data>
+  <data name="MenuResetTT" xml:space="preserve">
+    <value>Nulstiller OnTopReplica indstillingerne og hoved vinduet.</value>
+  </data>
+  <data name="MenuResize" xml:space="preserve">
+    <value>Genskab</value>
+  </data>
+  <data name="MenuSwitch" xml:space="preserve">
+    <value>Skift til vindue</value>
+  </data>
+  <data name="MenuSwitchTT" xml:space="preserve">
+    <value>Skifter til kilde vinduet og gemmer OnTopReplica.</value>
+  </data>
+  <data name="MenuWindows" xml:space="preserve">
+    <value>Vælg vindue</value>
+  </data>
+  <data name="MenuWindowsNone" xml:space="preserve">
+    <value>- ingen -</value>
+  </data>
+  <data name="MenuWindowsTT" xml:space="preserve">
+    <value>Viser en liste af vinduer du kan bruge som miniature kilde.</value>
+  </data>
+  <data name="MenuWindowsWholeRegion" xml:space="preserve">
+    <value>- hele -</value>
+  </data>
+  <data name="RegionsCurrentRegion" xml:space="preserve">
+    <value>Aktuelt område:</value>
+  </data>
+  <data name="RegionsDeleteButton" xml:space="preserve">
+    <value>Slet</value>
+  </data>
+  <data name="RegionsDoneButton" xml:space="preserve">
+    <value>Færdig</value>
+  </data>
+  <data name="RegionsHeight" xml:space="preserve">
+    <value>Højde</value>
+  </data>
+  <data name="RegionsResetButton" xml:space="preserve">
+    <value>Nulstil</value>
+  </data>
+  <data name="RegionsSaveButton" xml:space="preserve">
+    <value>Gem</value>
+  </data>
+  <data name="RegionsStoredRegions" xml:space="preserve">
+    <value>Gemte områder</value>
+  </data>
+  <data name="RegionsTitle" xml:space="preserve">
+    <value>Områder:</value>
+  </data>
+  <data name="RegionsWidth" xml:space="preserve">
+    <value>Bredde</value>
+  </data>
+  <data name="RightClick" xml:space="preserve">
+    <value>Højreklik her for at starte...</value>
+  </data>
+  <data name="Slogan" xml:space="preserve">
+    <value>En letvægts, live, miniature udgave af et vindue du vælger, der altid er øverst.</value>
+  </data>
+  <data name="UpdateDisclaimer" xml:space="preserve">
+    <value>OnTopReplica checker automatiskt for opdateringer. Der bliver ikke registreret nogen data på noget tidspunkt.</value>
+  </data>
+  <data name="UpdateNow" xml:space="preserve">
+    <value>Opdater nu!</value>
+  </data>
+</root>
