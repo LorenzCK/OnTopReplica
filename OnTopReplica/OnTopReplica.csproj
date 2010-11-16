@@ -130,12 +130,14 @@
     <Compile Include="MessagePumpProcessors\GroupSwitchManager.cs" />
     <Compile Include="IMessagePumpProcessor.cs" />
     <Compile Include="MessagePumpProcessors\BaseMessagePumpProcessor.cs" />
+    <Compile Include="MessagePumpProcessors\ShellInterceptProcessor.cs" />
     <Compile Include="MessagePumpProcessors\WindowKeeper.cs" />
     <Compile Include="Native\ErrorMethods.cs" />
     <Compile Include="Native\HookMethods.cs" />
     <Compile Include="Native\HotKeyMethods.cs" />
     <Compile Include="Native\HT.cs" />
     <Compile Include="Pair.cs" />
+    <Compile Include="Platforms\DebugPlatform.cs" />
     <Compile Include="WindowSeekers\BaseWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByClassWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByTitleWindowSeeker.cs" />

@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 using OnTopReplica.Properties;
-using System.Threading;
-using System.Globalization;
-using System.Drawing;
-using System.IO;
-using VistaControls.TaskDialog;
-using OnTopReplica.Update;
-using System.Reflection;
 using OnTopReplica.StartupOptions;
+using OnTopReplica.Update;
 
 namespace OnTopReplica {
     
     static class Program {
 
         public static PlatformSupport Platform { get; private set; }
-
-        static CultureInfo _languageChangeCode = Settings.Default.Language;
 
         static UpdateManager _updateManager;
 
@@ -28,14 +22,13 @@ namespace OnTopReplica {
         /// </summary>
         [STAThread]
         static void Main(string[] args) {
-            //Hook abort handler
+            //Hook fatal abort handler
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
             //Initialize and check for platform support
             Platform = PlatformSupport.Create();
             if (!Platform.CheckCompatibility())
                 return;
-            Platform.InitApp();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -56,53 +49,18 @@ namespace OnTopReplica {
             if (options.Status == CliStatus.Information || options.Status == CliStatus.Error)
                 return;
             
-            bool mustReloadForm = false;
-            Point reloadLocation = new Point();
-            Size reloadSize = new Size();
+            //Load language
+            Thread.CurrentThread.CurrentUICulture = Settings.Default.Language;
 
-            do {
-                //Update language settings
-                Thread.CurrentThread.CurrentUICulture = _languageChangeCode;
-                Settings.Default.Language = _languageChangeCode;
-                _languageChangeCode = null;
-
-                _mainForm = new MainForm(options);
-                if (mustReloadForm) {
-                    _mainForm.Location = reloadLocation;
-                    _mainForm.Size = reloadSize;
-                }
-
+            //Show form
+            using (_mainForm = new MainForm(options)) {
                 Application.Run(_mainForm);
 
-                //Enable reloading on next loop
-                mustReloadForm = true;
-                reloadLocation = _mainForm.Location;
-                reloadSize = _mainForm.Size;
+                //Persist settings
+                Settings.Default.RestoreLastPosition = _mainForm.Location;
+                Settings.Default.RestoreLastSize = _mainForm.ClientSize;
+                Settings.Default.Save();
             }
-            while (_languageChangeCode != null);
-
-            //Persist settings
-            Settings.Default.RestoreLastPosition = reloadLocation;
-            Settings.Default.RestoreLastSize = reloadSize;
-            Settings.Default.Save();
-        }
-
-        /// <summary>
-        /// Forces a global language change. As soon as the main form is closed, the change is performed
-        /// and the form is reopened using the new language.
-        /// </summary>
-        public static bool ForceGlobalLanguageChange(string languageCode) {
-            if (string.IsNullOrEmpty(languageCode))
-                return false;
-
-            try {
-                _languageChangeCode = new CultureInfo(languageCode);
-            }
-            catch {
-                return false;
-            }
-
-            return true;
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {

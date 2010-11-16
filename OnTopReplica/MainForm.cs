@@ -31,6 +31,7 @@ namespace OnTopReplica {
 
         public MainForm(Options startupOptions) {
             _startupOptions = startupOptions;
+            Program.Platform.PreHandleFormInit(this);
             
             //WinForms init pass
             InitializeComponent();
@@ -110,7 +111,7 @@ namespace OnTopReplica {
             _windowSeeker.OwnerHandle = this.Handle;
 
             //Platform specific form initialization
-            Program.Platform.InitForm(this);
+            Program.Platform.PostHandleFormInit(this);
         }
 
         protected override void OnShown(EventArgs e) {
@@ -126,6 +127,7 @@ namespace OnTopReplica {
 
         protected override void OnClosing(CancelEventArgs e) {
             _msgPumpManager.Dispose();
+            Program.Platform.CloseForm(this);
 
             base.OnClosing(e);
         }

@@ -41,6 +41,9 @@ namespace OnTopReplica {
             Register(new WindowKeeper(), form);
             Register(new HotKeyManager(), form);
             Register(new GroupSwitchManager(), form);
+#if DEBUG
+            //Register(new ShellInterceptProcessor(), form);
+#endif
         }
 
         /// <summary>
@@ -70,6 +73,11 @@ namespace OnTopReplica {
         public void Dispose() {
             if (!HookMethods.DeregisterShellHookWindow(Form.Handle)) {
                 Console.Error.WriteLine("Failed to deregister shell hook window.");
+            }
+            else {
+#if DEBUG
+                Console.WriteLine("Deregistered shell hook window successfully.");
+#endif
             }
 
             foreach (var processor in _processors.Values) {

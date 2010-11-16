@@ -184,10 +184,13 @@ namespace OnTopReplica {
 
             string langCode = tsi.Tag as string;
 
-            if (Program.ForceGlobalLanguageChange(langCode))
+            MessageBox.Show("Should change to {0}", langCode);
+            //TODO
+
+            /*if (Program.ForceGlobalLanguageChange(langCode))
                 this.Close();
             else
-                MessageBox.Show("Error");
+                MessageBox.Show("Error");*/
         }
 
         private void Menu_About_click(object sender, EventArgs e) {
