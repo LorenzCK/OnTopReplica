@@ -5,8 +5,12 @@ using OnTopReplica.Platforms;
 using System.Windows.Forms;
 
 namespace OnTopReplica {
-    abstract class PlatformSupport : IDisposable {
 
+    abstract class PlatformSupport {
+
+        /// <summary>
+        /// Creates a concrete PlatformSupport instance based on the OS the app is running on.
+        /// </summary>
         public static PlatformSupport Create() {
             var os = Environment.OSVersion;
 
@@ -32,32 +36,26 @@ namespace OnTopReplica {
         /// <summary>
         /// Checks whether OnTopReplica is compatible with the platform.
         /// </summary>
-        /// <returns>Returns false if OnTopReplica cannot run.</returns>
+        /// <returns>Returns false if OnTopReplica cannot run and should terminate right away.</returns>
         public abstract bool CheckCompatibility();
 
         /// <summary>
-        /// Initializes the application. Called once in the app lifetime.
+        /// Initializes a form before it is fully constructed and before the window handle has been created.
         /// </summary>
-        public virtual void InitApp() {
+        public virtual void PreHandleFormInit(MainForm form) {
         }
 
         /// <summary>
-        /// Gets the main OnTopReplica form.
-        /// </summary>
-        protected MainForm Form { get; private set; }
-
-        /// <summary>
-        /// Initializes a form. Called once in the form lifetime.
+        /// Initializes a form after its handle has been created.
         /// </summary>
         /// <param name="form">Form to initialize.</param>
-        public virtual void InitForm(MainForm form) {
-            Form = form;
+        public virtual void PostHandleFormInit(MainForm form) {
         }
 
         /// <summary>
-        /// Prepares the app for shutdown. Called once before the program terminates.
+        /// Called before closing a form. Called once during a form's lifetime.
         /// </summary>
-        public virtual void ShutdownApp() {
+        public virtual void CloseForm(MainForm form) {
         }
 
         /// <summary>
@@ -65,14 +63,13 @@ namespace OnTopReplica {
         /// </summary>
         /// <param name="form">Form to hide.</param>
         public virtual void HideForm(MainForm form) {
-            form.Hide();
         }
 
         /// <summary>
         /// Gets whether the form is currently hidden or not.
         /// </summary>
         public virtual bool IsHidden(MainForm form) {
-            return !form.Visible;
+            return false;
         }
 
         /// <summary>
@@ -81,7 +78,6 @@ namespace OnTopReplica {
         /// </summary>
         /// <param name="form">Form to restore.</param>
         public virtual void RestoreForm(MainForm form) {
-            form.Show();
         }
 
         /// <summary>
@@ -90,20 +86,6 @@ namespace OnTopReplica {
         /// </summary>
         public virtual void OnFormStateChange(MainForm form) {
         }
-
-        #region IDisposable Members
-
-        bool _isDisposed = false;
-
-        public void Dispose() {
-            if (_isDisposed)
-                return;
-
-            this.ShutdownApp();
-            _isDisposed = true;
-        }
-
-        #endregion
 
     }
 }
