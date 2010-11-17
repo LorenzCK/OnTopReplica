@@ -69,6 +69,9 @@ namespace OnTopReplica.StartupOptions {
                 .Add("chromeOff", "Disables the window's chrome (border).", s => {
                     options.DisableChrome = true;
                 })
+                .Add("fs|fullscreen", "Starts up in fullscreen mode.", s => {
+                    options.Fullscreen = true;
+                })
                 .Add("h|help|?", "Show command line help.", s => {
                     options.Status = CliStatus.Information;
                 });

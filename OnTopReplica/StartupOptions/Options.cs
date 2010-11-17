@@ -17,6 +17,7 @@ namespace OnTopReplica.StartupOptions {
             Opacity = 255;
             DisableChrome = false;
             MustBeVisible = false;
+            Fullscreen = false;
         }
 
         #region Position and size
@@ -50,6 +51,8 @@ namespace OnTopReplica.StartupOptions {
         public byte Opacity { get; set; }
 
         public bool DisableChrome { get; set; }
+
+        public bool Fullscreen { get; set; }
 
         #endregion
 
@@ -135,6 +138,11 @@ namespace OnTopReplica.StartupOptions {
             //Other features
             if (EnableClickForwarding) {
                 form.ClickForwardingEnabled = true;
+            }
+
+            //Fullscreen
+            if (Fullscreen) {
+                form.IsFullscreen = true;
             }
         }
 

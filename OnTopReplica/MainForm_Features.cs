@@ -67,6 +67,10 @@ namespace OnTopReplica {
                 return (FormBorderStyle == FormBorderStyle.SizableToolWindow);
             }
             set {
+                //Cancel hiding chrome if no thumbnail is shown
+                if (!value && !_thumbnailPanel.IsShowingThumbnail)
+                    return;
+
                 if (!value) {
                     Location = new Point {
                         X = Location.X + SystemInformation.FrameBorderSize.Width,
