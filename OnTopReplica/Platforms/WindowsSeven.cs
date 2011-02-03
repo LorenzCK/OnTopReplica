@@ -47,7 +47,7 @@ namespace OnTopReplica.Platforms {
                 //Note that when minimized, it will be shown as an (ugly) minimized tool window
                 //thus we do not minimize, but set to transparent when hiding
                 WindowMethods.SetWindowLong(form.Handle, WindowMethods.WindowLong.ExStyle,
-                    (IntPtr)WindowMethods.WindowExStyles.ToolWindow);
+                    (IntPtr)(WindowMethods.WindowExStyles.ToolWindow | WindowMethods.WindowExStyles.Layered));
             }
         }
 
