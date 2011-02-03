@@ -85,7 +85,7 @@ namespace OnTopReplica {
 			};
 
             foreach (ToolStripMenuItem i in items) {
-                if ((double)i.Tag == this.Opacity)
+                if (((double)i.Tag) == this.Opacity)
                     i.Checked = true;
                 else
                     i.Checked = false;
@@ -96,9 +96,10 @@ namespace OnTopReplica {
             //Get clicked menu item
             ToolStripMenuItem tsi = sender as ToolStripMenuItem;
 
-            if (tsi != null) {
+            if (tsi != null && this.Visible) {
                 //Get opacity from the tag
                 this.Opacity = (double)tsi.Tag;
+                Program.Platform.OnFormStateChange(this);
             }
         }
 
