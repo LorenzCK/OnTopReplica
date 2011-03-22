@@ -78,11 +78,15 @@ namespace OnTopReplica {
             //Unhook listener to make panel freeable
             _currentSidePanel.RequestClosing -= RequestClosingHandler;
 
-            //Remove side panel
+            //Remove side panel and container
             _currentSidePanel.OnClosing(this);
+            _currentSidePanel.Hide();
             _sidePanelContainer.Controls.Clear();
             _sidePanelContainer.Visible = _sidePanelContainer.Enabled = false;
+
+            //Free panel
             _currentSidePanel = null;
+            _currentSidePanel.Dispose();
 
             //Resize
             MinimumSize = new Size(20, 20);
@@ -92,6 +96,9 @@ namespace OnTopReplica {
             );
             ExtraPadding = new Padding(0);
             _thumbnailPanel.Size = ClientSize;
+
+            //Put focus back to main form
+            this.Focus();
         }
 
         void SidePanel_RequestClosing(object sender, EventArgs e) {
