@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 
 namespace OnTopReplica {
+
     partial class MainForm {
 
         EventHandler RequestClosingHandler;
@@ -74,7 +75,7 @@ namespace OnTopReplica {
             if (_currentSidePanel == null)
                 return;
 
-            //Unhook listener
+            //Unhook listener to make panel freeable
             _currentSidePanel.RequestClosing -= RequestClosingHandler;
 
             //Remove side panel
@@ -102,4 +103,5 @@ namespace OnTopReplica {
         }
 
     }
+
 }

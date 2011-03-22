@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using OnTopReplica.Properties;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using OnTopReplica.MessagePumpProcessors;
 using OnTopReplica.WindowSeekers;
 
 namespace OnTopReplica.SidePanels {
-	partial class GroupSwitchPanel : SidePanel {
-
+    partial class GroupSwitchPanel : SidePanel {
         public GroupSwitchPanel() {
-			InitializeComponent();
-		}
+            InitializeComponent();
+        }
 
         public override void OnFirstShown(MainForm form) {
             base.OnFirstShown(form);
@@ -24,7 +21,9 @@ namespace OnTopReplica.SidePanels {
         }
 
         private void LoadWindowList() {
-            var manager = new TaskWindowSeeker();
+            var manager = new TaskWindowSeeker {
+                SkipNotVisibleWindows = true
+            };
             manager.Refresh();
 
             var imageList = new ImageList();
@@ -52,6 +51,7 @@ namespace OnTopReplica.SidePanels {
                 foreach (ListViewItem i in listWindows.SelectedItems) {
                     ret.Add((WindowHandle)i.Tag);
                 }
+
                 form.SetThumbnailGroup(ret);
             }
             else {
@@ -70,5 +70,6 @@ namespace OnTopReplica.SidePanels {
             OnRequestClosing();
         }
 
-	}
+    }
+
 }
