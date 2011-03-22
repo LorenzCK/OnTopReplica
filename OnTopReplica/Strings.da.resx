@@ -171,7 +171,7 @@ Dette program kræver Windows Vista Home Premium eller bedre.</value>
     <value>Ingen miniature indlæst.</value>
   </data>
   <data name="ErrorUnableToCreateThumbnail" xml:space="preserve">
-    <value>Kan ikke lave miniature</value>
+    <value>Kan ikke lave miniature.</value>
   </data>
   <data name="ErrorUnableToFit" xml:space="preserve">
     <value>Kunne ikke passes til vinduet.</value>
