@@ -62,9 +62,11 @@ namespace OnTopReplica {
 
         #region Chrome
 
+        const FormBorderStyle DefaultBorderStyle = FormBorderStyle.SizableToolWindow;
+
         public bool IsChromeVisible {
             get {
-                return (FormBorderStyle == FormBorderStyle.SizableToolWindow);
+                return (FormBorderStyle == DefaultBorderStyle);
             }
             set {
                 //Cancel hiding chrome if no thumbnail is shown
@@ -83,7 +85,7 @@ namespace OnTopReplica {
                         X = Location.X - SystemInformation.FrameBorderSize.Width,
                         Y = Location.Y - SystemInformation.FrameBorderSize.Height
                     };
-                    FormBorderStyle = FormBorderStyle.SizableToolWindow;
+                    FormBorderStyle = DefaultBorderStyle;
                 }
 
                 Program.Platform.OnFormStateChange(this);
