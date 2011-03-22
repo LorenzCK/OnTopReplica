@@ -4,6 +4,7 @@ using System.Text;
 using System.Drawing;
 using System.ComponentModel;
 using OnTopReplica.Properties;
+using OnTopReplica.WindowSeekers;
 
 namespace OnTopReplica.StartupOptions {
     class Factory {
@@ -29,6 +30,27 @@ namespace OnTopReplica.StartupOptions {
             if (Settings.Default.RestoreSizeAndPosition) {
                 options.StartLocation = Settings.Default.RestoreLastPosition;
                 options.StartSize = Settings.Default.RestoreLastSize;
+            }
+
+            if (Settings.Default.RestoreLastWindow) {
+                var handle = Settings.Default.RestoreLastWindowHwnd;
+                var title = Settings.Default.RestoreLastWindowTitle;
+                var className = Settings.Default.RestoreLastWindowClass;
+
+                var seeker = new RestoreWindowSeeker(new IntPtr(handle), title, className);
+                seeker.SkipNotVisibleWindows = true;
+                seeker.Refresh();
+                var resultHandle = seeker.Windows.FirstOrDefault();
+
+                if (resultHandle != null) {
+                    //Load window
+                    options.WindowId = resultHandle.Handle;
+                }
+#if DEBUG
+                else {
+                    Console.WriteLine("Couldn't find window to restore.");
+                }
+#endif
             }
         }
 

@@ -115,7 +115,7 @@ namespace OnTopReplica {
             if (handle == IntPtr.Zero)
                 return null;
 
-            return new WindowHandle(handle, string.Empty);
+            return new WindowHandle(handle, null);
         }
 
 	}

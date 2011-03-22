@@ -5,9 +5,6 @@
     <Setting Name="SavedRegions" Type="OnTopReplica.StoredRegionArray" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="AutoFitOnResize" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="Opacity" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">255</Value>
     </Setting>
@@ -37,6 +34,18 @@
     </Setting>
     <Setting Name="RestoreLastPosition" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="RestoreLastWindow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="RestoreLastWindowClass" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RestoreLastWindowTitle" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RestoreLastWindowHwnd" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

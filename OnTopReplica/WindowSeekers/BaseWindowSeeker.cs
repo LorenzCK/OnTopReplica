@@ -10,14 +10,17 @@ namespace OnTopReplica.WindowSeekers {
     /// </summary>
     abstract class BaseWindowSeeker {
 
-        List<WindowHandle> _list = new List<WindowHandle>();
+        IList<WindowHandle> _list = new List<WindowHandle>();
 
         /// <summary>
         /// Get the matching windows from the last refresh.
         /// </summary>
-        public IEnumerable<WindowHandle> Windows {
+        public virtual IList<WindowHandle> Windows {
             get {
                 return _list;
+            }
+            protected set {
+                _list = value;
             }
         }
 

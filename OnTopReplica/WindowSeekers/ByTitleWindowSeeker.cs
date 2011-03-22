@@ -26,10 +26,8 @@ namespace OnTopReplica.WindowSeekers {
             if (string.IsNullOrEmpty(title))
                 return false;
 
-            //Skip non-top-level windows (skips most internal controls)
-            bool hasParent = (long)WindowManagerMethods.GetParent(hwnd) != 0;
-            bool hasOwner = (long)WindowManagerMethods.GetWindow(hwnd, WindowManagerMethods.GetWindowMode.GW_OWNER) != 0;
-            if (hasParent || hasOwner)
+            //Skip non top-level windows
+            if (!WindowManagerMethods.IsTopLevel(hwnd))
                 return false;
 
             var modTitle = title.Trim().ToLower();
