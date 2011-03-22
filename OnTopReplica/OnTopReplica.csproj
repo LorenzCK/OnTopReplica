@@ -114,6 +114,7 @@
     <Compile Include="CloseRequestEventArgs.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="ExtensionAttribute.cs" />
+    <Compile Include="GeometryExtensions.cs" />
     <Compile Include="MainForm_Features.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,9 +139,22 @@
     <Compile Include="Native\HT.cs" />
     <Compile Include="Pair.cs" />
     <Compile Include="Platforms\DebugPlatform.cs" />
+    <Compile Include="SidePanels\OptionsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SidePanels\OptionsPanel.Designer.cs">
+      <DependentUpon>OptionsPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SidePanels\GroupSwitchPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SidePanels\GroupSwitchPanel.Designer.cs">
+      <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowSeekers\BaseWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByClassWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByTitleWindowSeeker.cs" />
+    <Compile Include="WindowSeekers\RestoreWindowSeeker.cs" />
     <Compile Include="WindowSeekers\TaskWindowSeeker.cs" />
     <None Include="Native\ITaskBarList.cs" />
     <Compile Include="Native\InputMethods.cs" />
@@ -158,12 +172,6 @@
     <Compile Include="ScreenPosition.cs" />
     <Compile Include="SidePanel.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SidePanels\GroupSwitchPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SidePanels\GroupSwitchPanel.Designer.cs">
-      <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="StartupOptions\CliStatus.cs" />
     <Compile Include="StartupOptions\CommandLineReportForm.cs">
@@ -210,7 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SidePanels\GroupSwitchPanel.resx">
       <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SidePanels\OptionsPanel.resx">
+      <DependentUpon>OptionsPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartupOptions\CommandLineReportForm.resx">
       <DependentUpon>CommandLineReportForm.cs</DependentUpon>
@@ -378,72 +388,72 @@
   <ItemGroup>
     <PublishFile Include="Assets\icon.ico">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Assets\screenshot-icon.ico">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Assets\window_multiple16.ico">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Assets\xiao_arrow.png">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="cs\OnTopReplica.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="da\OnTopReplica.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="it\OnTopReplica.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>

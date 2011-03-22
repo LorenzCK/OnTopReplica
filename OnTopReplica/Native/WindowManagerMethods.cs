@@ -84,5 +84,16 @@ namespace OnTopReplica.Native {
         [DllImport("user32.dll")]
         public static extern IntPtr GetWindow(IntPtr hwnd, GetWindowMode mode);
 
+        /// <summary>
+        /// Checks whether a window is a top-level window (has no owner nor parent window).
+        /// </summary>
+        /// <param name="hwnd">Handle to the window to check.</param>
+        public static bool IsTopLevel(IntPtr hwnd) {
+            bool hasParent = WindowManagerMethods.GetParent(hwnd).ToInt64() != 0;
+            bool hasOwner = WindowManagerMethods.GetWindow(hwnd, WindowManagerMethods.GetWindowMode.GW_OWNER).ToInt64() != 0;
+
+            return (!hasParent && !hasOwner);
+        }
+
     }
 }

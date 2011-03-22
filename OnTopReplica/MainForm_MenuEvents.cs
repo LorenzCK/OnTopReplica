@@ -64,8 +64,16 @@ namespace OnTopReplica {
             Native.WindowManagerMethods.SetForegroundWindow(CurrentThumbnailWindowHandle.Handle);
         }
 
+        private void Menu_Advanced_opening(object sender, EventArgs e) {
+            restoreLastClonedWindowToolStripMenuItem.Checked = Settings.Default.RestoreLastWindow;
+        }
+
         private void Menu_GroupSwitchMode_click(object sender, EventArgs e) {
             SetSidePanel(new SidePanels.GroupSwitchPanel());
+        }
+
+        private void Menu_RestoreLastWindow_click(object sender, EventArgs e) {
+            Settings.Default.RestoreLastWindow = !Settings.Default.RestoreLastWindow;
         }
 
         private void Menu_ClickForwarding_click(object sender, EventArgs e) {

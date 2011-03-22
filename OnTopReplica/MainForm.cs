@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using OnTopReplica.Native;
 using OnTopReplica.Properties;
+using OnTopReplica.StartupOptions;
+using OnTopReplica.Update;
+using OnTopReplica.WindowSeekers;
 using VistaControls.Dwm;
 using VistaControls.TaskDialog;
-using System.Collections.Generic;
-using OnTopReplica.Native;
-using OnTopReplica.Update;
-using OnTopReplica.StartupOptions;
-using OnTopReplica.WindowSeekers;
 
 namespace OnTopReplica {
 
@@ -52,7 +52,7 @@ namespace OnTopReplica {
 
             //Side panel
             _sidePanelContainer = new Panel {
-                Location = new Point(ClientSize.Width, 0),
+                Location = new Point(ClientSize.Width + 5, 0),
                 Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom,
                 Enabled = false,
                 Visible = false,
@@ -126,6 +126,13 @@ namespace OnTopReplica {
         }
 
         protected override void OnClosing(CancelEventArgs e) {
+            //Store last thumbnail, if any
+            if (_thumbnailPanel.IsShowingThumbnail && CurrentThumbnailWindowHandle != null) {
+                Settings.Default.RestoreLastWindowTitle = CurrentThumbnailWindowHandle.Title;
+                Settings.Default.RestoreLastWindowHwnd = CurrentThumbnailWindowHandle.Handle.ToInt64();
+                Settings.Default.RestoreLastWindowClass = CurrentThumbnailWindowHandle.Class;
+            }
+
             _msgPumpManager.Dispose();
             Program.Platform.CloseForm(this);
 
@@ -262,7 +269,8 @@ namespace OnTopReplica {
                     FitToThumbnail(0.5);
                 }
 
-                else if (e.KeyCode == Keys.D3 || e.KeyCode == Keys.NumPad3 || e.KeyCode == Keys.D0 || e.KeyCode == Keys.NumPad0) {
+                else if (e.KeyCode == Keys.D3 || e.KeyCode == Keys.NumPad3 ||
+                         e.KeyCode == Keys.D0 || e.KeyCode == Keys.NumPad0) {
                     FitToThumbnail(1.0);
                 }
 
@@ -340,8 +348,8 @@ namespace OnTopReplica {
                     _preFullscreenSize = ClientSize;
                     _preFullscreenBorderStyle = FormBorderStyle;
 
-                    var currentScreen = Screen.FromControl(this);
                     FormBorderStyle = FormBorderStyle.None;
+                    var currentScreen = Screen.FromControl(this);
                     Size = currentScreen.WorkingArea.Size;
                     Location = currentScreen.WorkingArea.Location;
                 }

@@ -36,18 +36,6 @@ namespace OnTopReplica.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool AutoFitOnResize {
-            get {
-                return ((bool)(this["AutoFitOnResize"]));
-            }
-            set {
-                this["AutoFitOnResize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("255")]
         public byte Opacity {
             get {
@@ -163,6 +151,54 @@ namespace OnTopReplica.Properties {
             }
             set {
                 this["RestoreLastPosition"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool RestoreLastWindow {
+            get {
+                return ((bool)(this["RestoreLastWindow"]));
+            }
+            set {
+                this["RestoreLastWindow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RestoreLastWindowClass {
+            get {
+                return ((string)(this["RestoreLastWindowClass"]));
+            }
+            set {
+                this["RestoreLastWindowClass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RestoreLastWindowTitle {
+            get {
+                return ((string)(this["RestoreLastWindowTitle"]));
+            }
+            set {
+                this["RestoreLastWindowTitle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public long RestoreLastWindowHwnd {
+            get {
+                return ((long)(this["RestoreLastWindowHwnd"]));
+            }
+            set {
+                this["RestoreLastWindowHwnd"] = value;
             }
         }
     }
