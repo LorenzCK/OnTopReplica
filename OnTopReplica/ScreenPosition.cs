@@ -5,8 +5,9 @@ using System.Windows.Forms;
 using System.Drawing;
 
 namespace OnTopReplica {
+
     /// <summary>
-    /// Describes a resolution independent position.
+    /// Describes a resolution independent screen position.
     /// </summary>
     enum ScreenPosition {
         TopLeft,
@@ -22,6 +23,46 @@ namespace OnTopReplica {
     static class ScreenPositionExtensions {
 
         /// <summary>
+        /// Gets the coordinates point matching an independent screen position value.
+        /// </summary>
+        /// <param name="position">Screen position value.</param>
+        /// <returns>Pixel point in screen coordinates.</returns>
+        public static Point ResolveScreenPosition(this Screen screen, ScreenPosition position) {
+            var rect = screen.WorkingArea;
+
+            return ResolveScreenPositionToRectangle(rect, position);
+        }
+
+        /// <summary>
+        /// Gets the coordinates matching an independent screen position value.
+        /// </summary>
+        /// <param name="ctrl">Target control for which the coordinates should be resolved.</param>
+        /// <param name="position">Screen position value.</param>
+        /// <returns>Pixel point in screen coordinates.</returns>
+        public static Point ResolveScreenPositionEdge(this Control ctrl, ScreenPosition position) {
+            var ctrlRegion = ctrl.RectangleToScreen(ctrl.ClientRectangle);
+
+            return ResolveScreenPositionToRectangle(ctrlRegion, position);
+        }
+
+        private static Point ResolveScreenPositionToRectangle(Rectangle rect, ScreenPosition position) {
+            switch (position) {
+                case ScreenPosition.TopLeft:
+                    return new Point(rect.X, rect.Y);
+                case ScreenPosition.TopRight:
+                    return new Point(rect.X + rect.Width, rect.Y);
+                case ScreenPosition.BottomLeft:
+                    return new Point(rect.X, rect.Y + rect.Height);
+                case ScreenPosition.BottomRight:
+                    return new Point(rect.X + rect.Width, rect.Y + rect.Height);
+                case ScreenPosition.Center:
+                    return new Point(rect.X + (rect.Width / 2), rect.Y + (rect.Height / 2));
+                default:
+                    throw new ArgumentException("Invalid ScreenPosition value.");
+            }
+        }
+
+        /// <summary>
         /// Sets the form's screen position in independent coordinates.
         /// </summary>
         /// <remarks>
@@ -29,47 +70,18 @@ namespace OnTopReplica {
         /// </remarks>
         public static void SetScreenPosition(this MainForm form, ScreenPosition position) {
             var screen = Screen.FromControl(form);
-            var wa = screen.WorkingArea;
 
-            Point p = new Point();
-            switch (position) {
-                case ScreenPosition.TopLeft:
-                    p = new Point(
-                        wa.Left - form.ChromeBorderHorizontal,
-                        wa.Top - form.ChromeBorderVertical
-                    );
-                    break;
+            var start = form.ResolveScreenPositionEdge(position);
+            var end = screen.ResolveScreenPosition(position);
 
-                case ScreenPosition.TopRight:
-                    p = new Point(
-                        wa.Right - form.Width + form.ChromeBorderHorizontal,
-                        wa.Top - form.ChromeBorderVertical
-                    );
-                    break;
+            var move = end.Difference(start);
 
-                case ScreenPosition.BottomLeft:
-                    p = new Point(
-                        wa.Left - form.ChromeBorderHorizontal,
-                        wa.Bottom - form.Height + form.ChromeBorderVertical
-                    );
-                    break;
+#if DEBUG
+            Console.WriteLine("From {0} to {1} => {2}.", start, end, move);
+#endif
 
-                case ScreenPosition.BottomRight:
-                    p = new Point(
-                        wa.Right - form.Width + form.ChromeBorderHorizontal,
-                        wa.Bottom - form.Height + form.ChromeBorderVertical
-                    );
-                    break;
-
-                case ScreenPosition.Center:
-                    p = new Point(
-                        wa.X + (wa.Width / 2) - (form.Width / 2) - (form.ChromeBorderHorizontal / 2),
-                        wa.Y + (wa.Height / 2) - (form.Height / 2) - (form.ChromeBorderVertical / 2)
-                    );
-                    break;
-            }
-
-            form.Location = p;
+            var original = form.Location;
+            form.Location = new Point(original.X + move.X, original.Y + move.Y);
         }
 
     }
