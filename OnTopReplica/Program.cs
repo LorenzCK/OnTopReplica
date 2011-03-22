@@ -65,8 +65,8 @@ namespace OnTopReplica {
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
             string dump = string.Format("OnTopReplica-dump-{0}{1}{2}{3}{4}.txt",
-                DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day,
-                DateTime.UtcNow.Hour, DateTime.UtcNow.Minute);
+                DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
+                DateTime.Now.Hour, DateTime.Now.Minute);
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), dump);
 
             using (var s = new FileStream(path, FileMode.Create)) {
@@ -83,6 +83,7 @@ namespace OnTopReplica {
                     sw.WriteLine(".NET: {0}", Environment.Version.ToString());
                     sw.WriteLine("Aero DWM: {0}", VistaControls.OsSupport.IsCompositionEnabled);
                     sw.WriteLine("Launch command: {0}", Environment.CommandLine);
+                    sw.WriteLine("UTC time: {0} {1}", DateTime.UtcNow.ToShortDateString(), DateTime.UtcNow.ToShortTimeString());
                 }
             }
         }
