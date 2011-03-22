@@ -218,7 +218,7 @@ Es necesario utilizar Windows Vista o 7 en su versión Home Premium o superior.<
     <value>Desactivar</value>
   </data>
   <data name="GroupSwitchModeEnableButton" xml:space="preserve">
-    <value>Activar el modo en grupo</value>
+    <value>Activar modo</value>
   </data>
   <data name="GroupSwitchModeStatusDisabled" xml:space="preserve">
     <value>Seleccionar varias ventanas para activar.</value>
@@ -376,6 +376,12 @@ Se podrá activar Click a través más tarde</value>
   <data name="MenuPosBottomRight" xml:space="preserve">
     <value>Abajo a la derecha</value>
   </data>
+  <data name="MenuPosCenter" xml:space="preserve">
+    <value>Centrado</value>
+  </data>
+  <data name="MenuPosDisabled" xml:space="preserve">
+    <value>Desactivado</value>
+  </data>
   <data name="MenuPosition" xml:space="preserve">
     <value>Posición</value>
   </data>
@@ -422,7 +428,7 @@ Se podrá activar Click a través más tarde</value>
     <value>Ir a la ventana original</value>
   </data>
   <data name="MenuSwitchTT" xml:space="preserve">
-    <value>Activa la ventana original y ocuta OnTopReplica.</value>
+    <value>Activa la ventana original y oculta OnTopReplica.</value>
   </data>
   <data name="MenuWindows" xml:space="preserve">
     <value>Seleccionar ventana</value>
@@ -467,7 +473,7 @@ Se podrá activar Click a través más tarde</value>
     <value>Click derecho para empezar...</value>
   </data>
   <data name="Slogan" xml:space="preserve">
-    <value>Una copia ligera de la ventana en tiempo real de una ventana a su elección.</value>
+    <value>Una copia liviana, en tiempo real y siempre encima de cualquier ventana.</value>
   </data>
   <data name="UpdateDisclaimer" xml:space="preserve">
     <value>OnTopReplica busca actualizaciones automáticamente.</value>

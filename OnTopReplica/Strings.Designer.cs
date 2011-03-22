@@ -408,7 +408,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to create thumbnail..
+        ///   Looks up a localized string similar to Unable to create thumbnail.
         /// </summary>
         internal static string ErrorUnableToCreateThumbnail {
             get {
@@ -755,7 +755,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chrome.
+        ///   Looks up a localized string similar to Show window border.
         /// </summary>
         internal static string MenuChrome {
             get {
@@ -764,7 +764,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Toggles the display of the window chrome..
+        ///   Looks up a localized string similar to Toggles the display of the window border..
         /// </summary>
         internal static string MenuChromeTT {
             get {

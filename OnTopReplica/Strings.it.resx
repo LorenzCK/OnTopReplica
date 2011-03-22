@@ -385,6 +385,9 @@ Puoi abilitare il Click-Through in futuro</value>
   <data name="MenuPosBottomRight" xml:space="preserve">
     <value>In basso a destra</value>
   </data>
+  <data name="MenuPosDisabled" xml:space="preserve">
+    <value>Disabilitato</value>
+  </data>
   <data name="MenuPosition" xml:space="preserve">
     <value>Blocco posizione</value>
   </data>
@@ -483,8 +486,5 @@ Puoi abilitare il Click-Through in futuro</value>
   </data>
   <data name="UpdateNow" xml:space="preserve">
     <value>Aggiorna!</value>
-  </data>
-  <data name="MenuPosDisabled" xml:space="preserve">
-    <value>Disabilitato</value>
   </data>
 </root>

@@ -296,10 +296,10 @@ You can enable click-through later</value>
     <value>Advanced</value>
   </data>
   <data name="MenuChrome" xml:space="preserve">
-    <value>Chrome</value>
+    <value>Show window border</value>
   </data>
   <data name="MenuChromeTT" xml:space="preserve">
-    <value>Toggles the display of the window chrome.</value>
+    <value>Toggles the display of the window border.</value>
   </data>
   <data name="MenuClickForwarding" xml:space="preserve">
     <value>Enable Click forwarding</value>
@@ -384,6 +384,12 @@ You can enable click-through later</value>
   </data>
   <data name="MenuPosBottomRight" xml:space="preserve">
     <value>Bottom Right</value>
+  </data>
+  <data name="MenuPosCenter" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="MenuPosDisabled" xml:space="preserve">
+    <value>Disabled</value>
   </data>
   <data name="MenuPosition" xml:space="preserve">
     <value>Position lock</value>
@@ -483,11 +489,5 @@ You can enable click-through later</value>
   </data>
   <data name="UpdateNow" xml:space="preserve">
     <value>Update now!</value>
-  </data>
-  <data name="MenuPosCenter" xml:space="preserve">
-    <value>Center</value>
-  </data>
-  <data name="MenuPosDisabled" xml:space="preserve">
-    <value>Disabled</value>
   </data>
 </root>
