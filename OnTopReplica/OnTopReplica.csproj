@@ -151,11 +151,17 @@
     <Compile Include="SidePanels\GroupSwitchPanel.Designer.cs">
       <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="WindowSeekers\BaseWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByClassWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByTitleWindowSeeker.cs" />
     <Compile Include="WindowSeekers\RestoreWindowSeeker.cs" />
     <Compile Include="WindowSeekers\TaskWindowSeeker.cs" />
+    <EmbeddedResource Include="Strings.ru.resx" />
     <None Include="Native\ITaskBarList.cs" />
     <Compile Include="Native\InputMethods.cs" />
     <Compile Include="Native\MessagingMethods.cs" />
@@ -195,11 +201,6 @@
     <Compile Include="Platforms\WindowsSeven.cs" />
     <Compile Include="Platforms\WindowsVista.cs" />
     <Compile Include="Platforms\WindowsXp.cs" />
-    <Compile Include="Strings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
     <Compile Include="FocusedTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -233,7 +234,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.da.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings.de.resx" />
     <EmbeddedResource Include="Strings.es.resx" />
+    <EmbeddedResource Include="Strings.fi.resx" />
     <EmbeddedResource Include="Strings.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.it.Designer.cs</LastGenOutput>
@@ -252,6 +255,9 @@
       <DependentUpon>RegionPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings.no.resx" />
+    <EmbeddedResource Include="Strings.pt-BR.resx" />
+    <EmbeddedResource Include="Strings.pt.resx" />
     <EmbeddedResource Include="Strings.resx">
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -280,11 +286,6 @@
     </Compile>
     <Compile Include="StoredRegion.cs" />
     <Compile Include="StoredRegionArray.cs" />
-    <Compile Include="Strings.it.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.it.resx</DependentUpon>
-    </Compile>
     <Compile Include="ThumbnailPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -388,72 +389,72 @@
   <ItemGroup>
     <PublishFile Include="Assets\icon.ico">
       <Visible>False</Visible>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Assets\screenshot-icon.ico">
       <Visible>False</Visible>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Assets\window_multiple16.ico">
       <Visible>False</Visible>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Assets\xiao_arrow.png">
       <Visible>False</Visible>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="cs\OnTopReplica.resources">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="da\OnTopReplica.resources">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="it\OnTopReplica.resources">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>

@@ -69,7 +69,7 @@
             this.groupBox1.Size = new System.Drawing.Size(184, 170);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = Strings.RegionsTitle;
+            this.groupBox1.Text = "Regions:";
             // 
             // textRegionName
             // 
@@ -194,7 +194,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 9;
-            this.label6.Text = Strings.RegionsHeight;
+            this.label6.Text = "Height";
             // 
             // label7
             // 
@@ -204,7 +204,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 8;
-            this.label7.Text = Strings.RegionsWidth;
+            this.label7.Text = "Width";
             // 
             // label3
             // 
@@ -234,7 +234,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = Strings.RegionsCurrentRegion;
+            this.label1.Text = "Current region:";
             // 
             // buttonDelete
             // 

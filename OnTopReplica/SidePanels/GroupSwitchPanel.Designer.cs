@@ -41,7 +41,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(961, 592);
+            this.groupBox1.Size = new System.Drawing.Size(283, 337);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Group switch mode:";
@@ -50,16 +50,17 @@
             // 
             this.labelStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelStatus.Location = new System.Drawing.Point(3, 543);
+            this.labelStatus.Location = new System.Drawing.Point(3, 288);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(952, 17);
+            this.labelStatus.Size = new System.Drawing.Size(274, 17);
             this.labelStatus.TabIndex = 3;
+            this.labelStatus.Text = "-";
             this.labelStatus.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // buttonCancel
             // 
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCancel.Location = new System.Drawing.Point(885, 563);
+            this.buttonCancel.Location = new System.Drawing.Point(207, 308);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(70, 23);
             this.buttonCancel.TabIndex = 2;
@@ -71,7 +72,7 @@
             // 
             this.buttonEnable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonEnable.Image = global::OnTopReplica.Properties.Resources.xiao_ok;
-            this.buttonEnable.Location = new System.Drawing.Point(745, 563);
+            this.buttonEnable.Location = new System.Drawing.Point(67, 308);
             this.buttonEnable.Name = "buttonEnable";
             this.buttonEnable.Size = new System.Drawing.Size(134, 23);
             this.buttonEnable.TabIndex = 1;
@@ -89,28 +90,29 @@
             this.colName});
             this.listWindows.FullRowSelect = true;
             this.listWindows.GridLines = true;
+            this.listWindows.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listWindows.HideSelection = false;
             this.listWindows.LabelWrap = false;
             this.listWindows.Location = new System.Drawing.Point(6, 19);
             this.listWindows.Name = "listWindows";
-            this.listWindows.Size = new System.Drawing.Size(949, 521);
+            this.listWindows.Size = new System.Drawing.Size(271, 266);
             this.listWindows.TabIndex = 0;
             this.listWindows.UseCompatibleStateImageBehavior = false;
-            this.listWindows.View = System.Windows.Forms.View.Details;
+            this.listWindows.View = System.Windows.Forms.View.List;
             // 
             // colName
             // 
             this.colName.Text = global::OnTopReplica.Strings.GroupSwitchModeWindows;
-            this.colName.Width = 220;
+            this.colName.Width = 187;
             // 
             // GroupSwitchPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
-            this.MinimumSize = new System.Drawing.Size(220, 220);
+            this.MinimumSize = new System.Drawing.Size(240, 240);
             this.Name = "GroupSwitchPanel";
-            this.Size = new System.Drawing.Size(961, 592);
+            this.Size = new System.Drawing.Size(283, 337);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
