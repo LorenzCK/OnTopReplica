@@ -26,7 +26,8 @@ namespace OnTopReplica {
 
             //Add and show
             _sidePanelContainer.Controls.Add(panel);
-            _sidePanelContainer.Visible = _sidePanelContainer.Enabled = true;
+            _sidePanelContainer.Enabled = true;
+            _sidePanelContainer.Show();
             panel.Show();
 
             int intHorzMargin = panel.Margin.Horizontal + _sidePanelContainer.Padding.Horizontal; //internal margins for sidepanel
@@ -85,8 +86,8 @@ namespace OnTopReplica {
             _sidePanelContainer.Visible = _sidePanelContainer.Enabled = false;
 
             //Free panel
-            _currentSidePanel = null;
             _currentSidePanel.Dispose();
+            _currentSidePanel = null;
 
             //Resize
             MinimumSize = new Size(20, 20);

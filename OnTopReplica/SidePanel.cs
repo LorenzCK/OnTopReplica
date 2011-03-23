@@ -10,8 +10,12 @@ namespace OnTopReplica {
     /// </summary>
     class SidePanel : UserControl {
 
-        public SidePanel() {
-            Dock = DockStyle.Fill;
+        protected override void OnCreateControl() {
+            if (!DesignMode) {
+                Dock = DockStyle.Fill;
+            }
+
+            base.OnCreateControl();
         }
 
         /// <summary>
