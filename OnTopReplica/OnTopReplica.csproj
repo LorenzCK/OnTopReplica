@@ -139,6 +139,12 @@
     <Compile Include="Native\HT.cs" />
     <Compile Include="Pair.cs" />
     <Compile Include="Platforms\DebugPlatform.cs" />
+    <Compile Include="SidePanelContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SidePanelContainer.Designer.cs">
+      <DependentUpon>SidePanelContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="SidePanels\OptionsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     <Compile Include="WindowSeekers\ByTitleWindowSeeker.cs" />
     <Compile Include="WindowSeekers\RestoreWindowSeeker.cs" />
     <Compile Include="WindowSeekers\TaskWindowSeeker.cs" />
+    <EmbeddedResource Include="SidePanelContainer.resx">
+      <DependentUpon>SidePanelContainer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Strings.ru.resx" />
     <None Include="Native\ITaskBarList.cs" />
     <Compile Include="Native\InputMethods.cs" />

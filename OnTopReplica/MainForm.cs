@@ -17,8 +17,6 @@ namespace OnTopReplica {
 
         //GUI elements
         ThumbnailPanel _thumbnailPanel;
-        SidePanel _currentSidePanel = null;
-        Panel _sidePanelContainer;
 
         //Managers
         BaseWindowSeeker _windowSeeker = new TaskWindowSeeker {
@@ -37,6 +35,7 @@ namespace OnTopReplica {
             InitializeComponent();
             KeepAspectRatio = false;
             GlassEnabled = true;
+            GlassMargins = new Margins(-1);
 
             //Store default values
             _nonClickThroughKey = TransparencyKey;
@@ -44,26 +43,14 @@ namespace OnTopReplica {
             //Thumbnail panel
             _thumbnailPanel = new ThumbnailPanel {
                 Location = Point.Empty,
-                Anchor = AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
-                Size = ClientSize
+                Dock = DockStyle.Fill
             };
             _thumbnailPanel.CloneClick += new EventHandler<CloneClickEventArgs>(Thumbnail_CloneClick);
             Controls.Add(_thumbnailPanel);
 
-            //Side panel
-            _sidePanelContainer = new Panel {
-                Location = new Point(ClientSize.Width + 5, 0),
-                Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom,
-                Enabled = false,
-                Visible = false,
-                Size = new Size(100, ClientSize.Height),
-                Padding = new Padding(4)
-            };
-            Controls.Add(_sidePanelContainer);
-
             //Set native renderer on context menus
             Asztal.Szótár.NativeToolStripRenderer.SetToolStripRenderer(
-                menuContext, menuWindows, menuOpacity, menuResize, menuLanguages, menuFullscreenContext
+                menuContext, menuWindows, menuOpacity, menuResize, menuFullscreenContext
             );
 
             //Init message pump extensions
@@ -80,10 +67,8 @@ namespace OnTopReplica {
             this.KeyPreview = true;
         }
 
-        delegate void GuiAction();
-
         void UpdateManager_CheckCompleted(object sender, UpdateCheckCompletedEventArgs e) {
-            this.Invoke(new GuiAction(() => {
+            this.Invoke(new Action(() => {
                 if (e.Success) {
                     _updateManager.HandleUpdateCheck(this, e.Information, false);
                 }
@@ -139,14 +124,10 @@ namespace OnTopReplica {
             base.OnClosing(e);
         }
 
-        Margins fullMargins = new Margins(-1);
+        protected override void OnMove(EventArgs e) {
+            base.OnMove(e);
 
-        protected override void OnResize(EventArgs e) {
-            base.OnResize(e);
-
-            this.GlassMargins = (_currentSidePanel != null) ?
-                new Margins(ClientSize.Width - _sidePanelContainer.Width, 0, 0, 0) :
-                fullMargins;
+            AdjustSidePanelLocation();
         }
 
         protected override void OnResizeEnd(EventArgs e) {
@@ -247,8 +228,6 @@ namespace OnTopReplica {
 
         #endregion
 
-        const string Title = "OnTopReplica";
-
         #region Keyboard event handling
 
         protected override void OnKeyUp(KeyEventArgs e) {
@@ -328,7 +307,6 @@ namespace OnTopReplica {
         bool _isFullscreen = false;
         Point _preFullscreenLocation;
         Size _preFullscreenSize;
-        FormBorderStyle _preFullscreenBorderStyle;
 
         public bool IsFullscreen {
             get {
@@ -346,7 +324,6 @@ namespace OnTopReplica {
                 if (value) {
                     _preFullscreenLocation = Location;
                     _preFullscreenSize = ClientSize;
-                    _preFullscreenBorderStyle = FormBorderStyle;
 
                     FormBorderStyle = FormBorderStyle.None;
                     var currentScreen = Screen.FromControl(this);
@@ -354,7 +331,7 @@ namespace OnTopReplica {
                     Location = currentScreen.WorkingArea.Location;
                 }
                 else {
-                    FormBorderStyle = _preFullscreenBorderStyle;
+                    FormBorderStyle = DefaultBorderStyle;
                     Location = _preFullscreenLocation;
                     ClientSize = _preFullscreenSize;
                     RefreshAspectRatio();
