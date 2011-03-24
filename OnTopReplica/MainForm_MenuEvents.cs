@@ -10,7 +10,7 @@ namespace OnTopReplica {
 
         private void Menu_opening(object sender, CancelEventArgs e) {
             //Cancel if currently in "fullscreen" mode or a side panel is open
-            if (IsFullscreen || _currentSidePanel != null) {
+            if (IsFullscreen || IsSidePanelOpen) {
                 e.Cancel = true;
                 return;
             }
@@ -189,6 +189,7 @@ namespace OnTopReplica {
         }
 
         private void Menu_Language_click(object sender, EventArgs e) {
+            //TODO: strip this stuff
             ToolStripItem tsi = (ToolStripItem)sender;
 
             string langCode = tsi.Tag as string;
@@ -200,6 +201,10 @@ namespace OnTopReplica {
                 this.Close();
             else
                 MessageBox.Show("Error");*/
+        }
+
+        private void Menu_Settings_click(object sender, EventArgs e) {
+            this.SetSidePanel(new OnTopReplica.SidePanels.OptionsPanel());
         }
 
         private void Menu_About_click(object sender, EventArgs e) {

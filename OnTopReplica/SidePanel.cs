@@ -49,5 +49,14 @@ namespace OnTopReplica {
         public virtual void OnClosing(MainForm form) {
         }
 
+        /// <summary>
+        /// Gets the side panel's title.
+        /// </summary>
+        public virtual string Title {
+            get {
+                return "Side panel";
+            }
+        }
+
     }
 }

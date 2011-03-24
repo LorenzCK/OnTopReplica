@@ -1169,6 +1169,42 @@ namespace OnTopReplica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restore last cloned window.
+        /// </summary>
+        internal static string MenuRestoreLast {
+            get {
+                return ResourceManager.GetString("MenuRestoreLast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When enabled, OnTopReplica will attempt to restore the last cloned window on start up..
+        /// </summary>
+        internal static string MenuRestoreLastTT {
+            get {
+                return ResourceManager.GetString("MenuRestoreLastTT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings....
+        /// </summary>
+        internal static string MenuSettings {
+            get {
+                return ResourceManager.GetString("MenuSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Displays the settings panel..
+        /// </summary>
+        internal static string MenuSettingsTT {
+            get {
+                return ResourceManager.GetString("MenuSettingsTT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Switch to window.
         /// </summary>
         internal static string MenuSwitch {

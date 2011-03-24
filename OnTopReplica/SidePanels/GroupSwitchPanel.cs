@@ -10,6 +10,12 @@ namespace OnTopReplica.SidePanels {
             InitializeComponent();
         }
 
+        public override string Title {
+            get {
+                return Strings.MenuGroupSwitch;
+            }
+        }
+
         public override void OnFirstShown(MainForm form) {
             base.OnFirstShown(form);
 

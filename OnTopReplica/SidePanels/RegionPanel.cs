@@ -19,6 +19,12 @@ namespace OnTopReplica.SidePanels {
             _regionDrawnHandler = new ThumbnailPanel.RegionDrawnHandler(ThumbnailPanel_RegionDrawn);
 		}
 
+        public override string Title {
+            get {
+                return Strings.MenuRegion;
+            }
+        }
+
         ThumbnailPanel.RegionDrawnHandler _regionDrawnHandler;
 
         public override void OnFirstShown(MainForm form) {
