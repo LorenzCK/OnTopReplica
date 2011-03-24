@@ -115,6 +115,9 @@
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="ExtensionAttribute.cs" />
     <Compile Include="GeometryExtensions.cs" />
+    <Compile Include="ImageComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MainForm_Features.cs">
       <SubType>Form</SubType>
     </Compile>

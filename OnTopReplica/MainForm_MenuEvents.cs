@@ -188,21 +188,6 @@ namespace OnTopReplica {
             IsChromeVisible = !IsChromeVisible;
         }
 
-        private void Menu_Language_click(object sender, EventArgs e) {
-            //TODO: strip this stuff
-            ToolStripItem tsi = (ToolStripItem)sender;
-
-            string langCode = tsi.Tag as string;
-
-            MessageBox.Show("Should change to {0}", langCode);
-            //TODO
-
-            /*if (Program.ForceGlobalLanguageChange(langCode))
-                this.Close();
-            else
-                MessageBox.Show("Error");*/
-        }
-
         private void Menu_Settings_click(object sender, EventArgs e) {
             this.SetSidePanel(new OnTopReplica.SidePanels.OptionsPanel());
         }
