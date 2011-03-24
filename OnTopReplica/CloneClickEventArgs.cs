@@ -5,6 +5,9 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace OnTopReplica {
+    /// <summary>
+    /// EventArgs structure for clicks on a cloned window.
+    /// </summary>
 	public class CloneClickEventArgs : EventArgs {
 
 		public Point ClientClickLocation { get; set; }

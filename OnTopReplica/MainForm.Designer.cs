@@ -69,7 +69,6 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContextClose = new System.Windows.Forms.ToolStripMenuItem();
             this.fullSelectWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.danskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFullscreenContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.enableClickthroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fullExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -458,15 +457,6 @@
             this.fullSelectWindowToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuWindows;
             this.fullSelectWindowToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuWindowsTT;
             // 
-            // danskToolStripMenuItem
-            // 
-            this.danskToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.flag_danish;
-            this.danskToolStripMenuItem.Name = "danskToolStripMenuItem";
-            this.danskToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.danskToolStripMenuItem.Tag = "da-DA";
-            this.danskToolStripMenuItem.Text = "Dansk";
-            this.danskToolStripMenuItem.Click += new System.EventHandler(this.Menu_Language_click);
-            // 
             // menuFullscreenContext
             // 
             this.menuFullscreenContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -549,7 +539,6 @@
 		private System.Windows.Forms.ToolStripMenuItem quarterToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem fullscreenToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem danskToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chromeToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip menuFullscreenContext;
         private System.Windows.Forms.ToolStripMenuItem fullSelectWindowToolStripMenuItem;

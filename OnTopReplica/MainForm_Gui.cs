@@ -91,7 +91,7 @@ namespace OnTopReplica {
             ClickThroughEnabled = false;
             Opacity = 1.0;
 
-            //Restore main form in platform with dependent method
+            //Restore main form in a platform-dependent method
             Program.Platform.RestoreForm(this);
         }
 

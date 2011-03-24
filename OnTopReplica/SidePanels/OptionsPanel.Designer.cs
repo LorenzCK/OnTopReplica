@@ -26,8 +26,8 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
             this.groupLanguage = new System.Windows.Forms.GroupBox();
+            this.comboLanguage = new OnTopReplica.ImageComboBox();
             this.lblLanguage = new System.Windows.Forms.Label();
-            this.comboLanguage = new System.Windows.Forms.ComboBox();
             this.panelMain.SuspendLayout();
             this.groupLanguage.SuspendLayout();
             this.SuspendLayout();
@@ -59,14 +59,26 @@
             // 
             this.groupLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupLanguage.Controls.Add(this.lblLanguage);
             this.groupLanguage.Controls.Add(this.comboLanguage);
+            this.groupLanguage.Controls.Add(this.lblLanguage);
             this.groupLanguage.Location = new System.Drawing.Point(3, 3);
             this.groupLanguage.Name = "groupLanguage";
             this.groupLanguage.Size = new System.Drawing.Size(254, 68);
             this.groupLanguage.TabIndex = 0;
             this.groupLanguage.TabStop = false;
             this.groupLanguage.Text = "Language:";
+            // 
+            // comboLanguage
+            // 
+            this.comboLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.comboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboLanguage.FormattingEnabled = true;
+            this.comboLanguage.IconList = null;
+            this.comboLanguage.Location = new System.Drawing.Point(9, 19);
+            this.comboLanguage.Name = "comboLanguage";
+            this.comboLanguage.Size = new System.Drawing.Size(239, 21);
+            this.comboLanguage.TabIndex = 2;
+            this.comboLanguage.SelectedIndexChanged += new System.EventHandler(this.LanguageBox_IndexChange);
             // 
             // lblLanguage
             // 
@@ -77,21 +89,6 @@
             this.lblLanguage.Size = new System.Drawing.Size(242, 23);
             this.lblLanguage.TabIndex = 1;
             this.lblLanguage.Text = "Requires a restart.";
-            // 
-            // comboLanguage
-            // 
-            this.comboLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboLanguage.FormattingEnabled = true;
-            this.comboLanguage.Items.AddRange(new object[] {
-            "English",
-            "Dansk",
-            "Italiano"});
-            this.comboLanguage.Location = new System.Drawing.Point(6, 19);
-            this.comboLanguage.Name = "comboLanguage";
-            this.comboLanguage.Size = new System.Drawing.Size(242, 21);
-            this.comboLanguage.TabIndex = 0;
             // 
             // OptionsPanel
             // 
@@ -114,7 +111,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.GroupBox groupLanguage;
-        private System.Windows.Forms.ComboBox comboLanguage;
         private System.Windows.Forms.Label lblLanguage;
+        private ImageComboBox comboLanguage;
     }
 }
