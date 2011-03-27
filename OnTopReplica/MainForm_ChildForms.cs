@@ -22,8 +22,8 @@ namespace OnTopReplica {
 
             _sidePanelContainer = new SidePanelContainer(this);
             _sidePanelContainer.SetSidePanel(panel);
+            _sidePanelContainer.Location = ComputeSidePanelLocation(_sidePanelContainer);
             _sidePanelContainer.Show(this);
-            AdjustSidePanelLocation();
         }
 
         /// <summary>
@@ -62,13 +62,21 @@ namespace OnTopReplica {
             if (!IsSidePanelOpen)
                 return;
 
+            _sidePanelContainer.Location = ComputeSidePanelLocation(_sidePanelContainer);
+        }
+
+        /// <summary>
+        /// Computes the target location of a side panel form that ensures it is visible on the current
+        /// screen that contains the main form.
+        /// </summary>
+        private Point ComputeSidePanelLocation(Form sidePanel) {
             //Check if moving the panel on the form's right would put it off-screen
             var screen = Screen.FromControl(this);
-            if (Location.X + Width + _sidePanelContainer.Width > screen.WorkingArea.Right) {
-                _sidePanelContainer.Location = new Point(Location.X - _sidePanelContainer.Width, Location.Y);
+            if (Location.X + Width + sidePanel.Width > screen.WorkingArea.Right) {
+                return new Point(Location.X - sidePanel.Width, Location.Y);
             }
             else {
-                _sidePanelContainer.Location = new Point(Location.X + Width, Location.Y);
+                return new Point(Location.X + Width, Location.Y);
             }
         }
 
