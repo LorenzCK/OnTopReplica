@@ -872,24 +872,6 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Glass.
-        /// </summary>
-        internal static string MenuGlass {
-            get {
-                return ResourceManager.GetString("MenuGlass", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Toggles &quot;glass mode&quot; on and off..
-        /// </summary>
-        internal static string MenuGlassTT {
-            get {
-                return ResourceManager.GetString("MenuGlassTT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Group Switch mode.
         /// </summary>
         internal static string MenuGroupSwitch {
@@ -1345,6 +1327,69 @@ namespace OnTopReplica {
         internal static string RightClick {
             get {
                 return ResourceManager.GetString("RightClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clone current window.
+        /// </summary>
+        internal static string SettingsHotKeyClone {
+            get {
+                return ResourceManager.GetString("SettingsHotKeyClone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These system-wide shortcuts can also be used when OnTopReplica is not in focus..
+        /// </summary>
+        internal static string SettingsHotKeyDescription {
+            get {
+                return ResourceManager.GetString("SettingsHotKeyDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show/Hide.
+        /// </summary>
+        internal static string SettingsHotKeyShowHide {
+            get {
+                return ResourceManager.GetString("SettingsHotKeyShowHide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hot keys:.
+        /// </summary>
+        internal static string SettingsHotKeyTitle {
+            get {
+                return ResourceManager.GetString("SettingsHotKeyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language:.
+        /// </summary>
+        internal static string SettingsLanguageTitle {
+            get {
+                return ResourceManager.GetString("SettingsLanguageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requires a restart..
+        /// </summary>
+        internal static string SettingsRestartRequired {
+            get {
+                return ResourceManager.GetString("SettingsRestartRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string SettingsTitle {
+            get {
+                return ResourceManager.GetString("SettingsTitle", resourceCulture);
             }
         }
         

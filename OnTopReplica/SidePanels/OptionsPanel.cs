@@ -13,8 +13,17 @@ namespace OnTopReplica.SidePanels {
 
         public OptionsPanel() {
             InitializeComponent();
+        }
+
+        public override void OnFirstShown(MainForm form) {
+            base.OnFirstShown(form);
 
             PopulateLanguageComboBox();
+
+            //Stop hotkey handling and load current shortcuts
+            form.MessagePumpManager.Get<OnTopReplica.MessagePumpProcessors.HotKeyManager>().Enabled = false;
+            txtHotKeyShowHide.Text = Settings.Default.HotKeyShowHide;
+            txtHotKeyClone.Text = Settings.Default.HotKeyCloneCurrent;
         }
 
         private void Close_click(object sender, EventArgs e) {
@@ -23,18 +32,40 @@ namespace OnTopReplica.SidePanels {
 
         public override string Title {
             get {
-                return Strings.MenuSettings;
+                return Strings.SettingsTitle;
             }
+        }
+
+        public override void OnClosing(MainForm form) {
+            base.OnClosing(form);
+
+            //Update hotkey settings and update processor
+            Settings.Default.HotKeyShowHide = txtHotKeyShowHide.Text;
+            Settings.Default.HotKeyCloneCurrent = txtHotKeyClone.Text;
+            var manager = form.MessagePumpManager.Get<OnTopReplica.MessagePumpProcessors.HotKeyManager>();
+            manager.RefreshHotkeys();
+            manager.Enabled = true;
         }
 
         #region Language
 
-        Pair<CultureInfo, Image>[] _languageList = {
-            new Pair<CultureInfo, Image>(new CultureInfo("en-US"), Resources.flag_usa),
-            new Pair<CultureInfo, Image>(new CultureInfo("it-IT"), Resources.flag_ita),
-            new Pair<CultureInfo, Image>(new CultureInfo("cs-CZ"), Resources.flag_czech),
-            new Pair<CultureInfo, Image>(new CultureInfo("da-DK"), Resources.flag_danish),
-            new Pair<CultureInfo, Image>(new CultureInfo("es-ES"), Resources.flag_spanish),
+        class CultureWrapper {
+            public CultureWrapper(string name, CultureInfo culture, Image img) {
+                Culture = culture;
+                Image = img;
+                Name = name;
+            }
+            public CultureInfo Culture { get; set; }
+            public Image Image { get; set; }
+            public string Name { get; set; }
+        }
+
+        CultureWrapper[] _languageList = {
+            new CultureWrapper("English", new CultureInfo("en-US"), Resources.flag_usa),
+            new CultureWrapper("Italiano", new CultureInfo("it-IT"), Resources.flag_ita),
+            new CultureWrapper("Čeština", new CultureInfo("cs-CZ"), Resources.flag_czech),
+            new CultureWrapper("Dansk", new CultureInfo("da-DK"), Resources.flag_danish),
+            new CultureWrapper("Español", new CultureInfo("es-ES"), Resources.flag_spanish),
         };
 
         private void PopulateLanguageComboBox() {
@@ -48,17 +79,20 @@ namespace OnTopReplica.SidePanels {
 
             int selectedIndex = -1;
             foreach (var langPair in _languageList) {
-                var item = new ImageComboBoxItem(langPair.Item1.NativeName, imageList.Images.Count) {
-                    Tag = langPair.Item1
+                var item = new ImageComboBoxItem(langPair.Name, imageList.Images.Count) {
+                    Tag = langPair.Culture
                 };
-                imageList.Images.Add(langPair.Item2);
+                imageList.Images.Add(langPair.Image);
                 comboLanguage.Items.Add(item);
 
-                if (langPair.Item1.Equals(CultureInfo.CurrentUICulture) ||
-                    (CultureInfo.CurrentUICulture.Equals(CultureInfo.InvariantCulture) && langPair.Item1.TwoLetterISOLanguageName.Equals("en"))) {
+                if (langPair.Culture.Equals(CultureInfo.CurrentUICulture)) {
                     selectedIndex = comboLanguage.Items.Count - 1;
                 }
             }
+
+            //Handle case when there is not explicitly set culture (default to first one, i.e. english)
+            if (CultureInfo.CurrentUICulture.Equals(CultureInfo.InvariantCulture))
+                selectedIndex = 0;
 
             comboLanguage.SelectedIndex = selectedIndex;
         }

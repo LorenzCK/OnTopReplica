@@ -10,7 +10,7 @@ namespace OnTopReplica.MessagePumpProcessors {
 
         #region IMessagePumpProcessor Members
 
-        public void Initialize(MainForm form) {
+        public virtual void Initialize(MainForm form) {
             Form = form;
         }
 
@@ -18,9 +18,9 @@ namespace OnTopReplica.MessagePumpProcessors {
 
         #endregion
 
-        bool _isDisposed = false;
-
         protected abstract void Shutdown();
+
+        bool _isDisposed = false;
 
         #region IDisposable Members
 

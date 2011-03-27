@@ -15,6 +15,7 @@ namespace OnTopReplica.MessagePumpProcessors {
             if (Form.CurrentThumbnailWindowHandle != null &&
                 msg.Msg == HookMethods.WM_SHELLHOOKMESSAGE) {
                 int hookCode = msg.WParam.ToInt32();
+
                 if (hookCode == HookMethods.HSHELL_WINDOWDESTROYED) {
                     //Check whether the destroyed window is the one we were cloning
                     IntPtr destroyedHandle = msg.LParam;

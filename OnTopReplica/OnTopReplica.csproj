@@ -115,6 +115,9 @@
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="ExtensionAttribute.cs" />
     <Compile Include="GeometryExtensions.cs" />
+    <Compile Include="HotKeyTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ImageComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -206,7 +209,6 @@
     <Compile Include="StoredRegionComparer.cs" />
     <Compile Include="Native\WindowsSevenMethods.cs" />
     <None Include="Native\CommonControls.cs" />
-    <Compile Include="EnumerationExtensions.cs" />
     <Compile Include="MessagePumpProcessors\HotKeyManager.cs" />
     <Compile Include="PlatformSupport.cs" />
     <Compile Include="Platforms\Other.cs" />
