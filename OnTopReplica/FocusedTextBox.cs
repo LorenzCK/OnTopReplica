@@ -36,12 +36,12 @@ namespace OnTopReplica {
 		}
 
         //List of characters to ignore on KeyPress events (because they generate bell rings)
-        char[] _ignoreChars = new char[] {
+        readonly char[] IgnoreChars = new char[] {
             (char)27, (char)13
         };
 
         protected override void OnKeyPress(KeyPressEventArgs e) {
-            if (EnumerationExtensions.Contains(_ignoreChars, e.KeyChar)) {
+            if (IgnoreChars.Contains(e.KeyChar)) {
                 e.Handled = true;
             }
 

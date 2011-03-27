@@ -5,6 +5,7 @@ using System.Text;
 namespace OnTopReplica {
     /// <summary>
     /// Extension methods for IEnumerable.
+    /// Poor man's LINQ.
     /// </summary>
     static class EnumerableExtensions {
 
@@ -21,6 +22,17 @@ namespace OnTopReplica {
                 else
                     return enumerator.Current;
             }
+        }
+
+        /// <summary>
+        /// Checks whether an enumeration contains a value.
+        /// </summary>
+        public static bool Contains<T>(this IEnumerable<T> collection, T value) {
+            foreach (var v in collection)
+                if (v.Equals(value))
+                    return true;
+
+            return false;
         }
 
     }
