@@ -334,11 +334,11 @@ Puoi abilitare il Click-Through in futuro</value>
   <data name="MenuFitQuarter" xml:space="preserve">
     <value>1:4 Quarto</value>
   </data>
-  <data name="MenuGlass" xml:space="preserve">
-    <value>Effetto vetro</value>
+  <data name="SettingsHotKeyDescription" xml:space="preserve">
+    <value>Queste scorciatoie possono essere usate quando OnTopReplica non è attivo.</value>
   </data>
-  <data name="MenuGlassTT" xml:space="preserve">
-    <value>Abilita o disabilita l'effetto vetro.</value>
+  <data name="SettingsHotKeyClone" xml:space="preserve">
+    <value>Clona finestra corrente</value>
   </data>
   <data name="MenuGroupSwitch" xml:space="preserve">
     <value>Modalità Gruppo di finestre</value>
@@ -486,5 +486,35 @@ Puoi abilitare il Click-Through in futuro</value>
   </data>
   <data name="UpdateNow" xml:space="preserve">
     <value>Aggiorna!</value>
+  </data>
+  <data name="SettingsHotKeyShowHide" xml:space="preserve">
+    <value>Nascondi</value>
+  </data>
+  <data name="SettingsHotKeyTitle" xml:space="preserve">
+    <value>Scorciatoie:</value>
+  </data>
+  <data name="SettingsLanguageTitle" xml:space="preserve">
+    <value>Lingua:</value>
+  </data>
+  <data name="SettingsRestartRequired" xml:space="preserve">
+    <value>Richiede un riavvio.</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="MenuRestoreLast" xml:space="preserve">
+    <value>Ripristina ultima finestra</value>
+  </data>
+  <data name="MenuRestoreLastTT" xml:space="preserve">
+    <value>Se abilitato, all'avvio OnTopReplica tenterà di ripristinare l'ultima finestra precedentemente clonata.</value>
+  </data>
+  <data name="MenuSettings" xml:space="preserve">
+    <value>Impostazioni...</value>
+  </data>
+  <data name="MenuSettingsTT" xml:space="preserve">
+    <value>Mostra il pannello delle impostazioni.</value>
+  </data>
+  <data name="MenuPosCenter" xml:space="preserve">
+    <value>Centrato</value>
   </data>
 </root>

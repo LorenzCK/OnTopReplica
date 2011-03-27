@@ -47,5 +47,11 @@
     <Setting Name="RestoreLastWindowHwnd" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="HotKeyCloneCurrent" Type="System.String" Scope="User">
+      <Value Profile="(Default)">[CTRL]+[SHIFT]+C</Value>
+    </Setting>
+    <Setting Name="HotKeyShowHide" Type="System.String" Scope="User">
+      <Value Profile="(Default)">[CTRL]+[SHIFT]+O</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

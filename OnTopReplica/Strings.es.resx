@@ -334,12 +334,6 @@ Se podrá activar Click a través más tarde</value>
   <data name="MenuFitQuarter" xml:space="preserve">
     <value>1:4 Un cuarto</value>
   </data>
-  <data name="MenuGlass" xml:space="preserve">
-    <value>Efecto vidrio</value>
-  </data>
-  <data name="MenuGlassTT" xml:space="preserve">
-    <value>Activa o desactiva el efecto vidrio.</value>
-  </data>
   <data name="MenuGroupSwitch" xml:space="preserve">
     <value>Modo en grupo</value>
   </data>

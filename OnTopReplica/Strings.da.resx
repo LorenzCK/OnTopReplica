@@ -304,12 +304,6 @@ Du kan aktivere gennem klik senere.</value>
   <data name="MenuFitQuarter" xml:space="preserve">
     <value>1:4 kvart</value>
   </data>
-  <data name="MenuGlass" xml:space="preserve">
-    <value>Glas</value>
-  </data>
-  <data name="MenuGlassTT" xml:space="preserve">
-    <value>Vælger "glas tilstand" til/fra</value>
-  </data>
   <data name="MenuOp100" xml:space="preserve">
     <value>100% (uigennemsigtig)</value>
   </data>

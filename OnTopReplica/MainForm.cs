@@ -56,13 +56,6 @@ namespace OnTopReplica {
             //Init message pump extensions
             _msgPumpManager.Initialize(this);
 
-            //Add hotkeys
-            var hotKeyMgr = _msgPumpManager.Get<MessagePumpProcessors.HotKeyManager>();
-            hotKeyMgr.RegisterHotKey(Native.HotKeyModifiers.Control | Native.HotKeyModifiers.Shift,
-                                     Keys.O, new Native.HotKeyMethods.HotKeyHandler(HotKeyOpenHandler));
-            hotKeyMgr.RegisterHotKey(Native.HotKeyModifiers.Control | Native.HotKeyModifiers.Shift,
-                                     Keys.C, new Native.HotKeyMethods.HotKeyHandler(HotKeyCloneHandler));
-
             //Set to Key event preview
             this.KeyPreview = true;
         }
@@ -278,26 +271,6 @@ namespace OnTopReplica {
                     ClickForwardingEnabled = false;
                 }
             }
-        }
-
-        void HotKeyOpenHandler() {
-            if (IsFullscreen)
-                IsFullscreen = false;
-
-            if (!Program.Platform.IsHidden(this)) {
-                Program.Platform.HideForm(this);
-            }
-            else {
-                EnsureMainFormVisible();
-            }
-        }
-
-        void HotKeyCloneHandler() {
-            var handle = Win32Helper.GetCurrentForegroundWindow();
-            if (handle.Handle == this.Handle)
-                return;
-
-            SetThumbnail(handle, null);
         }
 
         #endregion

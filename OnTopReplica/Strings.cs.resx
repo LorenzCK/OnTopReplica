@@ -309,12 +309,6 @@ Režim "Proklikávání" je možné zvolit později v menu</value>
   <data name="MenuFitQuarter" xml:space="preserve">
     <value>1:4 Čtvrtinová</value>
   </data>
-  <data name="MenuGlass" xml:space="preserve">
-    <value>Glass efekt</value>
-  </data>
-  <data name="MenuGlassTT" xml:space="preserve">
-    <value>Přepíná "glass efekt" okna.</value>
-  </data>
   <data name="MenuOp100" xml:space="preserve">
     <value>100% (neprůhledné)</value>
   </data>
