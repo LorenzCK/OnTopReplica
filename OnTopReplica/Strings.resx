@@ -24,59 +24,6 @@
   <data name="AboutButtonUpdateTT" xml:space="preserve">
     <value>Update OnTopReplica now.</value>
   </data>
-  <data name="AboutDetails" xml:space="preserve">
-    <value>&lt;html&gt;
-	&lt;head&gt;
-		&lt;style type="text/css"&gt;
-body {
-	font-family: Segoe UI, Arial, sans-serif;
-	font-size: 0.8em;
-	margin: 0;
-padding: 0.75em;
-}
-h1 {
-	font-size: 1.4em;
-	font-weight: bold;
-	
-	margin: 1em 0 0.4em 0;
-	padding: 0;
-}
-p {
-	margin: 0.5em 0 0.5em 1em;
-	padding: 0;
-}
-a {
-	font-weight: bold;
-	color: blue;
-}
-a:hover {
-	color: red;
-}
-		&lt;/style&gt;
-	&lt;/head&gt;
-	
-	&lt;body&gt;
-	
-		&lt;h1&gt;License&lt;/h1&gt;
-		
-		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; is licensed under the &lt;a href="http://opensource.org/licenses/ms-rl.html"&gt;Microsoft Reciprocal License (Ms-RL)&lt;/a&gt;.&lt;/p&gt;
-		&lt;p&gt;The original source code can be found on the &lt;a href="http://www.codeplex.com/ontopreplica"&gt;project's homepage on CodePlex&lt;/a&gt;.&lt;/p&gt;
-		
-		&lt;h1&gt;Credits&lt;/h1&gt;
-		
-		&lt;p&gt;OnTopReplica was inspired by &lt;a href="http://insentient.net"&gt;Switcher&lt;/a&gt; and other DWM based applications.&lt;/p&gt;
-
-		&lt;p&gt;All Vista controls are part of the &lt;a href="http://www.codeplex.com/windowsformsaero"&gt;WindowsFormsAero library&lt;/a&gt; for .NET.&lt;/p&gt;
-
-		&lt;p&gt;Some example code taken from &lt;a href="http://www.ookii.org"&gt;Ookii&lt;/a&gt; on Channel9.&lt;/p&gt;
-
-		&lt;p&gt;NativeToolstripRenderer class taken from &lt;a href="http://wp.asztal.net/2007/12/vista-style-menus-in-dotnet/"&gt;asztal.net&lt;/a&gt;.&lt;/p&gt;
-
-		&lt;p&gt;Some icons from &lt;a href="http://www.vistaico.com"&gt;VistaICO.com&lt;/a&gt; and the Xiao icon set.&lt;/p&gt;
-	
-	&lt;/body&gt;
-&lt;/html&gt;</value>
-  </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>OnTopReplica</value>
   </data>
@@ -130,8 +77,9 @@ Available version: {1}</value>
   <data name="ButtonCancel" xml:space="preserve">
     <value>&amp;Cancel</value>
   </data>
-  <data name="CreatedBy" xml:space="preserve">
-    <value>Created by: Lorenz Cuno Klopfenstein.</value>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Created by: %.</value>
+    <comment>Link % is replaced by string AboutAuthorContent.</comment>
   </data>
   <data name="DrawRegions" xml:space="preserve">
     <value>Draw regions using mouse.</value>
@@ -475,14 +423,14 @@ You can enable click-through later</value>
   <data name="RightClick" xml:space="preserve">
     <value>Right-click here to start...</value>
   </data>
-  <data name="Slogan" xml:space="preserve">
+  <data name="AboutSlogan" xml:space="preserve">
     <value>A lightweight, real-time, always on top thumbnail of a window of your choice.</value>
   </data>
-  <data name="UpdateDisclaimer" xml:space="preserve">
-    <value>OnTopReplica automatically checks for updates. No information is logged at any point.</value>
+  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
+    <value>OnTopReplica automatically checks for updates at every start up.</value>
   </data>
-  <data name="UpdateNow" xml:space="preserve">
-    <value>Update now!</value>
+  <data name="AboutUpdatesCheckNow" xml:space="preserve">
+    <value>Check now!</value>
   </data>
   <data name="MenuSettings" xml:space="preserve">
     <value>Settings...</value>
@@ -516,5 +464,27 @@ You can enable click-through later</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="AboutAuthorContent" xml:space="preserve">
+    <value>Lorenz Cuno Klopfenstein</value>
+  </data>
+  <data name="AboutCreditsSources" xml:space="preserve">
+    <value>OnTopReplica is based upon the WindowsFormsAero library and some other libraries and code sources. %.</value>
+    <comment>Link % is replaced by string AboutCreditsSourcesContent.</comment>
+  </data>
+  <data name="AboutCreditsSourcesContent" xml:space="preserve">
+    <value>Read the full credits</value>
+  </data>
+  <data name="AboutDividerCredits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="AboutDividerUpdates" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About OnTopReplica</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Version {0}</value>
   </data>
 </root>

@@ -1,0 +1,2 @@
+﻿Microsoft Reciprocal License (Ms-RL)
+http://opensource.org/licenses/ms-rl.html

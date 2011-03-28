@@ -61,6 +61,24 @@ namespace OnTopReplica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created by: %..
+        /// </summary>
+        internal static string AboutAuthor {
+            get {
+                return ResourceManager.GetString("AboutAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lorenz Cuno Klopfenstein.
+        /// </summary>
+        internal static string AboutAuthorContent {
+            get {
+                return ResourceManager.GetString("AboutAuthorContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Abort update process..
         /// </summary>
         internal static string AboutButtonCancelTT {
@@ -97,45 +115,83 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;html&gt;
-        ///	&lt;head&gt;
-        ///		&lt;style type=&quot;text/css&quot;&gt;
-        ///body {
-        ///	font-family: Segoe UI, Arial, sans-serif;
-        ///	font-size: 0.8em;
-        ///	margin: 0;
-        ///padding: 0.75em;
-        ///}
-        ///h1 {
-        ///	font-size: 1.4em;
-        ///	font-weight: bold;
-        ///	
-        ///	margin: 1em 0 0.4em 0;
-        ///	padding: 0;
-        ///}
-        ///p {
-        ///	margin: 0.5em 0 0.5em 1em;
-        ///	padding: 0;
-        ///}
-        ///a {
-        ///	font-weight: bold;
-        ///	color: blue;
-        ///}
-        ///a:hover {
-        ///	color: red;
-        ///}
-        ///		&lt;/style&gt;
-        ///	&lt;/head&gt;
-        ///	
-        ///	&lt;body&gt;
-        ///	
-        ///		&lt;h1&gt;License&lt;/h1&gt;
-        ///		
-        ///		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; is licensed under the &lt;a href=&quot;http://opensource.org/licenses/ms-rl.html&quot;&gt;Microsoft Reciprocal  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to OnTopReplica is based upon the WindowsFormsAero library and some other libraries and code sources. %..
         /// </summary>
-        internal static string AboutDetails {
+        internal static string AboutCreditsSources {
             get {
-                return ResourceManager.GetString("AboutDetails", resourceCulture);
+                return ResourceManager.GetString("AboutCreditsSources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read the full credits.
+        /// </summary>
+        internal static string AboutCreditsSourcesContent {
+            get {
+                return ResourceManager.GetString("AboutCreditsSourcesContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credits.
+        /// </summary>
+        internal static string AboutDividerCredits {
+            get {
+                return ResourceManager.GetString("AboutDividerCredits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updates.
+        /// </summary>
+        internal static string AboutDividerUpdates {
+            get {
+                return ResourceManager.GetString("AboutDividerUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A lightweight, real-time, always on top thumbnail of a window of your choice..
+        /// </summary>
+        internal static string AboutSlogan {
+            get {
+                return ResourceManager.GetString("AboutSlogan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About OnTopReplica.
+        /// </summary>
+        internal static string AboutTitle {
+            get {
+                return ResourceManager.GetString("AboutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check now!.
+        /// </summary>
+        internal static string AboutUpdatesCheckNow {
+            get {
+                return ResourceManager.GetString("AboutUpdatesCheckNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnTopReplica automatically checks for updates at every start up..
+        /// </summary>
+        internal static string AboutUpdatesDisclaimer {
+            get {
+                return ResourceManager.GetString("AboutUpdatesDisclaimer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version {0}.
+        /// </summary>
+        internal static string AboutVersion {
+            get {
+                return ResourceManager.GetString("AboutVersion", resourceCulture);
             }
         }
         
@@ -275,15 +331,6 @@ namespace OnTopReplica {
         internal static string ButtonCancel {
             get {
                 return ResourceManager.GetString("ButtonCancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Created by: Lorenz Cuno Klopfenstein..
-        /// </summary>
-        internal static string CreatedBy {
-            get {
-                return ResourceManager.GetString("CreatedBy", resourceCulture);
             }
         }
         
@@ -1390,33 +1437,6 @@ namespace OnTopReplica {
         internal static string SettingsTitle {
             get {
                 return ResourceManager.GetString("SettingsTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A lightweight, real-time, always on top thumbnail of a window of your choice..
-        /// </summary>
-        internal static string Slogan {
-            get {
-                return ResourceManager.GetString("Slogan", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OnTopReplica automatically checks for updates. No information is logged at any point..
-        /// </summary>
-        internal static string UpdateDisclaimer {
-            get {
-                return ResourceManager.GetString("UpdateDisclaimer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update now!.
-        /// </summary>
-        internal static string UpdateNow {
-            get {
-                return ResourceManager.GetString("UpdateNow", resourceCulture);
             }
         }
     }
