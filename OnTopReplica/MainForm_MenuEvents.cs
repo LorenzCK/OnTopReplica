@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using OnTopReplica.Properties;
 using VistaControls.TaskDialog;
+using OnTopReplica.SidePanels;
 
 namespace OnTopReplica {
     partial class MainForm {
@@ -189,11 +190,11 @@ namespace OnTopReplica {
         }
 
         private void Menu_Settings_click(object sender, EventArgs e) {
-            this.SetSidePanel(new OnTopReplica.SidePanels.OptionsPanel());
+            this.SetSidePanel(new OptionsPanel());
         }
 
         private void Menu_About_click(object sender, EventArgs e) {
-            this.Hide();
+            /*this.Hide();
 
             using (var box = new AboutForm()) {
                 box.Location = RecenterLocation(this, box);
@@ -201,7 +202,8 @@ namespace OnTopReplica {
                 Location = RecenterLocation(box, this);
             }
 
-            this.Show();
+            this.Show();*/
+            this.SetSidePanel(new AboutPanel());
         }
 
         private void Menu_Close_click(object sender, EventArgs e) {

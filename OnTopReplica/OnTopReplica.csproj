@@ -100,12 +100,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutForm.cs">
+    <None Include="AboutForm.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AboutForm.Designer.cs">
+    </None>
+    <None Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
-    </Compile>
+    </None>
     <Compile Include="Actions.cs" />
     <Compile Include="AspectRatioForm.cs">
       <SubType>Form</SubType>
@@ -143,13 +143,18 @@
     <Compile Include="Native\HookMethods.cs" />
     <Compile Include="Native\HotKeyMethods.cs" />
     <Compile Include="Native\HT.cs" />
-    <Compile Include="Pair.cs" />
     <Compile Include="Platforms\DebugPlatform.cs" />
     <Compile Include="SidePanelContainer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SidePanelContainer.Designer.cs">
       <DependentUpon>SidePanelContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SidePanels\AboutPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SidePanels\AboutPanel.Designer.cs">
+      <DependentUpon>AboutPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="SidePanels\OptionsPanel.cs">
       <SubType>UserControl</SubType>
@@ -175,6 +180,9 @@
     <Compile Include="WindowSeekers\TaskWindowSeeker.cs" />
     <EmbeddedResource Include="SidePanelContainer.resx">
       <DependentUpon>SidePanelContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SidePanels\AboutPanel.resx">
+      <DependentUpon>AboutPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.ru.resx" />
     <None Include="Native\ITaskBarList.cs" />
@@ -329,6 +337,12 @@
     <None Include="Assets\reduce.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="CREDITS.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Assets\fullscreen.png" />
     <None Include="Assets\clickforwarding.png" />
     <None Include="Assets\groupmode.png" />
