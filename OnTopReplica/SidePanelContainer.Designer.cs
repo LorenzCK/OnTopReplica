@@ -33,7 +33,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MinimizeBox = false;
             this.Name = "SidePanelContainer";
-            this.Padding = new System.Windows.Forms.Padding(6);
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Side Panel container";

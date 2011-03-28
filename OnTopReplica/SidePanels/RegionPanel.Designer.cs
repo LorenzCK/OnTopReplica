@@ -64,9 +64,9 @@
             this.groupBox1.Controls.Add(this.buttonSave);
             this.groupBox1.Controls.Add(this.comboRegions);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(184, 170);
+            this.groupBox1.Size = new System.Drawing.Size(218, 158);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Regions:";
@@ -79,7 +79,7 @@
             this.textRegionName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.textRegionName.Location = new System.Drawing.Point(6, 44);
             this.textRegionName.Name = "textRegionName";
-            this.textRegionName.Size = new System.Drawing.Size(174, 20);
+            this.textRegionName.Size = new System.Drawing.Size(208, 20);
             this.textRegionName.TabIndex = 11;
             this.textRegionName.Visible = false;
             this.textRegionName.ConfirmInput += new System.EventHandler(this.Save_confirm);
@@ -166,7 +166,7 @@
             this.buttonDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDone.Image = global::OnTopReplica.Properties.Resources.xiao_ok;
             this.buttonDone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonDone.Location = new System.Drawing.Point(108, 129);
+            this.buttonDone.Location = new System.Drawing.Point(142, 129);
             this.buttonDone.Name = "buttonDone";
             this.buttonDone.Size = new System.Drawing.Size(70, 23);
             this.buttonDone.TabIndex = 9;
@@ -178,7 +178,7 @@
             // buttonReset
             // 
             this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonReset.Location = new System.Drawing.Point(32, 129);
+            this.buttonReset.Location = new System.Drawing.Point(66, 129);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(70, 23);
             this.buttonReset.TabIndex = 8;
@@ -241,7 +241,7 @@
             this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelete.Enabled = false;
             this.buttonDelete.Image = global::OnTopReplica.Properties.Resources.xiao_delete;
-            this.buttonDelete.Location = new System.Drawing.Point(157, 18);
+            this.buttonDelete.Location = new System.Drawing.Point(191, 18);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(23, 23);
             this.buttonDelete.TabIndex = 3;
@@ -253,7 +253,7 @@
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSave.Enabled = false;
             this.buttonSave.Image = global::OnTopReplica.Properties.Resources.xiao_add;
-            this.buttonSave.Location = new System.Drawing.Point(134, 18);
+            this.buttonSave.Location = new System.Drawing.Point(168, 18);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(23, 23);
             this.buttonSave.TabIndex = 1;
@@ -270,7 +270,7 @@
             this.comboRegions.FormattingEnabled = true;
             this.comboRegions.Location = new System.Drawing.Point(6, 19);
             this.comboRegions.Name = "comboRegions";
-            this.comboRegions.Size = new System.Drawing.Size(126, 21);
+            this.comboRegions.Size = new System.Drawing.Size(160, 21);
             this.comboRegions.TabIndex = 0;
             this.comboRegions.SelectedIndexChanged += new System.EventHandler(this.RegionCombo_index_change);
             // 
@@ -279,9 +279,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
-            this.MinimumSize = new System.Drawing.Size(184, 170);
+            this.MinimumSize = new System.Drawing.Size(230, 170);
             this.Name = "RegionPanel";
-            this.Size = new System.Drawing.Size(184, 170);
+            this.Padding = new System.Windows.Forms.Padding(6);
+            this.Size = new System.Drawing.Size(230, 170);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numH)).EndInit();

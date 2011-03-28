@@ -5,12 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using VistaControls.Dwm.Helpers;
 
 namespace OnTopReplica {
     /// <summary>
     /// Acts as a form that can contain a SidePanel instance.
     /// </summary>
-    partial class SidePanelContainer : Form {
+    partial class SidePanelContainer : GlassForm {
         
         EventHandler RequestClosingHandler;
 
@@ -43,11 +44,12 @@ namespace OnTopReplica {
         public void SetSidePanel(SidePanel panel) {
             panel.OnFirstShown(_parent);
 
-            //Set panel
             this.SuspendLayout();
 
+            //Title
             this.Text = panel.Title;
 
+            //Set panel
             CurrentSidePanel = panel;
             panel.RequestClosing += RequestClosingHandler;
             this.Controls.Add(panel);
@@ -55,6 +57,15 @@ namespace OnTopReplica {
             var minSize = panel.MinimumSize.Expand(this.Padding);
             this.ClientSize = minSize;
             this.EnsureMinimumClientSize(minSize);
+
+            //Enable glass if needed
+            var margins = panel.GlassMargins;
+            if (margins.HasValue) {
+                this.GlassMargins = margins.Value;
+                this.GlassEnabled = true;
+            }
+            else
+                this.GlassEnabled = false;
 
             this.ResumeLayout();
         }

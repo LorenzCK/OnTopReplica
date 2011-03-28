@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using VistaControls.Dwm;
 
 namespace OnTopReplica {
 
@@ -55,6 +56,15 @@ namespace OnTopReplica {
         public virtual string Title {
             get {
                 return "Side panel";
+            }
+        }
+
+        /// <summary>
+        /// Gets the panel's desired glass margins or null if no glass surface is required.
+        /// </summary>
+        public virtual Margins? GlassMargins {
+            get {
+                return null;
             }
         }
 
