@@ -76,6 +76,7 @@ a:hover {
 	
 	&lt;/body&gt;
 &lt;/html&gt;</value>
+    <comment>Not needed anymore.</comment>
   </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>OnTopReplica</value>
@@ -466,13 +467,13 @@ Se podrá activar Click a través más tarde</value>
   <data name="RightClick" xml:space="preserve">
     <value>Click derecho para empezar...</value>
   </data>
-  <data name="Slogan" xml:space="preserve">
-    <value>Una copia liviana, en tiempo real y siempre encima de cualquier ventana.</value>
-  </data>
-  <data name="UpdateDisclaimer" xml:space="preserve">
+  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
     <value>OnTopReplica busca actualizaciones automáticamente.</value>
   </data>
-  <data name="UpdateNow" xml:space="preserve">
+  <data name="AboutUpdatesCheckNow" xml:space="preserve">
     <value>Actualizar ahora!</value>
+  </data>
+  <data name="AboutSlogan" xml:space="preserve">
+    <value>Una copia liviana, en tiempo real y siempre encima de cualquier ventana.</value>
   </data>
 </root>

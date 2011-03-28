@@ -76,6 +76,7 @@ a:hover {
 	
 	&lt;/body&gt;
 &lt;/html&gt;</value>
+    <comment>Not needed anymore.</comment>
   </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>OnTopReplica</value>
@@ -438,13 +439,13 @@ Režim "Proklikávání" je možné zvolit později v menu</value>
   <data name="RightClick" xml:space="preserve">
     <value>Začněte klepnutím sem pravým tlačítkem myši...</value>
   </data>
-  <data name="Slogan" xml:space="preserve">
-    <value>Nenáročný a instantní náhled libovolného otevřeného okna (nebo jeho výřezu) v systému.</value>
+  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
+    <value>Aplikace OnTopReplica automaticky kontroluje dostupné aktualizace.</value>
   </data>
-  <data name="UpdateDisclaimer" xml:space="preserve">
-    <value>Aplikace OnTopReplica automaticky kontroluje dostupné aktualizace. Během této operace nedochází k žádnému přenosu či ukládání uživatelských informací.</value>
-  </data>
-  <data name="UpdateNow" xml:space="preserve">
+  <data name="AboutUpdatesCheckNow" xml:space="preserve">
     <value>Zkontroluj aktualizace</value>
+  </data>
+  <data name="AboutSlogan" xml:space="preserve">
+    <value>Nenáročný a instantní náhled libovolného otevřeného okna (nebo jeho výřezu) v systému.</value>
   </data>
 </root>
