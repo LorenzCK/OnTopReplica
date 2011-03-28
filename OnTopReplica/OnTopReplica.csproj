@@ -100,12 +100,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AboutForm.cs">
-      <SubType>Form</SubType>
-    </None>
-    <None Include="AboutForm.Designer.cs">
-      <DependentUpon>AboutForm.cs</DependentUpon>
-    </None>
     <Compile Include="Actions.cs" />
     <Compile Include="AspectRatioForm.cs">
       <SubType>Form</SubType>
@@ -235,10 +229,6 @@
     <Compile Include="NativeToolStripRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AboutForm.resx">
-      <DependentUpon>AboutForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="SidePanels\GroupSwitchPanel.resx">
       <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
     </EmbeddedResource>
