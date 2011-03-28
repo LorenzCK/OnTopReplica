@@ -100,6 +100,7 @@
             this.buttonUpdate.Text = global::OnTopReplica.Strings.AboutUpdatesCheckNow;
             this.buttonUpdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(ButtonUpdate_click);
             // 
             // lblUpdateDisclaimer
             // 
