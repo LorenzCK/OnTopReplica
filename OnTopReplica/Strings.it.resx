@@ -1,110 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -129,59 +24,8 @@
   <data name="AboutButtonUpdateTT" xml:space="preserve">
     <value>Aggiorna OnTopReplica ora.</value>
   </data>
-  <data name="AboutDetails" xml:space="preserve">
-    <value>&lt;html&gt;
-	&lt;head&gt;
-		&lt;style type="text/css"&gt;
-body {
-	font-family: Segoe UI, Arial, sans-serif;
-	font-size: 0.8em;
-	margin: 0;
-padding: 0.75em;
-}
-h1 {
-	font-size: 1.4em;
-	font-weight: bold;
-	
-	margin: 1em 0 0.4em 0;
-	padding: 0;
-}
-p {
-	margin: 0.5em 0 0.5em 1em;
-	padding: 0;
-}
-a {
-	font-weight: bold;
-	color: blue;
-}
-a:hover {
-	color: red;
-}
-		&lt;/style&gt;
-	&lt;/head&gt;
-	
-	&lt;body&gt;
-	
-		&lt;h1&gt;Licenza d'utilizzo&lt;/h1&gt;
-		
-		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; è rilasciato sotto la licenza &lt;a href="http://opensource.org/licenses/ms-rl.html"&gt;Microsoft Reciprocal License (Ms-RL)&lt;/a&gt;.&lt;/p&gt;
-		&lt;p&gt;Il codice sorgente originale del programma è disponibile sulla &lt;a href="http://www.codeplex.com/ontopreplica"&gt;homepage del progetto su CodePlex&lt;/a&gt;.&lt;/p&gt;
-		
-		&lt;h1&gt;Credits&lt;/h1&gt;
-		
-		&lt;p&gt;OnTopReplica è stato inspirato da &lt;a href="http://insentient.net"&gt;Switcher&lt;/a&gt; ed altre applicazioni basate su DWM.&lt;/p&gt;
-
-		&lt;p&gt;I controlli utente specifici per Windows Vista sono parte della libreria &lt;a href="http://www.codeplex.com/windowsformsaero"&gt;WindowsFormsAero&lt;/a&gt; per .NET.&lt;/p&gt;
-
-		&lt;p&gt;Qualche riga di codice d'esempio presa da &lt;a href="http://www.ookii.org"&gt;Ookii&lt;/a&gt; su Channel9.&lt;/p&gt;
-
-		&lt;p&gt;La classe NativeToolstripRenderer è stata presa da &lt;a href="http://wp.asztal.net/2007/12/vista-style-menus-in-dotnet/"&gt;asztal.net&lt;/a&gt;.&lt;/p&gt;
-
-		&lt;p&gt;Alcune delle icone sono state prese da &lt;a href="http://www.vistaico.com"&gt;VistaICO.com&lt;/a&gt; e dal set di icone Xiao.&lt;/p&gt;
-	
-	&lt;/body&gt;
-&lt;/html&gt;</value>
-    <comment>Not needed anymore.</comment>
+  <data name="AboutDividerContribute" xml:space="preserve">
+    <value>Contribuisci</value>
   </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>OnTopReplica</value>
@@ -645,5 +489,21 @@ Puoi abilitare il Click-Through in futuro</value>
   </data>
   <data name="AboutUpdatesCheckNow" xml:space="preserve">
     <value>Controlla!</value>
+  </data>
+  <data name="AboutDividerLicense" xml:space="preserve">
+    <value>Licenza d'uso</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>Questa applicazione è rilasciata sotto la licenza %, che rientra nella definizione di "open-source" data dal consorzio OSI.</value>
+  </data>
+  <data name="AboutTranslators" xml:space="preserve">
+    <value>Traduttori: {0}</value>
+    <comment>{0} translators</comment>
+  </data>
+  <data name="AboutContribute" xml:space="preserve">
+    <value>T'interessa partecipare? Ogni aiuto è ben accetto, sia che tu voglia migliorare una traduzione, aggiungerne una nuova oppure dare un'occhiata al % su CodePlex.</value>
+  </data>
+  <data name="AboutContributeContent" xml:space="preserve">
+    <value>codice sorgente</value>
   </data>
 </root>

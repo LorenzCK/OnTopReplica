@@ -115,6 +115,24 @@ namespace OnTopReplica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Care to contribute to the project? You are welcome to improve available translations, start a new one for your native language or to check out the % from CodePlex..
+        /// </summary>
+        internal static string AboutContribute {
+            get {
+                return ResourceManager.GetString("AboutContribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to source code.
+        /// </summary>
+        internal static string AboutContributeContent {
+            get {
+                return ResourceManager.GetString("AboutContributeContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OnTopReplica is based upon the WindowsFormsAero library and some other libraries and code sources. %..
         /// </summary>
         internal static string AboutCreditsSources {
@@ -133,6 +151,15 @@ namespace OnTopReplica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contribute.
+        /// </summary>
+        internal static string AboutDividerContribute {
+            get {
+                return ResourceManager.GetString("AboutDividerContribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Credits.
         /// </summary>
         internal static string AboutDividerCredits {
@@ -142,11 +169,38 @@ namespace OnTopReplica {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to License.
+        /// </summary>
+        internal static string AboutDividerLicense {
+            get {
+                return ResourceManager.GetString("AboutDividerLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Updates.
         /// </summary>
         internal static string AboutDividerUpdates {
             get {
                 return ResourceManager.GetString("AboutDividerUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application is licensed under the % license, which meets the terms of the &quot;open-source&quot; definition specified by OSI..
+        /// </summary>
+        internal static string AboutLicense {
+            get {
+                return ResourceManager.GetString("AboutLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Microsoft Reciprocal (MS-RL).
+        /// </summary>
+        internal static string AboutLicenseContent {
+            get {
+                return ResourceManager.GetString("AboutLicenseContent", resourceCulture);
             }
         }
         
@@ -165,6 +219,24 @@ namespace OnTopReplica {
         internal static string AboutTitle {
             get {
                 return ResourceManager.GetString("AboutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translators: {0}.
+        /// </summary>
+        internal static string AboutTranslators {
+            get {
+                return ResourceManager.GetString("AboutTranslators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Christian Olaechea M., Daniel Zeus.EX, Federico Lorenzo, Goran Brecelj, Marco Kraxner, Patrik (batupata), Raúl Morillo, René Mihula, Roberto Leiro, Rodrigo Lourenço, Thomas Amundsen..
+        /// </summary>
+        internal static string AboutTranslatorsContent {
+            get {
+                return ResourceManager.GetString("AboutTranslatorsContent", resourceCulture);
             }
         }
         

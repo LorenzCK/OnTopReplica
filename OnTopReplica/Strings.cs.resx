@@ -24,60 +24,6 @@
   <data name="AboutButtonUpdateTT" xml:space="preserve">
     <value>Aktualizovat OnTopReplica.</value>
   </data>
-  <data name="AboutDetails" xml:space="preserve">
-    <value>&lt;html&gt;
-	&lt;head&gt;
-		&lt;style type="text/css"&gt;
-body {
-	font-family: Segoe UI, Arial, sans-serif;
-	font-size: 0.8em;
-	margin: 0;
-padding: 0.75em;
-}
-h1 {
-	font-size: 1.4em;
-	font-weight: bold;
-	
-	margin: 1em 0 0.4em 0;
-	padding: 0;
-}
-p {
-	margin: 0.5em 0 0.5em 1em;
-	padding: 0;
-}
-a {
-	font-weight: bold;
-	color: blue;
-}
-a:hover {
-	color: red;
-}
-		&lt;/style&gt;
-	&lt;/head&gt;
-	
-	&lt;body&gt;
-	
-		&lt;h1&gt;Licence&lt;/h1&gt;
-		
-		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; je šířena pod &lt;a href="http://opensource.org/licenses/ms-rl.html"&gt;Microsoft Reciprocal License (Ms-RL)&lt;/a&gt; licencí.&lt;/p&gt;
-		&lt;p&gt;Původní zdrojový kód je možné nalézt na &lt;a href="http://www.codeplex.com/ontopreplica"&gt;domovské stránce projektu na serveru CodePlex&lt;/a&gt;.&lt;/p&gt;
-		
-		&lt;h1&gt;Autoři a zásluhy&lt;/h1&gt;
-		
-		&lt;p&gt;Původní inspirací pro OnTopReplica byla aplikace &lt;a href="http://insentient.net"&gt;Switcher&lt;/a&gt; a další aplikace založeny na DWM.&lt;/p&gt;
-
-		&lt;p&gt;Všechny Vista ovládací prvky jsou součástí &lt;a href="http://www.codeplex.com/windowsformsaero"&gt;knihovny WindowsFormsAero&lt;/a&gt; pro .NET.&lt;/p&gt;
-
-		&lt;p&gt;Některé ukázkové kódy byly převzaty z &lt;a href="http://www.ookii.org"&gt;Ookii&lt;/a&gt; ze serveru Channel9.&lt;/p&gt;
-
-		&lt;p&gt;Třída NativeToolstripRenderer byla převzata z &lt;a href="http://wp.asztal.net/2007/12/vista-style-menus-in-dotnet/"&gt;asztal.net&lt;/a&gt;.&lt;/p&gt;
-
-		&lt;p&gt;Některé ikony pocházejí z &lt;a href="http://www.vistaico.com"&gt;VistaICO.com&lt;/a&gt; a balíčku ikon Xiao.&lt;/p&gt;
-	
-	&lt;/body&gt;
-&lt;/html&gt;</value>
-    <comment>Not needed anymore.</comment>
-  </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>OnTopReplica</value>
   </data>
