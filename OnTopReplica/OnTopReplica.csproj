@@ -150,6 +150,12 @@
     <Compile Include="SidePanels\AboutPanel.Designer.cs">
       <DependentUpon>AboutPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="SidePanels\AboutPanelContents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SidePanels\AboutPanelContents.Designer.cs">
+      <DependentUpon>AboutPanelContents.cs</DependentUpon>
+    </Compile>
     <Compile Include="SidePanels\OptionsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SidePanels\AboutPanel.resx">
       <DependentUpon>AboutPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SidePanels\AboutPanelContents.resx">
+      <DependentUpon>AboutPanelContents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.ru.resx" />
     <None Include="Native\ITaskBarList.cs" />

@@ -24,60 +24,6 @@
   <data name="AboutButtonUpdateTT" xml:space="preserve">
     <value>Opdater OnTopReplica nu.</value>
   </data>
-  <data name="AboutDetails" xml:space="preserve">
-    <value>&lt;html&gt;
-	&lt;head&gt;
-		&lt;style type="text/css"&gt;
-body {
-	font-family: Segoe UI, Arial, sans-serif;
-	font-size: 0.8em;
-	margin: 0;
-padding: 0.75em;
-}
-h1 {
-	font-size: 1.4em;
-	font-weight: bold;
-	
-	margin: 1em 0 0.4em 0;
-	padding: 0;
-}
-p {
-	margin: 0.5em 0 0.5em 1em;
-	padding: 0;
-}
-a {
-	font-weight: bold;
-	color: blue;
-}
-a:hover {
-	color: red;
-}
-		&lt;/style&gt;
-	&lt;/head&gt;
-	
-	&lt;body&gt;
-	
-		&lt;h1&gt;Licens&lt;/h1&gt;
-		
-		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; er licenseret under &lt;a href="http://opensource.org/licenses/ms-rl.html"&gt;Microsoft Reciprocal License (Ms-RL)&lt;/a&gt;.&lt;/p&gt;
-		&lt;p&gt;Dem originale kildekode kan findes på &lt;a href="http://www.codeplex.com/ontopreplica"&gt;projektets hjemmeside på CodePlex&lt;/a&gt;.&lt;/p&gt;
-		
-		&lt;h1&gt;Credits&lt;/h1&gt;
-		
-		&lt;p&gt;OnTopReplica er inspireret af &lt;a href="http://insentient.net"&gt;Switcher&lt;/a&gt; og andre DWM baserede applikationer.&lt;/p&gt;
-
-		&lt;p&gt;Alle Vista funktioner er del af &lt;a href="http://www.codeplex.com/windowsformsaero"&gt;WindowsFormsAero biblioteket&lt;/a&gt; for .NET.&lt;/p&gt;
-
-		&lt;p&gt;Lidt eksempel kode er taget fra &lt;a href="http://www.ookii.org"&gt;Ookii&lt;/a&gt; på Channel9.&lt;/p&gt;
-
-		&lt;p&gt;NativeToolstripRenderer class er taget fra &lt;a href="http://wp.asztal.net/2007/12/vista-style-menus-in-dotnet/"&gt;asztal.net&lt;/a&gt;.&lt;/p&gt;
-
-		&lt;p&gt;Lidt ikoner fra &lt;a href="http://www.vistaico.com"&gt;VistaICO.com&lt;/a&gt; og Xiao ikon sættet.&lt;/p&gt;
-	
-	&lt;/body&gt;
-&lt;/html&gt;</value>
-    <comment>Not needed anymore.</comment>
-  </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>OnTopReplica</value>
   </data>

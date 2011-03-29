@@ -24,60 +24,6 @@
   <data name="AboutButtonUpdateTT" xml:space="preserve">
     <value>Actualiza OnTopReplica ahora.</value>
   </data>
-  <data name="AboutDetails" xml:space="preserve">
-    <value>&lt;html&gt;
-	&lt;head&gt;
-		&lt;style type="text/css"&gt;
-body {
-	font-family: Segoe UI, Arial, sans-serif;
-	font-size: 0.8em;
-	margin: 0;
-padding: 0.75em;
-}
-h1 {
-	font-size: 1.4em;
-	font-weight: bold;
-	
-	margin: 1em 0 0.4em 0;
-	padding: 0;
-}
-p {
-	margin: 0.5em 0 0.5em 1em;
-	padding: 0;
-}
-a {
-	font-weight: bold;
-	color: blue;
-}
-a:hover {
-	color: red;
-}
-		&lt;/style&gt;
-	&lt;/head&gt;
-	
-	&lt;body&gt;
-	
-		&lt;h1&gt;Licencia&lt;/h1&gt;
-		
-		&lt;p&gt;&lt;b&gt;OnTopReplica&lt;/b&gt; cuenta con licencia &lt;a href="http://opensource.org/licenses/ms-rl.html"&gt;Microsoft Reciprocal License (Ms-RL)&lt;/a&gt;.&lt;/p&gt;
-		&lt;p&gt;El código fuente original se encuentra en &lt;a href="http://www.codeplex.com/ontopreplica"&gt;la página inicial del proyecto en CodePlex&lt;/a&gt;.&lt;/p&gt;
-		
-		&lt;h1&gt;Créditos&lt;/h1&gt;
-		
-		&lt;p&gt;&lt;a href="http://insentient.net"&gt;Switcher&lt;/a&gt; y otros programas basados en DWM inspiraron OnTopReplica.&lt;/p&gt;
-
-		&lt;p&gt;All Vista controls are part of the &lt;a href="http://www.codeplex.com/windowsformsaero"&gt;WindowsFormsAero library&lt;/a&gt; for .NET.&lt;/p&gt;
-
-		&lt;p&gt;Some example code taken from &lt;a href="http://www.ookii.org"&gt;Ookii&lt;/a&gt; on Channel9.&lt;/p&gt;
-
-		&lt;p&gt;NativeToolstripRenderer class taken from &lt;a href="http://wp.asztal.net/2007/12/vista-style-menus-in-dotnet/"&gt;asztal.net&lt;/a&gt;.&lt;/p&gt;
-
-		&lt;p&gt;Some icons from &lt;a href="http://www.vistaico.com"&gt;VistaICO.com&lt;/a&gt; and the Xiao icon set.&lt;/p&gt;
-	
-	&lt;/body&gt;
-&lt;/html&gt;</value>
-    <comment>Not needed anymore.</comment>
-  </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>OnTopReplica</value>
   </data>

@@ -487,4 +487,30 @@ You can enable click-through later</value>
   <data name="AboutVersion" xml:space="preserve">
     <value>Version {0}</value>
   </data>
+  <data name="AboutContribute" xml:space="preserve">
+    <value>Care to contribute to the project? You are welcome to improve available translations, start a new one for your native language or to check out the % from CodePlex.</value>
+  </data>
+  <data name="AboutContributeContent" xml:space="preserve">
+    <value>source code</value>
+  </data>
+  <data name="AboutDividerContribute" xml:space="preserve">
+    <value>Contribute</value>
+  </data>
+  <data name="AboutDividerLicense" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>The application is licensed under the % license, which meets the terms of the "open-source" definition specified by OSI.</value>
+  </data>
+  <data name="AboutLicenseContent" xml:space="preserve">
+    <value>Microsoft Reciprocal (MS-RL)</value>
+  </data>
+  <data name="AboutTranslators" xml:space="preserve">
+    <value>Translators: {0}</value>
+    <comment>{0} translators</comment>
+  </data>
+  <data name="AboutTranslatorsContent" xml:space="preserve">
+    <value>Christian Olaechea M., Daniel Zeus.EX, Federico Lorenzo, Goran Brecelj, Marco Kraxner, Patrik (batupata), Raúl Morillo, René Mihula, Roberto Leiro, Rodrigo Lourenço, Thomas Amundsen.</value>
+    <comment>Must not be localized. In order to be added, contact author.</comment>
+  </data>
 </root>
