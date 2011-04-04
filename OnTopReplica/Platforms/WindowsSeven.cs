@@ -16,8 +16,6 @@ namespace OnTopReplica.Platforms {
             DwmManager.SetWindowFlip3dPolicy(form, Flip3DPolicy.ExcludeAbove);
             DwmManager.SetExludeFromPeek(form, true);
             DwmManager.SetDisallowPeek(form, true);
-
-            SetWindowStyle(form);
         }
 
         public override void HideForm(MainForm form) {
@@ -33,14 +31,15 @@ namespace OnTopReplica.Platforms {
                 form.Opacity = 1.0;
             
             form.Show();
-            
-            SetWindowStyle(form);
         }
 
-        public override void OnFormStateChange(MainForm form) {
-            SetWindowStyle(form);
-        }
+        /*public override void OnFormStateChange(MainForm form) {
+            //SetWindowStyle(form);
+        }*/
 
+        /// <summary>
+        /// Used to alter the window style. Not used anymore.
+        /// </summary>
         private void SetWindowStyle(MainForm form) {
             if (!form.IsFullscreen) {
                 //This hides the app from ALT+TAB
@@ -49,7 +48,7 @@ namespace OnTopReplica.Platforms {
                 long exStyle = WindowMethods.GetWindowLong(form.Handle, WindowMethods.WindowLong.ExStyle).ToInt64();
 
                 exStyle |= (long)(WindowMethods.WindowExStyles.ToolWindow);
-                exStyle &= ~(long)(WindowMethods.WindowExStyles.AppWindow);
+                //exStyle &= ~(long)(WindowMethods.WindowExStyles.AppWindow);
 
                 WindowMethods.SetWindowLong(form.Handle, WindowMethods.WindowLong.ExStyle, new IntPtr(exStyle));
 
