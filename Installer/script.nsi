@@ -38,7 +38,6 @@ RequestExecutionLevel user
 
 # PAGE DEFINITIONS
 !insertmacro MUI_PAGE_WELCOME
-;!insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH
 
@@ -54,8 +53,8 @@ Function RegisterApplication
 	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayName" "OnTopReplica"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayIcon" "$\"$INSTDIR\OnTopReplica.exe$\""
 	WriteRegStr HKCU "${REG_UNINSTALL}" "Publisher" "Lorenz Cuno Klopfenstein"
-	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayVersion" "3.1.0.0"
-	WriteRegDWord HKCU "${REG_UNINSTALL}" "EstimatedSize" 800 ;KB
+	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayVersion" "3.3.0.0"
+	WriteRegDWord HKCU "${REG_UNINSTALL}" "EstimatedSize" 960 ;KB
 	WriteRegStr HKCU "${REG_UNINSTALL}" "HelpLink" "${WEBSITE_LINK}"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "URLInfoAbout" "${WEBSITE_LINK}"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "InstallLocation" "$\"$INSTDIR$\""
@@ -97,6 +96,8 @@ Section "!OnTopReplica" OnTopReplica
 	File "..\OnTopReplica\bin\Release\cs\OnTopReplica.resources.dll"
 	SetOutPath "$INSTDIR\da"
 	File "..\OnTopReplica\bin\Release\da\OnTopReplica.resources.dll"
+	SetOutPath "$INSTDIR\es"
+	File "..\OnTopReplica\bin\Release\es\OnTopReplica.resources.dll"
 		
 	;Uninstaller
 	WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}"
