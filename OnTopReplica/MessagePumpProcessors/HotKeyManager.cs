@@ -117,7 +117,8 @@ namespace OnTopReplica.MessagePumpProcessors {
             }
 
             var reg = HotKeyHandlerRegistration.Register(Form, keyCode, modifiers, handler);
-            _handlers.Add(reg.RegistrationKey, reg);
+            if(reg != null)
+                _handlers.Add(reg.RegistrationKey, reg);
         }
 
         private void ClearHandlers() {
