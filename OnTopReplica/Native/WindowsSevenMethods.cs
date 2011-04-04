@@ -9,11 +9,11 @@ namespace OnTopReplica.Native {
 
         [DllImport("shell32.dll")]
         internal static extern void SetCurrentProcessExplicitAppUserModelID(
-            [MarshalAs(UnmanagedType.LPWStr)] string AppID);
+            [MarshalAs(UnmanagedType.LPWStr)] string appId);
 
         [DllImport("shell32.dll")]
         internal static extern void GetCurrentProcessExplicitAppUserModelID(
-            [Out(), MarshalAs(UnmanagedType.LPWStr)] out string AppID);
+            [Out(), MarshalAs(UnmanagedType.LPWStr)] out string appId);
 
     }
 

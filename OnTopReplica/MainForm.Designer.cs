@@ -491,7 +491,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(264, 204);
             this.ControlBox = false;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -499,6 +499,7 @@
             this.Name = "MainForm";
             this.Text = "OnTopReplica";
             this.TopMost = true;
+            this.ShowInTaskbar = true;
             this.menuContext.ResumeLayout(false);
             this.menuWindows.ResumeLayout(false);
             this.menuOpacity.ResumeLayout(false);

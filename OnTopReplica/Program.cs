@@ -29,6 +29,7 @@ namespace OnTopReplica {
             Platform = PlatformSupport.Create();
             if (!Platform.CheckCompatibility())
                 return;
+            Platform.PreHandleFormInit();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

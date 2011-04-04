@@ -36,7 +36,7 @@ namespace OnTopReplica {
         #region Click-through
 
         bool _clickThrough = false;
-        Color _nonClickThroughKey;
+        readonly Color DefaultNonClickTransparencyKey;
 
         public bool ClickThroughEnabled {
             get {
@@ -50,7 +50,7 @@ namespace OnTopReplica {
                     Opacity = 1.0;*/
 
                 //Enable transparency and force as top-most
-                TransparencyKey = (value) ? Color.Black : _nonClickThroughKey;
+                TransparencyKey = (value) ? Color.Black : DefaultNonClickTransparencyKey;
                 if (value)
                     TopMost = true;
 
@@ -62,7 +62,7 @@ namespace OnTopReplica {
 
         #region Chrome
 
-        const FormBorderStyle DefaultBorderStyle = FormBorderStyle.SizableToolWindow;
+        readonly FormBorderStyle DefaultBorderStyle; // = FormBorderStyle.Sizable; // FormBorderStyle.SizableToolWindow;
 
         public bool IsChromeVisible {
             get {

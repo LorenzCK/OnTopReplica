@@ -42,7 +42,7 @@ namespace OnTopReplica {
         /// <summary>
         /// Initializes a form before it is fully constructed and before the window handle has been created.
         /// </summary>
-        public virtual void PreHandleFormInit(MainForm form) {
+        public virtual void PreHandleFormInit() {
         }
 
         /// <summary>
