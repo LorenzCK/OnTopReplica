@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using OnTopReplica.Update;
 using System.Diagnostics;
 using VistaControls.TaskDialog;
+using System.IO;
 
 namespace OnTopReplica.SidePanels {
     public partial class AboutPanelContents : UserControl {
@@ -57,7 +58,10 @@ namespace OnTopReplica.SidePanels {
         }
 
         private void LinkCredits_click(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start("CREDITS.txt");
+            var exeDir = Path.GetDirectoryName(Application.ExecutablePath);
+            var filePath = Path.Combine(exeDir, "CREDITS.txt");
+
+            Process.Start(filePath);
         }
 
         void UpdateButton_click(object sender, System.EventArgs e) {

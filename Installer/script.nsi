@@ -89,6 +89,10 @@ Section "!OnTopReplica" OnTopReplica
 	File "..\OnTopReplica\bin\Release\OnTopReplica.exe"
 	File "..\OnTopReplica\bin\Release\VistaControls.dll"
 	
+	;Text stuff
+	File "..\OnTopReplica\bin\Release\CREDITS.txt"
+	File "..\OnTopReplica\bin\Release\LICENSE.txt"
+	
 	;Install localization files
 	SetOutPath "$INSTDIR\it"
 	File "..\OnTopReplica\bin\Release\it\OnTopReplica.resources.dll"
