@@ -17,17 +17,14 @@ namespace OnTopReplica.Platforms {
 
         NotificationIcon _icon;
 
-        public override void PreHandleFormInit(MainForm form) {
+        public override void PostHandleFormInit(MainForm form) {
             //Do not show in task bar, but display notify icon
             //NOTE: this effectively makes Windows ignore the Flip 3D policy set above (on Windows 7)
             //NOTE: this also makes HotKey registration critically fail on Windows 7
             form.ShowInTaskbar = false;
-        }
 
-        public override void PostHandleFormInit(MainForm form) {
             DwmManager.SetWindowFlip3dPolicy(form, Flip3DPolicy.ExcludeAbove);
             
-            //Install tray icon
             _icon = new NotificationIcon(form);
         }
 

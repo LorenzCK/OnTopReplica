@@ -29,7 +29,6 @@ namespace OnTopReplica {
 
         public MainForm(Options startupOptions) {
             _startupOptions = startupOptions;
-            Program.Platform.PreHandleFormInit(this);
             
             //WinForms init pass
             InitializeComponent();
@@ -38,7 +37,8 @@ namespace OnTopReplica {
             GlassMargins = new Margins(-1);
 
             //Store default values
-            _nonClickThroughKey = TransparencyKey;
+            DefaultNonClickTransparencyKey = this.TransparencyKey;
+            DefaultBorderStyle = this.FormBorderStyle;
 
             //Thumbnail panel
             _thumbnailPanel = new ThumbnailPanel {

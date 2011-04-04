@@ -7,9 +7,9 @@ namespace OnTopReplica.Platforms {
 
     class WindowsSeven : WindowsVista {
 
-        public override void PreHandleFormInit(MainForm form) {
+        public override void PreHandleFormInit() {
             //Set Application ID
-            WindowsSevenMethods.SetCurrentProcessExplicitAppUserModelID("OnTopReplica");
+            WindowsSevenMethods.SetCurrentProcessExplicitAppUserModelID("LorenzCunoKlopfenstein.OnTopReplica.MainForm");
         }
 
         public override void PostHandleFormInit(MainForm form) {
@@ -46,8 +46,14 @@ namespace OnTopReplica.Platforms {
                 //This hides the app from ALT+TAB
                 //Note that when minimized, it will be shown as an (ugly) minimized tool window
                 //thus we do not minimize, but set to transparent when hiding
-                WindowMethods.SetWindowLong(form.Handle, WindowMethods.WindowLong.ExStyle,
-                    (IntPtr)(WindowMethods.WindowExStyles.ToolWindow | WindowMethods.WindowExStyles.Layered));
+                long exStyle = WindowMethods.GetWindowLong(form.Handle, WindowMethods.WindowLong.ExStyle).ToInt64();
+
+                exStyle |= (long)(WindowMethods.WindowExStyles.ToolWindow);
+                exStyle &= ~(long)(WindowMethods.WindowExStyles.AppWindow);
+
+                WindowMethods.SetWindowLong(form.Handle, WindowMethods.WindowLong.ExStyle, new IntPtr(exStyle));
+
+                //WindowMethods.SetWindowLong(form.Handle, WindowMethods.WindowLong.HwndParent, WindowManagerMethods.GetDesktopWindow());
             }
         }
 
