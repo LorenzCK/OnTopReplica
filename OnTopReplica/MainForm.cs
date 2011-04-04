@@ -32,9 +32,6 @@ namespace OnTopReplica {
             
             //WinForms init pass
             InitializeComponent();
-            KeepAspectRatio = false;
-            GlassEnabled = true;
-            GlassMargins = new Margins(-1);
 
             //Store default values
             DefaultNonClickTransparencyKey = this.TransparencyKey;
@@ -52,9 +49,6 @@ namespace OnTopReplica {
             Asztal.Szótár.NativeToolStripRenderer.SetToolStripRenderer(
                 menuContext, menuWindows, menuOpacity, menuResize, menuFullscreenContext
             );
-
-            //Init message pump extensions
-            _msgPumpManager.Initialize(this);
 
             //Set to Key event preview
             this.KeyPreview = true;
@@ -78,7 +72,6 @@ namespace OnTopReplica {
                 //Needed to hide caption, while keeping window title in task bar
                 var parms = base.CreateParams;
                 parms.Style &= ~0x00C00000; //WS_CAPTION
-                parms.Style &= 0x00040000; //WS_SIZEBOX
                 return parms;
             }
         }
@@ -86,7 +79,14 @@ namespace OnTopReplica {
         protected override void OnHandleCreated(EventArgs e){
  	        base.OnHandleCreated(e);
 
+            //Window init
+            KeepAspectRatio = false;
+            GlassEnabled = true;
+            GlassMargins = new Margins(-1);
+
+            //Window handlers
             _windowSeeker.OwnerHandle = this.Handle;
+            _msgPumpManager.Initialize(this);
 
             //Platform specific form initialization
             Program.Platform.PostHandleFormInit(this);
