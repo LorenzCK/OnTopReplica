@@ -476,7 +476,7 @@ Puoi abilitare il Click-Through in futuro</value>
     <comment>Link % is replaced by string AboutCreditsSourcesContent.</comment>
   </data>
   <data name="AboutCreditsSourcesContent" xml:space="preserve">
-    <value>Leggi tutti i riferimenti.</value>
+    <value>Leggi tutti i riferimenti</value>
   </data>
   <data name="AboutDividerCredits" xml:space="preserve">
     <value>Ringraziamenti</value>
