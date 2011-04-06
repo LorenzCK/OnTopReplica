@@ -280,6 +280,7 @@ namespace OnTopReplica {
         bool _isFullscreen = false;
         Point _preFullscreenLocation;
         Size _preFullscreenSize;
+        FormBorderStyle _preFullscreenBorderStyle;
 
         public bool IsFullscreen {
             get {
@@ -297,6 +298,7 @@ namespace OnTopReplica {
                 if (value) {
                     _preFullscreenLocation = Location;
                     _preFullscreenSize = ClientSize;
+                    _preFullscreenBorderStyle = FormBorderStyle;
 
                     FormBorderStyle = FormBorderStyle.None;
                     var currentScreen = Screen.FromControl(this);
@@ -304,7 +306,7 @@ namespace OnTopReplica {
                     Location = currentScreen.WorkingArea.Location;
                 }
                 else {
-                    FormBorderStyle = DefaultBorderStyle;
+                    FormBorderStyle = _preFullscreenBorderStyle;
                     Location = _preFullscreenLocation;
                     ClientSize = _preFullscreenSize;
                     RefreshAspectRatio();
