@@ -53,7 +53,7 @@ Function RegisterApplication
 	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayName" "OnTopReplica"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayIcon" "$\"$INSTDIR\OnTopReplica.exe$\""
 	WriteRegStr HKCU "${REG_UNINSTALL}" "Publisher" "Lorenz Cuno Klopfenstein"
-	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayVersion" "3.3.0.0"
+	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayVersion" "3.3.1.0"
 	WriteRegDWord HKCU "${REG_UNINSTALL}" "EstimatedSize" 960 ;KB
 	WriteRegStr HKCU "${REG_UNINSTALL}" "HelpLink" "${WEBSITE_LINK}"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "URLInfoAbout" "${WEBSITE_LINK}"
