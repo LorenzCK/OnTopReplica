@@ -4,10 +4,13 @@ using System.Windows.Forms;
 using OnTopReplica.Properties;
 
 namespace OnTopReplica.SidePanels {
+
 	partial class RegionPanel : SidePanel {
 
 		public RegionPanel() {
 			InitializeComponent();
+
+            Localize();
 
 			//Copy settings into combo box
 			if (Settings.Default.SavedRegions != null) {
@@ -18,6 +21,25 @@ namespace OnTopReplica.SidePanels {
 
             _regionDrawnHandler = new ThumbnailPanel.RegionDrawnHandler(ThumbnailPanel_RegionDrawn);
 		}
+
+        private void Localize() {
+            this.SuspendLayout();
+
+            groupRegions.Text = Strings.RegionsTitle;
+            comboRegions.CueBannerText = Strings.RegionsStoredRegions;
+            labelCurrentRegion.Text = Strings.RegionsCurrentRegion;
+            //labelX
+            //labelY
+            labelWidth.Text = Strings.RegionsWidth;
+            labelHeight.Text = Strings.RegionsHeight;
+            buttonReset.Text = Strings.RegionsResetButton;
+            buttonDone.Text = Strings.RegionsDoneButton;
+
+            toolTip.SetToolTip(buttonSave, Strings.RegionsSaveButton);
+            toolTip.SetToolTip(buttonDelete, Strings.RegionsDeleteButton);
+
+            this.ResumeLayout();
+        }
 
         public override string Title {
             get {
@@ -220,4 +242,5 @@ namespace OnTopReplica.SidePanels {
         #endregion
 
 	}
+
 }

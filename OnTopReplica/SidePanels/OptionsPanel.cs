@@ -66,6 +66,7 @@ namespace OnTopReplica.SidePanels {
             new CultureWrapper("Čeština", new CultureInfo("cs-CZ"), Resources.flag_czech),
             new CultureWrapper("Dansk", new CultureInfo("da-DK"), Resources.flag_danish),
             new CultureWrapper("Español", new CultureInfo("es-ES"), Resources.flag_spanish),
+            new CultureWrapper("Polski", new CultureInfo("pl-PL"), Resources.flag_poland),
         };
 
         private void PopulateLanguageComboBox() {

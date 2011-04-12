@@ -23,7 +23,8 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.components = new System.ComponentModel.Container();
+            this.groupRegions = new System.Windows.Forms.GroupBox();
             this.textRegionName = new OnTopReplica.FocusedTextBox();
             this.numH = new System.Windows.Forms.NumericUpDown();
             this.numW = new System.Windows.Forms.NumericUpDown();
@@ -31,45 +32,46 @@
             this.numX = new System.Windows.Forms.NumericUpDown();
             this.buttonDone = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelHeight = new System.Windows.Forms.Label();
+            this.labelWidth = new System.Windows.Forms.Label();
+            this.labelY = new System.Windows.Forms.Label();
+            this.labelX = new System.Windows.Forms.Label();
+            this.labelCurrentRegion = new System.Windows.Forms.Label();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.comboRegions = new VistaControls.ComboBox();
-            this.groupBox1.SuspendLayout();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.groupRegions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numX)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // groupRegions
             // 
-            this.groupBox1.Controls.Add(this.textRegionName);
-            this.groupBox1.Controls.Add(this.numH);
-            this.groupBox1.Controls.Add(this.numW);
-            this.groupBox1.Controls.Add(this.numY);
-            this.groupBox1.Controls.Add(this.numX);
-            this.groupBox1.Controls.Add(this.buttonDone);
-            this.groupBox1.Controls.Add(this.buttonReset);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.buttonDelete);
-            this.groupBox1.Controls.Add(this.buttonSave);
-            this.groupBox1.Controls.Add(this.comboRegions);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(6, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(218, 158);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Regions:";
+            this.groupRegions.Controls.Add(this.textRegionName);
+            this.groupRegions.Controls.Add(this.numH);
+            this.groupRegions.Controls.Add(this.numW);
+            this.groupRegions.Controls.Add(this.numY);
+            this.groupRegions.Controls.Add(this.numX);
+            this.groupRegions.Controls.Add(this.buttonDone);
+            this.groupRegions.Controls.Add(this.buttonReset);
+            this.groupRegions.Controls.Add(this.labelHeight);
+            this.groupRegions.Controls.Add(this.labelWidth);
+            this.groupRegions.Controls.Add(this.labelY);
+            this.groupRegions.Controls.Add(this.labelX);
+            this.groupRegions.Controls.Add(this.labelCurrentRegion);
+            this.groupRegions.Controls.Add(this.buttonDelete);
+            this.groupRegions.Controls.Add(this.buttonSave);
+            this.groupRegions.Controls.Add(this.comboRegions);
+            this.groupRegions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupRegions.Location = new System.Drawing.Point(6, 6);
+            this.groupRegions.Name = "groupRegions";
+            this.groupRegions.Size = new System.Drawing.Size(218, 158);
+            this.groupRegions.TabIndex = 0;
+            this.groupRegions.TabStop = false;
+            this.groupRegions.Text = "Regions:";
             // 
             // textRegionName
             // 
@@ -88,7 +90,7 @@
             // numH
             // 
             this.numH.Enabled = false;
-            this.numH.Location = new System.Drawing.Point(109, 93);
+            this.numH.Location = new System.Drawing.Point(140, 93);
             this.numH.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -107,7 +109,7 @@
             // numW
             // 
             this.numW.Enabled = false;
-            this.numW.Location = new System.Drawing.Point(109, 67);
+            this.numW.Location = new System.Drawing.Point(140, 67);
             this.numW.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -126,7 +128,7 @@
             // numY
             // 
             this.numY.Enabled = false;
-            this.numY.Location = new System.Drawing.Point(23, 93);
+            this.numY.Location = new System.Drawing.Point(29, 93);
             this.numY.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -145,7 +147,7 @@
             // numX
             // 
             this.numX.Enabled = false;
-            this.numX.Location = new System.Drawing.Point(23, 67);
+            this.numX.Location = new System.Drawing.Point(29, 67);
             this.numX.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -186,55 +188,55 @@
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.Reset_click);
             // 
-            // label6
+            // labelHeight
             // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label6.Location = new System.Drawing.Point(71, 96);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Height";
+            this.labelHeight.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.labelHeight.Location = new System.Drawing.Point(81, 96);
+            this.labelHeight.Name = "labelHeight";
+            this.labelHeight.Size = new System.Drawing.Size(53, 17);
+            this.labelHeight.TabIndex = 9;
+            this.labelHeight.Text = "Height";
+            this.labelHeight.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // label7
+            // labelWidth
             // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label7.Location = new System.Drawing.Point(71, 70);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Width";
+            this.labelWidth.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.labelWidth.Location = new System.Drawing.Point(81, 70);
+            this.labelWidth.Name = "labelWidth";
+            this.labelWidth.Size = new System.Drawing.Size(53, 17);
+            this.labelWidth.TabIndex = 8;
+            this.labelWidth.Text = "Width";
+            this.labelWidth.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // label3
+            // labelY
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label3.Location = new System.Drawing.Point(6, 96);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(14, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Y";
+            this.labelY.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.labelY.Location = new System.Drawing.Point(6, 96);
+            this.labelY.Name = "labelY";
+            this.labelY.Size = new System.Drawing.Size(17, 17);
+            this.labelY.TabIndex = 5;
+            this.labelY.Text = "Y";
+            this.labelY.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // label2
+            // labelX
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label2.Location = new System.Drawing.Point(6, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "X";
+            this.labelX.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.labelX.Location = new System.Drawing.Point(6, 70);
+            this.labelX.Name = "labelX";
+            this.labelX.Size = new System.Drawing.Size(17, 17);
+            this.labelX.TabIndex = 4;
+            this.labelX.Text = "X";
+            this.labelX.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // label1
+            // labelCurrentRegion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Current region:";
+            this.labelCurrentRegion.AutoSize = true;
+            this.labelCurrentRegion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCurrentRegion.Location = new System.Drawing.Point(6, 47);
+            this.labelCurrentRegion.Name = "labelCurrentRegion";
+            this.labelCurrentRegion.Size = new System.Drawing.Size(76, 13);
+            this.labelCurrentRegion.TabIndex = 3;
+            this.labelCurrentRegion.Text = "Current region:";
             // 
             // buttonDelete
             // 
@@ -278,13 +280,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupRegions);
             this.MinimumSize = new System.Drawing.Size(230, 170);
             this.Name = "RegionPanel";
             this.Padding = new System.Windows.Forms.Padding(6);
             this.Size = new System.Drawing.Size(230, 170);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupRegions.ResumeLayout(false);
+            this.groupRegions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numW)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numY)).EndInit();
@@ -295,21 +297,22 @@
 
 		#endregion
 
-		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.GroupBox groupRegions;
 		private System.Windows.Forms.Button buttonDelete;
 		private System.Windows.Forms.Button buttonSave;
 		private VistaControls.ComboBox comboRegions;
 		private System.Windows.Forms.Button buttonDone;
 		private System.Windows.Forms.Button buttonReset;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label labelHeight;
+		private System.Windows.Forms.Label labelWidth;
+		private System.Windows.Forms.Label labelY;
+		private System.Windows.Forms.Label labelX;
+		private System.Windows.Forms.Label labelCurrentRegion;
 		private System.Windows.Forms.NumericUpDown numH;
 		private System.Windows.Forms.NumericUpDown numW;
 		private System.Windows.Forms.NumericUpDown numY;
         private System.Windows.Forms.NumericUpDown numX;
         private FocusedTextBox textRegionName;
+        private System.Windows.Forms.ToolTip toolTip;
 	}
 }
