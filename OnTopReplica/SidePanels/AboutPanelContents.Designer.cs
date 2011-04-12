@@ -43,6 +43,7 @@
             // 
             this.labelTranslators.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTranslators.AutoEllipsis = true;
             this.labelTranslators.Location = new System.Drawing.Point(0, 289);
             this.labelTranslators.Name = "labelTranslators";
             this.labelTranslators.Size = new System.Drawing.Size(240, 101);
@@ -53,6 +54,7 @@
             // 
             this.linkCredits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkCredits.AutoEllipsis = true;
             this.linkCredits.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkCredits.Location = new System.Drawing.Point(0, 223);
             this.linkCredits.Name = "linkCredits";
@@ -89,6 +91,7 @@
             // 
             this.lblUpdateDisclaimer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUpdateDisclaimer.AutoEllipsis = true;
             this.lblUpdateDisclaimer.Location = new System.Drawing.Point(0, 108);
             this.lblUpdateDisclaimer.Name = "lblUpdateDisclaimer";
             this.lblUpdateDisclaimer.Size = new System.Drawing.Size(240, 44);
@@ -156,6 +159,7 @@
             // 
             this.lblSlogan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSlogan.AutoEllipsis = true;
             this.lblSlogan.BackColor = System.Drawing.Color.Transparent;
             this.lblSlogan.Location = new System.Drawing.Point(0, 0);
             this.lblSlogan.Name = "lblSlogan";
@@ -180,6 +184,7 @@
             // 
             this.linkLicense.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLicense.AutoEllipsis = true;
             this.linkLicense.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLicense.Location = new System.Drawing.Point(0, 419);
             this.linkLicense.Name = "linkLicense";
@@ -206,6 +211,7 @@
             // 
             this.linkContribute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkContribute.AutoEllipsis = true;
             this.linkContribute.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkContribute.Location = new System.Drawing.Point(0, 529);
             this.linkContribute.Name = "linkContribute";

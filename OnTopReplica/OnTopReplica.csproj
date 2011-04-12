@@ -187,6 +187,7 @@
     <EmbeddedResource Include="SidePanels\AboutPanelContents.resx">
       <DependentUpon>AboutPanelContents.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings.pl.resx" />
     <EmbeddedResource Include="Strings.ru.resx" />
     <None Include="Native\ITaskBarList.cs" />
     <Compile Include="Native\InputMethods.cs" />
@@ -347,6 +348,7 @@
     <None Include="Assets\groupmode.png" />
     <None Include="Assets\pos_center.png" />
     <None Include="Assets\flag_spanish.png" />
+    <None Include="Assets\flag_poland.png" />
     <Content Include="Assets\xiao_arrow.png" />
     <None Include="Assets\xiao_help.png" />
     <None Include="Assets\window_opacity_new.png" />
