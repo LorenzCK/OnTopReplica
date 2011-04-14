@@ -13,40 +13,42 @@ using System.IO;
 namespace OnTopReplica.SidePanels {
     public partial class AboutPanelContents : UserControl {
 
-        UpdateManager _updater;
+        EventHandler<UpdateCheckCompletedEventArgs> _updateHandler;
 
         public AboutPanelContents() {
             InitializeComponent();
 
             //Localized strings
             lblSlogan.Text = Strings.AboutSlogan;
-            InternationalizeLinkLabel(linkAuthor, Strings.AboutAuthor, Strings.AboutAuthorContent);
+            linkAuthor.Internationalize(Strings.AboutAuthor, Strings.AboutAuthorContent);
             labeledDivider1.Text = Strings.AboutDividerUpdates;
             lblUpdateDisclaimer.Text = Strings.AboutUpdatesDisclaimer;
             buttonUpdate.Text = Strings.AboutUpdatesCheckNow;
             labeledDivider2.Text = Strings.AboutDividerCredits;
-            InternationalizeLinkLabel(linkCredits, Strings.AboutCreditsSources, Strings.AboutCreditsSourcesContent);
+            linkCredits.Internationalize(Strings.AboutCreditsSources, Strings.AboutCreditsSourcesContent);
             labelTranslators.Text = string.Format(Strings.AboutTranslators, Strings.AboutTranslatorsContent);
             labeledDivider3.Text = Strings.AboutDividerLicense;
-            InternationalizeLinkLabel(linkLicense, Strings.AboutLicense, Strings.AboutLicenseContent);
+            linkLicense.Internationalize(Strings.AboutLicense, Strings.AboutLicenseContent);
             labeledDivider4.Text = Strings.AboutDividerContribute;
-            InternationalizeLinkLabel(linkContribute, Strings.AboutContribute, Strings.AboutContributeContent);
-
-            //Updating
-            _updater = new UpdateManager();
-            _updater.UpdateCheckCompleted += new EventHandler<UpdateCheckCompletedEventArgs>(UpdateCheckCompleted);
+            linkContribute.Internationalize(Strings.AboutContribute, Strings.AboutContributeContent);
         }
 
-        private void InternationalizeLinkLabel(LinkLabel label, string text, string linkText) {
-            int linkIndex = text.IndexOf('%');
-            if (linkIndex == -1) {
-                //Shouldn't happen, but try to fail with meaningful text
-                label.Text = text;
-                return;
-            }
+        protected override void OnHandleCreated(EventArgs e) {
+            base.OnHandleCreated(e);
 
-            label.Text = text.Substring(0, linkIndex) + linkText + text.Substring(linkIndex + 1);
-            label.LinkArea = new LinkArea(linkIndex, linkText.Length);
+            if (!DesignMode) {
+                //Updating
+                _updateHandler = new EventHandler<UpdateCheckCompletedEventArgs>(UpdateCheckCompleted);
+                Program.Update.UpdateCheckCompleted += _updateHandler;
+            }
+        }
+
+        protected override void OnHandleDestroyed(EventArgs e) {
+            base.OnHandleDestroyed(e);
+
+            if (!DesignMode) {
+                Program.Update.UpdateCheckCompleted -= _updateHandler;
+            }
         }
 
         private void LinkHomepage_clicked(object sender, LinkLabelLinkClickedEventArgs e) {
@@ -67,22 +69,17 @@ namespace OnTopReplica.SidePanels {
         void UpdateButton_click(object sender, System.EventArgs e) {
             progressUpdate.Visible = true;
 
-            _updater.CheckForUpdate();
+            Program.Update.CheckForUpdate();
         }
 
         void UpdateCheckCompleted(object sender, UpdateCheckCompletedEventArgs e) {
             this.Invoke(new Action(() => {
-                var topForm = this.TopLevelControl as Form;
-
-                if (e.Success) {
-                    _updater.HandleUpdateCheck(topForm, e.Information, true);
+                if (!e.Success || e.Information == null) {
+                    //TODO
+                    MessageBox.Show("Failed to download update info.");
                 }
-                else {
-                    var dlg = new TaskDialog(Strings.ErrorUpdate, Strings.ErrorUpdate, Strings.ErrorUpdateContentGeneric) {
-                        CommonIcon = TaskDialogIcon.Stop,
-                        CommonButtons = TaskDialogButton.OK
-                    };
-                    dlg.Show(topForm);
+                else if (!e.Information.IsNewVersion) {
+                    Program.Update.DisplayInfo();
                 }
 
                 progressUpdate.Visible = false;

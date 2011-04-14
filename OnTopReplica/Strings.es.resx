@@ -24,8 +24,18 @@
   <data name="AboutButtonUpdateTT" xml:space="preserve">
     <value>Actualiza OnTopReplica ahora.</value>
   </data>
+  <data name="AboutSlogan" xml:space="preserve">
+    <value>Una copia liviana, en tiempo real y siempre encima de cualquier ventana.</value>
+  </data>
+  <data name="AboutUpdatesCheckNow" xml:space="preserve">
+    <value>Actualizar ahora!</value>
+  </data>
+  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
+    <value>OnTopReplica busca actualizaciones automáticamente.</value>
+  </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>OnTopReplica</value>
+    <comment>Probably doesn't need localization. :)</comment>
   </data>
   <data name="AskReset" xml:space="preserve">
     <value>¿Reiniciar la ventana?</value>
@@ -49,36 +59,17 @@ Todos los ajustes se perderán.</value>
   <data name="AskSettingResetTitle" xml:space="preserve">
     <value>Reiniciar ajustes</value>
   </data>
-  <data name="AskUpdate" xml:space="preserve">
-    <value>Descargar OnTopReplica {0}?</value>
-    <comment>{0} update version</comment>
-  </data>
-  <data name="AskUpdateButtonCancel" xml:space="preserve">
-    <value>Cancelar actualización
-OnTopReplica le preguntará la próxima vez que se ejecute.</value>
-  </data>
-  <data name="AskUpdateButtonOk" xml:space="preserve">
+  <data name="UpdateAvailableCommandOk" xml:space="preserve">
     <value>Descargar
 Instalar OnTopReplica {0}</value>
-    <comment>{0} update version</comment>
-  </data>
-  <data name="AskUpdateContent" xml:space="preserve">
-    <value>La nueva versión puede ser descargada e instalada del sitio oficial.</value>
-  </data>
-  <data name="AskUpdateExpanded" xml:space="preserve">
-    <value>Versión instalada: {0}
-Versión disponible: {1}</value>
-    <comment>{0} installed version number
-{1} online available version number</comment>
-  </data>
-  <data name="AskUpdateTitle" xml:space="preserve">
-    <value>Actualización disponible</value>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
     <value>&amp;Cancelar</value>
+    <comment>&amp; marks the ALT+[] shortcut</comment>
   </data>
-  <data name="CreatedBy" xml:space="preserve">
-    <value>Creado por: Lorenz Cuno Klopfenstein.</value>
+  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
+    <value>Cancelar actualización
+OnTopReplica le preguntará la próxima vez que se ejecute.</value>
   </data>
   <data name="DrawRegions" xml:space="preserve">
     <value>Crea una región utilizando el ratón.</value>
@@ -413,13 +404,11 @@ Se podrá activar Click a través más tarde</value>
   <data name="RightClick" xml:space="preserve">
     <value>Click derecho para empezar...</value>
   </data>
-  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
-    <value>OnTopReplica busca actualizaciones automáticamente.</value>
+  <data name="UpdateAvailableContent" xml:space="preserve">
+    <value>La nueva versión puede ser descargada e instalada del sitio oficial.</value>
   </data>
-  <data name="AboutUpdatesCheckNow" xml:space="preserve">
-    <value>Actualizar ahora!</value>
-  </data>
-  <data name="AboutSlogan" xml:space="preserve">
-    <value>Una copia liviana, en tiempo real y siempre encima de cualquier ventana.</value>
+  <data name="UpdateAvailableExpanded" xml:space="preserve">
+    <value>Versión instalada: {0}
+Versión disponible: {1}</value>
   </data>
 </root>

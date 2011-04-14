@@ -4,6 +4,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
+using System.Reflection;
 
 namespace OnTopReplica.Update {
     
@@ -38,6 +39,27 @@ namespace OnTopReplica.Update {
         }
 
         /// <summary>
+        /// Returns whether this update information instance represents data about
+        /// a new available version.
+        /// </summary>
+        public bool IsNewVersion {
+            get {
+                var currentVersion = CurrentVersion;
+
+                return (LatestVersion > currentVersion);
+            }
+        }
+
+        /// <summary>
+        /// Gets the currently installed version.
+        /// </summary>
+        public Version CurrentVersion {
+            get {
+                return Assembly.GetExecutingAssembly().GetName().Version;
+            }
+        }
+
+        /// <summary>
         /// Indicates when the latest version was released.
         /// </summary>
         [XmlElement("latestVersionRelease")]
@@ -48,6 +70,13 @@ namespace OnTopReplica.Update {
         /// </summary>
         [XmlElement("downloadPage")]
         public string DownloadPage { get; set; }
+
+        /// <summary>
+        /// Gets the URL of the installer executable.
+        /// </summary>
+        /// <remarks>New after version 3.3.1.</remarks>
+        [XmlElement("downloadInstaller")]
+        public string DownloadInstaller { get; set; }
 
         /// <summary>
         /// Deserializes an UpdateInformation object from a stream.

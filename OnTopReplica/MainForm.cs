@@ -23,7 +23,6 @@ namespace OnTopReplica {
             SkipNotVisibleWindows = true
         };
         MessagePumpManager _msgPumpManager = new MessagePumpManager();
-        UpdateManager _updateManager = new UpdateManager();
 
         Options _startupOptions;
 
@@ -52,17 +51,6 @@ namespace OnTopReplica {
 
             //Set to Key event preview
             this.KeyPreview = true;
-        }
-
-        void UpdateManager_CheckCompleted(object sender, UpdateCheckCompletedEventArgs e) {
-            this.Invoke(new Action(() => {
-                if (e.Success) {
-                    _updateManager.HandleUpdateCheck(this, e.Information, false);
-                }
-                else {
-                    Console.WriteLine("Failed to check for updates: {0}", e.Error);
-                }
-            }));
         }
 
         #region Event override
@@ -97,10 +85,6 @@ namespace OnTopReplica {
 
             //Apply startup options
             _startupOptions.Apply(this);
-
-            //Check for updates
-            _updateManager.UpdateCheckCompleted += new EventHandler<UpdateCheckCompletedEventArgs>(UpdateManager_CheckCompleted);
-            _updateManager.CheckForUpdate();
         }
 
         protected override void OnClosing(CancelEventArgs e) {

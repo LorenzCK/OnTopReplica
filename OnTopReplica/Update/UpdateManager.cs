@@ -1,42 +1,86 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using System.Net.Cache;
-using System.IO;
-using System.Reflection;
-using VistaControls.TaskDialog;
 using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Net.Cache;
 using System.Windows.Forms;
-using System.Threading;
+using VistaControls.TaskDialog;
 
 namespace OnTopReplica.Update {
-    
+
+    /// <summary>
+    /// Handles update checking and information display.
+    /// </summary>
     class UpdateManager {
+
+        /// <summary>
+        /// Constructs a new update manager with an attached form.
+        /// </summary>
+        /// <param name="attachedForm">Form through which all GUI calls are made. Closing this form should terminate the application.</param>
+        public UpdateManager(Form attachedForm) {
+            if (attachedForm == null)
+                throw new ArgumentNullException();
+
+            AttachedForm = attachedForm;
+        }
+
+        /// <summary>
+        /// Gets or sets the attached form (through which all GUI calls are made).
+        /// </summary>
+        protected Form AttachedForm { get; private set; }
+
+        #region Checking
 
         const string UpdateManifestUrl = "http://www.klopfenstein.net/public/Uploads/ontopreplica/update.xml";
 
+        /// <summary>
+        /// Gets the latest update information available.
+        /// </summary>
+        public UpdateInformation LastInformation { get; private set; }
+
+        HttpWebRequest _checkRequest;
+
+        /// <summary>
+        /// Checks for update asynchronously, updating update information.
+        /// When check is completed, raises update events.
+        /// </summary>
         public void CheckForUpdate() {
-            ThreadPool.QueueUserWorkItem(new WaitCallback(o => {
-                //Build web request
-                var request = (HttpWebRequest)HttpWebRequest.Create(UpdateManifestUrl);
-                request.AllowAutoRedirect = true;
-                request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-                request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
+            if (_checkRequest != null) {
+                _checkRequest.Abort();
+            }
 
-                try {
-                    //Begin request
-                    var response = request.GetResponse();
-                    var info = UpdateInformation.Deserialize(response.GetResponseStream());
+            //Build web request
+            _checkRequest = (HttpWebRequest)HttpWebRequest.Create(UpdateManifestUrl);
+            _checkRequest.AllowAutoRedirect = true;
+            _checkRequest.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+            _checkRequest.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
 
-                    OnUpdateCheckSuccess(info);
-                }
-                catch (Exception ex) {
-                    OnUpdateCheckError(ex);
-                    return;
-                }
-            }));
+            _checkRequest.BeginGetResponse(CheckForUpdateCallback, null);
         }
+
+        /// <summary>
+        /// Asynchronous callback that handles the update check request.
+        /// </summary>
+        private void CheckForUpdateCallback(IAsyncResult result) {
+            if (_checkRequest == null)
+                return;
+
+            try {
+                var response = _checkRequest.EndGetResponse(result);
+                LastInformation = UpdateInformation.Deserialize(response.GetResponseStream());
+
+                OnUpdateCheckSuccess(LastInformation);
+            }
+            catch (Exception ex) {
+                OnUpdateCheckError(ex);
+            }
+
+            _checkRequest = null;
+        }
+
+        #endregion
+
+        #region Eventing
 
         public event EventHandler<UpdateCheckCompletedEventArgs> UpdateCheckCompleted;
 
@@ -60,46 +104,174 @@ namespace OnTopReplica.Update {
             }
         }
 
+        #endregion
+
+        #region Updating
+
+        HttpWebRequest _downloadRequest;
+        TaskDialog _updateDialog;
+        bool _updateDownloaded = false;
+
         /// <summary>
-        /// Handles the results of an update check. Must be called from main GUI thread.
+        /// Asks confirmation for an update and installs the update.
         /// </summary>
-        /// <param name="information">The retrieved update information.</param>
-        /// <param name="verbose">Determines if the lack of updates should be notified to the user.</param>
-        public void HandleUpdateCheck(Form parent, UpdateInformation information, bool verbose) {
-            if (information == null)
+        public void ConfirmAndInstall() {
+            if (LastInformation == null || !LastInformation.IsNewVersion)
                 return;
 
-            var currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
+            AttachedForm.SafeInvoke(new Action(ConfirmAndInstallCore));
+        }
 
-            if (information.LatestVersion > currentVersion) {
-                //New version found
-                var dlg = new TaskDialog(
-                    string.Format(Strings.AskUpdate, information.LatestVersion),
-                    Strings.AskUpdateTitle,
-                    Strings.AskUpdateContent) {
-                    CustomButtons = new CustomButton[] {
-                        new CustomButton(Result.OK, string.Format(Strings.AskUpdateButtonOk, information.LatestVersion)),
-                        new CustomButton(Result.Cancel, Strings.AskUpdateButtonCancel)
-                    },
-                    UseCommandLinks = true,
-                    CommonIcon = TaskDialogIcon.Information,
-                    ExpandedInformation = string.Format(Strings.AskUpdateExpanded, currentVersion, information.LatestVersion)
-                };
-                
-                if (dlg.Show(parent).CommonButton == Result.OK) {
-                    Process.Start(information.DownloadPage);
+        /// <summary>
+        /// Core delegate that asks for update confirmation and installs. Must be called from GUI thread.
+        /// </summary>
+        private void ConfirmAndInstallCore() {
+            _updateDialog = new TaskDialog {
+                Title = Strings.UpdateTitle,
+                Instruction = string.Format(Strings.UpdateAvailableInstruction, LastInformation.LatestVersion),
+                Content = Strings.UpdateAvailableContent,
+                CustomButtons = new CustomButton[] {
+                    new CustomButton(Result.OK, string.Format(Strings.UpdateAvailableCommandOk, LastInformation.LatestVersion)),
+                    new CustomButton(Result.Cancel, Strings.UpdateAvailableCommandCancel)
+                },
+                UseCommandLinks = true,
+                CommonIcon = TaskDialogIcon.Information,
+                ExpandedInformation = string.Format(Strings.UpdateAvailableExpanded, LastInformation.CurrentVersion, LastInformation.LatestVersion),
+            };
+            _updateDialog.ButtonClick += delegate(object sender, ClickEventArgs args) {
+                if (args.ButtonID == (int)Result.OK) {
+                    args.PreventClosing = true;
+
+                    if (_updateDownloaded) {
+                        //Terminate application
+                        AttachedForm.Close();
+
+                        //Launch updater
+                        Process.Start(UpdateInstallerPath);
+                    }   
+                    else {
+                        var downDlg = new TaskDialog {
+                            Title = Strings.UpdateTitle,
+                            Instruction = Strings.UpdateDownloadingInstruction,
+                            ShowProgressBar = true,
+                            ProgressBarMinRange = 0,
+                            ProgressBarMaxRange = 100,
+                            ProgressBarPosition = 0,
+                            CommonButtons = TaskDialogButton.Cancel
+                        };
+                        _updateDialog.Navigate(downDlg);
+
+                        _downloadRequest = (HttpWebRequest)HttpWebRequest.Create(LastInformation.DownloadInstaller);
+                        _downloadRequest.BeginGetResponse(DownloadAsyncCallback, null);
+                    }
                 }
-            }
-            else if(verbose) {
-                //No updates, but need to inform the user
-                var dlg = new TaskDialog(Strings.InfoUpToDate, Strings.InfoUpToDateTitle) {
-                    CommonButtons = TaskDialogButton.OK,
-                    CommonIcon = TaskDialogIcon.Information,
-                    //Footer = information.LatestVersion.ToString()
-                };
-                dlg.Show();
+            };
+
+            _updateDialog.Show(AttachedForm);
+        }
+
+        /// <summary>
+        /// Gets the target filename used when downloading the update from the Internet.
+        /// </summary>
+        private string UpdateInstallerPath {
+            get {
+                var downloadPath = Native.FilesystemMethods.DownloadsPath;
+
+                string versionName = (LastInformation != null) ?
+                    LastInformation.LatestVersion.ToString() : string.Empty;
+                string filename = string.Format("OnTopReplica-Update-{0}.exe", versionName);
+
+                return Path.Combine(downloadPath, filename);
             }
         }
+
+        /// <summary>
+        /// Handles background downloading.
+        /// </summary>
+        private void DownloadAsyncCallback(IAsyncResult result) {
+            if (_downloadRequest == null || _updateDialog == null)
+                return;
+
+            try {
+                var response = _downloadRequest.EndGetResponse(result);
+                var responseStream = response.GetResponseStream();
+                long total = response.ContentLength;
+
+                byte[] buffer = new byte[1024];
+
+                using (var stream = new FileStream(UpdateInstallerPath, FileMode.Create)) {
+                    int readTotal = 0;
+                    while (true) {
+                        int read = responseStream.Read(buffer, 0, buffer.Length);
+                        readTotal += read;
+                        
+                        if (read <= 0) //EOF
+                            break;
+
+                        stream.Write(buffer, 0, read);
+
+                        _updateDialog.Content = string.Format(Strings.UpdateDownloadingContent, readTotal, total);
+                        _updateDialog.ProgressBarPosition = (int)((readTotal * 100.0) / total);
+                    }
+                }
+            }
+            catch (Exception ex) {
+                DownloadShowError(ex.Message);
+                return;
+            }
+
+            _updateDownloaded = true;
+
+            var okDlg = new TaskDialog {
+                Title = Strings.UpdateTitle,
+                Instruction = Strings.UpdateReadyInstruction,
+                Content = string.Format(Strings.UpdateReadyContent, LastInformation.LatestVersion),
+                UseCommandLinks = true,
+                CommonButtons = TaskDialogButton.Cancel,
+                CustomButtons = new CustomButton[] {
+                    new CustomButton(Result.OK, Strings.UpdateReadyCommandOk)
+                }
+            };
+            _updateDialog.Navigate(okDlg);
+        }
+
+        private void DownloadShowError(string msg) {
+            if (_updateDialog == null)
+                return;
+
+            _updateDialog.ProgressBarState = VistaControls.ProgressBar.States.Error;
+            _updateDialog.Content = msg;
+        }
+
+        /// <summary>
+        /// Displays some information about the current installation and available updates.
+        /// </summary>
+        public void DisplayInfo() {
+            AttachedForm.SafeInvoke(new Action(DisplayInfoCore));
+        }
+
+        /// <summary>
+        /// Displays info. Called from GUI thread.
+        /// </summary>
+        private void DisplayInfoCore() {
+            //No updates, but need to inform the user
+            var dlg = new TaskDialog {
+                Title = Strings.UpdateTitle,
+                Instruction = Strings.UpdateInfoInstruction,
+                Content = Strings.UpdateInfoContent,
+                EnableHyperlinks = true,
+                CommonButtons = TaskDialogButton.Close,
+                AllowDialogCancellation = true,
+                CommonIcon = TaskDialogIcon.Information,
+                Footer = string.Format(Strings.UpdateInfoFooter, LastInformation.LatestVersionRelease.ToLongDateString())
+            };
+            dlg.HyperlinkClick += delegate(object sender, HyperlinkEventArgs args) {
+                Process.Start("http://ontopreplica.codeplex.com");
+            };
+            dlg.Show(AttachedForm);
+        }
+
+        #endregion
 
     }
 

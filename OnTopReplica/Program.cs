@@ -13,7 +13,7 @@ namespace OnTopReplica {
 
         public static PlatformSupport Platform { get; private set; }
 
-        static UpdateManager _updateManager;
+        public static UpdateManager Update { get; private set; }
 
         static MainForm _mainForm;
 
@@ -55,12 +55,39 @@ namespace OnTopReplica {
 
             //Show form
             using (_mainForm = new MainForm(options)) {
+                //Start up update manager
+                Update = new UpdateManager(_mainForm);
+                Update.UpdateCheckCompleted += new EventHandler<UpdateCheckCompletedEventArgs>(UpdateManager_CheckCompleted);
+                bool doneCheck = false;
+                _mainForm.Shown += delegate {
+                    if (doneCheck) return;
+                    doneCheck = true;
+
+                    //Delay first update check to when form is visible
+                    Update.CheckForUpdate();
+                };
+
+                //Enter GUI loop
                 Application.Run(_mainForm);
 
                 //Persist settings
                 Settings.Default.RestoreLastPosition = _mainForm.Location;
                 Settings.Default.RestoreLastSize = _mainForm.ClientSize;
                 Settings.Default.Save();
+            }
+        }
+
+        /// <summary>
+        /// Callback that handles update checking.
+        /// </summary>
+        static void UpdateManager_CheckCompleted(object sender, UpdateCheckCompletedEventArgs e) {
+            if (e.Success && e.Information != null) {
+                if (e.Information.IsNewVersion) {
+                    Update.ConfirmAndInstall();
+                }
+            }
+            else {
+                Console.Error.WriteLine("Failed to check updates. {0}", e.Error);
             }
         }
 

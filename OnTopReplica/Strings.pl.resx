@@ -16,9 +16,6 @@
     <value>Autor: %.</value>
     <comment>Link % is replaced by string AboutAuthorContent.</comment>
   </data>
-  <data name="AboutAuthorContent" xml:space="preserve">
-    <value>Lorenz Cuno Klopfenstein</value>
-  </data>
   <data name="AboutButtonCancelTT" xml:space="preserve">
     <value>Przerwij proces aktualizacji.</value>
   </data>
@@ -60,7 +57,8 @@
     <value>Aplikacja jest licencjonowana na warunkach licencji %, która spełnia warunki definicji "open-source" definiowane przez OSI.</value>
   </data>
   <data name="AboutLicenseContent" xml:space="preserve">
-    <value>Microsoft Reciprocal (MS-RL)</value>
+    <value />
+    <comment>Can be left blank.</comment>
   </data>
   <data name="AboutSlogan" xml:space="preserve">
     <value>Miniatura "zawsze na wierzchu" przedstawiająca w czasie rzeczywistym podgląd wybranego okna.</value>
@@ -70,11 +68,7 @@
   </data>
   <data name="AboutTranslators" xml:space="preserve">
     <value>Tłumaczenie: {0}</value>
-    <comment>{0} translators</comment>
-  </data>
-  <data name="AboutTranslatorsContent" xml:space="preserve">
-    <value>Christian Olaechea M., Daniel Zeus.EX, Federico Lorenzo, Goran Brecelj, Marco Kraxner, Patrik (batupata), Raúl Morillo, René Mihula, Roberto Leiro, Rodrigo Lourenço, Thomas Amundsen</value>
-    <comment>Must not be localized. In order to be added, contact author.</comment>
+    <comment>{0} translators (do not end with period)</comment>
   </data>
   <data name="AboutUpdatesCheckNow" xml:space="preserve">
     <value>Sprawdź teraz!</value>
@@ -87,6 +81,7 @@
   </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>OnTopReplica</value>
+    <comment>Probably doesn't need localization. :)</comment>
   </data>
   <data name="AskReset" xml:space="preserve">
     <value>Całkowicie zresetować okno?</value>
@@ -110,33 +105,9 @@ Wszystkie ustawienia zostaną utracone.</value>
   <data name="AskSettingResetTitle" xml:space="preserve">
     <value>Zresetuj ustawienia</value>
   </data>
-  <data name="AskUpdate" xml:space="preserve">
-    <value>Pobrać OnTopReplica {0}?</value>
-    <comment>{0} update version</comment>
-  </data>
-  <data name="AskUpdateButtonCancel" xml:space="preserve">
-    <value>Anuluj aktualizację
-OnTopReplica zapyta Cię przy następnym uruchomieniu.</value>
-  </data>
-  <data name="AskUpdateButtonOk" xml:space="preserve">
-    <value>Pobierz
-Zainstaluj OnTopReplica {0}.</value>
-    <comment>{0} update version</comment>
-  </data>
-  <data name="AskUpdateContent" xml:space="preserve">
-    <value>Nowa wersja może zostać pobrana i zainstalowana z oficjalnej strony programu.</value>
-  </data>
-  <data name="AskUpdateExpanded" xml:space="preserve">
-    <value>Zainstalowana wersja: {0}
-Dostępna wersja: {1}</value>
-    <comment>{0} installed version number
-{1} online available version number</comment>
-  </data>
-  <data name="AskUpdateTitle" xml:space="preserve">
-    <value>Aktualizacja jest dostępna</value>
-  </data>
   <data name="ButtonCancel" xml:space="preserve">
     <value>&amp;Anuluj</value>
+    <comment>&amp; marks the ALT+[] shortcut</comment>
   </data>
   <data name="DrawRegions" xml:space="preserve">
     <value>Utwórz region używając myszy.</value>
@@ -510,7 +481,22 @@ Możesz włączyć kliknij-przez później</value>
   <data name="SettingsRestartRequired" xml:space="preserve">
     <value>Wymaga restartu.</value>
   </data>
+  <data name="UpdateAvailableCommandOk" xml:space="preserve">
+    <value>Pobierz
+Zainstaluj OnTopReplica {0}.</value>
+  </data>
+  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
+    <value>Anuluj aktualizację
+OnTopReplica zapyta Cię przy następnym uruchomieniu.</value>
+  </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Ustawienia</value>
+  </data>
+  <data name="UpdateAvailableContent" xml:space="preserve">
+    <value>Nowa wersja może zostać pobrana i zainstalowana z oficjalnej strony programu.</value>
+  </data>
+  <data name="UpdateAvailableExpanded" xml:space="preserve">
+    <value>Zainstalowana wersja: {0}
+Dostępna wersja: {1}</value>
   </data>
 </root>

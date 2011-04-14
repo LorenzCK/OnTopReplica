@@ -34,7 +34,7 @@
             this.labelVersion.Location = new System.Drawing.Point(0, 270);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this.labelVersion.Size = new System.Drawing.Size(255, 20);
+            this.labelVersion.Size = new System.Drawing.Size(265, 20);
             this.labelVersion.TabIndex = 0;
             this.labelVersion.Text = "Version";
             this.labelVersion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -49,7 +49,7 @@
             this.panelContents.Location = new System.Drawing.Point(6, 6);
             this.panelContents.Margin = new System.Windows.Forms.Padding(6);
             this.panelContents.Name = "panelContents";
-            this.panelContents.Size = new System.Drawing.Size(243, 255);
+            this.panelContents.Size = new System.Drawing.Size(253, 255);
             this.panelContents.TabIndex = 1;
             // 
             // AboutPanel
@@ -58,9 +58,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelContents);
             this.Controls.Add(this.labelVersion);
-            this.MinimumSize = new System.Drawing.Size(255, 290);
+            this.MinimumSize = new System.Drawing.Size(265, 290);
             this.Name = "AboutPanel";
-            this.Size = new System.Drawing.Size(255, 290);
+            this.Size = new System.Drawing.Size(265, 290);
             this.ResumeLayout(false);
 
         }

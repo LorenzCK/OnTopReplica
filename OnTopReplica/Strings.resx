@@ -12,6 +12,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Created by: %.</value>
+    <comment>Link % is replaced by string AboutAuthorContent.</comment>
+  </data>
+  <data name="AboutAuthorContent" xml:space="preserve">
+    <value>Lorenz Cuno Klopfenstein</value>
+    <comment>Must not be localized. Leave blank in non-default languages.</comment>
+  </data>
   <data name="AboutButtonCancelTT" xml:space="preserve">
     <value>Abort update process.</value>
   </data>
@@ -24,8 +32,64 @@
   <data name="AboutButtonUpdateTT" xml:space="preserve">
     <value>Update OnTopReplica now.</value>
   </data>
+  <data name="AboutContribute" xml:space="preserve">
+    <value>Care to contribute to the project? You are welcome to improve available translations, start a new one for your native language or to check out the % from CodePlex.</value>
+  </data>
+  <data name="AboutContributeContent" xml:space="preserve">
+    <value>source code</value>
+  </data>
+  <data name="AboutCreditsSources" xml:space="preserve">
+    <value>OnTopReplica is based upon the WindowsFormsAero library and some other libraries and code sources. %.</value>
+    <comment>Link % is replaced by string AboutCreditsSourcesContent.</comment>
+  </data>
+  <data name="AboutCreditsSourcesContent" xml:space="preserve">
+    <value>Read the full credits</value>
+  </data>
+  <data name="AboutDividerContribute" xml:space="preserve">
+    <value>Contribute</value>
+  </data>
+  <data name="AboutDividerCredits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="AboutDividerLicense" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="AboutDividerUpdates" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>The application is licensed under the % license, which meets the terms of the "open-source" definition specified by OSI.</value>
+  </data>
+  <data name="AboutLicenseContent" xml:space="preserve">
+    <value>Microsoft Reciprocal (MS-RL)</value>
+    <comment>Can be left blank.</comment>
+  </data>
+  <data name="AboutSlogan" xml:space="preserve">
+    <value>A lightweight, real-time, always on top thumbnail of a window of your choice.</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About OnTopReplica</value>
+  </data>
+  <data name="AboutTranslators" xml:space="preserve">
+    <value>Translators: {0}</value>
+    <comment>{0} translators (do not end with period)</comment>
+  </data>
+  <data name="AboutTranslatorsContent" xml:space="preserve">
+    <value>Christian Olaechea M., Daniel Zeus.EX, Federico Lorenzo, Goran Brecelj, Jan Romanczyk, Marco Kraxner, Patrik (batupata), Raúl Morillo, René Mihula, Roberto Leiro, Rodrigo Lourenço, Thomas Amundsen.</value>
+    <comment>Must not be localized. Leave blank in non-default languages.</comment>
+  </data>
+  <data name="AboutUpdatesCheckNow" xml:space="preserve">
+    <value>Check now!</value>
+  </data>
+  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
+    <value>OnTopReplica automatically checks for updates at every start up.</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Version {0}</value>
+  </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>OnTopReplica</value>
+    <comment>Probably doesn't need localization. :)</comment>
   </data>
   <data name="AskReset" xml:space="preserve">
     <value>Reset window completely?</value>
@@ -49,37 +113,26 @@ All settings will be lost.</value>
   <data name="AskSettingResetTitle" xml:space="preserve">
     <value>Reset settings</value>
   </data>
-  <data name="AskUpdate" xml:space="preserve">
-    <value>Download OnTopReplica {0}?</value>
-    <comment>{0} update version</comment>
+  <data name="UpdateDownloadingContent" xml:space="preserve">
+    <value>{0}/{1} bytes downloaded.</value>
+    <comment>{0} downloaded bytes {1} total bytes</comment>
   </data>
-  <data name="AskUpdateButtonCancel" xml:space="preserve">
-    <value>Cancel update
-OnTopReplica will prompt you the next time it is started.</value>
+  <data name="UpdateAvailableInstruction" xml:space="preserve">
+    <value>Version {0} available</value>
   </data>
-  <data name="AskUpdateButtonOk" xml:space="preserve">
-    <value>Download
-Install OnTopReplica {0}.</value>
-    <comment>{0} update version</comment>
+  <data name="UpdateReadyCommandOk" xml:space="preserve">
+    <value>Install
+OnTopReplica will be closed and the update installed.</value>
   </data>
-  <data name="AskUpdateContent" xml:space="preserve">
+  <data name="UpdateAvailableContent" xml:space="preserve">
     <value>The new version can be downloaded and installed from the official website.</value>
   </data>
-  <data name="AskUpdateExpanded" xml:space="preserve">
-    <value>Installed version: {0}
-Available version: {1}</value>
-    <comment>{0} installed version number
-{1} online available version number</comment>
-  </data>
-  <data name="AskUpdateTitle" xml:space="preserve">
-    <value>Update available</value>
+  <data name="UpdateReadyContent" xml:space="preserve">
+    <value>OnTopReplica version {0} is ready to be installed on your computer.</value>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
     <value>&amp;Cancel</value>
-  </data>
-  <data name="AboutAuthor" xml:space="preserve">
-    <value>Created by: %.</value>
-    <comment>Link % is replaced by string AboutAuthorContent.</comment>
+    <comment>&amp; marks the ALT+[] shortcut</comment>
   </data>
   <data name="DrawRegions" xml:space="preserve">
     <value>Draw regions using mouse.</value>
@@ -375,6 +428,18 @@ You can enable click-through later</value>
   <data name="MenuResize" xml:space="preserve">
     <value>Resize</value>
   </data>
+  <data name="MenuRestoreLast" xml:space="preserve">
+    <value>Restore last cloned window</value>
+  </data>
+  <data name="MenuRestoreLastTT" xml:space="preserve">
+    <value>When enabled, OnTopReplica will attempt to restore the last cloned window on start up.</value>
+  </data>
+  <data name="MenuSettings" xml:space="preserve">
+    <value>Settings...</value>
+  </data>
+  <data name="MenuSettingsTT" xml:space="preserve">
+    <value>Displays the settings panel.</value>
+  </data>
   <data name="MenuSwitch" xml:space="preserve">
     <value>Switch to window</value>
   </data>
@@ -423,27 +488,6 @@ You can enable click-through later</value>
   <data name="RightClick" xml:space="preserve">
     <value>Right-click here to start...</value>
   </data>
-  <data name="AboutSlogan" xml:space="preserve">
-    <value>A lightweight, real-time, always on top thumbnail of a window of your choice.</value>
-  </data>
-  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
-    <value>OnTopReplica automatically checks for updates at every start up.</value>
-  </data>
-  <data name="AboutUpdatesCheckNow" xml:space="preserve">
-    <value>Check now!</value>
-  </data>
-  <data name="MenuSettings" xml:space="preserve">
-    <value>Settings...</value>
-  </data>
-  <data name="MenuSettingsTT" xml:space="preserve">
-    <value>Displays the settings panel.</value>
-  </data>
-  <data name="MenuRestoreLast" xml:space="preserve">
-    <value>Restore last cloned window</value>
-  </data>
-  <data name="MenuRestoreLastTT" xml:space="preserve">
-    <value>When enabled, OnTopReplica will attempt to restore the last cloned window on start up.</value>
-  </data>
   <data name="SettingsHotKeyClone" xml:space="preserve">
     <value>Clone current window</value>
   </data>
@@ -462,55 +506,41 @@ You can enable click-through later</value>
   <data name="SettingsRestartRequired" xml:space="preserve">
     <value>Requires a restart.</value>
   </data>
+  <data name="UpdateDownloadingInstruction" xml:space="preserve">
+    <value>Downloading...</value>
+  </data>
+  <data name="UpdateReadyInstruction" xml:space="preserve">
+    <value>Update ready</value>
+  </data>
+  <data name="UpdateAvailableCommandOk" xml:space="preserve">
+    <value>Download
+Install OnTopReplica {0}.</value>
+  </data>
+  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
+    <value>Cancel update
+OnTopReplica will prompt you the next time it is started.</value>
+  </data>
+  <data name="UpdateInfoInstruction" xml:space="preserve">
+    <value>OnTopReplica is up to date</value>
+  </data>
+  <data name="UpdateInfoFooter" xml:space="preserve">
+    <value>Latest stable version released on {0}.</value>
+    <comment>{0} last version release date</comment>
+  </data>
+  <data name="UpdateInfoContent" xml:space="preserve">
+    <value>The latest version of OnTopReplica is already installed. The program automatically checks for updates at every start.
+
+You can keep up to date about OnTopReplica's development, suggest improvements and new features by &lt;a href="website"&gt;visiting the official website&lt;/a&gt;.</value>
+    <comment>The website link should be enclosed in &lt;a href="website"&gt;&lt;/a&gt; tags.</comment>
+  </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="AboutAuthorContent" xml:space="preserve">
-    <value>Lorenz Cuno Klopfenstein</value>
+  <data name="UpdateTitle" xml:space="preserve">
+    <value>OnTopReplica updates</value>
   </data>
-  <data name="AboutCreditsSources" xml:space="preserve">
-    <value>OnTopReplica is based upon the WindowsFormsAero library and some other libraries and code sources. %.</value>
-    <comment>Link % is replaced by string AboutCreditsSourcesContent.</comment>
-  </data>
-  <data name="AboutCreditsSourcesContent" xml:space="preserve">
-    <value>Read the full credits</value>
-  </data>
-  <data name="AboutDividerCredits" xml:space="preserve">
-    <value>Credits</value>
-  </data>
-  <data name="AboutDividerUpdates" xml:space="preserve">
-    <value>Updates</value>
-  </data>
-  <data name="AboutTitle" xml:space="preserve">
-    <value>About OnTopReplica</value>
-  </data>
-  <data name="AboutVersion" xml:space="preserve">
-    <value>Version {0}</value>
-  </data>
-  <data name="AboutContribute" xml:space="preserve">
-    <value>Care to contribute to the project? You are welcome to improve available translations, start a new one for your native language or to check out the % from CodePlex.</value>
-  </data>
-  <data name="AboutContributeContent" xml:space="preserve">
-    <value>source code</value>
-  </data>
-  <data name="AboutDividerContribute" xml:space="preserve">
-    <value>Contribute</value>
-  </data>
-  <data name="AboutDividerLicense" xml:space="preserve">
-    <value>License</value>
-  </data>
-  <data name="AboutLicense" xml:space="preserve">
-    <value>The application is licensed under the % license, which meets the terms of the "open-source" definition specified by OSI.</value>
-  </data>
-  <data name="AboutLicenseContent" xml:space="preserve">
-    <value>Microsoft Reciprocal (MS-RL)</value>
-  </data>
-  <data name="AboutTranslators" xml:space="preserve">
-    <value>Translators: {0}</value>
-    <comment>{0} translators</comment>
-  </data>
-  <data name="AboutTranslatorsContent" xml:space="preserve">
-    <value>Christian Olaechea M., Daniel Zeus.EX, Federico Lorenzo, Goran Brecelj, Marco Kraxner, Patrik (batupata), Raúl Morillo, René Mihula, Roberto Leiro, Rodrigo Lourenço, Thomas Amundsen.</value>
-    <comment>Must not be localized. In order to be added, contact author.</comment>
+  <data name="UpdateAvailableExpanded" xml:space="preserve">
+    <value>Installed version: {0}
+Available version: {1}</value>
   </data>
 </root>
