@@ -134,6 +134,7 @@
     <Compile Include="MessagePumpProcessors\ShellInterceptProcessor.cs" />
     <Compile Include="MessagePumpProcessors\WindowKeeper.cs" />
     <Compile Include="Native\ErrorMethods.cs" />
+    <Compile Include="Native\FilesystemMethods.cs" />
     <Compile Include="Native\HookMethods.cs" />
     <Compile Include="Native\HotKeyMethods.cs" />
     <Compile Include="Native\HT.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="WindowSeekers\ByTitleWindowSeeker.cs" />
     <Compile Include="WindowSeekers\RestoreWindowSeeker.cs" />
     <Compile Include="WindowSeekers\TaskWindowSeeker.cs" />
+    <Compile Include="WindowsFormsExtensions.cs" />
     <EmbeddedResource Include="SidePanelContainer.resx">
       <DependentUpon>SidePanelContainer.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,8 +189,18 @@
     <EmbeddedResource Include="SidePanels\AboutPanelContents.resx">
       <DependentUpon>AboutPanelContents.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings.pl.resx" />
-    <EmbeddedResource Include="Strings.ru.resx" />
+    <EmbeddedResource Include="Strings.pl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.pl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Native\ITaskBarList.cs" />
     <Compile Include="Native\InputMethods.cs" />
     <Compile Include="Native\MessagingMethods.cs" />
@@ -256,9 +268,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.da.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings.de.resx" />
-    <EmbeddedResource Include="Strings.es.resx" />
-    <EmbeddedResource Include="Strings.fi.resx" />
+    <EmbeddedResource Include="Strings.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.fi.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.fi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Strings.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.it.Designer.cs</LastGenOutput>
@@ -277,13 +298,17 @@
       <DependentUpon>RegionPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings.no.resx" />
-    <EmbeddedResource Include="Strings.pt-BR.resx" />
-    <EmbeddedResource Include="Strings.pt.resx" />
-    <EmbeddedResource Include="Strings.resx">
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Strings.no.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.no.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.pt-BR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.pt-BR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.pt.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.pt.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -406,7 +431,6 @@
     <None Include="Assets\x-oblique.png" />
     <None Include="Assets\xiao_up.png" />
     <None Include="Assets\xiao_down.png" />
-    <None Include="Assets\thumbs_up.png" />
     <None Include="Assets\pos_null.png" />
     <None Include="Assets\pos_topright.png" />
     <None Include="Assets\pos_topleft.png" />

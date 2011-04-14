@@ -24,8 +24,18 @@
   <data name="AboutButtonUpdateTT" xml:space="preserve">
     <value>Aktualizovat OnTopReplica.</value>
   </data>
+  <data name="AboutSlogan" xml:space="preserve">
+    <value>Nenáročný a instantní náhled libovolného otevřeného okna (nebo jeho výřezu) v systému.</value>
+  </data>
+  <data name="AboutUpdatesCheckNow" xml:space="preserve">
+    <value>Zkontroluj aktualizace</value>
+  </data>
+  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
+    <value>Aplikace OnTopReplica automaticky kontroluje dostupné aktualizace.</value>
+  </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>OnTopReplica</value>
+    <comment>Probably doesn't need localization. :)</comment>
   </data>
   <data name="AskReset" xml:space="preserve">
     <value>Resetovat nastavení okna?</value>
@@ -49,36 +59,17 @@ Všechna nastavení budou ztracena.</value>
   <data name="AskSettingResetTitle" xml:space="preserve">
     <value>Resetovat nastavení</value>
   </data>
-  <data name="AskUpdate" xml:space="preserve">
-    <value>Instalovat OnTopReplica {0}?</value>
-    <comment>{0} update version</comment>
-  </data>
-  <data name="AskUpdateButtonCancel" xml:space="preserve">
-    <value>Zrušit aktualizaci
-Aplikace OnTopReplica vás vyzve k aktualizaci při dalším startu.</value>
-  </data>
-  <data name="AskUpdateButtonOk" xml:space="preserve">
+  <data name="UpdateAvailableCommandOk" xml:space="preserve">
     <value>Pokračovat
 Instalovat OnTopReplica {0}.</value>
-    <comment>{0} update version</comment>
-  </data>
-  <data name="AskUpdateContent" xml:space="preserve">
-    <value>Nová verze bude automaticky stažena a nainstalována.</value>
-  </data>
-  <data name="AskUpdateExpanded" xml:space="preserve">
-    <value>Nainstalovaná verze: {0}
-Dostupná verze: {1}</value>
-    <comment>{0} installed version number
-{1} online available version number</comment>
-  </data>
-  <data name="AskUpdateTitle" xml:space="preserve">
-    <value>Nové aktualizace jsou k dispozici</value>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
     <value>&amp;Storno</value>
+    <comment>&amp; marks the ALT+[] shortcut</comment>
   </data>
-  <data name="CreatedBy" xml:space="preserve">
-    <value>Autor: Lorenz Cuno Klopfenstein.</value>
+  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
+    <value>Zrušit aktualizaci
+Aplikace OnTopReplica vás vyzve k aktualizaci při dalším startu.</value>
   </data>
   <data name="DrawRegions" xml:space="preserve">
     <value>Označte výřez pomocí myši.</value>
@@ -385,13 +376,11 @@ Režim "Proklikávání" je možné zvolit později v menu</value>
   <data name="RightClick" xml:space="preserve">
     <value>Začněte klepnutím sem pravým tlačítkem myši...</value>
   </data>
-  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
-    <value>Aplikace OnTopReplica automaticky kontroluje dostupné aktualizace.</value>
+  <data name="UpdateAvailableContent" xml:space="preserve">
+    <value>Nová verze bude automaticky stažena a nainstalována.</value>
   </data>
-  <data name="AboutUpdatesCheckNow" xml:space="preserve">
-    <value>Zkontroluj aktualizace</value>
-  </data>
-  <data name="AboutSlogan" xml:space="preserve">
-    <value>Nenáročný a instantní náhled libovolného otevřeného okna (nebo jeho výřezu) v systému.</value>
+  <data name="UpdateAvailableExpanded" xml:space="preserve">
+    <value>Nainstalovaná verze: {0}
+Dostupná verze: {1}</value>
   </data>
 </root>

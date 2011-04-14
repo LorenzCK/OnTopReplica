@@ -24,8 +24,18 @@
   <data name="AboutButtonUpdateTT" xml:space="preserve">
     <value>Opdater OnTopReplica nu.</value>
   </data>
+  <data name="AboutSlogan" xml:space="preserve">
+    <value>En letvægts, live, miniature udgave af et vindue du vælger, der altid er øverst.</value>
+  </data>
+  <data name="AboutUpdatesCheckNow" xml:space="preserve">
+    <value>Opdater nu!</value>
+  </data>
+  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
+    <value>OnTopReplica checker automatiskt for opdateringer.</value>
+  </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>OnTopReplica</value>
+    <comment>Probably doesn't need localization. :)</comment>
   </data>
   <data name="AskReset" xml:space="preserve">
     <value>Nulstil vinduet helt?</value>
@@ -48,34 +58,15 @@
   <data name="AskSettingResetTitle" xml:space="preserve">
     <value>Nulstil indstillingerne</value>
   </data>
-  <data name="AskUpdate" xml:space="preserve">
-    <value>Installer OnTopReplica {0}?</value>
-    <comment>{0} update version</comment>
-  </data>
-  <data name="AskUpdateButtonCancel" xml:space="preserve">
-    <value>Annuller opdateringenOnTopReplica påminder dig igen næste gang det startes.</value>
-  </data>
-  <data name="AskUpdateButtonOk" xml:space="preserve">
+  <data name="UpdateAvailableCommandOk" xml:space="preserve">
     <value>FortsætInstaller OnTopReplica</value>
-    <comment>{0} update version</comment>
-  </data>
-  <data name="AskUpdateContent" xml:space="preserve">
-    <value>Den nye version vil automatiskt blive downloaded og installeret.</value>
-  </data>
-  <data name="AskUpdateExpanded" xml:space="preserve">
-    <value>Installeret version: {0}
-Tilgængelig version: {1}</value>
-    <comment>{0} installed version number
-{1} online available version number</comment>
-  </data>
-  <data name="AskUpdateTitle" xml:space="preserve">
-    <value>Opdatering tilgængelig.</value>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
     <value>&amp;Annuller</value>
+    <comment>&amp; marks the ALT+[] shortcut</comment>
   </data>
-  <data name="CreatedBy" xml:space="preserve">
-    <value>Lavet af: Lorenz Cuno Klopfenstein.</value>
+  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
+    <value>Annuller opdateringenOnTopReplica påminder dig igen næste gang det startes.</value>
   </data>
   <data name="DrawRegions" xml:space="preserve">
     <value>Tegn områder med musen</value>
@@ -380,13 +371,11 @@ Du kan aktivere gennem klik senere.</value>
   <data name="RightClick" xml:space="preserve">
     <value>Højreklik her for at starte...</value>
   </data>
-  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
-    <value>OnTopReplica checker automatiskt for opdateringer.</value>
+  <data name="UpdateAvailableContent" xml:space="preserve">
+    <value>Den nye version vil automatiskt blive downloaded og installeret.</value>
   </data>
-  <data name="AboutUpdatesCheckNow" xml:space="preserve">
-    <value>Opdater nu!</value>
-  </data>
-  <data name="AboutSlogan" xml:space="preserve">
-    <value>En letvægts, live, miniature udgave af et vindue du vælger, der altid er øverst.</value>
+  <data name="UpdateAvailableExpanded" xml:space="preserve">
+    <value>Installeret version: {0}
+Tilgængelig version: {1}</value>
   </data>
 </root>

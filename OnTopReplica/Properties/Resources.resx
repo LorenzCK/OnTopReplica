@@ -148,9 +148,6 @@
   <data name="window_opacity" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\window_opacity_new.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="thumbs_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\thumbs_up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="pos_topleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\pos_topleft.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -232,7 +229,6 @@
   <data name="flag_spanish" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\flag_spanish.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="flag_poland" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\flag_poland.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
