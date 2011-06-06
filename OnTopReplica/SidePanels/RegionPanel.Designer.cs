@@ -39,7 +39,7 @@
             this.labelCurrentRegion = new System.Windows.Forms.Label();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.comboRegions = new VistaControls.ComboBox();
+            this.comboRegions = new WindowsFormsAero.ComboBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupRegions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numH)).BeginInit();
@@ -90,7 +90,7 @@
             // numH
             // 
             this.numH.Enabled = false;
-            this.numH.Location = new System.Drawing.Point(140, 93);
+            this.numH.Location = new System.Drawing.Point(150, 93);
             this.numH.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -109,7 +109,7 @@
             // numW
             // 
             this.numW.Enabled = false;
-            this.numW.Location = new System.Drawing.Point(140, 67);
+            this.numW.Location = new System.Drawing.Point(150, 67);
             this.numW.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -193,7 +193,7 @@
             this.labelHeight.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.labelHeight.Location = new System.Drawing.Point(81, 96);
             this.labelHeight.Name = "labelHeight";
-            this.labelHeight.Size = new System.Drawing.Size(53, 17);
+            this.labelHeight.Size = new System.Drawing.Size(63, 17);
             this.labelHeight.TabIndex = 9;
             this.labelHeight.Text = "Height";
             this.labelHeight.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -203,7 +203,7 @@
             this.labelWidth.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.labelWidth.Location = new System.Drawing.Point(81, 70);
             this.labelWidth.Name = "labelWidth";
-            this.labelWidth.Size = new System.Drawing.Size(53, 17);
+            this.labelWidth.Size = new System.Drawing.Size(63, 17);
             this.labelWidth.TabIndex = 8;
             this.labelWidth.Text = "Width";
             this.labelWidth.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -300,7 +300,7 @@
 		private System.Windows.Forms.GroupBox groupRegions;
 		private System.Windows.Forms.Button buttonDelete;
 		private System.Windows.Forms.Button buttonSave;
-		private VistaControls.ComboBox comboRegions;
+		private WindowsFormsAero.ComboBox comboRegions;
 		private System.Windows.Forms.Button buttonDone;
 		private System.Windows.Forms.Button buttonReset;
 		private System.Windows.Forms.Label labelHeight;

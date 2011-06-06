@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using OnTopReplica.Update;
 using System.Diagnostics;
-using VistaControls.TaskDialog;
+using WindowsFormsAero.TaskDialog;
 using System.IO;
 
 namespace OnTopReplica.SidePanels {
@@ -18,7 +18,10 @@ namespace OnTopReplica.SidePanels {
         public AboutPanelContents() {
             InitializeComponent();
 
-            //Localized strings
+            LocalizePanel();
+        }
+
+        private void LocalizePanel() {
             lblSlogan.Text = Strings.AboutSlogan;
             linkAuthor.Internationalize(Strings.AboutAuthor, Strings.AboutAuthorContent);
             labeledDivider1.Text = Strings.AboutDividerUpdates;

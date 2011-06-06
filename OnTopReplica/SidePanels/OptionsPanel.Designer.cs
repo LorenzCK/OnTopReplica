@@ -77,17 +77,17 @@
             this.groupHotkeys.Size = new System.Drawing.Size(252, 113);
             this.groupHotkeys.TabIndex = 1;
             this.groupHotkeys.TabStop = false;
-            this.groupHotkeys.Text = Strings.SettingsHotKeyTitle;
+            this.groupHotkeys.Text = "Hot keys:";
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Location = new System.Drawing.Point(6, 68);
-            this.label1.Name = "lblHotkeyDescription";
+            this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(156, 43);
             this.label1.TabIndex = 4;
-            this.label1.Text = Strings.SettingsHotKeyDescription;
+            this.label1.Text = "These system-wide shortcuts can also be used when OnTopReplica is not in focus.";
             // 
             // lblHotKeyShowHide
             // 
@@ -96,7 +96,7 @@
             this.lblHotKeyShowHide.Name = "lblHotKeyShowHide";
             this.lblHotKeyShowHide.Size = new System.Drawing.Size(78, 17);
             this.lblHotKeyShowHide.TabIndex = 3;
-            this.lblHotKeyShowHide.Text = Strings.SettingsHotKeyShowHide;
+            this.lblHotKeyShowHide.Text = "Show/Hide";
             // 
             // txtHotKeyShowHide
             // 
@@ -115,7 +115,7 @@
             this.lblHotKeyClone.Name = "lblHotKeyClone";
             this.lblHotKeyClone.Size = new System.Drawing.Size(78, 29);
             this.lblHotKeyClone.TabIndex = 1;
-            this.lblHotKeyClone.Text = Strings.SettingsHotKeyClone;
+            this.lblHotKeyClone.Text = "Clone current window";
             // 
             // txtHotKeyClone
             // 
@@ -138,7 +138,7 @@
             this.groupLanguage.Size = new System.Drawing.Size(252, 68);
             this.groupLanguage.TabIndex = 0;
             this.groupLanguage.TabStop = false;
-            this.groupLanguage.Text = Strings.SettingsLanguageTitle;
+            this.groupLanguage.Text = "Language:";
             // 
             // comboLanguage
             // 
@@ -162,7 +162,7 @@
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(240, 22);
             this.lblLanguage.TabIndex = 1;
-            this.lblLanguage.Text = Strings.SettingsRestartRequired;
+            this.lblLanguage.Text = "Requires a restart.";
             // 
             // OptionsPanel
             // 
