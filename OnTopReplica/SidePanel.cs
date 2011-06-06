@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-using VistaControls.Dwm;
+using WindowsFormsAero.Dwm;
+using System.Drawing;
 
 namespace OnTopReplica {
 

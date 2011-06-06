@@ -109,7 +109,7 @@ namespace OnTopReplica {
                     sw.WriteLine("OnTopReplica v. {0}", Assembly.GetEntryAssembly().GetName().Version);
                     sw.WriteLine("OS: {0}", Environment.OSVersion.ToString());
                     sw.WriteLine(".NET: {0}", Environment.Version.ToString());
-                    sw.WriteLine("Aero DWM: {0}", VistaControls.OsSupport.IsCompositionEnabled);
+                    sw.WriteLine("Aero DWM: {0}", WindowsFormsAero.OsSupport.IsCompositionEnabled);
                     sw.WriteLine("Launch command: {0}", Environment.CommandLine);
                     sw.WriteLine("UTC time: {0} {1}", DateTime.UtcNow.ToShortDateString(), DateTime.UtcNow.ToShortTimeString());
                 }

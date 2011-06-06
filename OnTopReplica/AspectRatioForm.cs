@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using VistaControls.Dwm.Helpers;
 using System.ComponentModel;
-using OnTopReplica.Native;
 using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using OnTopReplica.Native;
+using WindowsFormsAero.Dwm.Helpers;
 
 namespace OnTopReplica {
 

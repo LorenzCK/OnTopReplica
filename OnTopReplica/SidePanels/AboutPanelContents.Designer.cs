@@ -25,17 +25,17 @@
         private void InitializeComponent() {
             this.labelTranslators = new System.Windows.Forms.Label();
             this.linkCredits = new System.Windows.Forms.LinkLabel();
-            this.progressUpdate = new VistaControls.ProgressBar();
+            this.progressUpdate = new WindowsFormsAero.ProgressBar();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.lblUpdateDisclaimer = new System.Windows.Forms.Label();
-            this.labeledDivider2 = new VistaControls.LabeledDivider();
-            this.labeledDivider1 = new VistaControls.LabeledDivider();
+            this.labeledDivider2 = new WindowsFormsAero.LabeledDivider();
+            this.labeledDivider1 = new WindowsFormsAero.LabeledDivider();
             this.linkHomepage = new System.Windows.Forms.LinkLabel();
             this.linkAuthor = new System.Windows.Forms.LinkLabel();
             this.lblSlogan = new System.Windows.Forms.Label();
-            this.labeledDivider3 = new VistaControls.LabeledDivider();
+            this.labeledDivider3 = new WindowsFormsAero.LabeledDivider();
             this.linkLicense = new System.Windows.Forms.LinkLabel();
-            this.labeledDivider4 = new VistaControls.LabeledDivider();
+            this.labeledDivider4 = new WindowsFormsAero.LabeledDivider();
             this.linkContribute = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
@@ -103,7 +103,6 @@
             this.labeledDivider2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.labeledDivider2.DividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(191)))), ((int)(((byte)(222)))));
-            this.labeledDivider2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labeledDivider2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(170)))));
             this.labeledDivider2.Location = new System.Drawing.Point(0, 197);
             this.labeledDivider2.Name = "labeledDivider2";
@@ -116,7 +115,6 @@
             this.labeledDivider1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.labeledDivider1.DividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(191)))), ((int)(((byte)(222)))));
-            this.labeledDivider1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labeledDivider1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(170)))));
             this.labeledDivider1.Location = new System.Drawing.Point(0, 82);
             this.labeledDivider1.Name = "labeledDivider1";
@@ -172,7 +170,6 @@
             this.labeledDivider3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.labeledDivider3.DividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(191)))), ((int)(((byte)(222)))));
-            this.labeledDivider3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labeledDivider3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(170)))));
             this.labeledDivider3.Location = new System.Drawing.Point(0, 393);
             this.labeledDivider3.Name = "labeledDivider3";
@@ -199,7 +196,6 @@
             this.labeledDivider4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.labeledDivider4.DividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(191)))), ((int)(((byte)(222)))));
-            this.labeledDivider4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labeledDivider4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(170)))));
             this.labeledDivider4.Location = new System.Drawing.Point(0, 503);
             this.labeledDivider4.Name = "labeledDivider4";
@@ -252,17 +248,17 @@
 
         private System.Windows.Forms.Label labelTranslators;
         private System.Windows.Forms.LinkLabel linkCredits;
-        private VistaControls.ProgressBar progressUpdate;
+        private WindowsFormsAero.ProgressBar progressUpdate;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Label lblUpdateDisclaimer;
-        private VistaControls.LabeledDivider labeledDivider2;
-        private VistaControls.LabeledDivider labeledDivider1;
+        private WindowsFormsAero.LabeledDivider labeledDivider2;
+        private WindowsFormsAero.LabeledDivider labeledDivider1;
         private System.Windows.Forms.LinkLabel linkHomepage;
         private System.Windows.Forms.LinkLabel linkAuthor;
         private System.Windows.Forms.Label lblSlogan;
-        private VistaControls.LabeledDivider labeledDivider3;
+        private WindowsFormsAero.LabeledDivider labeledDivider3;
         private System.Windows.Forms.LinkLabel linkLicense;
-        private VistaControls.LabeledDivider labeledDivider4;
+        private WindowsFormsAero.LabeledDivider labeledDivider4;
         private System.Windows.Forms.LinkLabel linkContribute;
 
     }

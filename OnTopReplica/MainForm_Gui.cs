@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using VistaControls.TaskDialog;
+using WindowsFormsAero.TaskDialog;
 
 namespace OnTopReplica {
     partial class MainForm {

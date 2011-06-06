@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using OnTopReplica.Native;
-using VistaControls.Dwm;
+using WindowsFormsAero.Dwm;
 
 namespace OnTopReplica.Platforms {
 

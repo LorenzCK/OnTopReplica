@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
-using VistaControls.Dwm;
+using WindowsFormsAero.Dwm;
 
 namespace OnTopReplica.Platforms {
 
     class WindowsVista : PlatformSupport {
         
         public override bool CheckCompatibility() {
-            if (!VistaControls.OsSupport.IsCompositionEnabled) {
+            if (!WindowsFormsAero.OsSupport.IsCompositionEnabled) {
                 MessageBox.Show(Strings.ErrorDwmOffContent, Strings.ErrorDwmOff, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }

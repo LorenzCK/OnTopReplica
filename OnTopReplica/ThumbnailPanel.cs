@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-using VistaControls.Dwm;
-using VistaControls.ThemeText;
+using WindowsFormsAero.Dwm;
+using WindowsFormsAero.ThemeText;
 using System.Drawing;
 using System.Windows.Forms.VisualStyles;
 using OnTopReplica.Native;
