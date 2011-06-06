@@ -105,10 +105,6 @@ Tutte le impostazioni saranno perse.</value>
     <value>&amp;Annulla</value>
     <comment>&amp; marks the ALT+[] shortcut</comment>
   </data>
-  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
-    <value>Annulla aggiornamento
-OnTopReplica si aggiornerà in un secondo momento.</value>
-  </data>
   <data name="DrawRegions" xml:space="preserve">
     <value>Disegna una regione usando il mouse.</value>
   </data>
@@ -481,12 +477,16 @@ Puoi abilitare il Click-Through in futuro</value>
   <data name="SettingsRestartRequired" xml:space="preserve">
     <value>Richiede un riavvio.</value>
   </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
+    <value>Annulla aggiornamento
+OnTopReplica si aggiornerà in un secondo momento.</value>
+  </data>
   <data name="UpdateAvailableCommandOk" xml:space="preserve">
     <value>Continua
 Scarica OnTopReplica {0}.</value>
-  </data>
-  <data name="SettingsTitle" xml:space="preserve">
-    <value>Impostazioni</value>
   </data>
   <data name="UpdateAvailableContent" xml:space="preserve">
     <value>Sarà possibile scaricare la nuova versione ed installarla.</value>
@@ -500,7 +500,11 @@ Versione disponibile: {1}</value>
   </data>
   <data name="UpdateDownloadingContent" xml:space="preserve">
     <value>Scaricati {0} byte su {1}.</value>
-    <comment>{0} downloaded bytes {1} total bytes</comment>
+    <comment>{0} downloaded bytes {1} total bytes
+{0}  bytes geladen von {1} bytes gesamt
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes</comment>
   </data>
   <data name="UpdateDownloadingInstruction" xml:space="preserve">
     <value>Download in corso...</value>

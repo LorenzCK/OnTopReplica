@@ -13,7 +13,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutButtonCancelTT" xml:space="preserve">
-    <value>Annuller updateringen</value>
+    <value>Annuller updateringen.</value>
   </data>
   <data name="AboutButtonExpanderTT" xml:space="preserve">
     <value>Vis detaljer om OnTopReplica.</value>
@@ -58,15 +58,9 @@
   <data name="AskSettingResetTitle" xml:space="preserve">
     <value>Nulstil indstillingerne</value>
   </data>
-  <data name="UpdateAvailableCommandOk" xml:space="preserve">
-    <value>FortsætInstaller OnTopReplica</value>
-  </data>
   <data name="ButtonCancel" xml:space="preserve">
     <value>&amp;Annuller</value>
     <comment>&amp; marks the ALT+[] shortcut</comment>
-  </data>
-  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
-    <value>Annuller opdateringenOnTopReplica påminder dig igen næste gang det startes.</value>
   </data>
   <data name="DrawRegions" xml:space="preserve">
     <value>Tegn områder med musen</value>
@@ -370,6 +364,12 @@ Du kan aktivere gennem klik senere.</value>
   </data>
   <data name="RightClick" xml:space="preserve">
     <value>Højreklik her for at starte...</value>
+  </data>
+  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
+    <value>Annuller opdateringenOnTopReplica påminder dig igen næste gang det startes.</value>
+  </data>
+  <data name="UpdateAvailableCommandOk" xml:space="preserve">
+    <value>FortsætInstaller OnTopReplica</value>
   </data>
   <data name="UpdateAvailableContent" xml:space="preserve">
     <value>Den nye version vil automatiskt blive downloaded og installeret.</value>

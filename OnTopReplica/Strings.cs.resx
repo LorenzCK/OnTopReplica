@@ -12,6 +12,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Vytvořil: %</value>
+    <comment>Link % is replaced by string AboutAuthorContent.</comment>
+  </data>
   <data name="AboutButtonCancelTT" xml:space="preserve">
     <value>Přerušit aktualizaci.</value>
   </data>
@@ -24,18 +28,52 @@
   <data name="AboutButtonUpdateTT" xml:space="preserve">
     <value>Aktualizovat OnTopReplica.</value>
   </data>
+  <data name="AboutContribute" xml:space="preserve">
+    <value>Rádi byste přispěli k vývoji projektu? Jste vřele vítáni při spolupráci na stávajících nebo nových překladech, případně si můžete stáhnout % ze serveru CodePlex.</value>
+  </data>
+  <data name="AboutContributeContent" xml:space="preserve">
+    <value>zdrojové kódy</value>
+  </data>
+  <data name="AboutCreditsSources" xml:space="preserve">
+    <value>OnTopReplica je založena na knihovně WindowsFormsAero a několika dalších knihovnách a zdrojích. %.</value>
+    <comment>Link % is replaced by string AboutCreditsSourcesContent.</comment>
+  </data>
+  <data name="AboutCreditsSourcesContent" xml:space="preserve">
+    <value>Více informací</value>
+  </data>
+  <data name="AboutDividerContribute" xml:space="preserve">
+    <value>Spolupráce</value>
+  </data>
+  <data name="AboutDividerCredits" xml:space="preserve">
+    <value>Zásluhy</value>
+  </data>
+  <data name="AboutDividerLicense" xml:space="preserve">
+    <value>Licence</value>
+  </data>
+  <data name="AboutDividerUpdates" xml:space="preserve">
+    <value>Aktualizace</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>Aplikace je vydána pod % licencí, která splňuje požadavky "open-source" definice dle OSI.</value>
+  </data>
   <data name="AboutSlogan" xml:space="preserve">
     <value>Nenáročný a instantní náhled libovolného otevřeného okna (nebo jeho výřezu) v systému.</value>
   </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>O programu OnTopReplica</value>
+  </data>
+  <data name="AboutTranslators" xml:space="preserve">
+    <value>Překlady: %</value>
+    <comment>{0} translators (do not end with period)</comment>
+  </data>
   <data name="AboutUpdatesCheckNow" xml:space="preserve">
-    <value>Zkontroluj aktualizace</value>
+    <value>Aktualizuj!</value>
   </data>
   <data name="AboutUpdatesDisclaimer" xml:space="preserve">
     <value>Aplikace OnTopReplica automaticky kontroluje dostupné aktualizace.</value>
   </data>
-  <data name="ApplicationName" xml:space="preserve">
-    <value>OnTopReplica</value>
-    <comment>Probably doesn't need localization. :)</comment>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Verze: %</value>
   </data>
   <data name="AskReset" xml:space="preserve">
     <value>Resetovat nastavení okna?</value>
@@ -59,17 +97,9 @@ Všechna nastavení budou ztracena.</value>
   <data name="AskSettingResetTitle" xml:space="preserve">
     <value>Resetovat nastavení</value>
   </data>
-  <data name="UpdateAvailableCommandOk" xml:space="preserve">
-    <value>Pokračovat
-Instalovat OnTopReplica {0}.</value>
-  </data>
   <data name="ButtonCancel" xml:space="preserve">
     <value>&amp;Storno</value>
     <comment>&amp; marks the ALT+[] shortcut</comment>
-  </data>
-  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
-    <value>Zrušit aktualizaci
-Aplikace OnTopReplica vás vyzve k aktualizaci při dalším startu.</value>
   </data>
   <data name="DrawRegions" xml:space="preserve">
     <value>Označte výřez pomocí myši.</value>
@@ -125,6 +155,9 @@ Tuto aplikaci je možné spouštět pouze na systémech Windows Vista Home Premi
   <data name="ErrorUpdateContent" xml:space="preserve">
     <value>Zdá se, že aplikace OnTopReplica nebyla nainstalována pomocí 'ClickOnce'. Aktualizaci musíte provést ručně (navštivte &lt;a href="http://ontopreplica.codeplex.com"&gt;domácí stránku aplikace OnTopReplica&lt;/a&gt;).</value>
   </data>
+  <data name="ErrorUpdateContentGeneric" xml:space="preserve">
+    <value>Aplikaci OnTopReplica se nepodařilo zjistit, zda existuje nová verze. Zkontrolujte, zda jste připojeni k síti Internet. Pokud ano, je možné, že webové stránky projektu jsou dočasně mimo provoz.</value>
+  </data>
   <data name="FullscreenMode" xml:space="preserve">
     <value>Režim</value>
   </data>
@@ -148,6 +181,25 @@ Tuto aplikaci je možné spouštět pouze na systémech Windows Vista Home Premi
   </data>
   <data name="FullscreenTitle" xml:space="preserve">
     <value>Aplikace OnTopReplica přes celou obrazovku</value>
+  </data>
+  <data name="GroupSwitchModeDisableButton" xml:space="preserve">
+    <value>Zrušit</value>
+  </data>
+  <data name="GroupSwitchModeEnableButton" xml:space="preserve">
+    <value>Povolit seskupení</value>
+  </data>
+  <data name="GroupSwitchModeStatusDisabled" xml:space="preserve">
+    <value>Výběrem více položek aktivujete seskupení</value>
+  </data>
+  <data name="GroupSwitchModeStatusEnabled" xml:space="preserve">
+    <value>Seskupení je aktivní</value>
+  </data>
+  <data name="GroupSwitchModeTitle" xml:space="preserve">
+    <value>Seskupení</value>
+  </data>
+  <data name="GroupSwitchModeWindows" xml:space="preserve">
+    <value>Okna</value>
+    <comment>Column Header of list, simply refers to available windows to be cloned</comment>
   </data>
   <data name="Homepage" xml:space="preserve">
     <value>Domácí stránka: www.codeplex.com/ontopreplica.</value>
@@ -247,6 +299,12 @@ Režim "Proklikávání" je možné zvolit později v menu</value>
   <data name="MenuFitQuarter" xml:space="preserve">
     <value>1:4 Čtvrtinová</value>
   </data>
+  <data name="MenuGroupSwitch" xml:space="preserve">
+    <value>Seskupení</value>
+  </data>
+  <data name="MenuGroupSwitchTT" xml:space="preserve">
+    <value>OnTopReplica bude automaticky přepínat mezi okny z uživatelsky definované skupiny tak, že zobrazeno bude vždy to naposledy deaktivované okno.</value>
+  </data>
   <data name="MenuOp100" xml:space="preserve">
     <value>100% (neprůhledné)</value>
   </data>
@@ -285,6 +343,12 @@ Režim "Proklikávání" je možné zvolit později v menu</value>
   </data>
   <data name="MenuPosBottomRight" xml:space="preserve">
     <value>Dolní pravý roh</value>
+  </data>
+  <data name="MenuPosCenter" xml:space="preserve">
+    <value>Uprostřed</value>
+  </data>
+  <data name="MenuPosDisabled" xml:space="preserve">
+    <value>Vypnuto</value>
   </data>
   <data name="MenuPosition" xml:space="preserve">
     <value>Umístění</value>
@@ -327,6 +391,18 @@ Režim "Proklikávání" je možné zvolit později v menu</value>
   </data>
   <data name="MenuResize" xml:space="preserve">
     <value>Velikost</value>
+  </data>
+  <data name="MenuRestoreLast" xml:space="preserve">
+    <value>Obnovit naposledy zobrazené okno</value>
+  </data>
+  <data name="MenuRestoreLastTT" xml:space="preserve">
+    <value>Pokud je zatrženo, OnTopReplica se pokusí po spuštění obnovit naposledy zobrazované okno.</value>
+  </data>
+  <data name="MenuSettings" xml:space="preserve">
+    <value>Nastavení...</value>
+  </data>
+  <data name="MenuSettingsTT" xml:space="preserve">
+    <value>Zobrazí okno s nastavením.</value>
   </data>
   <data name="MenuSwitch" xml:space="preserve">
     <value>Přepnout do okna</value>
@@ -376,11 +452,80 @@ Režim "Proklikávání" je možné zvolit později v menu</value>
   <data name="RightClick" xml:space="preserve">
     <value>Začněte klepnutím sem pravým tlačítkem myši...</value>
   </data>
+  <data name="SettingsHotKeyClone" xml:space="preserve">
+    <value>Zavřít toto okno</value>
+  </data>
+  <data name="SettingsHotKeyDescription" xml:space="preserve">
+    <value>Tyto klávesové zkratky jsou platné napříč systémem a je možné je použít i pokud OnTopReplica není aktivním oknem.</value>
+  </data>
+  <data name="SettingsHotKeyShowHide" xml:space="preserve">
+    <value>Zobrazit/Skrýt</value>
+  </data>
+  <data name="SettingsHotKeyTitle" xml:space="preserve">
+    <value>Klávesové zkratky:</value>
+  </data>
+  <data name="SettingsLanguageTitle" xml:space="preserve">
+    <value>Jazyk:</value>
+  </data>
+  <data name="SettingsRestartRequired" xml:space="preserve">
+    <value>Vyžaduje restart.</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Nastavení</value>
+  </data>
+  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
+    <value>Zrušit aktualizaci
+Aplikace OnTopReplica vás vyzve k aktualizaci při dalším startu.</value>
+  </data>
+  <data name="UpdateAvailableCommandOk" xml:space="preserve">
+    <value>Pokračovat
+Instalovat OnTopReplica {0}.</value>
+  </data>
   <data name="UpdateAvailableContent" xml:space="preserve">
     <value>Nová verze bude automaticky stažena a nainstalována.</value>
   </data>
   <data name="UpdateAvailableExpanded" xml:space="preserve">
     <value>Nainstalovaná verze: {0}
 Dostupná verze: {1}</value>
+  </data>
+  <data name="UpdateAvailableInstruction" xml:space="preserve">
+    <value>Verze {0} je k dispozici</value>
+  </data>
+  <data name="UpdateDownloadingContent" xml:space="preserve">
+    <value>staženo {0}/{1} bajtů.</value>
+    <comment>{0} downloaded bytes {1} total bytes
+{0}  bytes geladen von {1} bytes gesamt
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes</comment>
+  </data>
+  <data name="UpdateDownloadingInstruction" xml:space="preserve">
+    <value>Stahování...</value>
+  </data>
+  <data name="UpdateInfoContent" xml:space="preserve">
+    <value>Poslední verze aplikace OnTopReplica je již nainstalována. Aktualizace se kontrolují automaticky při každém spuštění.
+
+Na &lt;a href="website"&gt;oficiálních stránkách&lt;/a&gt; můžete sledovat aktuální vývoj aplikace nebo hlásit chyby či navrhovat vylepšení.</value>
+    <comment>The website link should be enclosed in &lt;a href="website"&gt;&lt;/a&gt; tags.</comment>
+  </data>
+  <data name="UpdateInfoFooter" xml:space="preserve">
+    <value>Poslední stabilní verze byla vydána {0}.</value>
+    <comment>{0} last version release date</comment>
+  </data>
+  <data name="UpdateInfoInstruction" xml:space="preserve">
+    <value>OnTopReplica je aktuální</value>
+  </data>
+  <data name="UpdateReadyCommandOk" xml:space="preserve">
+    <value>Instalovat
+OnTopReplica bude nyní ukončena a spustí se aktualizace.</value>
+  </data>
+  <data name="UpdateReadyContent" xml:space="preserve">
+    <value>Nová verze {0} OnTopReplica je připravena k instalaci.</value>
+  </data>
+  <data name="UpdateReadyInstruction" xml:space="preserve">
+    <value>Aktualizace je připravena</value>
+  </data>
+  <data name="UpdateTitle" xml:space="preserve">
+    <value>Aktualizace OnTopReplica</value>
   </data>
 </root>

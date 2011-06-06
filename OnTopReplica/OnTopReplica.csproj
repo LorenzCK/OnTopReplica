@@ -373,6 +373,7 @@
     <None Include="Assets\pos_center.png" />
     <None Include="Assets\flag_spanish.png" />
     <None Include="Assets\flag_poland.png" />
+    <None Include="Assets\flag_germany.png" />
     <Content Include="Assets\xiao_arrow.png" />
     <None Include="Assets\xiao_help.png" />
     <None Include="Assets\window_opacity_new.png" />

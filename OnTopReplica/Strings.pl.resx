@@ -56,15 +56,11 @@
   <data name="AboutLicense" xml:space="preserve">
     <value>Aplikacja jest licencjonowana na warunkach licencji %, która spełnia warunki definicji "open-source" definiowane przez OSI.</value>
   </data>
-  <data name="AboutLicenseContent" xml:space="preserve">
-    <value />
-    <comment>Can be left blank.</comment>
-  </data>
   <data name="AboutSlogan" xml:space="preserve">
-    <value>Miniatura "zawsze na wierzchu" przedstawiająca w czasie rzeczywistym podgląd wybranego okna.</value>
+    <value>Miniatura "zawsze na wierzchu" pokazująca "na żywo" podgląd wybranego okna.</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>O OnTopReplica</value>
+    <value>O programie OnTopReplica</value>
   </data>
   <data name="AboutTranslators" xml:space="preserve">
     <value>Tłumaczenie: {0}</value>
@@ -74,7 +70,7 @@
     <value>Sprawdź teraz!</value>
   </data>
   <data name="AboutUpdatesDisclaimer" xml:space="preserve">
-    <value>OnTopReplica automatycznie sprawdza dostępność aktualizacji przy każdym uruchomieniu.</value>
+    <value>OnTopReplica automatycznie sprawdza dostępność aktualizacji po każdym uruchomieniu.</value>
   </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>Wersja {0}</value>
@@ -216,7 +212,7 @@ Aplikacja działa na Windows Vista Home Premium i nowszych.</value>
     <value>Czy uaktywnić "przekazywanie kliknięć"?</value>
   </data>
   <data name="InfoClickForwardingContent" xml:space="preserve">
-    <value>Kiedy ten tryb jest aktywny, OnTopReplica będzie przekazywać kliknięcia lewym przyciskiem myszy do okna, które jest klonowane (dzięki temu możesz wykonywać na tym oknie podstawowe operacje bez konieczności uaktywniania go).
+    <value>Kiedy ten tryb jest aktywny, OnTopReplica będzie przekazywać kliknięcia przycisków myszy do okna, które jest klonowane (dzięki temu możesz wykonywać na tym oknie podstawowe operacje bez konieczności uaktywniania go).
 
 Naciśnij ESC aby zakończyć ten tryb.</value>
   </data>
@@ -266,7 +262,7 @@ Możesz włączyć kliknij-przez później</value>
     <value>O...</value>
   </data>
   <data name="MenuAboutTT" xml:space="preserve">
-    <value>Ukrywa główne okno i pokazuje okno "O programie".</value>
+    <value>Wyświetla informacje o programie.</value>
   </data>
   <data name="MenuAdvanced" xml:space="preserve">
     <value>Zaawansowane</value>
@@ -314,7 +310,7 @@ Możesz włączyć kliknij-przez później</value>
     <value>Tryb grupowy</value>
   </data>
   <data name="MenuGroupSwitchTT" xml:space="preserve">
-    <value>OnTopReplica automatycznie sklonuje okno ze zdefiniowanej przez użytkownika grupy, przełączając na to które było najwcześniej zdeaktywowane.</value>
+    <value>OnTopReplica automatycznie sklonuje okno ze zdefiniowanej przez użytkownika grupy przełączając na to, które było najwcześniej zdeaktywowane.</value>
   </data>
   <data name="MenuOp100" xml:space="preserve">
     <value>100% (nieprzeźroczyste)</value>
@@ -365,7 +361,7 @@ Możesz włączyć kliknij-przez później</value>
     <value>Zablokuj pozycję</value>
   </data>
   <data name="MenuPositionTT" xml:space="preserve">
-    <value>Automatycznie ustawia na bieżącym ekranie OnTopReplica.</value>
+    <value>Automatycznie ustawia pozycję OnTopReplica na bieżącym ekranie.</value>
   </data>
   <data name="MenuPosTopLeft" xml:space="preserve">
     <value>Góra Lewo</value>
@@ -467,7 +463,7 @@ Możesz włączyć kliknij-przez później</value>
     <value>Sklonuj bieżące okno</value>
   </data>
   <data name="SettingsHotKeyDescription" xml:space="preserve">
-    <value>Te skróty klawiszowe mogą być używane również wtedy, gdy okno OnTopReplica nie jest aktywne.</value>
+    <value>Skróty klawiszowe działają również wtedy, gdy okno OnTopReplica nie jest aktywne.</value>
   </data>
   <data name="SettingsHotKeyShowHide" xml:space="preserve">
     <value>Pokaż/Ukryj</value>
@@ -481,16 +477,16 @@ Możesz włączyć kliknij-przez później</value>
   <data name="SettingsRestartRequired" xml:space="preserve">
     <value>Wymaga restartu.</value>
   </data>
-  <data name="UpdateAvailableCommandOk" xml:space="preserve">
-    <value>Pobierz
-Zainstaluj OnTopReplica {0}.</value>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Ustawienia</value>
   </data>
   <data name="UpdateAvailableCommandCancel" xml:space="preserve">
     <value>Anuluj aktualizację
 OnTopReplica zapyta Cię przy następnym uruchomieniu.</value>
   </data>
-  <data name="SettingsTitle" xml:space="preserve">
-    <value>Ustawienia</value>
+  <data name="UpdateAvailableCommandOk" xml:space="preserve">
+    <value>Pobierz
+Zainstaluj OnTopReplica {0}.</value>
   </data>
   <data name="UpdateAvailableContent" xml:space="preserve">
     <value>Nowa wersja może zostać pobrana i zainstalowana z oficjalnej strony programu.</value>
@@ -498,5 +494,45 @@ OnTopReplica zapyta Cię przy następnym uruchomieniu.</value>
   <data name="UpdateAvailableExpanded" xml:space="preserve">
     <value>Zainstalowana wersja: {0}
 Dostępna wersja: {1}</value>
+  </data>
+  <data name="UpdateAvailableInstruction" xml:space="preserve">
+    <value>Dostępna jest wersja {0}</value>
+  </data>
+  <data name="UpdateDownloadingContent" xml:space="preserve">
+    <value>pobrano {0}/{1} bajtów.</value>
+    <comment>{0} downloaded bytes {1} total bytes
+{0}  bytes geladen von {1} bytes gesamt
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes</comment>
+  </data>
+  <data name="UpdateDownloadingInstruction" xml:space="preserve">
+    <value>Pobieram...</value>
+  </data>
+  <data name="UpdateInfoContent" xml:space="preserve">
+    <value>Najnowsza wersja OnTopReplica jest już zainstalowana. Program automatycznie sprawdza dostępność aktualizacji po każdym uruchomieniu.
+
+Na &lt;a href="website"&gt;oficjalnej stronie domowej&lt;/a&gt; możesz znaleźć informacje o rozwoju OnTopReplica's oraz zaproponować nowe funkcje.</value>
+    <comment>The website link should be enclosed in &lt;a href="website"&gt;&lt;/a&gt; tags.</comment>
+  </data>
+  <data name="UpdateInfoFooter" xml:space="preserve">
+    <value>Ostatnia wersja stabilna wydana {0}.</value>
+    <comment>{0} last version release date</comment>
+  </data>
+  <data name="UpdateInfoInstruction" xml:space="preserve">
+    <value>OnTopReplica jest aktualna</value>
+  </data>
+  <data name="UpdateReadyCommandOk" xml:space="preserve">
+    <value>Zainstaluj
+Aktualizacje zostaną zainstalowane po ponownym uruchomieniu OnTopReplica.</value>
+  </data>
+  <data name="UpdateReadyContent" xml:space="preserve">
+    <value>Wersja {0} OnTopReplica jest gotowa do zainstalowania.</value>
+  </data>
+  <data name="UpdateReadyInstruction" xml:space="preserve">
+    <value>Aktualizacja ukończona</value>
+  </data>
+  <data name="UpdateTitle" xml:space="preserve">
+    <value>Aktualizacje OnTopReplica</value>
   </data>
 </root>
