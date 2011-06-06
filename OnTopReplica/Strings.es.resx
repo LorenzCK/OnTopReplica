@@ -59,17 +59,9 @@ Todos los ajustes se perderán.</value>
   <data name="AskSettingResetTitle" xml:space="preserve">
     <value>Reiniciar ajustes</value>
   </data>
-  <data name="UpdateAvailableCommandOk" xml:space="preserve">
-    <value>Descargar
-Instalar OnTopReplica {0}</value>
-  </data>
   <data name="ButtonCancel" xml:space="preserve">
     <value>&amp;Cancelar</value>
     <comment>&amp; marks the ALT+[] shortcut</comment>
-  </data>
-  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
-    <value>Cancelar actualización
-OnTopReplica le preguntará la próxima vez que se ejecute.</value>
   </data>
   <data name="DrawRegions" xml:space="preserve">
     <value>Crea una región utilizando el ratón.</value>
@@ -101,7 +93,7 @@ Para ello, click derecho en el escritorio y buscar la opción en Personalizar.</
     <value>Parece que la ventana seleccionada ha sido cerrada o ya no es válida.</value>
   </data>
   <data name="ErrorGenericTitle" xml:space="preserve">
-    <value>Error:</value>
+    <value>Error</value>
   </data>
   <data name="ErrorNoDwm" xml:space="preserve">
     <value>La Composición de Escritorio no está soportada en su Sistema Operativo.
@@ -403,6 +395,14 @@ Se podrá activar Click a través más tarde</value>
   </data>
   <data name="RightClick" xml:space="preserve">
     <value>Click derecho para empezar...</value>
+  </data>
+  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
+    <value>Cancelar actualización
+OnTopReplica le preguntará la próxima vez que se ejecute.</value>
+  </data>
+  <data name="UpdateAvailableCommandOk" xml:space="preserve">
+    <value>Descargar
+Instalar OnTopReplica {0}</value>
   </data>
   <data name="UpdateAvailableContent" xml:space="preserve">
     <value>La nueva versión puede ser descargada e instalada del sitio oficial.</value>

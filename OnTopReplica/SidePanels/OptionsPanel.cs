@@ -76,10 +76,11 @@ namespace OnTopReplica.SidePanels {
 
         CultureWrapper[] _languageList = {
             new CultureWrapper("English", new CultureInfo("en-US"), Resources.flag_usa),
-            new CultureWrapper("Italiano", new CultureInfo("it-IT"), Resources.flag_ita),
             new CultureWrapper("Čeština", new CultureInfo("cs-CZ"), Resources.flag_czech),
             new CultureWrapper("Dansk", new CultureInfo("da-DK"), Resources.flag_danish),
+            new CultureWrapper("Deutsch", new CultureInfo("de-DE"), Resources.flag_germany),
             new CultureWrapper("Español", new CultureInfo("es-ES"), Resources.flag_spanish),
+            new CultureWrapper("Italiano", new CultureInfo("it-IT"), Resources.flag_ita),
             new CultureWrapper("Polski", new CultureInfo("pl-PL"), Resources.flag_poland),
         };
 
