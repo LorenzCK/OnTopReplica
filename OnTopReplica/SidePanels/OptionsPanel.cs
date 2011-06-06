@@ -13,6 +13,20 @@ namespace OnTopReplica.SidePanels {
 
         public OptionsPanel() {
             InitializeComponent();
+
+            LocalizePanel();
+        }
+
+        private void LocalizePanel() {
+            groupLanguage.Text = Strings.SettingsLanguageTitle;
+            lblLanguage.Text = Strings.SettingsRestartRequired;
+
+            groupHotkeys.Text = Strings.SettingsHotKeyTitle;
+            lblHotKeyShowHide.Text = Strings.SettingsHotKeyShowHide;
+            lblHotKeyClone.Text = Strings.SettingsHotKeyClone;
+            label1.Text = Strings.SettingsHotKeyDescription;
+
+            btnClose.Text = Strings.MenuClose;
         }
 
         public override void OnFirstShown(MainForm form) {

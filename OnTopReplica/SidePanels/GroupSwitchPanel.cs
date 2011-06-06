@@ -8,6 +8,14 @@ namespace OnTopReplica.SidePanels {
     partial class GroupSwitchPanel : SidePanel {
         public GroupSwitchPanel() {
             InitializeComponent();
+
+            LocalizePanel();
+        }
+
+        private void LocalizePanel() {
+            groupBox1.Text = Strings.GroupSwitchModeTitle;
+            buttonEnable.Text = Strings.GroupSwitchModeEnableButton;
+            buttonCancel.Text = Strings.GroupSwitchModeDisableButton;
         }
 
         public override string Title {

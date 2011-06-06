@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Cache;
 using System.Windows.Forms;
-using VistaControls.TaskDialog;
+using WindowsFormsAero.TaskDialog;
 
 namespace OnTopReplica.Update {
 
@@ -239,7 +239,7 @@ namespace OnTopReplica.Update {
             if (_updateDialog == null)
                 return;
 
-            _updateDialog.ProgressBarState = VistaControls.ProgressBar.States.Error;
+            _updateDialog.ProgressBarState = WindowsFormsAero.ProgressBar.States.Error;
             _updateDialog.Content = msg;
         }
 
