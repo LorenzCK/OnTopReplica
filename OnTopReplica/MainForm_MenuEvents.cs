@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using OnTopReplica.Properties;
-using VistaControls.TaskDialog;
+using WindowsFormsAero.TaskDialog;
 using OnTopReplica.SidePanels;
 
 namespace OnTopReplica {

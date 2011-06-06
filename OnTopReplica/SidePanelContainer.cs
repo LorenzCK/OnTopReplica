@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using VistaControls.Dwm.Helpers;
+using WindowsFormsAero.Dwm.Helpers;
 
 namespace OnTopReplica {
     /// <summary>

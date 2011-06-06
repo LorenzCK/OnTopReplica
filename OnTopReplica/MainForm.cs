@@ -8,8 +8,8 @@ using OnTopReplica.Properties;
 using OnTopReplica.StartupOptions;
 using OnTopReplica.Update;
 using OnTopReplica.WindowSeekers;
-using VistaControls.Dwm;
-using VistaControls.TaskDialog;
+using WindowsFormsAero.Dwm;
+using WindowsFormsAero.TaskDialog;
 
 namespace OnTopReplica {
 
@@ -54,15 +54,6 @@ namespace OnTopReplica {
         }
 
         #region Event override
-
-        protected override CreateParams CreateParams {
-            get {
-                //Needed to hide caption, while keeping window title in task bar
-                var parms = base.CreateParams;
-                parms.Style &= ~0x00C00000; //WS_CAPTION
-                return parms;
-            }
-        }
 
         protected override void OnHandleCreated(EventArgs e){
  	        base.OnHandleCreated(e);

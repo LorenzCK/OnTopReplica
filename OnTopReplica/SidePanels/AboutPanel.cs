@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using VistaControls.Dwm;
+using WindowsFormsAero.Dwm;
 
 namespace OnTopReplica.SidePanels {
     partial class AboutPanel : SidePanel {
@@ -13,6 +13,7 @@ namespace OnTopReplica.SidePanels {
         public AboutPanel() {
             InitializeComponent();
 
+            //Display version number
             labelVersion.Text = string.Format(Strings.AboutVersion, Application.ProductVersion);
         }
 

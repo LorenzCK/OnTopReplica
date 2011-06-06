@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using OnTopReplica.Properties;
-using VistaControls.TaskDialog;
+using WindowsFormsAero.TaskDialog;
 using System.Drawing;
 using System.Windows.Forms;
 

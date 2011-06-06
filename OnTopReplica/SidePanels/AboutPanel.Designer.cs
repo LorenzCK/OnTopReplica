@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.labelVersion = new VistaControls.ThemeText.ThemedLabel();
+            this.labelVersion = new WindowsFormsAero.ThemeText.ThemedLabel();
             this.panelContents = new OnTopReplica.SidePanels.AboutPanelContents();
             this.SuspendLayout();
             // 
@@ -67,7 +67,7 @@
 
         #endregion
 
-        private VistaControls.ThemeText.ThemedLabel labelVersion;
+        private WindowsFormsAero.ThemeText.ThemedLabel labelVersion;
         private AboutPanelContents panelContents;
 
     }
