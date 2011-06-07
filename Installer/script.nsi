@@ -86,8 +86,13 @@ Section "!OnTopReplica" OnTopReplica
 	
 	SetOutPath $INSTDIR
 	SetOverwrite on
+	
+	;Ensure that old VistaControls.dll is removed
+	Delete "$INSTDIR\VistaControls.dll"
+	
+	;Main installation
 	File "..\OnTopReplica\bin\Release\OnTopReplica.exe"
-	File "..\OnTopReplica\bin\Release\VistaControls.dll"
+	File "..\OnTopReplica\bin\Release\WindowsFormsAero.dll"
 	
 	;Text stuff
 	File "..\OnTopReplica\bin\Release\CREDITS.txt"
@@ -100,8 +105,12 @@ Section "!OnTopReplica" OnTopReplica
 	File "..\OnTopReplica\bin\Release\cs\OnTopReplica.resources.dll"
 	SetOutPath "$INSTDIR\da"
 	File "..\OnTopReplica\bin\Release\da\OnTopReplica.resources.dll"
+	SetOutPath "$INSTDIR\de"
+	File "..\OnTopReplica\bin\Release\de\OnTopReplica.resources.dll"
 	SetOutPath "$INSTDIR\es"
 	File "..\OnTopReplica\bin\Release\es\OnTopReplica.resources.dll"
+	SetOutPath "$INSTDIR\pl"
+	File "..\OnTopReplica\bin\Release\pl\OnTopReplica.resources.dll"
 		
 	;Uninstaller
 	WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}"
