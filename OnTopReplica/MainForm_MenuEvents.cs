@@ -28,33 +28,6 @@ namespace OnTopReplica {
             clickForwardingToolStripMenuItem.Enabled = showing;
         }
 
-        private void Menu_Windows_opening(object sender, CancelEventArgs e) {
-            //_windowSeeker.Refresh();
-            //var menu = (ToolStrip)sender;
-            //menu.PopulateMenu(_windowSeeker, CurrentThumbnailWindowHandle, new EventHandler(Menu_Windows_itemclick));
-        }
-
-        void Menu_Windows_itemclick(object sender, EventArgs e) {
-            //Ensure the menu is closed
-            menuContext.Close();
-            menuFullscreenContext.Close();
-            menuWindows.Close();
-
-            //Get clicked item and window index from tag
-            ToolStripItem tsi = (ToolStripItem)sender;
-
-            //Handle special "none" window
-            if (tsi.Tag == null) {
-                UnsetThumbnail();
-                return;
-            }
-
-            var selectionData = (WindowListHelper.WindowSelectionData)tsi.Tag;
-            Rectangle? bounds = (selectionData.Region != null)
-                ? (Rectangle?)selectionData.Region.Bounds : null;
-            SetThumbnail(selectionData.Handle, bounds);
-        }
-
         private void Menu_Switch_click(object sender, EventArgs e) {
             if (CurrentThumbnailWindowHandle == null)
                 return;

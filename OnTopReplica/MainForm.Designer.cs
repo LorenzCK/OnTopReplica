@@ -115,7 +115,6 @@
             this.menuWindows.Name = "menuWindows";
             this.menuWindows.OwnerItem = this.menuContextWindows;
             this.menuWindows.Size = new System.Drawing.Size(118, 26);
-            this.menuWindows.Opening += new System.ComponentModel.CancelEventHandler(this.Menu_Windows_opening);
             // 
             // noneToolStripMenuItem
             // 

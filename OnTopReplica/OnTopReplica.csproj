@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OnTopReplica</RootNamespace>
     <AssemblyName>OnTopReplica</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>Assets\icon-new.ico</ApplicationIcon>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -29,6 +29,8 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -138,6 +140,7 @@
     <Compile Include="Native\HotKeyMethods.cs" />
     <Compile Include="Native\HT.cs" />
     <Compile Include="Platforms\DebugPlatform.cs" />
+    <Compile Include="PluginRegionLocator.cs" />
     <Compile Include="SidePanelContainer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,10 +171,65 @@
     <Compile Include="SidePanels\GroupSwitchPanel.Designer.cs">
       <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Strings.cs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.cs.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.da.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.da.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.de.resx</DependentUpon>
+    </Compile>
     <Compile Include="Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.fi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.fi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.it.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.it.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.no.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.no.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.pl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.pl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.pt-BR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.pt-BR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.pt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.pt.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.ru.resx</DependentUpon>
     </Compile>
     <Compile Include="Tuples.cs" />
     <Compile Include="WindowListMenuManager.cs" />
@@ -342,7 +400,6 @@
     <Compile Include="Update\UpdateManager.cs" />
     <Compile Include="Win32Helper.cs" />
     <Compile Include="WindowHandle.cs" />
-    <Compile Include="WindowListHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\windows.png" />
