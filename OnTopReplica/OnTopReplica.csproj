@@ -101,14 +101,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions.cs" />
     <Compile Include="AspectRatioForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CloneClickEventArgs.cs" />
     <Compile Include="CloseRequestEventArgs.cs" />
-    <Compile Include="EnumerableExtensions.cs" />
-    <Compile Include="ExtensionAttribute.cs" />
     <Compile Include="GeometryExtensions.cs" />
     <Compile Include="HotKeyTextBox.cs">
       <SubType>Component</SubType>
@@ -231,7 +228,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.ru.resx</DependentUpon>
     </Compile>
-    <Compile Include="Tuples.cs" />
     <Compile Include="WindowListMenuManager.cs" />
     <Compile Include="WindowSeekers\BaseWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByClassWindowSeeker.cs" />
