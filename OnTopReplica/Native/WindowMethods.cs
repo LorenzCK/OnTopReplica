@@ -12,6 +12,9 @@ namespace OnTopReplica.Native {
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool GetClientRect(IntPtr handle, out NRectangle rect);
 
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool GetWindowRect(IntPtr handle, out NRectangle rect);
+
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         static extern int GetWindowText(IntPtr hWnd, [Out] StringBuilder lpString, int nMaxCount);
 

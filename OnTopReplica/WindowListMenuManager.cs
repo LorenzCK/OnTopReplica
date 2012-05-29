@@ -85,12 +85,16 @@ namespace OnTopReplica {
             
             //No region
             var nullRegionItem = new ToolStripMenuItem(Strings.MenuWindowsWholeRegion);
-            nullRegionItem.Tag = new Tuple<WindowHandle, StoredRegion>(parentHandle, null);
+            nullRegionItem.Tag = parentHandle;
             nullRegionItem.Image = Resources.regions;
-            nullRegionItem.Click += MenuRegionWindowClickHandler;
+            nullRegionItem.Click += MenuWindowClickHandler;
             parent.DropDownItems.Add(nullRegionItem);
 
             //Video detector
+            var detectorItem = new ToolStripMenuItem("Autodetect plugin");
+            detectorItem.Tag = parentHandle;
+            detectorItem.Click += MenuVideoCropperClickHandler;
+            parent.DropDownItems.Add(detectorItem);
 
             //Regions (if any)
             if (regions == null || regions.Length == 0)
@@ -129,8 +133,19 @@ namespace OnTopReplica {
                 (tuple.Item2 != null) ? (System.Drawing.Rectangle?)tuple.Item2.Bounds : null);
         }
 
+        PluginRegionLocator _pluginRegionLocator = null;
+
         private void MenuVideoCropperClickHandler(object sender, EventArgs args){
             CommonClickHandler();
+
+            var tsi = (ToolStripMenuItem)sender;
+            var handle = (WindowHandle)tsi.Tag;
+
+            if (_pluginRegionLocator == null)
+                _pluginRegionLocator = new PluginRegionLocator();
+
+            var detectedRegion = _pluginRegionLocator.LocatePluginRegion(handle);
+            _owner.SetThumbnail(handle, detectedRegion);
         }
 
         private void CommonClickHandler() {
