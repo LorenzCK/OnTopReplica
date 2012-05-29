@@ -53,22 +53,25 @@ namespace OnTopReplica.WindowSeekers {
                 if (title.StartsWith(Title, StringComparison.InvariantCultureIgnoreCase)) {
                     points += 10;
                 }
+                if (title.Equals(Title, StringComparison.InvariantCultureIgnoreCase)) {
+                    points += 5;
+                }
             }
 
             //Handle match (will probably not work, but anyhow)
             if (Handle != IntPtr.Zero) {
                 if (Handle == hwnd) {
-                    points += 5;
+                    points += 10;
                 }
             }
 
             //Store handle if it matches
             if (points > 0) {
                 _points.Add(hwnd.ToInt64(), points);
-                return true;
             }
-            else
-                return false;
+
+            //Never store windows in base class list
+            return false;
         }
 
         public override IList<WindowHandle> Windows {

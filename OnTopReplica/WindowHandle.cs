@@ -24,6 +24,15 @@ namespace OnTopReplica {
 			_title = title;
 		}
 
+        /// <summary>
+        /// Creates a new WindowHandle instance. Additional features of the handle will be queried as needed.
+        /// </summary>
+        /// <param name="p"></param>
+        public WindowHandle(IntPtr p) {
+            _handle = p;
+            _title = null;
+        }
+
 		public string Title {
 			get {
                 if (_title == null) {

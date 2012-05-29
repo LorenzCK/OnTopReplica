@@ -19,10 +19,8 @@ namespace OnTopReplica {
         ThumbnailPanel _thumbnailPanel;
 
         //Managers
-        BaseWindowSeeker _windowSeeker = new TaskWindowSeeker {
-            SkipNotVisibleWindows = true
-        };
         MessagePumpManager _msgPumpManager = new MessagePumpManager();
+        WindowListMenuManager _windowListManager;
 
         Options _startupOptions;
 
@@ -63,9 +61,12 @@ namespace OnTopReplica {
             GlassEnabled = true;
             GlassMargins = new Margins(-1);
 
-            //Window handlers
-            _windowSeeker.OwnerHandle = this.Handle;
+            //Managers
             _msgPumpManager.Initialize(this);
+            _windowListManager = new WindowListMenuManager(this, menuWindows);
+            _windowListManager.ParentMenus = new System.Windows.Forms.ContextMenuStrip[] {
+                menuContext, menuFullscreenContext
+            };
 
             //Platform specific form initialization
             Program.Platform.PostHandleFormInit(this);

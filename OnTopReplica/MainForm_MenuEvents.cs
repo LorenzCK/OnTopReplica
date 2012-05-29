@@ -26,14 +26,12 @@ namespace OnTopReplica {
             chromeToolStripMenuItem.Enabled = showing;
             clickThroughToolStripMenuItem.Enabled = showing;
             clickForwardingToolStripMenuItem.Enabled = showing;
-            
         }
 
         private void Menu_Windows_opening(object sender, CancelEventArgs e) {
-            _windowSeeker.Refresh();
-            var menu = (ToolStrip)sender;
-            menu.PopulateMenu(this, _windowSeeker,
-                CurrentThumbnailWindowHandle, new EventHandler(Menu_Windows_itemclick));
+            //_windowSeeker.Refresh();
+            //var menu = (ToolStrip)sender;
+            //menu.PopulateMenu(_windowSeeker, CurrentThumbnailWindowHandle, new EventHandler(Menu_Windows_itemclick));
         }
 
         void Menu_Windows_itemclick(object sender, EventArgs e) {

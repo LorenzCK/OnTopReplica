@@ -173,6 +173,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Tuples.cs" />
+    <Compile Include="WindowListMenuManager.cs" />
     <Compile Include="WindowSeekers\BaseWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByClassWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByTitleWindowSeeker.cs" />
