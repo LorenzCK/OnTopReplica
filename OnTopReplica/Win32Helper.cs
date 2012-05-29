@@ -8,7 +8,9 @@ using System.Windows.Forms;
 namespace OnTopReplica {
 	public static class Win32Helper {
 
-		/// <summary>Inject a fake left mouse click on a target window, on a location expressed in client coordinates.</summary>
+        #region Injection
+
+        /// <summary>Inject a fake left mouse click on a target window, on a location expressed in client coordinates.</summary>
 		/// <param name="window">Target window to click on.</param>
 		/// <param name="clickLocation">Location of the mouse click expressed in client coordiantes of the target window.</param>
 		/// <param name="doubleClick">True if a double click should be injected.</param>
@@ -82,7 +84,9 @@ namespace OnTopReplica {
 #endif
         }
 
-		/// <summary>Returns the child control of a window corresponding to a screen location.</summary>
+        #endregion
+
+        /// <summary>Returns the child control of a window corresponding to a screen location.</summary>
 		/// <param name="parent">Parent window to explore.</param>
 		/// <param name="scrClickLocation">Child control location in screen coordinates.</param>
 		private static IntPtr GetRealChildControlFromPoint(IntPtr parent, NPoint scrClickLocation) {
@@ -115,7 +119,7 @@ namespace OnTopReplica {
             if (handle == IntPtr.Zero)
                 return null;
 
-            return new WindowHandle(handle, null);
+            return new WindowHandle(handle);
         }
 
 	}
