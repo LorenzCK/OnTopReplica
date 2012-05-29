@@ -30,9 +30,7 @@ namespace OnTopReplica.WindowSeekers {
         public virtual void Refresh() {
             _list.Clear();
 
-            WindowManagerMethods.EnumWindows(
-                new WindowManagerMethods.EnumWindowsProc(RefreshCallback),
-                IntPtr.Zero);
+            WindowManagerMethods.EnumWindows(RefreshCallback, IntPtr.Zero);
         }
 
         private bool RefreshCallback(IntPtr hwnd, IntPtr lParam) {
