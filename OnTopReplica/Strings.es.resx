@@ -1,5 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -34,7 +139,7 @@
     <value>OnTopReplica busca actualizaciones automáticamente.</value>
   </data>
   <data name="ApplicationName" xml:space="preserve">
-    <value>OnTopReplica</value>
+    <value />
     <comment>Probably doesn't need localization. :)</comment>
   </data>
   <data name="AskReset" xml:space="preserve">
@@ -410,5 +515,141 @@ Instalar OnTopReplica {0}</value>
   <data name="UpdateAvailableExpanded" xml:space="preserve">
     <value>Versión instalada: {0}
 Versión disponible: {1}</value>
+  </data>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Created by: %.</value>
+    <comment>Link % is replaced by string AboutAuthorContent.</comment>
+  </data>
+  <data name="AboutAuthorContent" xml:space="preserve">
+    <value />
+    <comment>Must not be localized. Leave blank in non-default languages.</comment>
+  </data>
+  <data name="AboutContribute" xml:space="preserve">
+    <value>Care to contribute to the project? You are welcome to improve available translations, start a new one for your native language or to check out the % from CodePlex.</value>
+  </data>
+  <data name="AboutContributeContent" xml:space="preserve">
+    <value>source code</value>
+  </data>
+  <data name="AboutCreditsSources" xml:space="preserve">
+    <value>OnTopReplica is based upon the WindowsFormsAero library and some other libraries and code sources. %.</value>
+    <comment>Link % is replaced by string AboutCreditsSourcesContent.</comment>
+  </data>
+  <data name="AboutCreditsSourcesContent" xml:space="preserve">
+    <value>Read the full credits</value>
+  </data>
+  <data name="AboutDividerContribute" xml:space="preserve">
+    <value>Contribute</value>
+  </data>
+  <data name="AboutDividerCredits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="AboutDividerLicense" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="AboutDividerUpdates" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>The application is licensed under the % license, which meets the terms of the "open-source" definition specified by OSI.</value>
+  </data>
+  <data name="AboutLicenseContent" xml:space="preserve">
+    <value />
+    <comment>Can be left blank.</comment>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About OnTopReplica</value>
+  </data>
+  <data name="AboutTranslators" xml:space="preserve">
+    <value>Translators: {0}</value>
+    <comment>{0} translators (do not end with period)</comment>
+  </data>
+  <data name="AboutTranslatorsContent" xml:space="preserve">
+    <value />
+    <comment>Must not be localized. Leave blank in non-default languages.</comment>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Version {0}</value>
+  </data>
+  <data name="MenuOp25" xml:space="preserve">
+    <value>25%</value>
+  </data>
+  <data name="MenuOp50" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="MenuOp75" xml:space="preserve">
+    <value>75%</value>
+  </data>
+  <data name="MenuRestoreLast" xml:space="preserve">
+    <value>Restore last cloned window</value>
+  </data>
+  <data name="MenuRestoreLastTT" xml:space="preserve">
+    <value>When enabled, OnTopReplica will attempt to restore the last cloned window on start up.</value>
+  </data>
+  <data name="MenuSettings" xml:space="preserve">
+    <value>Settings...</value>
+  </data>
+  <data name="MenuSettingsTT" xml:space="preserve">
+    <value>Displays the settings panel.</value>
+  </data>
+  <data name="SettingsHotKeyClone" xml:space="preserve">
+    <value>Clone current window</value>
+  </data>
+  <data name="SettingsHotKeyDescription" xml:space="preserve">
+    <value>These system-wide shortcuts can also be used when OnTopReplica is not in focus.</value>
+  </data>
+  <data name="SettingsHotKeyShowHide" xml:space="preserve">
+    <value>Show/Hide</value>
+  </data>
+  <data name="SettingsHotKeyTitle" xml:space="preserve">
+    <value>Hot keys:</value>
+  </data>
+  <data name="SettingsLanguageTitle" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="SettingsRestartRequired" xml:space="preserve">
+    <value>Requires a restart.</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="UpdateAvailableInstruction" xml:space="preserve">
+    <value>Version {0} available</value>
+  </data>
+  <data name="UpdateDownloadingContent" xml:space="preserve">
+    <value>{0}/{1} bytes downloaded.</value>
+    <comment>{0} downloaded bytes {1} total bytes
+{0}  bytes geladen von {1} bytes gesamt
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes</comment>
+  </data>
+  <data name="UpdateDownloadingInstruction" xml:space="preserve">
+    <value>Downloading...</value>
+  </data>
+  <data name="UpdateInfoContent" xml:space="preserve">
+    <value>The latest version of OnTopReplica is already installed. The program automatically checks for updates at every start.
+
+You can keep up to date about OnTopReplica's development, suggest improvements and new features by &lt;a href="website"&gt;visiting the official website&lt;/a&gt;.</value>
+    <comment>The website link should be enclosed in &lt;a href="website"&gt;&lt;/a&gt; tags.</comment>
+  </data>
+  <data name="UpdateInfoFooter" xml:space="preserve">
+    <value>Latest stable version released on {0}.</value>
+    <comment>{0} last version release date</comment>
+  </data>
+  <data name="UpdateInfoInstruction" xml:space="preserve">
+    <value>OnTopReplica is up to date</value>
+  </data>
+  <data name="UpdateReadyCommandOk" xml:space="preserve">
+    <value>Install
+OnTopReplica will be closed and the update installed.</value>
+  </data>
+  <data name="UpdateReadyContent" xml:space="preserve">
+    <value>OnTopReplica version {0} is ready to be installed on your computer.</value>
+  </data>
+  <data name="UpdateReadyInstruction" xml:space="preserve">
+    <value>Update ready</value>
+  </data>
+  <data name="UpdateTitle" xml:space="preserve">
+    <value>OnTopReplica updates</value>
   </data>
 </root>
