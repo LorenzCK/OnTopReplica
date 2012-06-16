@@ -1,5 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -12,4 +117,539 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Created by: %.</value>
+    <comment>Link % is replaced by string AboutAuthorContent.</comment>
+  </data>
+  <data name="AboutAuthorContent" xml:space="preserve">
+    <value />
+    <comment>Must not be localized. Leave blank in non-default languages.</comment>
+  </data>
+  <data name="AboutButtonCancelTT" xml:space="preserve">
+    <value>Abort update process.</value>
+  </data>
+  <data name="AboutButtonExpanderTT" xml:space="preserve">
+    <value>Show details about OnTopReplica.</value>
+  </data>
+  <data name="AboutButtonResetTT" xml:space="preserve">
+    <value>Reset all OnTopReplica settings.</value>
+  </data>
+  <data name="AboutButtonUpdateTT" xml:space="preserve">
+    <value>Update OnTopReplica now.</value>
+  </data>
+  <data name="AboutContribute" xml:space="preserve">
+    <value>Care to contribute to the project? You are welcome to improve available translations, start a new one for your native language or to check out the % from CodePlex.</value>
+  </data>
+  <data name="AboutContributeContent" xml:space="preserve">
+    <value>source code</value>
+  </data>
+  <data name="AboutCreditsSources" xml:space="preserve">
+    <value>OnTopReplica is based upon the WindowsFormsAero library and some other libraries and code sources. %.</value>
+    <comment>Link % is replaced by string AboutCreditsSourcesContent.</comment>
+  </data>
+  <data name="AboutCreditsSourcesContent" xml:space="preserve">
+    <value>Read the full credits</value>
+  </data>
+  <data name="AboutDividerContribute" xml:space="preserve">
+    <value>Contribute</value>
+  </data>
+  <data name="AboutDividerCredits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="AboutDividerLicense" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="AboutDividerUpdates" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>The application is licensed under the % license, which meets the terms of the "open-source" definition specified by OSI.</value>
+  </data>
+  <data name="AboutLicenseContent" xml:space="preserve">
+    <value>Microsoft Reciprocal (MS-RL)</value>
+    <comment>Can be left blank.</comment>
+  </data>
+  <data name="AboutSlogan" xml:space="preserve">
+    <value>A lightweight, real-time, always on top thumbnail of a window of your choice.</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About OnTopReplica</value>
+  </data>
+  <data name="AboutTranslators" xml:space="preserve">
+    <value>Translators: {0}</value>
+    <comment>{0} translators (do not end with period)</comment>
+  </data>
+  <data name="AboutTranslatorsContent" xml:space="preserve">
+    <value>Christian Olaechea M., Daniel Zeus.EX, Federico Lorenzo, Goran Brecelj, Jan Romanczyk, Marco Kraxner, Patrik (batupata), Raúl Morillo, René Mihula, Roberto Leiro, Rodrigo Lourenço, Thomas Amundsen, Eric Hoffmann.</value>
+    <comment>Must not be localized. Leave blank in non-default languages.</comment>
+  </data>
+  <data name="AboutUpdatesCheckNow" xml:space="preserve">
+    <value>Check now!</value>
+  </data>
+  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
+    <value>OnTopReplica automatically checks for updates at every start up.</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Version {0}</value>
+  </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value />
+    <comment>Probably doesn't need localization. :)</comment>
+  </data>
+  <data name="AskReset" xml:space="preserve">
+    <value>Reset window completely?</value>
+  </data>
+  <data name="AskResetButtonOk" xml:space="preserve">
+    <value>&amp;Reset
+All settings will be lost.</value>
+  </data>
+  <data name="AskResetContent" xml:space="preserve">
+    <value>Can be used to reset all settings if you lost control over the window or moved it beyond the screen boundary.</value>
+  </data>
+  <data name="AskResetTitle" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="AskSettingReset" xml:space="preserve">
+    <value>Reset settings?</value>
+  </data>
+  <data name="AskSettingResetContent" xml:space="preserve">
+    <value>This will erase all settings of OnTopReplica, returning it to the original state right after installation (all saved information, like stored regions, will be lost).</value>
+  </data>
+  <data name="AskSettingResetTitle" xml:space="preserve">
+    <value>Reset settings</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>&amp;Cancel</value>
+    <comment>&amp; marks the ALT+[] shortcut</comment>
+  </data>
+  <data name="DrawRegions" xml:space="preserve">
+    <value>Draw regions using mouse.</value>
+  </data>
+  <data name="ErrorDetailButton" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="ErrorDetailsAero" xml:space="preserve">
+    <value>Details on Windows Aero</value>
+  </data>
+  <data name="ErrorDetailsAeroInfo" xml:space="preserve">
+    <value>Windows Aero is only available on Windows Vista Home Premium or higher.</value>
+  </data>
+  <data name="ErrorDwmOff" xml:space="preserve">
+    <value>'Desktop Composition' is not enabled.</value>
+  </data>
+  <data name="ErrorDwmOffContent" xml:space="preserve">
+    <value>You must enable desktop composition, by selecting 'Windows Aero' as the theme used by Windows.
+
+To do so, right-click on the desktop and click on Personalize.</value>
+  </data>
+  <data name="ErrorGenericInfoButton" xml:space="preserve">
+    <value>Error details</value>
+  </data>
+  <data name="ErrorGenericInfoText" xml:space="preserve">
+    <value>Error: </value>
+  </data>
+  <data name="ErrorGenericThumbnailHandleError" xml:space="preserve">
+    <value>It appears that the selected window has been closed or is not valid anymore.</value>
+  </data>
+  <data name="ErrorGenericTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorNoDwm" xml:space="preserve">
+    <value>Desktop Composition' is not supported on your Operating System.
+You must run this application on Windows Vista Home Premium or better.</value>
+  </data>
+  <data name="ErrorNoDwmTitle" xml:space="preserve">
+    <value>Desktop Composition unsupported</value>
+  </data>
+  <data name="ErrorNoThumbnail" xml:space="preserve">
+    <value>No thumbnail loaded.</value>
+  </data>
+  <data name="ErrorUnableToCreateThumbnail" xml:space="preserve">
+    <value>Unable to create thumbnail</value>
+  </data>
+  <data name="ErrorUnableToFit" xml:space="preserve">
+    <value>Unable to fit window.</value>
+  </data>
+  <data name="ErrorUpdate" xml:space="preserve">
+    <value>Unable to check for updates.</value>
+  </data>
+  <data name="ErrorUpdateContent" xml:space="preserve">
+    <value>It appears that OnTopReplica wasn't installed using 'ClickOnce'. You'll have to update manually (visit &lt;a href="http://ontopreplica.codeplex.com"&gt;OnTopReplica's homepage&lt;/a&gt;).</value>
+  </data>
+  <data name="ErrorUpdateContentGeneric" xml:space="preserve">
+    <value>OnTopReplica was unable to check whether an updated version is available. Make sure you are connected to the Internet. If you are, the website may be temporarily down.</value>
+  </data>
+  <data name="FullscreenMode" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="FullscreenModeAlwaysOnTop" xml:space="preserve">
+    <value>Always on top</value>
+  </data>
+  <data name="FullscreenModeAlwaysOnTopTT" xml:space="preserve">
+    <value>Forces OnTopReplica to stay always on top.</value>
+  </data>
+  <data name="FullscreenModeClickThrough" xml:space="preserve">
+    <value>Click through</value>
+  </data>
+  <data name="FullscreenModeClickThroughTT" xml:space="preserve">
+    <value>OnTopReplica will behave like a transparent overlay that lets your clicks through to the windows below.</value>
+  </data>
+  <data name="FullscreenModeNormal" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="FullscreenModeNormalTT" xml:space="preserve">
+    <value>Behaves like an ordinary window. You can bring other windows above OnTopReplica.</value>
+  </data>
+  <data name="FullscreenTitle" xml:space="preserve">
+    <value>OnTopReplica fullscreen</value>
+  </data>
+  <data name="GroupSwitchModeDisableButton" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="GroupSwitchModeEnableButton" xml:space="preserve">
+    <value>Enable Group mode</value>
+  </data>
+  <data name="GroupSwitchModeStatusDisabled" xml:space="preserve">
+    <value>Select multiple windows to enable.</value>
+  </data>
+  <data name="GroupSwitchModeStatusEnabled" xml:space="preserve">
+    <value>Group switch mode is enabled.</value>
+  </data>
+  <data name="GroupSwitchModeTitle" xml:space="preserve">
+    <value>Group switch mode:</value>
+  </data>
+  <data name="GroupSwitchModeWindows" xml:space="preserve">
+    <value>Windows</value>
+    <comment>Column Header of list, simply refers to available windows to be cloned</comment>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Homepage: www.codeplex.com/ontopreplica.</value>
+  </data>
+  <data name="InfoClickForwarding" xml:space="preserve">
+    <value>Do you want to enable "click forwarding"?</value>
+  </data>
+  <data name="InfoClickForwardingContent" xml:space="preserve">
+    <value>If this mode is enabled, OnTopReplica will forward all left mouse clicks to the window that is being cloned (this will allow you to do basic mouse operations on the cloned window without having to activate it).
+
+To exit this mode, push ESC.</value>
+  </data>
+  <data name="InfoClickForwardingTitle" xml:space="preserve">
+    <value>Click forwarding</value>
+  </data>
+  <data name="InfoClickThrough" xml:space="preserve">
+    <value>Enable Click-Through mode?</value>
+  </data>
+  <data name="InfoClickThroughDetails" xml:space="preserve">
+    <value>Click-through only works if it has been enabled in the Resize submenu and if the window is semi-transparent.</value>
+  </data>
+  <data name="InfoClickThroughInformation" xml:space="preserve">
+    <value>In this mode the fullscreen window will behave as a partially transparent overlay, allowing you to click on the other windows behind it.
+
+To return to normal mode anytime, activate OnTopReplica by clicking on the task bar (or the tray icon).</value>
+  </data>
+  <data name="InfoClickThroughNo" xml:space="preserve">
+    <value>No, thank you.
+You can enable click-through later</value>
+  </data>
+  <data name="InfoClickThroughOk" xml:space="preserve">
+    <value>Use Click-Through</value>
+  </data>
+  <data name="InfoClickThroughTitle" xml:space="preserve">
+    <value>Click-Through mode</value>
+  </data>
+  <data name="InfoUpdated" xml:space="preserve">
+    <value>OnTopReplica has been updated.</value>
+  </data>
+  <data name="InfoUpdatedContent" xml:space="preserve">
+    <value>In order to use the updated version of OnTopReplica you'll have to restart the application.</value>
+  </data>
+  <data name="InfoUpdatedTitle" xml:space="preserve">
+    <value>Update successful</value>
+  </data>
+  <data name="InfoUpToDate" xml:space="preserve">
+    <value>OnTopReplica is up to date.</value>
+  </data>
+  <data name="InfoUpToDateTitle" xml:space="preserve">
+    <value>No update available</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="MenuAbout" xml:space="preserve">
+    <value>About...</value>
+  </data>
+  <data name="MenuAboutTT" xml:space="preserve">
+    <value>Hides the main window and displays the "about" box.</value>
+  </data>
+  <data name="MenuAdvanced" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="MenuChrome" xml:space="preserve">
+    <value>Show window border</value>
+  </data>
+  <data name="MenuChromeTT" xml:space="preserve">
+    <value>Toggles the display of the window border.</value>
+  </data>
+  <data name="MenuClickForwarding" xml:space="preserve">
+    <value>Enable Click forwarding</value>
+  </data>
+  <data name="MenuClickForwardingTT" xml:space="preserve">
+    <value>Enable "click forwarding" to the cloned window.</value>
+  </data>
+  <data name="MenuClickThrough" xml:space="preserve">
+    <value>Enable Click-Through</value>
+  </data>
+  <data name="MenuClickThroughTT" xml:space="preserve">
+    <value>OnTopReplica will behave like a transparent overlay that lets your clicks through to the windows below.</value>
+  </data>
+  <data name="MenuClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="MenuCloseTT" xml:space="preserve">
+    <value>Closes OnTopReplica.</value>
+  </data>
+  <data name="MenuFitDouble" xml:space="preserve">
+    <value>2:1 Double</value>
+  </data>
+  <data name="MenuFitFullscreen" xml:space="preserve">
+    <value>Fullscreen</value>
+  </data>
+  <data name="MenuFitHalf" xml:space="preserve">
+    <value>1:2 Half</value>
+  </data>
+  <data name="MenuFitOriginal" xml:space="preserve">
+    <value>1:1 Fit to window</value>
+  </data>
+  <data name="MenuFitQuarter" xml:space="preserve">
+    <value>1:4 Quarter</value>
+  </data>
+  <data name="MenuGroupSwitch" xml:space="preserve">
+    <value>Group Switch mode</value>
+  </data>
+  <data name="MenuGroupSwitchTT" xml:space="preserve">
+    <value>OnTopReplica will automatically clone a window from an user defined group, switching to the one least recently activated to the foreground.</value>
+  </data>
+  <data name="MenuOp100" xml:space="preserve">
+    <value>100% (opaque)</value>
+  </data>
+  <data name="MenuOp100TT" xml:space="preserve">
+    <value>Sets OnTopReplica to be completely opaque.</value>
+  </data>
+  <data name="MenuOp25" xml:space="preserve">
+    <value>25%</value>
+  </data>
+  <data name="MenuOp25TT" xml:space="preserve">
+    <value>Sets OnTopReplica to 25% opacity.</value>
+  </data>
+  <data name="MenuOp50" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="MenuOp50TT" xml:space="preserve">
+    <value>Sets OnTopReplica to 50% opacity.</value>
+  </data>
+  <data name="MenuOp75" xml:space="preserve">
+    <value>75%</value>
+  </data>
+  <data name="MenuOp75TT" xml:space="preserve">
+    <value>Sets OnTopReplica to 75% opacity.</value>
+  </data>
+  <data name="MenuOpacity" xml:space="preserve">
+    <value>Opacity</value>
+  </data>
+  <data name="MenuOpen" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="MenuOpenTT" xml:space="preserve">
+    <value>Displays OnTopReplica.</value>
+  </data>
+  <data name="MenuPosBottomLeft" xml:space="preserve">
+    <value>Bottom Left</value>
+  </data>
+  <data name="MenuPosBottomRight" xml:space="preserve">
+    <value>Bottom Right</value>
+  </data>
+  <data name="MenuPosCenter" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="MenuPosDisabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MenuPosition" xml:space="preserve">
+    <value>Position lock</value>
+  </data>
+  <data name="MenuPositionTT" xml:space="preserve">
+    <value>Automatically position OnTopReplica on the current screen.</value>
+  </data>
+  <data name="MenuPosTopLeft" xml:space="preserve">
+    <value>Top Left</value>
+  </data>
+  <data name="MenuPosTopRight" xml:space="preserve">
+    <value>Top Right</value>
+  </data>
+  <data name="MenuQuitFullscreen" xml:space="preserve">
+    <value>Quit fullscreen mode</value>
+  </data>
+  <data name="MenuRecall" xml:space="preserve">
+    <value>Recall last position and size</value>
+  </data>
+  <data name="MenuRecallTT" xml:space="preserve">
+    <value>Toggles whether OnTopReplica should store its last position and size and use them when it is restarted.</value>
+  </data>
+  <data name="MenuReduce" xml:space="preserve">
+    <value>Minimize</value>
+  </data>
+  <data name="MenuReduceTT" xml:space="preserve">
+    <value>Minimizes OnTopReplica to the task bar (or the tray).</value>
+  </data>
+  <data name="MenuRegion" xml:space="preserve">
+    <value>Select region...</value>
+  </data>
+  <data name="MenuRegionTT" xml:space="preserve">
+    <value>Switches to "region mode", that allows you to select a limited region of the source's window as thumbnail.</value>
+  </data>
+  <data name="MenuReset" xml:space="preserve">
+    <value>Reset window</value>
+  </data>
+  <data name="MenuResetTT" xml:space="preserve">
+    <value>Resets OnTopReplica settings and its main window.</value>
+  </data>
+  <data name="MenuResize" xml:space="preserve">
+    <value>Resize</value>
+  </data>
+  <data name="MenuRestoreLast" xml:space="preserve">
+    <value>Restore last cloned window</value>
+  </data>
+  <data name="MenuRestoreLastTT" xml:space="preserve">
+    <value>When enabled, OnTopReplica will attempt to restore the last cloned window on start up.</value>
+  </data>
+  <data name="MenuSettings" xml:space="preserve">
+    <value>Settings...</value>
+  </data>
+  <data name="MenuSettingsTT" xml:space="preserve">
+    <value>Displays the settings panel.</value>
+  </data>
+  <data name="MenuSwitch" xml:space="preserve">
+    <value>Switch to window</value>
+  </data>
+  <data name="MenuSwitchTT" xml:space="preserve">
+    <value>Switches to the source window and hides OnTopReplica.</value>
+  </data>
+  <data name="MenuWindows" xml:space="preserve">
+    <value>Select window</value>
+  </data>
+  <data name="MenuWindowsNone" xml:space="preserve">
+    <value>- none -</value>
+  </data>
+  <data name="MenuWindowsTT" xml:space="preserve">
+    <value>Displays a list of window you can select as thumbnail source.</value>
+  </data>
+  <data name="MenuWindowsWholeRegion" xml:space="preserve">
+    <value>- whole -</value>
+  </data>
+  <data name="RegionsCurrentRegion" xml:space="preserve">
+    <value>Current region:</value>
+  </data>
+  <data name="RegionsDeleteButton" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="RegionsDoneButton" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="RegionsHeight" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="RegionsResetButton" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="RegionsSaveButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="RegionsStoredRegions" xml:space="preserve">
+    <value>Stored regions</value>
+  </data>
+  <data name="RegionsTitle" xml:space="preserve">
+    <value>Regions:</value>
+  </data>
+  <data name="RegionsWidth" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="RightClick" xml:space="preserve">
+    <value>Right-click here to start...</value>
+  </data>
+  <data name="SettingsHotKeyClone" xml:space="preserve">
+    <value>Clone current window</value>
+  </data>
+  <data name="SettingsHotKeyDescription" xml:space="preserve">
+    <value>These system-wide shortcuts can also be used when OnTopReplica is not in focus.</value>
+  </data>
+  <data name="SettingsHotKeyShowHide" xml:space="preserve">
+    <value>Show/Hide</value>
+  </data>
+  <data name="SettingsHotKeyTitle" xml:space="preserve">
+    <value>Hot keys:</value>
+  </data>
+  <data name="SettingsLanguageTitle" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="SettingsRestartRequired" xml:space="preserve">
+    <value>Requires a restart.</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
+    <value>Cancel update
+OnTopReplica will prompt you the next time it is started.</value>
+  </data>
+  <data name="UpdateAvailableCommandOk" xml:space="preserve">
+    <value>Download
+Install OnTopReplica {0}.</value>
+  </data>
+  <data name="UpdateAvailableContent" xml:space="preserve">
+    <value>The new version can be downloaded and installed from the official website.</value>
+  </data>
+  <data name="UpdateAvailableExpanded" xml:space="preserve">
+    <value>Installed version: {0}
+Available version: {1}</value>
+  </data>
+  <data name="UpdateAvailableInstruction" xml:space="preserve">
+    <value>Version {0} available</value>
+  </data>
+  <data name="UpdateDownloadingContent" xml:space="preserve">
+    <value>{0}/{1} bytes downloaded.</value>
+    <comment>{0} downloaded bytes {1} total bytes
+{0}  bytes geladen von {1} bytes gesamt
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes</comment>
+  </data>
+  <data name="UpdateDownloadingInstruction" xml:space="preserve">
+    <value>Downloading...</value>
+  </data>
+  <data name="UpdateInfoContent" xml:space="preserve">
+    <value>The latest version of OnTopReplica is already installed. The program automatically checks for updates at every start.
+
+You can keep up to date about OnTopReplica's development, suggest improvements and new features by &lt;a href="website"&gt;visiting the official website&lt;/a&gt;.</value>
+    <comment>The website link should be enclosed in &lt;a href="website"&gt;&lt;/a&gt; tags.</comment>
+  </data>
+  <data name="UpdateInfoFooter" xml:space="preserve">
+    <value>Latest stable version released on {0}.</value>
+    <comment>{0} last version release date</comment>
+  </data>
+  <data name="UpdateInfoInstruction" xml:space="preserve">
+    <value>OnTopReplica is up to date</value>
+  </data>
+  <data name="UpdateReadyCommandOk" xml:space="preserve">
+    <value>Install
+OnTopReplica will be closed and the update installed.</value>
+  </data>
+  <data name="UpdateReadyContent" xml:space="preserve">
+    <value>OnTopReplica version {0} is ready to be installed on your computer.</value>
+  </data>
+  <data name="UpdateReadyInstruction" xml:space="preserve">
+    <value>Update ready</value>
+  </data>
+  <data name="UpdateTitle" xml:space="preserve">
+    <value>OnTopReplica updates</value>
+  </data>
 </root>
