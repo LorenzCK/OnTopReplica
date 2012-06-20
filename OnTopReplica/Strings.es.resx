@@ -517,7 +517,7 @@ Instalar OnTopReplica {0}</value>
 Versión disponible: {1}</value>
   </data>
   <data name="AboutAuthor" xml:space="preserve">
-    <value>Created by: %.</value>
+    <value>Autor: %.</value>
     <comment>Link % is replaced by string AboutAuthorContent.</comment>
   </data>
   <data name="AboutAuthorContent" xml:space="preserve">
@@ -525,42 +525,42 @@ Versión disponible: {1}</value>
     <comment>Must not be localized. Leave blank in non-default languages.</comment>
   </data>
   <data name="AboutContribute" xml:space="preserve">
-    <value>Care to contribute to the project? You are welcome to improve available translations, start a new one for your native language or to check out the % from CodePlex.</value>
+    <value>Contribuye con el proyecto.</value>
+    <comment>Unfinished.</comment>
   </data>
   <data name="AboutContributeContent" xml:space="preserve">
-    <value>source code</value>
+    <value>código fuente</value>
   </data>
   <data name="AboutCreditsSources" xml:space="preserve">
-    <value>OnTopReplica is based upon the WindowsFormsAero library and some other libraries and code sources. %.</value>
-    <comment>Link % is replaced by string AboutCreditsSourcesContent.</comment>
+    <value>OnTopReplica está basado en la librería WindowsFormsAero y otras librerías y códigos fuente. %.</value>
   </data>
   <data name="AboutCreditsSourcesContent" xml:space="preserve">
-    <value>Read the full credits</value>
+    <value>Leer los créditos completos</value>
   </data>
   <data name="AboutDividerContribute" xml:space="preserve">
-    <value>Contribute</value>
+    <value>Contribuir</value>
   </data>
   <data name="AboutDividerCredits" xml:space="preserve">
-    <value>Credits</value>
+    <value>Créditos</value>
   </data>
   <data name="AboutDividerLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Licencia</value>
   </data>
   <data name="AboutDividerUpdates" xml:space="preserve">
-    <value>Updates</value>
+    <value>Actualizaciones</value>
   </data>
   <data name="AboutLicense" xml:space="preserve">
-    <value>The application is licensed under the % license, which meets the terms of the "open-source" definition specified by OSI.</value>
+    <value>La aplicación está bajo la licencia %, por lo que rigen los términos de la definición "open-source" especificada por OSI.</value>
   </data>
   <data name="AboutLicenseContent" xml:space="preserve">
     <value />
     <comment>Can be left blank.</comment>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>About OnTopReplica</value>
+    <value>Acerca de OnTopReplica</value>
   </data>
   <data name="AboutTranslators" xml:space="preserve">
-    <value>Translators: {0}</value>
+    <value>Traductores: {0}</value>
     <comment>{0} translators (do not end with period)</comment>
   </data>
   <data name="AboutTranslatorsContent" xml:space="preserve">
@@ -568,7 +568,7 @@ Versión disponible: {1}</value>
     <comment>Must not be localized. Leave blank in non-default languages.</comment>
   </data>
   <data name="AboutVersion" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Versión: {0}</value>
   </data>
   <data name="MenuOp25" xml:space="preserve">
     <value>25%</value>
@@ -580,76 +580,71 @@ Versión disponible: {1}</value>
     <value>75%</value>
   </data>
   <data name="MenuRestoreLast" xml:space="preserve">
-    <value>Restore last cloned window</value>
+    <value>Restaurar la última ventana clonada</value>
   </data>
   <data name="MenuRestoreLastTT" xml:space="preserve">
-    <value>When enabled, OnTopReplica will attempt to restore the last cloned window on start up.</value>
+    <value>Si está activado, OnTopReplica intentará restaurar la última ventana clonada al iniciarse.</value>
   </data>
   <data name="MenuSettings" xml:space="preserve">
-    <value>Settings...</value>
+    <value>Ajustes...</value>
   </data>
   <data name="MenuSettingsTT" xml:space="preserve">
-    <value>Displays the settings panel.</value>
+    <value>Muestra el panel de ajustes.</value>
   </data>
   <data name="SettingsHotKeyClone" xml:space="preserve">
-    <value>Clone current window</value>
+    <value>Clona ventana actual</value>
   </data>
   <data name="SettingsHotKeyDescription" xml:space="preserve">
-    <value>These system-wide shortcuts can also be used when OnTopReplica is not in focus.</value>
+    <value>Los atajos de teclado pueden ser utilizados aunque OnTopReplica no esté en primer plano.</value>
   </data>
   <data name="SettingsHotKeyShowHide" xml:space="preserve">
-    <value>Show/Hide</value>
+    <value>Mostrar/ocultar</value>
   </data>
   <data name="SettingsHotKeyTitle" xml:space="preserve">
-    <value>Hot keys:</value>
+    <value>Atajos de teclado:</value>
   </data>
   <data name="SettingsLanguageTitle" xml:space="preserve">
-    <value>Language:</value>
+    <value>Idioma:</value>
   </data>
   <data name="SettingsRestartRequired" xml:space="preserve">
-    <value>Requires a restart.</value>
+    <value>Requiere reinicio.</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ajustes</value>
   </data>
   <data name="UpdateAvailableInstruction" xml:space="preserve">
-    <value>Version {0} available</value>
+    <value>Versión {0} disponible</value>
   </data>
   <data name="UpdateDownloadingContent" xml:space="preserve">
-    <value>{0}/{1} bytes downloaded.</value>
-    <comment>{0} downloaded bytes {1} total bytes
-{0}  bytes geladen von {1} bytes gesamt
-{0} downloaded bytes {1} total bytes
-{0} downloaded bytes {1} total bytes
-{0} downloaded bytes {1} total bytes</comment>
+    <value>{0}/{1} bytes descargados.</value>
   </data>
   <data name="UpdateDownloadingInstruction" xml:space="preserve">
-    <value>Downloading...</value>
+    <value>Descargando...</value>
   </data>
   <data name="UpdateInfoContent" xml:space="preserve">
-    <value>The latest version of OnTopReplica is already installed. The program automatically checks for updates at every start.
+    <value>La última versión de OnTopReplica ya está instalada. El programa buscará actualizaciones automáticamente con cada inicio.
 
-You can keep up to date about OnTopReplica's development, suggest improvements and new features by &lt;a href="website"&gt;visiting the official website&lt;/a&gt;.</value>
+Puedes mantenerte informado del desarrollo de OnTopReplica, sugerir mejoras y nuevas características &lt;a href="website"&gt;visitando la web oficial&lt;/a&gt;.</value>
     <comment>The website link should be enclosed in &lt;a href="website"&gt;&lt;/a&gt; tags.</comment>
   </data>
   <data name="UpdateInfoFooter" xml:space="preserve">
-    <value>Latest stable version released on {0}.</value>
+    <value>Última versión estable liberada en {0}.</value>
     <comment>{0} last version release date</comment>
   </data>
   <data name="UpdateInfoInstruction" xml:space="preserve">
-    <value>OnTopReplica is up to date</value>
+    <value>OnTopReplica está actualizado</value>
   </data>
   <data name="UpdateReadyCommandOk" xml:space="preserve">
-    <value>Install
-OnTopReplica will be closed and the update installed.</value>
+    <value>Instalar
+OnTopReplica se cerrará y se instalará la actualización.</value>
   </data>
   <data name="UpdateReadyContent" xml:space="preserve">
-    <value>OnTopReplica version {0} is ready to be installed on your computer.</value>
+    <value>La versión de OnTopReplica {0} está lista para ser instalada en su ordenador.</value>
   </data>
   <data name="UpdateReadyInstruction" xml:space="preserve">
-    <value>Update ready</value>
+    <value>Actualización lista</value>
   </data>
   <data name="UpdateTitle" xml:space="preserve">
-    <value>OnTopReplica updates</value>
+    <value>Actualizaciones de OnTopReplica</value>
   </data>
 </root>
