@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutAuthor" xml:space="preserve">
-    <value>Created by: %.</value>
+    <value>Автор: %.</value>
     <comment>Link % is replaced by string AboutAuthorContent.</comment>
   </data>
   <data name="AboutAuthorContent" xml:space="preserve">
@@ -126,57 +126,57 @@
     <comment>Must not be localized. Leave blank in non-default languages.</comment>
   </data>
   <data name="AboutButtonCancelTT" xml:space="preserve">
-    <value>Abort update process.</value>
+    <value>Остановить обновление</value>
   </data>
   <data name="AboutButtonExpanderTT" xml:space="preserve">
-    <value>Show details about OnTopReplica.</value>
+    <value>О программе</value>
   </data>
   <data name="AboutButtonResetTT" xml:space="preserve">
-    <value>Reset all OnTopReplica settings.</value>
+    <value>Установить настройки по умолчанию</value>
   </data>
   <data name="AboutButtonUpdateTT" xml:space="preserve">
-    <value>Update OnTopReplica now.</value>
+    <value>Обновить программу</value>
   </data>
   <data name="AboutContribute" xml:space="preserve">
-    <value>Care to contribute to the project? You are welcome to improve available translations, start a new one for your native language or to check out the % from CodePlex.</value>
+    <value>Хотите поддержать проект? Примите участие в улучшении готовых переводов, создайте свой на вашем родном языке или помогите улучшить % на «CodePlex».</value>
   </data>
   <data name="AboutContributeContent" xml:space="preserve">
-    <value>source code</value>
+    <value>источниках кода</value>
   </data>
   <data name="AboutCreditsSources" xml:space="preserve">
-    <value>OnTopReplica is based upon the WindowsFormsAero library and some other libraries and code sources. %.</value>
+    <value>Программа основана на библиотеке «WindowsFormsAero» и некоторых других библиотеках и источниках кода. %.</value>
     <comment>Link % is replaced by string AboutCreditsSourcesContent.</comment>
   </data>
   <data name="AboutCreditsSourcesContent" xml:space="preserve">
-    <value>Read the full credits</value>
+    <value>Прочитайте полные сведения об источниках</value>
   </data>
   <data name="AboutDividerContribute" xml:space="preserve">
-    <value>Contribute</value>
+    <value>Принять участие в разработке</value>
   </data>
   <data name="AboutDividerCredits" xml:space="preserve">
-    <value>Credits</value>
+    <value>Сведения об источниках</value>
   </data>
   <data name="AboutDividerLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Соглашение</value>
   </data>
   <data name="AboutDividerUpdates" xml:space="preserve">
-    <value>Updates</value>
+    <value>Обновление</value>
   </data>
   <data name="AboutLicense" xml:space="preserve">
-    <value>The application is licensed under the % license, which meets the terms of the "open-source" definition specified by OSI.</value>
+    <value>Программа выпущена в соответствии с лицензией %, которая подходит под определение программы с открытым исходом кодом в представлении OSI.</value>
   </data>
   <data name="AboutLicenseContent" xml:space="preserve">
-    <value>Microsoft Reciprocal (MS-RL)</value>
+    <value />
     <comment>Can be left blank.</comment>
   </data>
   <data name="AboutSlogan" xml:space="preserve">
-    <value>A lightweight, real-time, always on top thumbnail of a window of your choice.</value>
+    <value>Просмотр части выбранного вами окна — просто и легко, в реальном времени, всегда поверх остальных окон.</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>About OnTopReplica</value>
+    <value>О программе</value>
   </data>
   <data name="AboutTranslators" xml:space="preserve">
-    <value>Translators: {0}</value>
+    <value>Переводчики: {0}</value>
     <comment>{0} translators (do not end with period)</comment>
   </data>
   <data name="AboutTranslatorsContent" xml:space="preserve">
@@ -184,472 +184,464 @@
     <comment>Must not be localized. Leave blank in non-default languages.</comment>
   </data>
   <data name="AboutUpdatesCheckNow" xml:space="preserve">
-    <value>Check now!</value>
+    <value>Обновить сейчас</value>
   </data>
   <data name="AboutUpdatesDisclaimer" xml:space="preserve">
-    <value>OnTopReplica automatically checks for updates at every start up.</value>
+    <value>Программа автоматически проверяет наличие обновлений при запуске</value>
   </data>
   <data name="AboutVersion" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Версия {0}</value>
   </data>
   <data name="ApplicationName" xml:space="preserve">
     <value />
     <comment>Probably doesn't need localization. :)</comment>
   </data>
   <data name="AskReset" xml:space="preserve">
-    <value>Reset window completely?</value>
+    <value>Сбросить окно?</value>
   </data>
   <data name="AskResetButtonOk" xml:space="preserve">
-    <value>&amp;Reset
-All settings will be lost.</value>
+    <value>&amp;Сброс
+Все настройки будут удалены.</value>
   </data>
   <data name="AskResetContent" xml:space="preserve">
-    <value>Can be used to reset all settings if you lost control over the window or moved it beyond the screen boundary.</value>
+    <value>Можно использовать для сброса всех настроек, если Вы утратили контроль над окном либо поместили его за пределы экрана. </value>
   </data>
   <data name="AskResetTitle" xml:space="preserve">
-    <value>Reset</value>
+    <value>Сброс</value>
   </data>
   <data name="AskSettingReset" xml:space="preserve">
-    <value>Reset settings?</value>
+    <value>Сбросить настройки?</value>
   </data>
   <data name="AskSettingResetContent" xml:space="preserve">
-    <value>This will erase all settings of OnTopReplica, returning it to the original state right after installation (all saved information, like stored regions, will be lost).</value>
+    <value>по умолчанию (вся сохраненная после установки информация вроде сохраненных областей будет утрачена).</value>
   </data>
   <data name="AskSettingResetTitle" xml:space="preserve">
-    <value>Reset settings</value>
+    <value>Сбросить настройки</value>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
-    <value>&amp;Cancel</value>
+    <value>&amp;Отмена</value>
     <comment>&amp; marks the ALT+[] shortcut</comment>
   </data>
   <data name="DrawRegions" xml:space="preserve">
-    <value>Draw regions using mouse.</value>
+    <value>Выберите области мышью</value>
   </data>
   <data name="ErrorDetailButton" xml:space="preserve">
-    <value>Details</value>
+    <value>Подробности</value>
   </data>
   <data name="ErrorDetailsAero" xml:space="preserve">
-    <value>Details on Windows Aero</value>
+    <value>Подробности о «Windows Aero» </value>
   </data>
   <data name="ErrorDetailsAeroInfo" xml:space="preserve">
-    <value>Windows Aero is only available on Windows Vista Home Premium or higher.</value>
+    <value>Функция «Windows Aero» доступна только на системах «Windows», начиная с «Vista Home Premium», кроме версий «Starter» и «Home Basic» (по умолчанию).</value>
   </data>
   <data name="ErrorDwmOff" xml:space="preserve">
-    <value>'Desktop Composition' is not enabled.</value>
+    <value>Композиция слоев рабочего стола недоступна.</value>
   </data>
   <data name="ErrorDwmOffContent" xml:space="preserve">
-    <value>You must enable desktop composition, by selecting 'Windows Aero' as the theme used by Windows.
-
-To do so, right-click on the desktop and click on Personalize.</value>
+    <value>Для включения правой кнопкой мыши по рабочему столу и выберите «Персонализацию».</value>
   </data>
   <data name="ErrorGenericInfoButton" xml:space="preserve">
-    <value>Error details</value>
+    <value>Описание ошибки</value>
   </data>
   <data name="ErrorGenericInfoText" xml:space="preserve">
-    <value>Error: </value>
+    <value>Ошибка:</value>
   </data>
   <data name="ErrorGenericThumbnailHandleError" xml:space="preserve">
-    <value>It appears that the selected window has been closed or is not valid anymore.</value>
+    <value>Вероятно, выбранное окно было закрыто или больше не отвечает.</value>
   </data>
   <data name="ErrorGenericTitle" xml:space="preserve">
-    <value>Error</value>
+    <value>Ошибка</value>
   </data>
   <data name="ErrorNoDwm" xml:space="preserve">
-    <value>Desktop Composition' is not supported on your Operating System.
-You must run this application on Windows Vista Home Premium or better.</value>
+    <value>Для запуска программы требуется «Windows Vista Home Premium» или другие версии «Windows» с поддержкой «Aero».</value>
   </data>
   <data name="ErrorNoDwmTitle" xml:space="preserve">
-    <value>Desktop Composition unsupported</value>
+    <value>Композиция слоев рабочего стола не поддерживается.</value>
   </data>
   <data name="ErrorNoThumbnail" xml:space="preserve">
-    <value>No thumbnail loaded.</value>
+    <value>Окно просмотра не загружено.</value>
   </data>
   <data name="ErrorUnableToCreateThumbnail" xml:space="preserve">
-    <value>Unable to create thumbnail</value>
+    <value>Невозможно создать окно просмотра.</value>
   </data>
   <data name="ErrorUnableToFit" xml:space="preserve">
-    <value>Unable to fit window.</value>
+    <value>Невозможно уместить в окне.</value>
   </data>
   <data name="ErrorUpdate" xml:space="preserve">
-    <value>Unable to check for updates.</value>
+    <value>Невозможно проверить обновления.</value>
   </data>
   <data name="ErrorUpdateContent" xml:space="preserve">
-    <value>It appears that OnTopReplica wasn't installed using 'ClickOnce'. You'll have to update manually (visit &lt;a href="http://ontopreplica.codeplex.com"&gt;OnTopReplica's homepage&lt;/a&gt;).</value>
+    <value>Вероятно, программа была установлена с использованием функции «ClickOnce». Вам необходимо обновить ее самостоятельно. (Посетите &lt;a href="http://ontopreplica.codeplex.com"&gt; домашнюю страницу программы&lt;/a&gt;).</value>
   </data>
   <data name="ErrorUpdateContentGeneric" xml:space="preserve">
-    <value>OnTopReplica was unable to check whether an updated version is available. Make sure you are connected to the Internet. If you are, the website may be temporarily down.</value>
+    <value>Программе не удалось проверить доступность новой версии. Удостоверьтесь, что подключение к Интернету присутствует. Если присутствует, сайт может временно не работать. </value>
   </data>
   <data name="FullscreenMode" xml:space="preserve">
-    <value>Mode</value>
+    <value>Режим</value>
   </data>
   <data name="FullscreenModeAlwaysOnTop" xml:space="preserve">
-    <value>Always on top</value>
+    <value>Всегда поверх других окон</value>
   </data>
   <data name="FullscreenModeAlwaysOnTopTT" xml:space="preserve">
-    <value>Forces OnTopReplica to stay always on top.</value>
+    <value>Всегда удерживать программу поверх других окон.</value>
   </data>
   <data name="FullscreenModeClickThrough" xml:space="preserve">
-    <value>Click through</value>
+    <value>Пропускать щелчки мышью</value>
   </data>
   <data name="FullscreenModeClickThroughTT" xml:space="preserve">
-    <value>OnTopReplica will behave like a transparent overlay that lets your clicks through to the windows below.</value>
+    <value>Программа будет работать, как прозрачный слой, позволяющий щелкать мышью по нижележащим окнам.</value>
   </data>
   <data name="FullscreenModeNormal" xml:space="preserve">
-    <value>Standard</value>
+    <value>Обычный</value>
   </data>
   <data name="FullscreenModeNormalTT" xml:space="preserve">
-    <value>Behaves like an ordinary window. You can bring other windows above OnTopReplica.</value>
+    <value>Программа будет работать, как обычное окно. Вы сможете помещать другие окна поверх окна программы.</value>
   </data>
   <data name="FullscreenTitle" xml:space="preserve">
-    <value>OnTopReplica fullscreen</value>
+    <value>Полноэкранный режим</value>
   </data>
   <data name="GroupSwitchModeDisableButton" xml:space="preserve">
-    <value>Disable</value>
+    <value>Отключить</value>
   </data>
   <data name="GroupSwitchModeEnableButton" xml:space="preserve">
-    <value>Enable Group mode</value>
+    <value>Включить групповой режим</value>
   </data>
   <data name="GroupSwitchModeStatusDisabled" xml:space="preserve">
-    <value>Select multiple windows to enable.</value>
+    <value>Для включения выберите несколько окон.</value>
   </data>
   <data name="GroupSwitchModeStatusEnabled" xml:space="preserve">
-    <value>Group switch mode is enabled.</value>
+    <value>Групповой режим включен.</value>
   </data>
   <data name="GroupSwitchModeTitle" xml:space="preserve">
-    <value>Group switch mode:</value>
+    <value>Групповой режим:</value>
   </data>
   <data name="GroupSwitchModeWindows" xml:space="preserve">
-    <value>Windows</value>
+    <value>Окна</value>
     <comment>Column Header of list, simply refers to available windows to be cloned</comment>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Homepage: www.codeplex.com/ontopreplica.</value>
+    <value>Домашняя страница: www.codeplex.com/ontopreplica.</value>
   </data>
   <data name="InfoClickForwarding" xml:space="preserve">
-    <value>Do you want to enable "click forwarding"?</value>
+    <value>Хотите включить передачу щелчков мышью главному окну?</value>
   </data>
   <data name="InfoClickForwardingContent" xml:space="preserve">
-    <value>If this mode is enabled, OnTopReplica will forward all left mouse clicks to the window that is being cloned (this will allow you to do basic mouse operations on the cloned window without having to activate it).
-
-To exit this mode, push ESC.</value>
+    <value>Нажать Esc для выхода из этого режима.</value>
+    <comment>There appears to be a missing part.</comment>
   </data>
   <data name="InfoClickForwardingTitle" xml:space="preserve">
-    <value>Click forwarding</value>
+    <value>Передача щелчков мышью главному окну.</value>
+    <comment>This appears to be wrong.</comment>
   </data>
   <data name="InfoClickThrough" xml:space="preserve">
-    <value>Enable Click-Through mode?</value>
+    <value>Включить режим сквозных щелчков мышью?</value>
   </data>
   <data name="InfoClickThroughDetails" xml:space="preserve">
-    <value>Click-through only works if it has been enabled in the Resize submenu and if the window is semi-transparent.</value>
+    <value>Режим сквозных щелчков мышью работает, только когда он включен в подменю «Изменить размер» и окно полупрозрачно.</value>
   </data>
   <data name="InfoClickThroughInformation" xml:space="preserve">
-    <value>In this mode the fullscreen window will behave as a partially transparent overlay, allowing you to click on the other windows behind it.
-
-To return to normal mode anytime, activate OnTopReplica by clicking on the task bar (or the tray icon).</value>
+    <value>Для возвращения в обычный режим в любое время, разверните программу щелчком по ней в панели задач (или лотке).</value>
   </data>
   <data name="InfoClickThroughNo" xml:space="preserve">
-    <value>No, thank you.
-You can enable click-through later</value>
+    <value>Нет, спасибо
+Вы можете включить сквозные щелчки мышью в другой раз.</value>
   </data>
   <data name="InfoClickThroughOk" xml:space="preserve">
-    <value>Use Click-Through</value>
+    <value>Использовать сквозные щелчки мышью</value>
   </data>
   <data name="InfoClickThroughTitle" xml:space="preserve">
-    <value>Click-Through mode</value>
+    <value>Режим сквозных щелчков мышью</value>
   </data>
   <data name="InfoUpdated" xml:space="preserve">
-    <value>OnTopReplica has been updated.</value>
+    <value>Программа обновлена.</value>
   </data>
   <data name="InfoUpdatedContent" xml:space="preserve">
-    <value>In order to use the updated version of OnTopReplica you'll have to restart the application.</value>
+    <value>Для использования обновленной версии программы ее необходимо перезапустить.</value>
   </data>
   <data name="InfoUpdatedTitle" xml:space="preserve">
-    <value>Update successful</value>
+    <value>Обновление успешно</value>
   </data>
   <data name="InfoUpToDate" xml:space="preserve">
-    <value>OnTopReplica is up to date.</value>
+    <value>Используется последняя версия программы.</value>
   </data>
   <data name="InfoUpToDateTitle" xml:space="preserve">
-    <value>No update available</value>
+    <value>Обновлений нет</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Язык</value>
   </data>
   <data name="MenuAbout" xml:space="preserve">
-    <value>About...</value>
+    <value>О программе...</value>
   </data>
   <data name="MenuAboutTT" xml:space="preserve">
-    <value>Hides the main window and displays the "about" box.</value>
+    <value>Сворачивает главное окно и показывает окно «О программе».</value>
   </data>
   <data name="MenuAdvanced" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Дополнительно</value>
   </data>
   <data name="MenuChrome" xml:space="preserve">
-    <value>Show window border</value>
+    <value>Показывать границу окна</value>
   </data>
   <data name="MenuChromeTT" xml:space="preserve">
-    <value>Toggles the display of the window border.</value>
+    <value>Изменяет видимость границы окна.</value>
   </data>
   <data name="MenuClickForwarding" xml:space="preserve">
-    <value>Enable Click forwarding</value>
+    <value>Включить передачу щелчков мышью главному окну</value>
   </data>
   <data name="MenuClickForwardingTT" xml:space="preserve">
-    <value>Enable "click forwarding" to the cloned window.</value>
+    <value>Включить передачу щелчков мышью скопированному окну.</value>
   </data>
   <data name="MenuClickThrough" xml:space="preserve">
-    <value>Enable Click-Through</value>
+    <value>Включить сквозные щелчки мышью</value>
   </data>
   <data name="MenuClickThroughTT" xml:space="preserve">
-    <value>OnTopReplica will behave like a transparent overlay that lets your clicks through to the windows below.</value>
+    <value>Программа будет работать, как прозрачный слой, позволяющий щелкать мышью по нижележащим окнам.</value>
   </data>
   <data name="MenuClose" xml:space="preserve">
-    <value>Close</value>
+    <value>Закрыть</value>
   </data>
   <data name="MenuCloseTT" xml:space="preserve">
-    <value>Closes OnTopReplica.</value>
+    <value>Закрыть программу.</value>
   </data>
   <data name="MenuFitDouble" xml:space="preserve">
-    <value>2:1 Double</value>
+    <value>2:1 Двойной</value>
   </data>
   <data name="MenuFitFullscreen" xml:space="preserve">
-    <value>Fullscreen</value>
+    <value>Полноэкранный режим</value>
   </data>
   <data name="MenuFitHalf" xml:space="preserve">
-    <value>1:2 Half</value>
+    <value>1:2 Половина</value>
   </data>
   <data name="MenuFitOriginal" xml:space="preserve">
-    <value>1:1 Fit to window</value>
+    <value>1:1 По размерам окна</value>
   </data>
   <data name="MenuFitQuarter" xml:space="preserve">
-    <value>1:4 Quarter</value>
+    <value>1:4 Четверть</value>
   </data>
   <data name="MenuGroupSwitch" xml:space="preserve">
-    <value>Group Switch mode</value>
+    <value>Групповой режим</value>
   </data>
   <data name="MenuGroupSwitchTT" xml:space="preserve">
-    <value>OnTopReplica will automatically clone a window from an user defined group, switching to the one least recently activated to the foreground.</value>
+    <value>Программа автоматически скопирует окно из группы, определенной пользователем, переключаясь на то, которое побывало на переднем плане первым из всех.</value>
+    <comment>Fixed</comment>
   </data>
   <data name="MenuOp100" xml:space="preserve">
-    <value>100% (opaque)</value>
+    <value>100% (непрозрачный)</value>
   </data>
   <data name="MenuOp100TT" xml:space="preserve">
-    <value>Sets OnTopReplica to be completely opaque.</value>
+    <value>Делает программу полностью непрозрачной.</value>
   </data>
   <data name="MenuOp25" xml:space="preserve">
     <value>25%</value>
   </data>
   <data name="MenuOp25TT" xml:space="preserve">
-    <value>Sets OnTopReplica to 25% opacity.</value>
+    <value>Делает программу прозрачной на 25%.</value>
   </data>
   <data name="MenuOp50" xml:space="preserve">
     <value>50%</value>
   </data>
   <data name="MenuOp50TT" xml:space="preserve">
-    <value>Sets OnTopReplica to 50% opacity.</value>
+    <value>Делает программу прозрачной на 50%.</value>
   </data>
   <data name="MenuOp75" xml:space="preserve">
     <value>75%</value>
   </data>
   <data name="MenuOp75TT" xml:space="preserve">
-    <value>Sets OnTopReplica to 75% opacity.</value>
+    <value>Делает программу прозрачной на 75%.</value>
   </data>
   <data name="MenuOpacity" xml:space="preserve">
-    <value>Opacity</value>
+    <value>Прозрачность</value>
   </data>
   <data name="MenuOpen" xml:space="preserve">
-    <value>Open</value>
+    <value>Открыть</value>
   </data>
   <data name="MenuOpenTT" xml:space="preserve">
-    <value>Displays OnTopReplica.</value>
+    <value>Показывает программу.</value>
   </data>
   <data name="MenuPosBottomLeft" xml:space="preserve">
-    <value>Bottom Left</value>
+    <value>Снизу слева</value>
   </data>
   <data name="MenuPosBottomRight" xml:space="preserve">
-    <value>Bottom Right</value>
+    <value>Снизу справа</value>
   </data>
   <data name="MenuPosCenter" xml:space="preserve">
-    <value>Center</value>
+    <value>В центре</value>
   </data>
   <data name="MenuPosDisabled" xml:space="preserve">
-    <value>Disabled</value>
+    <value>Отключено</value>
   </data>
   <data name="MenuPosition" xml:space="preserve">
-    <value>Position lock</value>
+    <value>Закрепить положение</value>
   </data>
   <data name="MenuPositionTT" xml:space="preserve">
-    <value>Automatically position OnTopReplica on the current screen.</value>
+    <value>Автоматически разместить программу на текущем экране.</value>
   </data>
   <data name="MenuPosTopLeft" xml:space="preserve">
-    <value>Top Left</value>
+    <value>Сверху слева</value>
   </data>
   <data name="MenuPosTopRight" xml:space="preserve">
-    <value>Top Right</value>
+    <value>Сверху справа</value>
   </data>
   <data name="MenuQuitFullscreen" xml:space="preserve">
-    <value>Quit fullscreen mode</value>
+    <value>Выйти из полноэкранного режима</value>
   </data>
   <data name="MenuRecall" xml:space="preserve">
-    <value>Recall last position and size</value>
+    <value>Использовать последнее положение и размер</value>
   </data>
   <data name="MenuRecallTT" xml:space="preserve">
-    <value>Toggles whether OnTopReplica should store its last position and size and use them when it is restarted.</value>
+    <value>Сохранение программой своего последнего положения и размера с их использованием при запуске.</value>
   </data>
   <data name="MenuReduce" xml:space="preserve">
-    <value>Minimize</value>
+    <value>Свернуть</value>
   </data>
   <data name="MenuReduceTT" xml:space="preserve">
-    <value>Minimizes OnTopReplica to the task bar (or the tray).</value>
+    <value>Сворачивает программу в панель задач (или лоток).</value>
   </data>
   <data name="MenuRegion" xml:space="preserve">
-    <value>Select region...</value>
+    <value>Выбрать область...</value>
   </data>
   <data name="MenuRegionTT" xml:space="preserve">
-    <value>Switches to "region mode", that allows you to select a limited region of the source's window as thumbnail.</value>
+    <value>Переключается в «режим области», позволяющий выбирать для показа ограниченную область исходного окна.</value>
   </data>
   <data name="MenuReset" xml:space="preserve">
-    <value>Reset window</value>
+    <value>Сбросить окно</value>
   </data>
   <data name="MenuResetTT" xml:space="preserve">
-    <value>Resets OnTopReplica settings and its main window.</value>
+    <value>Сбрасывает настройки программы и ее главное окно.</value>
   </data>
   <data name="MenuResize" xml:space="preserve">
-    <value>Resize</value>
+    <value>Изменить размер</value>
   </data>
   <data name="MenuRestoreLast" xml:space="preserve">
-    <value>Restore last cloned window</value>
+    <value>Восстанавливать последнее копированное окно</value>
   </data>
   <data name="MenuRestoreLastTT" xml:space="preserve">
-    <value>When enabled, OnTopReplica will attempt to restore the last cloned window on start up.</value>
+    <value>Если включено, программа попытается при запуске восстановить окно, скопированное последним.</value>
   </data>
   <data name="MenuSettings" xml:space="preserve">
-    <value>Settings...</value>
+    <value>Настройки...</value>
   </data>
   <data name="MenuSettingsTT" xml:space="preserve">
-    <value>Displays the settings panel.</value>
+    <value>Показывает панель настроек.</value>
   </data>
   <data name="MenuSwitch" xml:space="preserve">
-    <value>Switch to window</value>
+    <value>Переключиться на окно</value>
   </data>
   <data name="MenuSwitchTT" xml:space="preserve">
-    <value>Switches to the source window and hides OnTopReplica.</value>
+    <value>Переключается на исходное окно и скрывает программу.</value>
   </data>
   <data name="MenuWindows" xml:space="preserve">
-    <value>Select window</value>
+    <value>Выбрать окно</value>
   </data>
   <data name="MenuWindowsNone" xml:space="preserve">
-    <value>- none -</value>
+    <value>- пусто -</value>
   </data>
   <data name="MenuWindowsTT" xml:space="preserve">
-    <value>Displays a list of window you can select as thumbnail source.</value>
+    <value>Показывает список окон, которые можно выбрать в качестве источников для копирования.</value>
   </data>
   <data name="MenuWindowsWholeRegion" xml:space="preserve">
-    <value>- whole -</value>
+    <value>- полностью -</value>
   </data>
   <data name="RegionsCurrentRegion" xml:space="preserve">
-    <value>Current region:</value>
+    <value>Выбранная область:</value>
   </data>
   <data name="RegionsDeleteButton" xml:space="preserve">
-    <value>Delete</value>
+    <value>Удалить</value>
   </data>
   <data name="RegionsDoneButton" xml:space="preserve">
-    <value>Done</value>
+    <value>Готово</value>
   </data>
   <data name="RegionsHeight" xml:space="preserve">
-    <value>Height</value>
+    <value>Высота</value>
   </data>
   <data name="RegionsResetButton" xml:space="preserve">
-    <value>Reset</value>
+    <value>Сбросить</value>
   </data>
   <data name="RegionsSaveButton" xml:space="preserve">
-    <value>Save</value>
+    <value>Сохранить</value>
   </data>
   <data name="RegionsStoredRegions" xml:space="preserve">
-    <value>Stored regions</value>
+    <value>Сохраненные области</value>
   </data>
   <data name="RegionsTitle" xml:space="preserve">
-    <value>Regions:</value>
+    <value>Области:</value>
   </data>
   <data name="RegionsWidth" xml:space="preserve">
-    <value>Width</value>
+    <value>Ширина</value>
   </data>
   <data name="RightClick" xml:space="preserve">
-    <value>Right-click here to start...</value>
+    <value>Для начала щелкните тут правой кнопкой мыши...</value>
   </data>
   <data name="SettingsHotKeyClone" xml:space="preserve">
-    <value>Clone current window</value>
+    <value>Скопировать текущее окно</value>
   </data>
   <data name="SettingsHotKeyDescription" xml:space="preserve">
-    <value>These system-wide shortcuts can also be used when OnTopReplica is not in focus.</value>
+    <value>Эти глобальные сочетания клавиш можно использовать также когда программа на заднем плане.</value>
   </data>
   <data name="SettingsHotKeyShowHide" xml:space="preserve">
-    <value>Show/Hide</value>
+    <value>Показать/Скрыть</value>
   </data>
   <data name="SettingsHotKeyTitle" xml:space="preserve">
-    <value>Hot keys:</value>
+    <value>Сочетания клавиш:</value>
   </data>
   <data name="SettingsLanguageTitle" xml:space="preserve">
-    <value>Language:</value>
+    <value>Язык:</value>
   </data>
   <data name="SettingsRestartRequired" xml:space="preserve">
-    <value>Requires a restart.</value>
+    <value>Требуется перезапуск.</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Настройки</value>
   </data>
   <data name="UpdateAvailableCommandCancel" xml:space="preserve">
-    <value>Cancel update
-OnTopReplica will prompt you the next time it is started.</value>
+    <value>Отменить обновление
+Программа уведомит Вас об обновлении при следующем запуске.</value>
   </data>
   <data name="UpdateAvailableCommandOk" xml:space="preserve">
-    <value>Download
-Install OnTopReplica {0}.</value>
+    <value>Скачать
+Установить программу «OnTopReplica» {0}.</value>
   </data>
   <data name="UpdateAvailableContent" xml:space="preserve">
-    <value>The new version can be downloaded and installed from the official website.</value>
+    <value>Новую версию можно скачать и установить с официального сайта.</value>
   </data>
   <data name="UpdateAvailableExpanded" xml:space="preserve">
-    <value>Installed version: {0}
-Available version: {1}</value>
+    <value>Установленная версия: {0}.
+Доступная версия: {0}.</value>
   </data>
   <data name="UpdateAvailableInstruction" xml:space="preserve">
-    <value>Version {0} available</value>
+    <value>Доступна версия {0}</value>
   </data>
   <data name="UpdateDownloadingContent" xml:space="preserve">
-    <value>{0}/{1} bytes downloaded.</value>
-    <comment>{0} downloaded bytes {1} total bytes
-{0}  bytes geladen von {1} bytes gesamt
-{0} downloaded bytes {1} total bytes
-{0} downloaded bytes {1} total bytes
-{0} downloaded bytes {1} total bytes</comment>
+    <value>Скачано {0} из {1}</value>
+    <comment>{0} downloaded bytes {1} total bytes</comment>
   </data>
   <data name="UpdateDownloadingInstruction" xml:space="preserve">
-    <value>Downloading...</value>
+    <value>Загрузка...</value>
   </data>
   <data name="UpdateInfoContent" xml:space="preserve">
-    <value>The latest version of OnTopReplica is already installed. The program automatically checks for updates at every start.
+    <value>Установлена последняя версия программы «OnTopReplica». Программа автоматически проверяет обновления при каждом запуске. 
 
-You can keep up to date about OnTopReplica's development, suggest improvements and new features by &lt;a href="website"&gt;visiting the official website&lt;/a&gt;.</value>
+Вы можете следить за обновлениями программы, предлагать улучшения и новые функции на &lt;a href="website"&gt;сайте программы &lt;/a&gt;.</value>
     <comment>The website link should be enclosed in &lt;a href="website"&gt;&lt;/a&gt; tags.</comment>
   </data>
   <data name="UpdateInfoFooter" xml:space="preserve">
-    <value>Latest stable version released on {0}.</value>
+    <value>Последняя стабильная версия выпущена {0}.</value>
     <comment>{0} last version release date</comment>
   </data>
   <data name="UpdateInfoInstruction" xml:space="preserve">
-    <value>OnTopReplica is up to date</value>
+    <value>Вы пользуетесь последней версией программы</value>
   </data>
   <data name="UpdateReadyCommandOk" xml:space="preserve">
-    <value>Install
-OnTopReplica will be closed and the update installed.</value>
+    <value>Установить
+Программа будет закрыта для установки обновления.</value>
   </data>
   <data name="UpdateReadyContent" xml:space="preserve">
-    <value>OnTopReplica version {0} is ready to be installed on your computer.</value>
+    <value>«OnTopReplica» (версия {0}) готова к установке на вашем компьютере.</value>
   </data>
   <data name="UpdateReadyInstruction" xml:space="preserve">
-    <value>Update ready</value>
+    <value>Обновление готово</value>
   </data>
   <data name="UpdateTitle" xml:space="preserve">
-    <value>OnTopReplica updates</value>
+    <value>Программа обновляется</value>
   </data>
 </root>
