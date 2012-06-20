@@ -1,0 +1,655 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>作者 %</value>
+    <comment>Link % is replaced by string AboutAuthorContent.</comment>
+  </data>
+  <data name="AboutAuthorContent" xml:space="preserve">
+    <value />
+    <comment>Must not be localized. Leave blank in non-default languages.</comment>
+  </data>
+  <data name="AboutButtonCancelTT" xml:space="preserve">
+    <value>终止更新过程</value>
+  </data>
+  <data name="AboutButtonExpanderTT" xml:space="preserve">
+    <value>展开关于OnTopReplica的详细内容</value>
+  </data>
+  <data name="AboutButtonResetTT" xml:space="preserve">
+    <value>重置OnTopReplica的所有设定</value>
+  </data>
+  <data name="AboutButtonUpdateTT" xml:space="preserve">
+    <value>现在更新OnTopReplica</value>
+  </data>
+  <data name="AboutContribute" xml:space="preserve">
+    <value>想为本项目出一份力吗？欢迎你参与到翻译工作中来，抑或检视从CodePlex处取得的 %</value>
+  </data>
+  <data name="AboutContributeContent" xml:space="preserve">
+    <value>源代码</value>
+  </data>
+  <data name="AboutCreditsSources" xml:space="preserve">
+    <value>OnTopReplica基于WindowsFormsAero库和其他库及代码。%</value>
+    <comment>Link % is replaced by string AboutCreditsSourcesContent.</comment>
+  </data>
+  <data name="AboutCreditsSourcesContent" xml:space="preserve">
+    <value>了解全部</value>
+  </data>
+  <data name="AboutDividerContribute" xml:space="preserve">
+    <value>贡献</value>
+  </data>
+  <data name="AboutDividerCredits" xml:space="preserve">
+    <value>制作</value>
+  </data>
+  <data name="AboutDividerLicense" xml:space="preserve">
+    <value>授权</value>
+  </data>
+  <data name="AboutDividerUpdates" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>应用程序根据%许可获得授权，即指遵循OSI界定的“开源”条款</value>
+  </data>
+  <data name="AboutLicenseContent" xml:space="preserve">
+    <value>微软互惠授权(MS-RL)</value>
+    <comment>Can be left blank.</comment>
+  </data>
+  <data name="AboutSlogan" xml:space="preserve">
+    <value>一个轻量级、实时、窗口缩略图置顶工具</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>关于OnTopReplica</value>
+  </data>
+  <data name="AboutTranslators" xml:space="preserve">
+    <value>译者：{0}</value>
+    <comment>{0} translators (do not end with period)</comment>
+  </data>
+  <data name="AboutTranslatorsContent" xml:space="preserve">
+    <value />
+    <comment>Must not be localized. Leave blank in non-default languages.</comment>
+  </data>
+  <data name="AboutUpdatesCheckNow" xml:space="preserve">
+    <value>检查更新！</value>
+  </data>
+  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
+    <value>OnTopReplica自动在每次开启时检查更新</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>版本{0}</value>
+  </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value />
+    <comment>Probably doesn't need localization. :)</comment>
+  </data>
+  <data name="AskReset" xml:space="preserve">
+    <value>完全重置窗口吗？</value>
+  </data>
+  <data name="AskResetButtonOk" xml:space="preserve">
+    <value>&amp;重置
+所有设定均会丢失</value>
+  </data>
+  <data name="AskResetContent" xml:space="preserve">
+    <value>可以在没辙的时候用来重置所有设定</value>
+  </data>
+  <data name="AskResetTitle" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="AskSettingReset" xml:space="preserve">
+    <value>重置设定吗？</value>
+  </data>
+  <data name="AskSettingResetContent" xml:space="preserve">
+    <value>这将清除所有OnTopReplica的设定，并回到刚安装完的状态（所有保存的信息、保存的选区，均会丢失）</value>
+  </data>
+  <data name="AskSettingResetTitle" xml:space="preserve">
+    <value>重置设定</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>&amp;取消</value>
+    <comment>&amp; marks the ALT+[] shortcut</comment>
+  </data>
+  <data name="DrawRegions" xml:space="preserve">
+    <value>使用鼠标划出区域</value>
+  </data>
+  <data name="ErrorDetailButton" xml:space="preserve">
+    <value>详细信息</value>
+  </data>
+  <data name="ErrorDetailsAero" xml:space="preserve">
+    <value>Windows Aero的详细信息</value>
+  </data>
+  <data name="ErrorDetailsAeroInfo" xml:space="preserve">
+    <value>为什么Windows Aero特效只在Windows Vista Home Premium或更高级版本中出现</value>
+  </data>
+  <data name="ErrorDwmOff" xml:space="preserve">
+    <value>未启用桌面组合</value>
+  </data>
+  <data name="ErrorDwmOffContent" xml:space="preserve">
+    <value>程序需要系统的Aero主题配合
+
+桌面右击，个性化，选择主题</value>
+  </data>
+  <data name="ErrorGenericInfoButton" xml:space="preserve">
+    <value>详细错误</value>
+  </data>
+  <data name="ErrorGenericInfoText" xml:space="preserve">
+    <value>错误：</value>
+  </data>
+  <data name="ErrorGenericThumbnailHandleError" xml:space="preserve">
+    <value>选中的窗口似乎已经关闭或已失效</value>
+  </data>
+  <data name="ErrorGenericTitle" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="ErrorNoDwm" xml:space="preserve">
+    <value>您的操作系统不支持桌面组合
+请在Windows Vista Home Premium或更高版本中运行</value>
+  </data>
+  <data name="ErrorNoDwmTitle" xml:space="preserve">
+    <value>不支持桌面组合</value>
+  </data>
+  <data name="ErrorNoThumbnail" xml:space="preserve">
+    <value>无缩略图可加载</value>
+  </data>
+  <data name="ErrorUnableToCreateThumbnail" xml:space="preserve">
+    <value>无法创建缩略图</value>
+  </data>
+  <data name="ErrorUnableToFit" xml:space="preserve">
+    <value>无法适应窗口</value>
+  </data>
+  <data name="ErrorUpdate" xml:space="preserve">
+    <value>无法检查更新</value>
+  </data>
+  <data name="ErrorUpdateContent" xml:space="preserve">
+    <value>OnTopReplica不是用“ClickOnce”方式安装的。您不得不手动更新了（访问 &lt;a href="http://ontopreplica.codeplex.com"&gt;OnTopReplica的主页&lt;/a&gt;）</value>
+  </data>
+  <data name="ErrorUpdateContentGeneric" xml:space="preserve">
+    <value>OnTopReplica无法检测更新，请确保已连接到互联网。当然，也有可能是网站暂时关闭</value>
+  </data>
+  <data name="FullscreenMode" xml:space="preserve">
+    <value>模式</value>
+  </data>
+  <data name="FullscreenModeAlwaysOnTop" xml:space="preserve">
+    <value>总是置顶</value>
+  </data>
+  <data name="FullscreenModeAlwaysOnTopTT" xml:space="preserve">
+    <value>强制OnTopReplica置顶</value>
+  </data>
+  <data name="FullscreenModeClickThrough" xml:space="preserve">
+    <value>点击穿过</value>
+  </data>
+  <data name="FullscreenModeClickThroughTT" xml:space="preserve">
+    <value>OnTopReplica会像一个透明的覆盖层并允许您点击其后面的窗口</value>
+  </data>
+  <data name="FullscreenModeNormal" xml:space="preserve">
+    <value>标准模式</value>
+  </data>
+  <data name="FullscreenModeNormalTT" xml:space="preserve">
+    <value>变回普通窗口，OnTopReplica会被其他窗口阻挡</value>
+  </data>
+  <data name="FullscreenTitle" xml:space="preserve">
+    <value>OnTopReplica全屏幕</value>
+  </data>
+  <data name="GroupSwitchModeDisableButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="GroupSwitchModeEnableButton" xml:space="preserve">
+    <value>激活组模式</value>
+  </data>
+  <data name="GroupSwitchModeStatusDisabled" xml:space="preserve">
+    <value>选择多个窗口以启用</value>
+  </data>
+  <data name="GroupSwitchModeStatusEnabled" xml:space="preserve">
+    <value>自切换组模式已激活</value>
+  </data>
+  <data name="GroupSwitchModeTitle" xml:space="preserve">
+    <value>自切换组模式：</value>
+  </data>
+  <data name="GroupSwitchModeWindows" xml:space="preserve">
+    <value>窗口</value>
+    <comment>Column Header of list, simply refers to available windows to be cloned</comment>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>主页：www.codeplex.com/ontopreplica</value>
+  </data>
+  <data name="InfoClickForwarding" xml:space="preserve">
+    <value>您想启用“点击转发”吗？</value>
+  </data>
+  <data name="InfoClickForwardingContent" xml:space="preserve">
+    <value>如果启用此模式，OnTopReplica会将所有鼠标点击转发到被克隆的窗口上（这将允许您绕过窗口激活直接对被克隆的窗口做一些基本的鼠标操作）
+
+想退出此模式，按ESC</value>
+  </data>
+  <data name="InfoClickForwardingTitle" xml:space="preserve">
+    <value>点击转发</value>
+  </data>
+  <data name="InfoClickThrough" xml:space="preserve">
+    <value>启用点击穿过模式吗？</value>
+  </data>
+  <data name="InfoClickThroughDetails" xml:space="preserve">
+    <value>点击穿过功能仅在缩放启用或窗口半透明的状态下方能工作</value>
+  </data>
+  <data name="InfoClickThroughInformation" xml:space="preserve">
+    <value>In this mode the fullscreen window will behave as a partially transparent overlay, allowing you to click on the other windows behind it.
+
+To return to normal mode anytime, activate OnTopReplica by clicking on the task bar (or the tray icon).</value>
+  </data>
+  <data name="InfoClickThroughNo" xml:space="preserve">
+    <value>不了，谢谢
+等下再启用点击穿过</value>
+  </data>
+  <data name="InfoClickThroughOk" xml:space="preserve">
+    <value>使用点击穿过</value>
+  </data>
+  <data name="InfoClickThroughTitle" xml:space="preserve">
+    <value>点击穿过模式</value>
+  </data>
+  <data name="InfoUpdated" xml:space="preserve">
+    <value>OnTopReplica已更新</value>
+  </data>
+  <data name="InfoUpdatedContent" xml:space="preserve">
+    <value>为能使用新版OnTopReplica，您必须重新启动本程序</value>
+  </data>
+  <data name="InfoUpdatedTitle" xml:space="preserve">
+    <value>更新成功</value>
+  </data>
+  <data name="InfoUpToDate" xml:space="preserve">
+    <value>OnTopReplica是最新的</value>
+  </data>
+  <data name="InfoUpToDateTitle" xml:space="preserve">
+    <value>没有可用的更新</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="MenuAbout" xml:space="preserve">
+    <value>关于...</value>
+  </data>
+  <data name="MenuAboutTT" xml:space="preserve">
+    <value>隐藏著窗口，并显示“关于”对话框</value>
+  </data>
+  <data name="MenuAdvanced" xml:space="preserve">
+    <value>高级</value>
+  </data>
+  <data name="MenuChrome" xml:space="preserve">
+    <value>显示窗口边框</value>
+  </data>
+  <data name="MenuChromeTT" xml:space="preserve">
+    <value>切换显示窗口边框</value>
+  </data>
+  <data name="MenuClickForwarding" xml:space="preserve">
+    <value>启用点击转发</value>
+  </data>
+  <data name="MenuClickForwardingTT" xml:space="preserve">
+    <value>对被克隆的窗口启用“点击转发”</value>
+  </data>
+  <data name="MenuClickThrough" xml:space="preserve">
+    <value>启用点击穿过</value>
+  </data>
+  <data name="MenuClickThroughTT" xml:space="preserve">
+    <value>OnTopReplica会像一个透明的覆盖层并允许您点击其后面的窗口</value>
+  </data>
+  <data name="MenuClose" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="MenuCloseTT" xml:space="preserve">
+    <value>关闭OnTopReplica</value>
+  </data>
+  <data name="MenuFitDouble" xml:space="preserve">
+    <value>200%</value>
+  </data>
+  <data name="MenuFitFullscreen" xml:space="preserve">
+    <value>全屏</value>
+  </data>
+  <data name="MenuFitHalf" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="MenuFitOriginal" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="MenuFitQuarter" xml:space="preserve">
+    <value>25%</value>
+  </data>
+  <data name="MenuGroupSwitch" xml:space="preserve">
+    <value>自切换组模式</value>
+  </data>
+  <data name="MenuGroupSwitchTT" xml:space="preserve">
+    <value>OnTopReplica会自动定位到自切换组中最不活跃的那个程序，并克隆其窗口</value>
+  </data>
+  <data name="MenuOp100" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="MenuOp100TT" xml:space="preserve">
+    <value>把OnTopReplica设为完全不透明状态</value>
+  </data>
+  <data name="MenuOp25" xml:space="preserve">
+    <value>25%</value>
+  </data>
+  <data name="MenuOp25TT" xml:space="preserve">
+    <value>把OnTopReplica的不透明度设为25%</value>
+  </data>
+  <data name="MenuOp50" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="MenuOp50TT" xml:space="preserve">
+    <value>把OnTopReplica的不透明度设为50%</value>
+  </data>
+  <data name="MenuOp75" xml:space="preserve">
+    <value>75%</value>
+  </data>
+  <data name="MenuOp75TT" xml:space="preserve">
+    <value>把OnTopReplica的不透明度设为75%</value>
+  </data>
+  <data name="MenuOpacity" xml:space="preserve">
+    <value>不透明度</value>
+  </data>
+  <data name="MenuOpen" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="MenuOpenTT" xml:space="preserve">
+    <value>显示OnTopReplica</value>
+  </data>
+  <data name="MenuPosBottomLeft" xml:space="preserve">
+    <value>左下</value>
+  </data>
+  <data name="MenuPosBottomRight" xml:space="preserve">
+    <value>右下</value>
+  </data>
+  <data name="MenuPosCenter" xml:space="preserve">
+    <value>中央</value>
+  </data>
+  <data name="MenuPosDisabled" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="MenuPosition" xml:space="preserve">
+    <value>锁定位置</value>
+  </data>
+  <data name="MenuPositionTT" xml:space="preserve">
+    <value>自动在当前屏幕定位OnTopReplica</value>
+  </data>
+  <data name="MenuPosTopLeft" xml:space="preserve">
+    <value>左上</value>
+  </data>
+  <data name="MenuPosTopRight" xml:space="preserve">
+    <value>右上</value>
+  </data>
+  <data name="MenuQuitFullscreen" xml:space="preserve">
+    <value>退出全屏模式</value>
+  </data>
+  <data name="MenuRecall" xml:space="preserve">
+    <value>记忆窗口大小和位置</value>
+  </data>
+  <data name="MenuRecallTT" xml:space="preserve">
+    <value>选择是否记忆窗口大小和位置，并在下次运行时恢复</value>
+  </data>
+  <data name="MenuReduce" xml:space="preserve">
+    <value>最小化</value>
+  </data>
+  <data name="MenuReduceTT" xml:space="preserve">
+    <value>最小化到任务栏上</value>
+  </data>
+  <data name="MenuRegion" xml:space="preserve">
+    <value>选择区域...</value>
+  </data>
+  <data name="MenuRegionTT" xml:space="preserve">
+    <value>截取部分窗口内容</value>
+  </data>
+  <data name="MenuReset" xml:space="preserve">
+    <value>重置窗口</value>
+  </data>
+  <data name="MenuResetTT" xml:space="preserve">
+    <value>重置OnTopReplica的设定及其主窗口</value>
+  </data>
+  <data name="MenuResize" xml:space="preserve">
+    <value>缩放</value>
+  </data>
+  <data name="MenuRestoreLast" xml:space="preserve">
+    <value>恢复上次克隆的窗口</value>
+  </data>
+  <data name="MenuRestoreLastTT" xml:space="preserve">
+    <value>激活此项，程序开启时将尝试恢复最后克隆的窗口</value>
+  </data>
+  <data name="MenuSettings" xml:space="preserve">
+    <value>设置...</value>
+  </data>
+  <data name="MenuSettingsTT" xml:space="preserve">
+    <value>显示设置面板</value>
+  </data>
+  <data name="MenuSwitch" xml:space="preserve">
+    <value>切换到窗口</value>
+  </data>
+  <data name="MenuSwitchTT" xml:space="preserve">
+    <value>切换到源窗口并隐藏OnTopReplica</value>
+  </data>
+  <data name="MenuWindows" xml:space="preserve">
+    <value>选取窗口</value>
+  </data>
+  <data name="MenuWindowsNone" xml:space="preserve">
+    <value>- 无 -</value>
+  </data>
+  <data name="MenuWindowsTT" xml:space="preserve">
+    <value>显示窗口列表以选择缩略图来源</value>
+  </data>
+  <data name="MenuWindowsWholeRegion" xml:space="preserve">
+    <value>- 全部 -</value>
+  </data>
+  <data name="RegionsCurrentRegion" xml:space="preserve">
+    <value>当前选区：</value>
+  </data>
+  <data name="RegionsDeleteButton" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="RegionsDoneButton" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="RegionsHeight" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="RegionsResetButton" xml:space="preserve">
+    <value>重来</value>
+  </data>
+  <data name="RegionsSaveButton" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="RegionsStoredRegions" xml:space="preserve">
+    <value>保存选区</value>
+  </data>
+  <data name="RegionsTitle" xml:space="preserve">
+    <value>选区：</value>
+  </data>
+  <data name="RegionsWidth" xml:space="preserve">
+    <value>宽度</value>
+  </data>
+  <data name="RightClick" xml:space="preserve">
+    <value>点击右键以开始...</value>
+  </data>
+  <data name="SettingsHotKeyClone" xml:space="preserve">
+    <value>克隆当前窗口</value>
+  </data>
+  <data name="SettingsHotKeyDescription" xml:space="preserve">
+    <value>全局快捷键，前后台运行均会响应</value>
+  </data>
+  <data name="SettingsHotKeyShowHide" xml:space="preserve">
+    <value>显示/隐藏</value>
+  </data>
+  <data name="SettingsHotKeyTitle" xml:space="preserve">
+    <value>快捷键：</value>
+  </data>
+  <data name="SettingsLanguageTitle" xml:space="preserve">
+    <value>语言：</value>
+  </data>
+  <data name="SettingsRestartRequired" xml:space="preserve">
+    <value>需要重启本程序</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
+    <value>取消更新
+OnTopReplica会在下次开启的时候提示更新</value>
+  </data>
+  <data name="UpdateAvailableCommandOk" xml:space="preserve">
+    <value>下载
+安装OnTopReplica{0}</value>
+  </data>
+  <data name="UpdateAvailableContent" xml:space="preserve">
+    <value>可以从官网上下载和安装程序的最新版</value>
+  </data>
+  <data name="UpdateAvailableExpanded" xml:space="preserve">
+    <value>安装的版本：{0}
+可用的版本：{1}</value>
+  </data>
+  <data name="UpdateAvailableInstruction" xml:space="preserve">
+    <value>版本{0}可用</value>
+  </data>
+  <data name="UpdateDownloadingContent" xml:space="preserve">
+    <value>下载了{0}/{1}字节</value>
+    <comment>{0} downloaded bytes {1} total bytes
+{0}  bytes geladen von {1} bytes gesamt
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes</comment>
+  </data>
+  <data name="UpdateDownloadingInstruction" xml:space="preserve">
+    <value>下载中...</value>
+  </data>
+  <data name="UpdateInfoContent" xml:space="preserve">
+    <value>已安装最新版的OnTopReplica，程序每次开启都会自动检查更新。
+
+你可以&lt;a href="website"&gt;访问官网&lt;/a&gt;来了解OnTopReplica的最新进展并提出自己的建议</value>
+    <comment>The website link should be enclosed in &lt;a href="website"&gt;&lt;/a&gt; tags.</comment>
+  </data>
+  <data name="UpdateInfoFooter" xml:space="preserve">
+    <value>最新稳定版于{0}释出</value>
+    <comment>{0} last version release date</comment>
+  </data>
+  <data name="UpdateInfoInstruction" xml:space="preserve">
+    <value>OnTopReplica是最新的</value>
+  </data>
+  <data name="UpdateReadyCommandOk" xml:space="preserve">
+    <value>安装
+OnTopReplica将被关闭以安装更新</value>
+  </data>
+  <data name="UpdateReadyContent" xml:space="preserve">
+    <value>版本{0}的OnTopReplica已经准备在你电脑上安装</value>
+  </data>
+  <data name="UpdateReadyInstruction" xml:space="preserve">
+    <value>准备更新</value>
+  </data>
+  <data name="UpdateTitle" xml:space="preserve">
+    <value>OnTopReplica更新</value>
+  </data>
+</root>
