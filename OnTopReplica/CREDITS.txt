@@ -1,0 +1,12 @@
+﻿OnTopReplica credits
+--------------------
+
+This application was inspired by Switcher (http://insentient.net) and other DWM based application.
+
+All Aero controls are part of the open-source WindowsFormsAero (http://windowsformsaero.codeplex.com) library for .NET.
+
+Some DWM example code has ben taken from user Ookii (http://www.ookii.org) on Channel 9 MSDN.
+
+The NativeToolstripRenderer class has been taken from asztal.net (http://wp.asztal.net/2007/12/vista-style-menus-in-dotnet).
+
+Some of the icons used by OnTopReplica have been taken from VistaICO.com and the Xiao icon set.
