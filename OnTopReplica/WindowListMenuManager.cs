@@ -64,7 +64,12 @@ namespace OnTopReplica {
 
                 //Icon
                 if (h.Icon != null) {
-                    tsi.Image = h.Icon.ToBitmap();
+                    try {
+                        tsi.Image = h.Icon.ToBitmap();
+                    }
+                    catch (Exception) {
+                        tsi.Image = null;
+                    }
                 }
 
                 //Check if this is the currently displayed window
