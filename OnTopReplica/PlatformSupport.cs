@@ -18,7 +18,9 @@ namespace OnTopReplica {
                 return new Other();
 
             if (os.Version.Major == 6) {
-                if (os.Version.Minor >= 1)
+                if (os.Version.Minor >= 2)
+                    return new WindowsEight();
+                else if (os.Version.Minor == 1)
                     return new WindowsSeven();
                 else
                     return new WindowsVista();
