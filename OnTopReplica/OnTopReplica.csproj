@@ -137,7 +137,18 @@
     <Compile Include="Native\HotKeyMethods.cs" />
     <Compile Include="Native\HT.cs" />
     <Compile Include="Platforms\DebugPlatform.cs" />
+    <Compile Include="Platforms\WindowsEight.cs" />
     <Compile Include="PluginRegionLocator.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SidePanelContainer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,65 +179,10 @@
     <Compile Include="SidePanels\GroupSwitchPanel.Designer.cs">
       <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Strings.cs.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.cs.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.da.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.da.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.de.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.de.resx</DependentUpon>
-    </Compile>
     <Compile Include="Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.es.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.es.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.fi.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.fi.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.it.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.it.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.no.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.no.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.pl.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.pl.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.pt-BR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.pt-BR.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.pt.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.pt.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings.ru.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.ru.resx</DependentUpon>
     </Compile>
     <Compile Include="WindowListMenuManager.cs" />
     <Compile Include="WindowSeekers\BaseWindowSeeker.cs" />
@@ -365,21 +321,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.pt.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="OnTopReplica.exe.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
     <Compile Include="SidePanels\RegionPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
