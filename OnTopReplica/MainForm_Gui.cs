@@ -8,34 +8,18 @@ namespace OnTopReplica {
         /// <summary>
         /// Opens the context menu.
         /// </summary>
-        public void OpenContextMenu() {
+        /// <param name="position">Optional position of the mouse, relative to which the menu is shown.</param>
+        public void OpenContextMenu(Point? position) {
+            Point menuPosition = MousePosition;
+            if (position.HasValue)
+                menuPosition = position.Value;
+
             if (IsFullscreen) {
-                menuFullscreenContext.Show(MousePosition);
+                menuFullscreenContext.Show(menuPosition);
             }
             else {
-                menuContext.Show(MousePosition);
+                menuContext.Show(menuPosition);
             }
-        }
-
-        private Point RecenterLocation(Control original, Control final) {
-            int origX = original.Location.X + original.Size.Width / 2;
-            int origY = original.Location.Y + original.Size.Height / 2;
-
-            int finX = origX - final.Size.Width / 2;
-            int finY = origY - final.Size.Height / 2;
-
-            //Check boundaries
-            var screen = Screen.FromControl(final);
-            if (finX < screen.WorkingArea.X)
-                finX = screen.WorkingArea.X;
-            if (finX + final.Size.Width > screen.WorkingArea.Width)
-                finX = screen.WorkingArea.Width - final.Size.Width;
-            if (finY < screen.WorkingArea.Y)
-                finY = screen.WorkingArea.Y;
-            if (finY + final.Size.Height > screen.WorkingArea.Height)
-                finY = screen.WorkingArea.Height - final.Size.Height;
-
-            return new Point(finX, finY);
         }
 
         /// <summary>

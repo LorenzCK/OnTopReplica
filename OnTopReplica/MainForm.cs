@@ -151,7 +151,7 @@ namespace OnTopReplica {
 
             //Same story as above (OnMouseDoubleClick)
             if (e.Button == System.Windows.Forms.MouseButtons.Right) {
-                OpenContextMenu();
+                OpenContextMenu(null);
             }
         }
 
@@ -166,7 +166,7 @@ namespace OnTopReplica {
                 case WM.NCRBUTTONUP:
                     //Open context menu if right button clicked on caption (i.e. all of the window area because of glass)
                     if (m.WParam.ToInt32() == HT.CAPTION) {
-                        OpenContextMenu();
+                        OpenContextMenu(null);
 
                         m.Result = IntPtr.Zero;
                         return;
