@@ -1,6 +1,7 @@
 # INCLUDES
 !include MUI2.nsh ;Modern interface
 !include LogicLib.nsh ;nsDialogs
+!include "DotNet.nsh"
 
 # INIT
 Name "OnTopReplica"
@@ -47,14 +48,26 @@ RequestExecutionLevel user
 # LANGUAGES
 !insertmacro MUI_LANGUAGE "English"
 
+# INITIALIZATION AND ERROR CHECKING
+Function .onInit
+  ${HasDotNet4} $R0
+  ${If} $R0 == 2
+	;noop
+  ${Else}
+	MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "Microsoft .NET Framework 4.0 appears not to be installed.$\n$\nOnTopReplica requires .NET 4.0 to run: please install it before running the installer.$\n$\nDo you wish to proceed anyway?" IDOK proceedAnyway
+		Abort ".NET 4.0 required to install"
+	proceedAnyway:
+  ${EndIf}
+FunctionEnd
+
 # CALLBACKS
 Function RegisterApplication
 	;Register uninstaller into Add/Remove panel (for local user only)
 	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayName" "OnTopReplica"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayIcon" "$\"$INSTDIR\OnTopReplica.exe$\""
 	WriteRegStr HKCU "${REG_UNINSTALL}" "Publisher" "Lorenz Cuno Klopfenstein"
-	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayVersion" "3.3.1.0"
-	WriteRegDWord HKCU "${REG_UNINSTALL}" "EstimatedSize" 960 ;KB
+	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayVersion" "3.4"
+	WriteRegDWord HKCU "${REG_UNINSTALL}" "EstimatedSize" 922 ;KB
 	WriteRegStr HKCU "${REG_UNINSTALL}" "HelpLink" "${WEBSITE_LINK}"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "URLInfoAbout" "${WEBSITE_LINK}"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "InstallLocation" "$\"$INSTDIR$\""
