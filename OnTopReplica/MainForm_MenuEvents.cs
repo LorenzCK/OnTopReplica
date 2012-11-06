@@ -165,15 +165,6 @@ namespace OnTopReplica {
         }
 
         private void Menu_About_click(object sender, EventArgs e) {
-            /*this.Hide();
-
-            using (var box = new AboutForm()) {
-                box.Location = RecenterLocation(this, box);
-                box.ShowDialog();
-                Location = RecenterLocation(box, this);
-            }
-
-            this.Show();*/
             this.SetSidePanel(new AboutPanel());
         }
 
