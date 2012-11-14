@@ -6,6 +6,7 @@ using System.Drawing;
 using System.ComponentModel;
 using OnTopReplica.Properties;
 using OnTopReplica.WindowSeekers;
+using System.Windows.Forms;
 
 namespace OnTopReplica.StartupOptions {
     class Factory {
@@ -15,6 +16,7 @@ namespace OnTopReplica.StartupOptions {
             TypeDescriptor.AddAttributes(typeof(Size), new TypeConverterAttribute(typeof(SizeConverter)));
             TypeDescriptor.AddAttributes(typeof(ScreenPosition), new TypeConverterAttribute(typeof(ScreenPositionConverter)));
             TypeDescriptor.AddAttributes(typeof(Rectangle), new TypeConverterAttribute(typeof(RectangleConverter)));
+            TypeDescriptor.AddAttributes(typeof(Padding), new TypeConverterAttribute(typeof(PaddingConverter)));
         }
 
         public static Options CreateOptions(string[] args) {
@@ -58,7 +60,7 @@ namespace OnTopReplica.StartupOptions {
                 .Add<long>("windowId=", "Window handle ({HWND}) to be cloned.", id => {
                     options.WindowId = new IntPtr(id);
                 })
-                .Add<string>("windowTitle=", "{TITLE} of the window to be cloned.", s => {
+                .Add<string>("windowTitle=", "Partial {TITLE} of the window to be cloned.", s => {
                     options.WindowTitle = s;
                 })
                 .Add<string>("windowClass=", "{CLASS} of the window to be cloned.", s => {
@@ -67,24 +69,24 @@ namespace OnTopReplica.StartupOptions {
                 .Add("v|visible", "If set, only clones windows that are visible.", s => {
                     options.MustBeVisible = true;
                 })
-                .Add<Size>("size=", "Target {SIZE} of the cloned thumbnail.", s => {
+                .Add<Size>("size=", "Target {WIDTH,HEIGHT} of the cloned thumbnail.", s => {
                     options.StartSize = s;
                 })
-                .Add<Size>("position=", "Target {COORDINATES} of the OnTopReplica window.", s => {
+                .Add<Size>("position=", "Target {X,Y} of the OnTopReplica window.", s => {
                     options.StartLocation = new Point(s.Width, s.Height);
                     options.StartScreenPosition = null;
                 })
-                .Add<ScreenPosition>("screenPosition=", "Resolution independent window position on current screen, with locking (TR|TL|C|BR|BL).", pos => {
+                .Add<ScreenPosition>("screenPosition=", "Resolution independent window position on current screen, with locking. Values: {TR|TL|C|BR|BL}.", pos => {
                     options.StartLocation = null;
                     options.StartScreenPosition = pos;
                 })
-                .Add<Rectangle>("r|region=", "Region {BOUNDS} of the cloned window.", region => {
+                .Add<Rectangle>("r|region=", "Region {X,Y,W,H} of the cloned window.", region => {
                     options.Region = new ThumbnailRegion(region);
                 })
-                .Add<System.Windows.Forms.Padding>("p|padding=", "Padding {BOUNDS} of the clone.", padding => {
+                .Add<System.Windows.Forms.Padding>("p|padding=", "Region padding {LEFT,TOP,RIGHT,BOTTOM} of the clone.", padding => {
                     options.Region = new ThumbnailRegion(padding);
                 })
-                .Add<byte>("o|opacity=", "Opacity of the window (0-255).", opacity => {
+                .Add<byte>("o|opacity=", "Opacity of the window: {0-255}.", opacity => {
                     options.Opacity = opacity;
                 })
                 .Add("clickForwarding", "Enables click forwarding.", s => {

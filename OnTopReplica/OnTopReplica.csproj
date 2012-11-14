@@ -179,6 +179,8 @@
     <Compile Include="SidePanels\GroupSwitchPanel.Designer.cs">
       <DependentUpon>GroupSwitchPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="StartupOptions\FourValueTypeConverter.cs" />
+    <Compile Include="StartupOptions\PaddingConverter.cs" />
     <Compile Include="Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
