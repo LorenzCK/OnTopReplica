@@ -10,34 +10,37 @@ namespace OnTopReplica.WindowSeekers {
     /// <remarks>
     /// Title search is case-insensitive and matches only the beginning of the windows' titles.
     /// </remarks>
-    class ByTitleWindowSeeker : BaseWindowSeeker {
+    class ByTitleWindowSeeker : PointBasedWindowSeeker {
 
         public ByTitleWindowSeeker(string titleSeekString) {
             if (titleSeekString == null)
                 throw new ArgumentNullException();
 
-            TitleMatch = titleSeekString.Trim().ToLower();
+            TitleMatch = titleSeekString.Trim();
         }
 
         public string TitleMatch { get; private set; }
 
-        protected override bool InspectWindow(IntPtr hwnd, string title, ref bool terminate) {
+        protected override int EvaluatePoints(WindowHandle handle) {
             //Skip empty titles
-            if (string.IsNullOrEmpty(title))
-                return false;
+            if (string.IsNullOrEmpty(handle.Title))
+                return -1;
 
             //Skip non top-level windows
-            if (!WindowManagerMethods.IsTopLevel(hwnd))
-                return false;
+            if (!WindowManagerMethods.IsTopLevel(handle.Handle))
+                return -1;
 
-            var modTitle = title.Trim().ToLower();
-            if (modTitle.StartsWith(TitleMatch)) {
-                terminate = true; //only one needed
-                return true;
-            }
+            int points = 0;
 
-            return false;
+            //Give points for partial match
+            if (handle.Title.StartsWith(TitleMatch, StringComparison.InvariantCultureIgnoreCase))
+                points += 10;
+
+            //Give points for exact match
+            if (handle.Title.Equals(TitleMatch, StringComparison.InvariantCultureIgnoreCase))
+                points += 10;
+
+            return points;
         }
-
     }
 }

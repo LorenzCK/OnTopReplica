@@ -119,6 +119,8 @@ namespace OnTopReplica.StartupOptions {
 
                 handle = seeker.Windows.FirstOrDefault();
             }
+            
+            //Set any found handle
             if (handle != null) {
                 form.SetThumbnail(handle, Region);
             }
