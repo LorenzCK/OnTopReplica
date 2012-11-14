@@ -111,6 +111,10 @@ namespace OnTopReplica {
         /// <param name="forceRefresh">True if the size of the form should be refreshed to match the new aspect ratio.</param>
         public void SetAspectRatio(Size aspectRatioSource, bool forceRefresh) {
             AspectRatio = ((double)aspectRatioSource.Width / (double)aspectRatioSource.Height);
+
+#if DEBUG
+            System.Diagnostics.Trace.WriteLine(string.Format("Setting aspect ratio of {0} (for {1}).", AspectRatio, aspectRatioSource));
+#endif
             
             if (forceRefresh) {
                 KeepAspectRatio = true;

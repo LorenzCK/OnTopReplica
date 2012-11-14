@@ -50,6 +50,25 @@ namespace OnTopReplica {
             ctrl.MinimumSize = minimumClientSize.Expand(offset);
         }
 
+        /// <summary>
+        /// Attempts to fit a size structure to another fixed destination size, by maintaining
+        /// the original aspect ratio.
+        /// </summary>
+        public static Size Fit(this Size sourceSize, Size destinationSize) {
+            double sourceRatio = (double)sourceSize.Width / (double)sourceSize.Height;
+            double clientRatio = (double)destinationSize.Width / (double)destinationSize.Height;
+
+            Size ret;
+            if (sourceRatio >= clientRatio) {
+                ret = new Size(destinationSize.Width, (int)((double)destinationSize.Width / sourceRatio));
+            }
+            else {
+                ret = new Size((int)((double)destinationSize.Height * sourceRatio), destinationSize.Height);
+            }
+
+            return ret;
+        }
+
     }
 
 }

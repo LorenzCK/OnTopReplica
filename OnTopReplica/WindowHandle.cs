@@ -95,7 +95,12 @@ namespace OnTopReplica {
         #region Object override
 
         public override string ToString() {
-			return _title;
+            if (string.IsNullOrWhiteSpace(_title)) {
+                return string.Format("#{0}", _handle.ToInt64());
+            }
+            else {
+                return string.Format("#{0} ({1})", _handle.ToInt64(), _title);
+            }
 		}
 
 		public override bool Equals(object obj) {

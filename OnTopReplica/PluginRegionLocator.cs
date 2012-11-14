@@ -12,10 +12,18 @@ namespace OnTopReplica {
 
         static PluginRegionLocator() {
             _pluginClassNames = new HashSet<string>() {
-                "aPluginWinClass", //Opera 11 Flash plugin
-                "MacromediaFlashPlayerActiveX", //IE 9 Flash plugin
-                "NativeWindowClass", //Google Chrome Flash plugin
-                "GeckoPluginWindow", //Firefox 9 Flash plugin
+                //Opera 11 Flash plugin
+                "aPluginWinClass",
+
+                //IE 9 Flash plugin
+                "MacromediaFlashPlayerActiveX",
+
+                //Google Chrome
+                "NativeWindowClass", //Flash plugin
+                "Chrome_RenderWidgetHostHWND", //Tab content
+
+                //Firefox 9 Flash plugin
+                "GeckoPluginWindow",
             };
         }
 
@@ -79,10 +87,7 @@ namespace OnTopReplica {
 
             //Class name check
             string cl = WindowMethods.GetWindowClass(handle);
-
-#if DEBUG
-            Console.Out.WriteLine("Child window, class {0}", cl);
-#endif
+            System.Diagnostics.Trace.WriteLine(string.Format("Child window, class {0}", cl));
 
             if (_pluginClassNames.Contains(cl)) {
                 //Found plugin window, stop now

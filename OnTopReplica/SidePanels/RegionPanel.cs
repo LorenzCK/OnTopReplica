@@ -22,23 +22,65 @@ namespace OnTopReplica.SidePanels {
             _regionDrawnHandler = new ThumbnailPanel.RegionDrawnHandler(ThumbnailPanel_RegionDrawn);
 		}
 
+        /// <summary>
+        /// Localizes the dialog's labels.
+        /// </summary>
         private void Localize() {
             this.SuspendLayout();
 
             groupRegions.Text = Strings.RegionsTitle;
             comboRegions.CueBannerText = Strings.RegionsStoredRegions;
             labelCurrentRegion.Text = Strings.RegionsCurrentRegion;
-            //labelX
-            //labelY
-            labelWidth.Text = Strings.RegionsWidth;
-            labelHeight.Text = Strings.RegionsHeight;
             buttonReset.Text = Strings.RegionsResetButton;
             buttonDone.Text = Strings.RegionsDoneButton;
+            UpdateRegionLabels();
 
             toolTip.SetToolTip(buttonSave, Strings.RegionsSaveButton);
             toolTip.SetToolTip(buttonDelete, Strings.RegionsDeleteButton);
 
             this.ResumeLayout();
+        }
+
+        /// <summary>
+        /// Updates the labels for the region value selectors and the relative mode checkbox.
+        /// </summary>
+        private void UpdateRegionControls(ThumbnailRegion region) {
+            checkRelative.Checked = region.Relative;
+            
+            if (region.Relative) {
+                Padding p = region.BoundsAsPadding;
+                numX.Value = p.Left;
+                numY.Value = p.Top;
+                numW.Value = p.Right;
+                numH.Value = p.Bottom;
+            }
+            else {
+                Rectangle r = region.Bounds;
+                numX.Value = r.X;
+                numY.Value = r.Y;
+                numW.Value = r.Width;
+                numH.Value = r.Height;
+            }
+
+            UpdateRegionLabels();
+        }
+
+        /// <summary>
+        /// Updates the labels of region selectors based on the dialog's state.
+        /// </summary>
+        private void UpdateRegionLabels() {
+            if (checkRelative.Checked) {
+                labelX.Text = Strings.RegionsLeft;
+                labelY.Text = Strings.RegionsTop;
+                labelWidth.Text = Strings.RegionsRight;
+                labelHeight.Text = Strings.RegionsBottom;
+            }
+            else {
+                labelX.Text = Strings.RegionsX;
+                labelY.Text = Strings.RegionsY;
+                labelWidth.Text = Strings.RegionsWidth;
+                labelHeight.Text = Strings.RegionsHeight;
+            }
         }
 
         public override string Title {
@@ -52,22 +94,25 @@ namespace OnTopReplica.SidePanels {
         public override void OnFirstShown(MainForm form) {
             base.OnFirstShown(form);
 
-            //Init shown region if needed
-            if (form.SelectedThumbnailRegion.HasValue)
-                SetRegion(form.SelectedThumbnailRegion.Value);
+            //Init shown region if current thumbnail is clipped to region
+            if (form.SelectedThumbnailRegion != null) {
+                SetRegion(form.SelectedThumbnailRegion);
+            }
 
+            //Enable region drawing
             form.ThumbnailPanel.DrawMouseRegions = true;
             form.ThumbnailPanel.RegionDrawn += _regionDrawnHandler;
         }
 
         public override void OnClosing(MainForm form) {
             base.OnClosing(form);
-
+            
+            //Reset region drawing
             form.ThumbnailPanel.DrawMouseRegions = false;
             form.ThumbnailPanel.RegionDrawn -= _regionDrawnHandler;
         }
 
-        void ThumbnailPanel_RegionDrawn(object sender, Rectangle region) {
+        void ThumbnailPanel_RegionDrawn(object sender, ThumbnailRegion region) {
             SetRegion(region);
         }
 
@@ -83,7 +128,7 @@ namespace OnTopReplica.SidePanels {
                 return;
             }
 
-            SetRegion(region.Bounds);
+            SetRegion(region.Region);
 
             //Select right combobox
             if (comboRegions.Items.Contains(region)) {
@@ -95,16 +140,13 @@ namespace OnTopReplica.SidePanels {
         /// Sets the current selected region to a specific region rectangle.
         /// </summary>
         /// <param name="region">The region boundaries.</param>
-		public void SetRegion(Rectangle region) {
+		public void SetRegion(ThumbnailRegion region) {
 			try {
 				_ignoreValueChanges = true;
 
-				numX.Enabled = numY.Enabled = numW.Enabled = numH.Enabled = true;
+                UpdateRegionControls(region);
 
-				numX.Value = region.Left;
-				numY.Value = region.Top;
-				numW.Value = region.Width;
-				numH.Value = region.Height;
+				numX.Enabled = numY.Enabled = numW.Enabled = numH.Enabled = true;
 			}
 			finally {
 				_ignoreValueChanges = false;
@@ -122,6 +164,8 @@ namespace OnTopReplica.SidePanels {
 
 				numX.Value = numY.Value = numW.Value = numH.Value = 0;
 				numX.Enabled = numY.Enabled = numW.Enabled = numH.Enabled = false;
+                checkRelative.Checked = false;
+                UpdateRegionLabels();
 
 				buttonSave.Enabled = false;
 
@@ -135,29 +179,47 @@ namespace OnTopReplica.SidePanels {
         #endregion
 
         /// <summary>
+        /// Constructs a ThumbnailRegion from the dialog's current state.
+        /// </summary>
+        protected ThumbnailRegion ConstructCurrentRegion() {
+            Rectangle bounds = new Rectangle {
+                X = (int)numX.Value,
+                Y = (int)numY.Value,
+                Width = (int)numW.Value,
+                Height = (int)numH.Value
+            };
+
+            ThumbnailRegion newRegion = new ThumbnailRegion(bounds, checkRelative.Checked);
+
+            return newRegion;
+        }
+
+        /// <summary>
         /// Adds a new stored region.
         /// </summary>
         /// <param name="rectangle">Region bounds.</param>
         /// <param name="regionName">Name of the region.</param>
-        private void AddRegion(Rectangle rectangle, string regionName) {
-            var region = new StoredRegion(rectangle, regionName);
+        /// <param name="isRelative">Whether the region is relative to the border.</param>
+        private void StoreCurrentRegion(string regionName) {
+            StoredRegion storedRegion = new StoredRegion(this.ConstructCurrentRegion(), regionName);
 
-            int index = comboRegions.Items.Add(region);
+            int index = comboRegions.Items.Add(storedRegion);
             comboRegions.SelectedIndex = index;
 
             if (Settings.Default.SavedRegions == null)
                 Settings.Default.SavedRegions = new StoredRegionArray();
-            Settings.Default.SavedRegions.Add(region);
+            Settings.Default.SavedRegions.Add(storedRegion);
         }
 
         /// <summary>
         /// Internal event raised when a change occurs in the selected region.
         /// </summary>
         /// <param name="regionBounds">Region bounds.</param>
-        protected virtual void OnRegionSet(Rectangle regionBounds) {
+        protected virtual void OnRegionSet(ThumbnailRegion region) {
             //Forward region to thumbnail
-            ParentForm.SelectedThumbnailRegion = regionBounds;
+            ParentForm.SelectedThumbnailRegion = region;
 
+            //Have region, allowed to save
             buttonSave.Enabled = true;
         }
 
@@ -193,10 +255,7 @@ namespace OnTopReplica.SidePanels {
 
 		private void Save_confirm(object sender, EventArgs e) {
 			if (!string.IsNullOrEmpty(textRegionName.Text)) {
-				AddRegion(
-                    new Rectangle((int)numX.Value, (int)numY.Value, (int)numW.Value, (int)numH.Value),
-                    textRegionName.Text
-                );
+                StoreCurrentRegion(textRegionName.Text);
 			}
 
 			//Hide textbox and show button again
@@ -222,7 +281,7 @@ namespace OnTopReplica.SidePanels {
             if (_ignoreValueChanges)
                 return;
 
-            OnRegionSet(new Rectangle((int)numX.Value, (int)numY.Value, (int)numW.Value, (int)numH.Value));
+            OnRegionSet(ConstructCurrentRegion());
         }
 
         private void RegionCombo_index_change(object sender, EventArgs e) {
@@ -235,8 +294,24 @@ namespace OnTopReplica.SidePanels {
                 if (region == null)
                     return;
 
-                SetRegion(region.Bounds);
+                SetRegion(region.Region);
             }
+        }
+
+        private void CheckRelative_checked(object sender, EventArgs e) {
+            if (_ignoreValueChanges)
+                return;
+
+            //Get current region and switch mode
+            var region = ConstructCurrentRegion();
+            region.Relative = !region.Relative; //this must be reversed because the GUI has already switched state when calling ConstructCurrentRegion()
+            if (checkRelative.Checked)
+                region.SwitchToRelative(ParentForm.ThumbnailPanel.ThumbnailOriginalSize);
+            else
+                region.SwitchToAbsolute(ParentForm.ThumbnailPanel.ThumbnailOriginalSize);
+
+            //Update GUI
+            SetRegion(region);
         }
 
         #endregion

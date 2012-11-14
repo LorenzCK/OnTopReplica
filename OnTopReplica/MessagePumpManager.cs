@@ -15,9 +15,7 @@ namespace OnTopReplica {
             _processors[processor.GetType()] = processor;
             processor.Initialize(form);
 
-#if DEBUG
-            Console.WriteLine("Registered message pump processor: {0}", processor.GetType());
-#endif
+            System.Diagnostics.Trace.WriteLine(string.Format("Registered message pump processor: {0}", processor.GetType()));
         }
 
         /// <summary>
@@ -32,18 +30,13 @@ namespace OnTopReplica {
                 Console.Error.WriteLine("Failed to register shell hook window.");
             }
             else {
-#if DEBUG
-                Console.WriteLine("Shell hook window registered successfully.");
-#endif
+                System.Diagnostics.Trace.WriteLine("Shell hook window registered successfully.");
             }
 
             //Register message pump processors
             Register(new WindowKeeper(), form);
             Register(new HotKeyManager(), form);
             Register(new GroupSwitchManager(), form);
-#if DEBUG
-            //Register(new ShellInterceptProcessor(), form);
-#endif
         }
 
         /// <summary>
@@ -75,9 +68,7 @@ namespace OnTopReplica {
                 Console.Error.WriteLine("Failed to deregister shell hook window.");
             }
             else {
-#if DEBUG
-                Console.WriteLine("Deregistered shell hook window successfully.");
-#endif
+                System.Diagnostics.Trace.WriteLine("Deregistered shell hook window successfully.");
             }
 
             foreach (var processor in _processors.Values) {

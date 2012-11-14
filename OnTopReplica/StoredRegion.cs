@@ -6,21 +6,17 @@ using System.Drawing;
 
 namespace OnTopReplica {
 
-	[Serializable]
-	public class StoredRegion : IXmlSerializable {
+	public class StoredRegion {
 
-		public StoredRegion() {
-		}
+        public StoredRegion(ThumbnailRegion r, string name) {
+            Region = r;
+            Name = name;
+        }
 
-		public StoredRegion(Rectangle r, string n) {
-			Bounds = r;
-			Name = n;
-		}
-
-		public Rectangle Bounds {
-			get;
-			set;
-		}
+        public ThumbnailRegion Region {
+            get;
+            set;
+        }
 
 		public string Name {
 			get;
@@ -31,33 +27,6 @@ namespace OnTopReplica {
 			return Name;
 		}
 
-
-		#region IXmlSerializable Members
-
-		public System.Xml.Schema.XmlSchema GetSchema() {
-			return null;
-		}
-
-		public void ReadXml(System.Xml.XmlReader reader) {
-			if (reader.MoveToAttribute("name"))
-				Name = reader.Value;
-			else
-				throw new Exception();
-
-			reader.Read();
-
-			XmlSerializer x = new XmlSerializer(typeof(Rectangle));
-			Bounds = (Rectangle)x.Deserialize(reader);
-		}
-
-		public void WriteXml(System.Xml.XmlWriter writer) {
-			writer.WriteAttributeString("name", Name);
-
-			XmlSerializer x = new XmlSerializer(typeof(Rectangle));
-			x.Serialize(writer, Bounds);
-		}
-
-		#endregion
 	}
 
 }

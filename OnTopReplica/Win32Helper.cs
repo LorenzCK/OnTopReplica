@@ -49,7 +49,7 @@ namespace OnTopReplica {
             MessagingMethods.PostMessage(child, WM.LBUTTONUP, new IntPtr(MK.LBUTTON), lParamClickLocation);
 
 #if DEBUG
-			Console.WriteLine("Left click on window #" + child.ToString() + " at " + clientLocation.ToString());
+            System.Diagnostics.Debug.WriteLine("Left click on window #" + child.ToString() + " at " + clientLocation.ToString());
 #endif
 		}
 
@@ -60,7 +60,7 @@ namespace OnTopReplica {
             MessagingMethods.PostMessage(child, WM.RBUTTONUP, new IntPtr(MK.RBUTTON), lParamClickLocation);
 
 #if DEBUG
-            Console.WriteLine("Right click on window #" + child.ToString() + " at " + clientLocation.ToString());
+            System.Diagnostics.Debug.WriteLine("Right click on window #" + child.ToString() + " at " + clientLocation.ToString());
 #endif
         }
 
@@ -70,7 +70,7 @@ namespace OnTopReplica {
             MessagingMethods.PostMessage(child, WM.LBUTTONDBLCLK, new IntPtr(MK.LBUTTON), lParamClickLocation);
 
 #if DEBUG
-			Console.WriteLine("Double left click on window #" + child.ToString() + " at " + clientLocation.ToString());
+            System.Diagnostics.Debug.WriteLine("Double left click on window #" + child.ToString() + " at " + clientLocation.ToString());
 #endif
 		}
 
@@ -80,7 +80,7 @@ namespace OnTopReplica {
             MessagingMethods.PostMessage(child, WM.RBUTTONDBLCLK, new IntPtr(MK.RBUTTON), lParamClickLocation);
 
 #if DEBUG
-            Console.WriteLine("Double right click on window #" + child.ToString() + " at " + clientLocation.ToString());
+            System.Diagnostics.Debug.WriteLine("Double right click on window #" + child.ToString() + " at " + clientLocation.ToString());
 #endif
         }
 
