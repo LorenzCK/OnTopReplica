@@ -17,7 +17,7 @@ namespace OnTopReplica.MessagePumpProcessors {
             if (msg.Msg == HookMethods.WM_SHELLHOOKMESSAGE) {
                 int hookCode = msg.WParam.ToInt32();
 
-                Console.WriteLine("Hook msg #{0}: {1}", hookCode, msg.LParam);
+                System.Diagnostics.Trace.WriteLine(string.Format("Hook msg #{0}: {1}", hookCode, msg.LParam));
             }
 
             return false;

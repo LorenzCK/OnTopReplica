@@ -47,11 +47,9 @@ namespace OnTopReplica.StartupOptions {
                     //Load window
                     options.WindowId = resultHandle.Handle;
                 }
-#if DEBUG
                 else {
-                    Console.WriteLine("Couldn't find window to restore.");
+                    System.Diagnostics.Trace.WriteLine("Couldn't find window to restore.");
                 }
-#endif
             }
         }
 
@@ -80,8 +78,11 @@ namespace OnTopReplica.StartupOptions {
                     options.StartLocation = null;
                     options.StartScreenPosition = pos;
                 })
-                .Add<Rectangle>("r|region=", "Region {BOUNDS} of the original window.", region => {
-                    options.Region = region;
+                .Add<Rectangle>("r|region=", "Region {BOUNDS} of the cloned window.", region => {
+                    options.Region = new ThumbnailRegion(region);
+                })
+                .Add<System.Windows.Forms.Padding>("p|padding=", "Padding {BOUNDS} of the clone.", padding => {
+                    options.Region = new ThumbnailRegion(padding);
                 })
                 .Add<byte>("o|opacity=", "Opacity of the window (0-255).", opacity => {
                     options.Opacity = opacity;

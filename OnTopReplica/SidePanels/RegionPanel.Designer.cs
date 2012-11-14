@@ -25,6 +25,7 @@
 		private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.groupRegions = new System.Windows.Forms.GroupBox();
+            this.checkRelative = new System.Windows.Forms.CheckBox();
             this.textRegionName = new OnTopReplica.FocusedTextBox();
             this.numH = new System.Windows.Forms.NumericUpDown();
             this.numW = new System.Windows.Forms.NumericUpDown();
@@ -50,6 +51,7 @@
             // 
             // groupRegions
             // 
+            this.groupRegions.Controls.Add(this.checkRelative);
             this.groupRegions.Controls.Add(this.textRegionName);
             this.groupRegions.Controls.Add(this.numH);
             this.groupRegions.Controls.Add(this.numW);
@@ -68,10 +70,24 @@
             this.groupRegions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupRegions.Location = new System.Drawing.Point(6, 6);
             this.groupRegions.Name = "groupRegions";
-            this.groupRegions.Size = new System.Drawing.Size(218, 158);
+            this.groupRegions.Size = new System.Drawing.Size(218, 180);
             this.groupRegions.TabIndex = 0;
             this.groupRegions.TabStop = false;
             this.groupRegions.Text = "Regions:";
+            // 
+            // checkRelative
+            // 
+            this.checkRelative.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkRelative.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkRelative.Location = new System.Drawing.Point(6, 119);
+            this.checkRelative.Name = "checkRelative";
+            this.checkRelative.Size = new System.Drawing.Size(206, 18);
+            this.checkRelative.TabIndex = 12;
+            this.checkRelative.Text = "Relative to border";
+            this.checkRelative.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkRelative.UseVisualStyleBackColor = true;
+            this.checkRelative.CheckedChanged += new System.EventHandler(this.CheckRelative_checked);
             // 
             // textRegionName
             // 
@@ -89,8 +105,9 @@
             // 
             // numH
             // 
+            this.numH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numH.Enabled = false;
-            this.numH.Location = new System.Drawing.Point(150, 93);
+            this.numH.Location = new System.Drawing.Point(169, 93);
             this.numH.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -108,8 +125,9 @@
             // 
             // numW
             // 
+            this.numW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numW.Enabled = false;
-            this.numW.Location = new System.Drawing.Point(150, 67);
+            this.numW.Location = new System.Drawing.Point(169, 67);
             this.numW.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -128,7 +146,7 @@
             // numY
             // 
             this.numY.Enabled = false;
-            this.numY.Location = new System.Drawing.Point(29, 93);
+            this.numY.Location = new System.Drawing.Point(55, 93);
             this.numY.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -147,7 +165,7 @@
             // numX
             // 
             this.numX.Enabled = false;
-            this.numX.Location = new System.Drawing.Point(29, 67);
+            this.numX.Location = new System.Drawing.Point(55, 67);
             this.numX.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -165,10 +183,10 @@
             // 
             // buttonDone
             // 
-            this.buttonDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDone.Image = global::OnTopReplica.Properties.Resources.xiao_ok;
             this.buttonDone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonDone.Location = new System.Drawing.Point(142, 129);
+            this.buttonDone.Location = new System.Drawing.Point(142, 151);
             this.buttonDone.Name = "buttonDone";
             this.buttonDone.Size = new System.Drawing.Size(70, 23);
             this.buttonDone.TabIndex = 9;
@@ -179,8 +197,8 @@
             // 
             // buttonReset
             // 
-            this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonReset.Location = new System.Drawing.Point(66, 129);
+            this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonReset.Location = new System.Drawing.Point(66, 151);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(70, 23);
             this.buttonReset.TabIndex = 8;
@@ -190,20 +208,22 @@
             // 
             // labelHeight
             // 
+            this.labelHeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelHeight.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.labelHeight.Location = new System.Drawing.Point(81, 96);
+            this.labelHeight.Location = new System.Drawing.Point(104, 95);
             this.labelHeight.Name = "labelHeight";
-            this.labelHeight.Size = new System.Drawing.Size(63, 17);
+            this.labelHeight.Size = new System.Drawing.Size(60, 18);
             this.labelHeight.TabIndex = 9;
             this.labelHeight.Text = "Height";
             this.labelHeight.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelWidth
             // 
+            this.labelWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelWidth.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.labelWidth.Location = new System.Drawing.Point(81, 70);
+            this.labelWidth.Location = new System.Drawing.Point(107, 69);
             this.labelWidth.Name = "labelWidth";
-            this.labelWidth.Size = new System.Drawing.Size(63, 17);
+            this.labelWidth.Size = new System.Drawing.Size(57, 18);
             this.labelWidth.TabIndex = 8;
             this.labelWidth.Text = "Width";
             this.labelWidth.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -213,7 +233,7 @@
             this.labelY.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.labelY.Location = new System.Drawing.Point(6, 96);
             this.labelY.Name = "labelY";
-            this.labelY.Size = new System.Drawing.Size(17, 17);
+            this.labelY.Size = new System.Drawing.Size(43, 17);
             this.labelY.TabIndex = 5;
             this.labelY.Text = "Y";
             this.labelY.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -223,7 +243,7 @@
             this.labelX.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.labelX.Location = new System.Drawing.Point(6, 70);
             this.labelX.Name = "labelX";
-            this.labelX.Size = new System.Drawing.Size(17, 17);
+            this.labelX.Size = new System.Drawing.Size(43, 17);
             this.labelX.TabIndex = 4;
             this.labelX.Text = "X";
             this.labelX.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -259,7 +279,7 @@
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(23, 23);
             this.buttonSave.TabIndex = 1;
-            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.UseVisualStyleBackColor = false;
             this.buttonSave.Click += new System.EventHandler(this.Save_click);
             // 
             // comboRegions
@@ -281,10 +301,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupRegions);
-            this.MinimumSize = new System.Drawing.Size(230, 170);
+            this.MinimumSize = new System.Drawing.Size(230, 185);
             this.Name = "RegionPanel";
             this.Padding = new System.Windows.Forms.Padding(6);
-            this.Size = new System.Drawing.Size(230, 170);
+            this.Size = new System.Drawing.Size(230, 192);
             this.groupRegions.ResumeLayout(false);
             this.groupRegions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numH)).EndInit();
@@ -314,5 +334,6 @@
         private System.Windows.Forms.NumericUpDown numX;
         private FocusedTextBox textRegionName;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.CheckBox checkRelative;
 	}
 }

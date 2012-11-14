@@ -39,7 +39,7 @@ namespace OnTopReplica.StartupOptions {
 
         public string WindowClass { get; set; }
 
-        public Rectangle? Region { get; set; }
+        public ThumbnailRegion Region { get; set; }
 
         public bool MustBeVisible { get; set; }
 

@@ -229,11 +229,6 @@ namespace OnTopReplica {
 
             //ESCAPE
             else if (e.KeyCode == Keys.Escape) {
-
-#if DEBUG
-                Console.WriteLine("Received ESCAPE");
-#endif
-
                 //Disable click-through
                 if (ClickThroughEnabled) {
                     ClickThroughEnabled = false;
@@ -307,27 +302,22 @@ namespace OnTopReplica {
         /// Sets a new thumbnail.
         /// </summary>
         /// <param name="handle">Handle to the window to clone.</param>
-        /// <param name="region">Region of the window to clone.</param>
-        public void SetThumbnail(WindowHandle handle, Rectangle? region) {
+        /// <param name="region">Region of the window to clone or null.</param>
+        public void SetThumbnail(WindowHandle handle, ThumbnailRegion region) {
             try {
+                System.Diagnostics.Trace.WriteLine(string.Format("Cloning window HWND {0} of class {1}.", handle.Handle, handle.Class));
+
                 CurrentThumbnailWindowHandle = handle;
-                _thumbnailPanel.SetThumbnailHandle(handle);
-
-#if DEBUG
-                string windowClass = WindowMethods.GetWindowClass(handle.Handle);
-                Console.WriteLine("Cloning window HWND {0} of class {1}.", handle.Handle, windowClass);
-#endif
-
-                if (region.HasValue)
-                    _thumbnailPanel.SelectedRegion = region.Value;
-                else
-                    _thumbnailPanel.ConstrainToRegion = false;
+                _thumbnailPanel.SetThumbnailHandle(handle, region);
 
                 //Set aspect ratio (this will resize the form), do not refresh if in fullscreen
-                SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize, !IsFullscreen);
+                SetAspectRatio(_thumbnailPanel.ThumbnailPixelSize, !IsFullscreen);
             }
             catch (Exception ex) {
+                System.Diagnostics.Trace.Fail("Unable to set thumbnail.", ex.ToString());
+
                 ThumbnailError(ex, false, Strings.ErrorUnableToCreateThumbnail);
+                _thumbnailPanel.UnsetThumbnail();
             }
         }
 
@@ -365,7 +355,7 @@ namespace OnTopReplica {
         /// <summary>
         /// Gets or sets the region displayed of the current thumbnail.
         /// </summary>
-        public Rectangle? SelectedThumbnailRegion {
+        public ThumbnailRegion SelectedThumbnailRegion {
             get {
                 if (!_thumbnailPanel.IsShowingThumbnail || !_thumbnailPanel.ConstrainToRegion)
                     return null;
@@ -376,14 +366,9 @@ namespace OnTopReplica {
                 if (!_thumbnailPanel.IsShowingThumbnail)
                     return;
 
-                if (value.HasValue) {
-                    _thumbnailPanel.SelectedRegion = value.Value;
-                    SetAspectRatio(value.Value.Size, true);
-                }
-                else {
-                    _thumbnailPanel.ConstrainToRegion = false;
-                    SetAspectRatio(_thumbnailPanel.ThumbnailOriginalSize, true);
-                }
+                _thumbnailPanel.SelectedRegion = value;
+
+                SetAspectRatio(_thumbnailPanel.ThumbnailPixelSize, true);
 
                 FixPositionAndSize();
             }
@@ -423,7 +408,7 @@ namespace OnTopReplica {
         /// <param name="p">Scale of the thumbnail to consider.</param>
         private void FitToThumbnail(double p) {
             try {
-                Size originalSize = _thumbnailPanel.ThumbnailOriginalSize;
+                Size originalSize = _thumbnailPanel.ThumbnailPixelSize;
                 Size fittedSize = new Size((int)(originalSize.Width * p), (int)(originalSize.Height * p));
                 ClientSize = fittedSize;
             }

@@ -76,9 +76,7 @@ namespace OnTopReplica {
 
             var move = end.Difference(start);
 
-#if DEBUG
-            Console.WriteLine("From {0} to {1} => {2}.", start, end, move);
-#endif
+            System.Diagnostics.Trace.WriteLine(string.Format("From {0} to {1} => {2}.", start, end, move));
 
             var original = form.Location;
             form.Location = new Point(original.X + move.X, original.Y + move.Y);

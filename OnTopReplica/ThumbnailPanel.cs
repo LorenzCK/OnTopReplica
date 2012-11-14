@@ -14,7 +14,6 @@ namespace OnTopReplica {
 
 		//DWM Thumbnail stuff
 		Thumbnail _thumbnail = null;
-		Rectangle _regionCurrent;
 
 		//Labels
 		ThemedLabel _labelGlass;
@@ -42,16 +41,19 @@ namespace OnTopReplica {
 
 		#region Properties and settings
 
+        ThumbnailRegion _currentRegion;
+
         /// <summary>
-        /// Gets or sets the region that is currently shown on the thumbnail. When set, also enabled region constrain.
+        /// Gets or sets the region that is currently shown on the thumbnail. When set, also enables region constrain.
         /// </summary>
-		public Rectangle SelectedRegion {
+		public ThumbnailRegion SelectedRegion {
 			get {
-				return _regionCurrent;
+                return _currentRegion;
 			}
 			set {
-				_regionCurrent = value;
-                ConstrainToRegion = true;
+                _currentRegion = value;
+                _regionEnabled = (value != null);
+                UpdateThubmnail();
 			}
 		}
 
@@ -65,8 +67,10 @@ namespace OnTopReplica {
 				return _regionEnabled;
 			}
 			set {
-				_regionEnabled = value;
-				UpdateThubmnail();
+                if (_regionEnabled != value) {
+                    _regionEnabled = value;
+                    UpdateThubmnail();
+                }
 			}
 		}
 
@@ -112,18 +116,50 @@ namespace OnTopReplica {
         }
 
         /// <summary>
-        /// Gets the thumbnail's original size.
+        /// Gets the thumbnail's size (in effectively thumbnailed pixels).
         /// </summary>
+        /// <remarks>
+        /// This size varies if the thumbnail has been cropped to a region.
+        /// </remarks>
+        public Size ThumbnailPixelSize {
+            get {
+                if (_thumbnail != null && !_thumbnail.IsInvalid) {
+                    if (_regionEnabled) {
+                        return _currentRegion.ComputeRegionSize(_thumbnail.SourceSize);
+                    }
+                    else {
+                        //Thumbnail is not cropped, return full thumbnail source size
+                        return _thumbnail.SourceSize;
+                    }
+                }
+                else {
+#if DEBUG
+                    throw new InvalidOperationException(Strings.ErrorNoThumbnail);
+#else
+                    return Size.Empty;
+#endif
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the thumbnailed window's original size.
+        /// </summary>
+        /// <remarks>
+        /// This size is not influenced by the region cropping applied to the thumbnail.
+        /// </remarks>
         public Size ThumbnailOriginalSize {
             get {
                 if (_thumbnail != null && !_thumbnail.IsInvalid) {
-                    if (_regionEnabled)
-                        return _regionCurrent.Size;
-
                     return _thumbnail.SourceSize;
                 }
-                else
-                    throw new Exception(Strings.ErrorNoThumbnail);
+                else {
+#if DEBUG
+                    throw new InvalidOperationException(Strings.ErrorNoThumbnail);
+#else
+                    return Size.Empty;
+#endif
+                }
             }
         }
 
@@ -156,9 +192,14 @@ namespace OnTopReplica {
         /// Creates a new thumbnail of a certain window.
         /// </summary>
         /// <param name="handle">Handle of the window to clone.</param>
-		public void SetThumbnailHandle(WindowHandle handle) {
-			if (_thumbnail != null && !_thumbnail.IsInvalid)
-				_thumbnail.Close();
+        /// <param name="region">Optional region.</param>
+		public void SetThumbnailHandle(WindowHandle handle, ThumbnailRegion region) {
+            System.Diagnostics.Trace.WriteLine(string.Format("Setting thumbnail to handle {0}, with region {1}.", handle, region), "ThumbnailPanel");
+
+            if (_thumbnail != null && !_thumbnail.IsInvalid) {
+                _thumbnail.Close();
+                _thumbnail = null;
+            }
 
 			//Get form and register thumbnail on it
 			Form owner = this.TopLevelControl as Form;
@@ -167,16 +208,22 @@ namespace OnTopReplica {
 
             _labelGlass.Visible = false;
 
+            //Register new thumbnail, disable regioning directly and refresh
 			_thumbnail = DwmManager.Register(owner, handle.Handle);
-            ConstrainToRegion = false; //this also invokes a thumbnail update
+            _currentRegion = region;
+            _regionEnabled = (region != null);
+            UpdateThubmnail();
 		}
 
         /// <summary>
         /// Disposes current thumbnail and enters stand-by mode.
         /// </summary>
 		public void UnsetThumbnail() {
-			if (_thumbnail != null && !_thumbnail.IsInvalid)
-				_thumbnail.Close();
+            System.Diagnostics.Trace.WriteLine("Unsetting thumbnail.");
+
+            if (_thumbnail != null && !_thumbnail.IsInvalid) {
+                _thumbnail.Close();
+            }
 
 			_thumbnail = null;
             _labelGlass.Visible = true;
@@ -201,14 +248,16 @@ namespace OnTopReplica {
 		private void UpdateThubmnail() {
 			if (_thumbnail != null && !_thumbnail.IsInvalid){
                 try {
-                    Size sourceSize = ThumbnailOriginalSize;
-                    _thumbnailSize = ComputeIdealSize(sourceSize, Size);
-
+                    //Get thumbnail size and attempt to fit to control, with padding
+                    Size sourceSize = ThumbnailPixelSize;
+                    _thumbnailSize = sourceSize.Fit(Size);
                     _padWidth = (Size.Width - _thumbnailSize.Width) / 2;
                     _padHeight = (Size.Height - _thumbnailSize.Height) / 2;
 
+                    System.Diagnostics.Debug.WriteLine("Fitting {0} inside {1} as {2}. Padding {3},{4}.", sourceSize, Size, _thumbnailSize, _padWidth, _padHeight);
+
                     var target = new Rectangle(_padWidth, _padHeight, _thumbnailSize.Width, _thumbnailSize.Height);
-                    Rectangle source = (_regionEnabled) ? _regionCurrent : new Rectangle(Point.Empty, _thumbnail.SourceSize);
+                    Rectangle source = (_regionEnabled) ? _currentRegion.ComputeRegionRectangle(_thumbnail.SourceSize) : new Rectangle(Point.Empty, _thumbnail.SourceSize);
 
                     _thumbnail.Update(target, source, ThumbnailOpacity, true, true);
                 }
@@ -220,29 +269,11 @@ namespace OnTopReplica {
 			}
 		}
 
-        /// <summary>
-        /// Computes ideal thumbnail size given an original size and a target to fit.
-        /// </summary>
-        /// <param name="sourceSize">Size of the original thumbnail.</param>
-        /// <param name="clientSize">Size of the client area to fit.</param>
-        private Size ComputeIdealSize(Size sourceSize, Size clientSize) {
-            double sourceRatio = (double)sourceSize.Width / (double)sourceSize.Height;
-            double clientRatio = (double)clientSize.Width / (double)clientSize.Height;
-            
-            Size ret;
-            if (sourceRatio >= clientRatio) {
-                ret = new Size(clientSize.Width, (int)((double)clientSize.Width / sourceRatio));
-            }
-            else {
-                ret = new Size((int)((double)clientSize.Height * sourceRatio), clientSize.Height);
-            }
-
-            return ret;
-        }
-
         #endregion
 
 		#region Region drawing
+
+        const int MinimumRegionSize = 1;
 
         //Set if currently drawing a window (first click/drag was initiated)
         bool _drawingRegion = false;
@@ -251,18 +282,20 @@ namespace OnTopReplica {
         Point _regionStartPoint;
         Point _regionLastPoint;
 
-        public delegate void RegionDrawnHandler(object sender, Rectangle region);
+        public delegate void RegionDrawnHandler(object sender, ThumbnailRegion region);
 
         public event RegionDrawnHandler RegionDrawn;
 
         protected virtual void OnRegionDrawn(Rectangle region) {
             //Fix region if necessary (bug report by Gunter, via comment)
-            if (region.Width < 1) region.Width = 1;
-            if (region.Height < 1) region.Height = 1;
+            if (region.Width < MinimumRegionSize)
+                region.Width = MinimumRegionSize;
+            if (region.Height < MinimumRegionSize)
+                region.Height = MinimumRegionSize;
 
             var evt = RegionDrawn;
             if (evt != null)
-                evt(this, region);
+                evt(this, new ThumbnailRegion(region));
         }
 
         /// <summary>
@@ -272,7 +305,7 @@ namespace OnTopReplica {
             if (_thumbnailSize.Width < 1 || _thumbnailSize.Height < 1) //causes DivBy0
                 return;
 
-            //Compute bounds
+            //Compute bounds and clip to boundaries
             int left = Math.Min(start.X, end.X);
             int right = Math.Max(start.X, end.X);
             int top = Math.Min(start.Y, end.Y);
@@ -288,12 +321,15 @@ namespace OnTopReplica {
             var startPoint = ClientToThumbnail(new Point(left, top));
             var endPoint = ClientToThumbnail(new Point(right, bottom));
             var final = new Rectangle(
-                startPoint,
-                new Size(endPoint.X - startPoint.X, endPoint.Y - startPoint.Y)
+                startPoint.X,
+                startPoint.Y,
+                endPoint.X - startPoint.X,
+                endPoint.Y - startPoint.Y
             );
 
-            //Update region
-            SelectedRegion = final;
+            System.Diagnostics.Trace.WriteLine(string.Format("Drawn from {0} to {1}, as region {2}.", start, end, final));
+
+            //Signal
             OnRegionDrawn(final);
         }
 
@@ -356,7 +392,7 @@ namespace OnTopReplica {
 			base.OnMouseMove(e);
 		}
 
-		Pen penRed = new Pen(Color.FromArgb(255, Color.Red), 1.0f);
+		readonly static Pen RedPen = new Pen(Color.FromArgb(255, Color.Red), 1.5f); //TODO: check width
 
 		protected override void OnPaint(PaintEventArgs e) {
 			if (_drawingRegion) {
@@ -366,12 +402,12 @@ namespace OnTopReplica {
 				int top = Math.Min(_regionStartPoint.Y, _regionLastPoint.Y);
 				int bottom = Math.Max(_regionStartPoint.Y, _regionLastPoint.Y);
 
-				e.Graphics.DrawRectangle(penRed, left, top, right - left, bottom - top);
+				e.Graphics.DrawRectangle(RedPen, left, top, right - left, bottom - top);
 			}
             else if (DrawMouseRegions && ! _drawingSuspended) {
                 //Show cursor coordinates
-                e.Graphics.DrawLine(penRed, new Point(0, _regionLastPoint.Y), new Point(ClientSize.Width, _regionLastPoint.Y));
-                e.Graphics.DrawLine(penRed, new Point(_regionLastPoint.X, 0), new Point(_regionLastPoint.X, ClientSize.Height));
+                e.Graphics.DrawLine(RedPen, new Point(0, _regionLastPoint.Y), new Point(ClientSize.Width, _regionLastPoint.Y));
+                e.Graphics.DrawLine(RedPen, new Point(_regionLastPoint.X, 0), new Point(_regionLastPoint.X, ClientSize.Height));
             }
 
 			base.OnPaint(e);
@@ -427,14 +463,15 @@ namespace OnTopReplica {
             position.X -= _padWidth;
             position.Y -= _padHeight;
 
+            //Determine position in fractional terms (on the size of the thumbnail control)
             PointF proportionalPosition = new PointF(
                 (float)position.X / _thumbnailSize.Width,
                 (float)position.Y / _thumbnailSize.Height
             );
 
             //Get real pixel region info
-            Size source = (_regionEnabled) ? _regionCurrent.Size : _thumbnail.SourceSize;
-            Point offset = (_regionEnabled) ? _regionCurrent.Location : Point.Empty;
+            Size source = ThumbnailPixelSize;
+            Point offset = (_regionEnabled) ? SelectedRegion.Offset : Point.Empty;
 
             return new Point(
                 (int)((proportionalPosition.X * source.Width) + offset.X),
