@@ -18,6 +18,9 @@ namespace OnTopReplica {
         /// <summary>
         /// Gets or sets whether the form should keep its aspect ratio.
         /// </summary>
+        /// <remarks>
+        /// Refreshes the window's size if set to true.
+        /// </remarks>
         [Description("Enables fixed aspect ratio for this form."), Category("Appearance"), DefaultValue(true)]
         public bool KeepAspectRatio {
             get {
@@ -74,12 +77,29 @@ namespace OnTopReplica {
         public void RefreshAspectRatio() {
             int newWidth = ClientSize.Width;
             int newHeight = (int)((ClientSize.Width - ExtraPadding.Horizontal) / AspectRatio) + ExtraPadding.Vertical;
-            if (newHeight < FromSizeToClientSize(MinimumSize).Height) {
-                newHeight = FromSizeToClientSize(MinimumSize).Height;
+            
+            //Adapt height if it doesn't respect the form's minimum size
+            Size clientMinimumSize = FromSizeToClientSize(MinimumSize);
+            if (newHeight < clientMinimumSize.Height) {
+                newHeight = clientMinimumSize.Height;
                 newWidth = (int)((newHeight - ExtraPadding.Vertical) * AspectRatio) + ExtraPadding.Horizontal;
             }
 
+            //Adapt height if it exceeds the screen's height
+            var workingArea = Screen.GetWorkingArea(this);
+            if (newHeight >= workingArea.Height) {
+                newHeight = workingArea.Height;
+                newWidth = (int)((newHeight - ExtraPadding.Vertical) * AspectRatio) + ExtraPadding.Horizontal;
+            }
+
+            //Update size
             ClientSize = new Size(newWidth, newHeight);
+
+            //Move form vertically to adapt to new size
+            if (Location.Y + Size.Height > workingArea.Y + workingArea.Height) {
+                int offsetY = (workingArea.Y + workingArea.Height) - (Location.Y + Size.Height);
+                Location = new Point(Location.X, Location.Y - offsetY);
+            }
         }
 
         /// <summary>
@@ -111,13 +131,14 @@ namespace OnTopReplica {
         /// <param name="forceRefresh">True if the size of the form should be refreshed to match the new aspect ratio.</param>
         public void SetAspectRatio(Size aspectRatioSource, bool forceRefresh) {
             AspectRatio = ((double)aspectRatioSource.Width / (double)aspectRatioSource.Height);
+            _keepAspectRatio = true;
 
 #if DEBUG
             System.Diagnostics.Trace.WriteLine(string.Format("Setting aspect ratio of {0} (for {1}).", AspectRatio, aspectRatioSource));
 #endif
             
             if (forceRefresh) {
-                KeepAspectRatio = true;
+                RefreshAspectRatio();
             }
         }
 
