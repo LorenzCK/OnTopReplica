@@ -51,7 +51,7 @@ RequestExecutionLevel user
 # INITIALIZATION AND ERROR CHECKING
 Function .onInit
   ${HasDotNet4} $R0
-  ${If} $R0 == 2
+  ${If} $R0 == 1
 	;noop
   ${Else}
 	MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "Microsoft .NET Framework 4.0 appears not to be installed.$\n$\nOnTopReplica requires .NET 4.0 to run: please install it before running the installer.$\n$\nDo you wish to proceed anyway?" IDOK proceedAnyway
