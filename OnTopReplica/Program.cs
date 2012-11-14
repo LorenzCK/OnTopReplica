@@ -55,17 +55,7 @@ namespace OnTopReplica {
 
             //Show form
             using (_mainForm = new MainForm(options)) {
-                //Start up update manager
-                Update = new UpdateManager(_mainForm);
-                Update.UpdateCheckCompleted += new EventHandler<UpdateCheckCompletedEventArgs>(UpdateManager_CheckCompleted);
-                bool doneCheck = false;
-                _mainForm.Shown += delegate {
-                    if (doneCheck) return;
-                    doneCheck = true;
-
-                    //Delay first update check to when form is visible
-                    Update.CheckForUpdate();
-                };
+                Application.Idle += _handlerIdleUpdater;
 
                 //Enter GUI loop
                 Application.Run(_mainForm);
@@ -75,6 +65,19 @@ namespace OnTopReplica {
                 Settings.Default.RestoreLastSize = _mainForm.ClientSize;
                 Settings.Default.Save();
             }
+        }
+
+        private static EventHandler _handlerIdleUpdater = new EventHandler(Application_Idle);
+
+        /// <summary>
+        /// Callback detecting application idle time.
+        /// </summary>
+        static void Application_Idle(object sender, EventArgs e) {
+            Application.Idle -= _handlerIdleUpdater;
+
+            Update = new UpdateManager(_mainForm);
+            Update.UpdateCheckCompleted += new EventHandler<UpdateCheckCompletedEventArgs>(UpdateManager_CheckCompleted);
+            Update.CheckForUpdate();
         }
 
         /// <summary>
@@ -87,12 +90,12 @@ namespace OnTopReplica {
                 }
             }
             else {
-                Console.Error.WriteLine("Failed to check updates. {0}", e.Error);
+                System.Diagnostics.Trace.WriteLine(string.Format("Failed to check updates. {0}", e.Error));
             }
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
-            string dump = string.Format("OnTopReplica-dump-{0}{1}{2}{3}{4}.txt",
+            string dump = string.Format("OnTopReplica-dump-{0}{1}{2}-{3}{4}.txt",
                 DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
                 DateTime.Now.Hour, DateTime.Now.Minute);
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), dump);
@@ -106,7 +109,7 @@ namespace OnTopReplica {
                     sw.WriteLine("Last exception:");
                     sw.WriteLine(e.ExceptionObject.ToString());
                     sw.WriteLine();
-                    sw.WriteLine("OnTopReplica v. {0}", Assembly.GetEntryAssembly().GetName().Version);
+                    sw.WriteLine("OnTopReplica v.{0}", Assembly.GetEntryAssembly().GetName().Version);
                     sw.WriteLine("OS: {0}", Environment.OSVersion.ToString());
                     sw.WriteLine(".NET: {0}", Environment.Version.ToString());
                     sw.WriteLine("Aero DWM: {0}", WindowsFormsAero.OsSupport.IsCompositionEnabled);
