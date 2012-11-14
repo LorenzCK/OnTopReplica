@@ -37,7 +37,8 @@ namespace Asztal.Szótár {
 
 		//See http://msdn2.microsoft.com/en-us/library/bb773210.aspx - "Parts and States"
 		#region Parts and States 
-		enum MenuParts : int {
+		
+        enum MenuParts : int {
 			MENU_MENUITEM_TMSCHEMA = 1,
 			MENU_MENUDROPDOWN_TMSCHEMA = 2,
 			MENU_MENUBARITEM_TMSCHEMA = 3,
@@ -106,9 +107,11 @@ namespace Asztal.Szótár {
 		}
 
 		const int RP_BACKGROUND = 6;
+
 		#endregion
 
 		#region Theme helpers
+
 		Padding GetThemeMargins(IDeviceContext dc, MarginTypes marginType) {
 			NativeMethods.MARGINS margins;
 			try {
@@ -137,9 +140,11 @@ namespace Asztal.Szótár {
 				return hot ? (int)MenuBarItemStates.MBI_DISABLEDHOT : (int)MenuBarItemStates.MBI_DISABLED;
 			}
 		}
+
 		#endregion
 
 		#region Theme subclasses
+
 		public ToolbarTheme Theme {
 			get; set;
 		}
@@ -177,6 +182,7 @@ namespace Asztal.Szótár {
 			return VisualStyleElement.CreateElement(SubclassPrefix + element.ClassName,
 				element.Part, element.State);
 		}
+
 		#endregion
 
 		VisualStyleRenderer renderer;
@@ -380,12 +386,20 @@ namespace Asztal.Szótár {
 		}
 		#endregion
 
+        private static bool? _isSupportedCache = null;
+
 		public static bool IsSupported {
 			get {
-				if (!VisualStyleRenderer.IsSupported)
-					return false;
+                if (_isSupportedCache.HasValue)
+                    return _isSupportedCache.Value;
 
-				return VisualStyleRenderer.IsElementDefined(VisualStyleElement.CreateElement("MENU", (int)MenuParts.MENU_BARBACKGROUND, (int)MenuBarStates.MB_ACTIVE));
+                if (!VisualStyleRenderer.IsSupported) {
+                    _isSupportedCache = false;
+                    return false;
+                }
+
+				_isSupportedCache = VisualStyleRenderer.IsElementDefined(VisualStyleElement.CreateElement("MENU", (int)MenuParts.MENU_BARBACKGROUND, (int)MenuBarStates.MB_ACTIVE));
+                return _isSupportedCache.Value;
 			} 
 		}
 	}
