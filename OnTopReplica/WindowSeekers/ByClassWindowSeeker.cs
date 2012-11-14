@@ -8,9 +8,10 @@ namespace OnTopReplica.WindowSeekers {
     /// Seeks a single window by matching its window class.
     /// </summary>
     /// <remarks>
-    /// Class matching is exact and case-sensititve.
+    /// Class matching is case-sensitive and prefers perfect matches, also accepting
+    /// partial matches (when the class matches the beginning of the target class name).
     /// </remarks>
-    class ByClassWindowSeeker : BaseWindowSeeker {
+    class ByClassWindowSeeker : PointBasedWindowSeeker {
 
         public ByClassWindowSeeker(string className) {
             if (className == null)
@@ -21,15 +22,20 @@ namespace OnTopReplica.WindowSeekers {
 
         public string ClassName { get; private set; }
 
-        protected override bool InspectWindow(IntPtr hwnd, string title, ref bool terminate) {
-            var wndClass = WindowMethods.GetWindowClass(hwnd);
+        protected override int EvaluatePoints(WindowHandle handle) {
+            if(string.IsNullOrEmpty(handle.Class))
+                return -1;
 
-            if (ClassName.Equals(wndClass, StringComparison.CurrentCulture)) {
-                return true;
-            }
+            int points = 0;
 
-            return false;
+            //Partial match
+            if (handle.Class.StartsWith(ClassName, StringComparison.InvariantCulture))
+                points += 10;
+
+            if (handle.Class.Equals(ClassName, StringComparison.InvariantCulture))
+                points += 10;
+
+            return points;
         }
-
     }
 }

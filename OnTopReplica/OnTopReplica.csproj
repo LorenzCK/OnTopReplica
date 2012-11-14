@@ -191,6 +191,8 @@
     <Compile Include="WindowSeekers\BaseWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByClassWindowSeeker.cs" />
     <Compile Include="WindowSeekers\ByTitleWindowSeeker.cs" />
+    <Compile Include="WindowSeekers\IWindowSeeker.cs" />
+    <Compile Include="WindowSeekers\PointBasedWindowSeeker.cs" />
     <Compile Include="WindowSeekers\RestoreWindowSeeker.cs" />
     <Compile Include="WindowSeekers\TaskWindowSeeker.cs" />
     <Compile Include="WindowsFormsExtensions.cs" />

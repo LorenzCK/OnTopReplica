@@ -6,36 +6,29 @@ using OnTopReplica.Native;
 namespace OnTopReplica.WindowSeekers {
     
     /// <summary>
-    /// Base class for window seekers that can populate a list of window handles based on some criteria.
+    /// Base class for window seekers that can populate a list of window handles based on some criteria and with basic filtering.
     /// </summary>
-    abstract class BaseWindowSeeker {
+    abstract class BaseWindowSeeker : IWindowSeeker {
 
-        IList<WindowHandle> _list = new List<WindowHandle>();
+        #region IWindowSeeker
 
         /// <summary>
         /// Get the matching windows from the last refresh.
         /// </summary>
-        public virtual IList<WindowHandle> Windows {
-            get {
-                return _list;
-            }
-            protected set {
-                _list = value;
-            }
+        public abstract IList<WindowHandle> Windows {
+            get;
         }
 
         /// <summary>
         /// Forces a window list refresh.
         /// </summary>
         public virtual void Refresh() {
-            _list.Clear();
-
             WindowManagerMethods.EnumWindows(RefreshCallback, IntPtr.Zero);
         }
 
-        private bool RefreshCallback(IntPtr hwnd, IntPtr lParam) {
-            bool cont = true;
+        #endregion
 
+        private bool RefreshCallback(IntPtr hwnd, IntPtr lParam) {
             //Skip owner
             if (hwnd == OwnerHandle)
                 return true;
@@ -45,23 +38,17 @@ namespace OnTopReplica.WindowSeekers {
 
             //Extract basic properties
             string title = WindowMethods.GetWindowText(hwnd);
+            var handle = new WindowHandle(hwnd, title);
 
-            if (InspectWindow(hwnd, title, ref cont)) {
-                //Window has been picked
-                _list.Add(new WindowHandle(hwnd, title));
-            }
-
-            return cont;
+            return InspectWindow(handle);
         }
 
         /// <summary>
-        /// Inspects a window and returns whether the window should be listed or not.
+        /// Inspects a window and return whether inspection should continue.
         /// </summary>
-        /// <param name="hwnd">Handle of the window.</param>
-        /// <param name="title">Title of the window (if any).</param>
-        /// <param name="terminate">Indicates whether the inspection loop should terminate after this window.</param>
-        /// <returns>True if the window should be listed.</returns>
-        protected abstract bool InspectWindow(IntPtr hwnd, string title, ref bool terminate);
+        /// <param name="handle">Handle of the window.</param>
+        /// <returns>True if inspection should continue. False stops current refresh operation.</returns>
+        protected abstract bool InspectWindow(WindowHandle handle);
 
         /// <summary>
         /// Gets or sets the window handle of the owner.
