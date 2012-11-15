@@ -411,6 +411,7 @@ namespace OnTopReplica {
                 Size originalSize = _thumbnailPanel.ThumbnailPixelSize;
                 Size fittedSize = new Size((int)(originalSize.Width * p), (int)(originalSize.Height * p));
                 ClientSize = fittedSize;
+                RefreshScreenLock();
             }
             catch (Exception ex) {
                 ThumbnailError(ex, false, Strings.ErrorUnableToFit);
