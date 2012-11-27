@@ -4,134 +4,113 @@
         <name>WindowsFormsAero</name>
     </assembly>
     <members>
+        <member name="T:WindowsFormsAero.AeroForm">
+            <summary>
+            Base form class that automatically sets its font according to the Windows UX guidelines.
+            </summary>
+        </member>
+        <member name="M:WindowsFormsAero.AeroForm.#ctor">
+            <summary>
+            Constructs a new Aero styled form.
+            </summary>
+        </member>
+        <member name="T:WindowsFormsAero.TaskDialog.TaskDialogButton">
+            <summary>Common Task Dialog buttons. OK is the default button.</summary>
+        </member>
+        <member name="T:WindowsFormsAero.TaskDialog.Message">
+            <summary>Stores a Task Dialog message that will be sent to a dialog in order to update its state.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,System.Int32,System.Int32)">
+            <summary>Simple int, int message.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,System.Int32,System.Boolean)">
+            <summary>Simple int, bool message.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,System.Boolean,System.Boolean)">
+            <summary>Simple bool, bool message.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,System.Boolean,System.Int32)">
+            <summary>Simple bool, int message.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,System.Int32,System.Int32,System.Int32)">
+            <summary>Simple int, long (hi word and lo word) message.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,WindowsFormsAero.TaskDialog.Message.DialogElements,System.String)">
+            <summary>Text updating message.</summary>
+            <remarks>The string will be marshaled: the Message must be correctly disposed after use.</remarks>
+        </member>
+        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,System.Int32,WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogConfig)">
+            <summary>Navigation message.</summary>
+            <remarks>The config structure will be marshaled: must be correctly disposed after use.</remarks>
+        </member>
+        <member name="T:WindowsFormsAero.TaskDialog.Message.DialogElements">
+            <summary>Text values that can be updated.</summary>
+        </member>
         <member name="T:WindowsFormsAero.NativeMethods">
             <summary>
             Control style and notification constants
             </summary>
         </member>
-        <member name="P:WindowsFormsAero.TextBox.CueBannerText">
-            <summary>Gets or sets the cue text that is displayed on the TextBox control.</summary>
+        <member name="E:WindowsFormsAero.SplitButton.SplitClick">
+            <summary>Occurs when the split label is clicked.</summary>
         </member>
-        <member name="P:WindowsFormsAero.TextBox.ShowCueFocused">
-            <summary>Gets or sets whether the Cue text should be displyed even when the control has keybord focus.</summary>
-            <remarks>If true, the Cue text will disappear as soon as the user starts typing.</remarks>
+        <member name="E:WindowsFormsAero.SplitButton.SplitMenuOpening">
+            <summary>Occurs when the split label is clicked, but before the associated
+            context menu is displayed by the control.</summary>
         </member>
-        <member name="T:WindowsFormsAero.SearchTextBox">
-            <summary>A standard WinForms text box presenting the common Vista "search" interface.
-            Reacts on user input by raising "SearchStarted" events.</summary>
+        <member name="P:WindowsFormsAero.SplitButton.SplitMenuStrip">
+            <summary>Gets or sets the associated context menu that is displayed when the split
+            glyph of the button is clicked.</summary>
         </member>
-        <member name="M:WindowsFormsAero.SearchTextBox.SetFocusWithoutSelection">
-            <summary>Puts the focus on the text box and moves the caret to the end of the text, without selecting it.</summary>
+        <member name="P:WindowsFormsAero.SplitButton.SplitMenu">
+            <summary>Gets or sets the associated context menu that is displayed when the split
+            glyph of the button is clicked. Exposed for backward compatibility.</summary>
         </member>
-        <member name="M:WindowsFormsAero.SearchTextBox.Dispose(System.Boolean)">
-            <summary> 
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        <member name="T:WindowsFormsAero.SplitButton.SplitMenuEventArgs">
+            <summary>Provides data for the clicking of split buttons and the opening
+            of context menus.</summary>
         </member>
-        <member name="M:WindowsFormsAero.SearchTextBox.InitializeComponent">
-            <summary> 
-            Required method for Designer support - do not modify 
-            the contents of this method with the code editor.
-            </summary>
+        <member name="P:WindowsFormsAero.SplitButton.SplitMenuEventArgs.DrawArea">
+            <summary>Represents the bounding box of the clicked button.</summary>
+            <remarks>A menu should be opened, with top-left coordinates in the left-bottom point of
+            the rectangle and with width equal (or greater) than the width of the rectangle.</remarks>
         </member>
-        <member name="E:WindowsFormsAero.SearchTextBox.TextChanged">
+        <member name="P:WindowsFormsAero.SplitButton.SplitMenuEventArgs.PreventOpening">
+            <summary>Set to true if you want to prevent the menu from opening.</summary>
+        </member>
+        <member name="T:WindowsFormsAero.Dwm.Margins">
+            <summary>Margins structure for the Glass Sheet effect.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.Margins.IsOutsideMargins(System.Drawing.Point,System.Drawing.Size)">
             <summary>
-            Raised when the Text of the search box has changed.
+            Returns whether a point in client coordinates is outside the margins defined by this instance.
             </summary>
+            <param name="clientPoint">Point in client coordinates.</param>
         </member>
-        <member name="E:WindowsFormsAero.SearchTextBox.SearchStarted">
+        <member name="M:WindowsFormsAero.Dwm.Margins.AsPadding">
             <summary>
-            Raised after an interval after the last user input.
+            Gets the margins value as a padding instance.
             </summary>
+            <returns></returns>
         </member>
-        <member name="E:WindowsFormsAero.SearchTextBox.SearchCancelled">
+        <member name="F:WindowsFormsAero.Dwm.Margins.Zero">
             <summary>
-            Raised when the user clicks on the X to cancel the search.
+            Gets a static readonly 0-pixel margin.
+            This margin returns true on the IsNull property.
             </summary>
         </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.HoverButtonColor">
-            <summary>Gets or sets the background Color of the button when the mouse hovers on it.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.ActiveForeColor">
-            <summary>Gets or sets the ForeColor of the control when the search box is active.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.ActiveBackColor">
-            <summary>Gets or sets the BackColor of the control when the search box is active.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.InactiveForeColor">
-            <summary>Gets or sets the ForeColor of the control when the search box is inactive.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.InactiveBackColor">
-            <summary>Gets or sets the BackColor of the control when the search box is inactive.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.ForeColor">
-            <summary>Temporary ForeColor property of the control. You should use InactiveForeColor and ActiveForeColor instead.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.BackColor">
-            <summary>Temporary BackColor property of the control. You should use InactiveBackColor and ActiveBackColor instead.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.InactiveText">
-            <summary>Gets or sets the text that is shown on top of the text box when the user hasn't entered any text.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.ActiveFont">
-            <summary>Gets or sets the font used in the search text box.</summary>
-            <remarks>Equals to the Font property.</remarks>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.InactiveFont">
-            <summary>Gets or sets the font used to write the "inactivity label" on top of the control when the user hasn't entered any text.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.Font">
+        <member name="P:WindowsFormsAero.Dwm.Margins.IsMarginless">
             <summary>
-            Overall Font property of the control.
-            Property changes are forwarded to the ActiveFont and InactiveFont property.
+            Gets whether this margin represents a negative measure on each side.
             </summary>
+            <remarks>
+            Used to specify non-existing margins on glass frames.
+            </remarks>
         </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.TextEntered">
-            <summary>Returns true if the user entered some text in the search textbox.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.SearchTimer">
+        <member name="P:WindowsFormsAero.Dwm.Margins.IsNull">
             <summary>
-            Gets or sets the delay in milliseconds between when the text is edited
-            and the search event is raised.
+            Gets whether this margin measures 0 pixels on each side.
             </summary>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.StartSearchAfterDelay">
-            <summary>
-            Gets or sets whether the control raises a SearchStarted event after user input.
-            </summary>
-        </member>
-        <member name="P:WindowsFormsAero.SearchTextBox.StartSearchOnEnter">
-            <summary>
-            Gets or sets whether the control raises a SearchStarted event when the user hits the Enter key.
-            </summary>
-        </member>
-        <member name="T:WindowsFormsAero.TaskDialog.Results">
-            <summary>Class that aggregates the results of an "indirect" Task Dialog.</summary>
-        </member>
-        <member name="T:WindowsFormsAero.TaskDialog.Result">
-            <summary>Results returned by Task Dialogs when closed by the user.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.TaskDialog.NativeMethods.TaskDialog(System.IntPtr,System.IntPtr,System.String,System.String,System.String,System.Int32,System.IntPtr,System.Int32@)">
-            <summary>Direct Task Dialog call.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogIndirect(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogConfig@,System.Int32@,System.Int32@,System.Boolean@)">
-            <summary>Indirect Task Dialog call. Allows complex dialogs with interaction logic (via callback).</summary>
-        </member>
-        <member name="T:WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogConfig">
-            <summary>The Task Dialog config structure.</summary>
-        </member>
-        <member name="T:WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogFlags">
-            <summary>Flags used in TaskDialogConfig struct.</summary>
-            <remarks>From CommCtrl.h.</remarks>
-        </member>
-        <member name="T:WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogNotification">
-            <summary>Notifications returned by Task Dialogs to the callback.</summary>
-            <remarks>From CommCtrl.h.</remarks>
-        </member>
-        <member name="T:WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages">
-            <summary>Messages that can be sent to Task Dialogs.</summary>
-            <remarks>From CommCtrl.h.</remarks>
         </member>
         <member name="T:WindowsFormsAero.TaskDialog.TaskDialog">
             <summary>Displays a dialog box that can contain text, icons, buttons, command links, radio buttons and/or a progress bar.</summary>
@@ -414,224 +393,134 @@
         <member name="E:WindowsFormsAero.TaskDialog.TaskDialog.Expanding">
             <summary>Occurs when the user clicks on the expand button of the dialog, before the dialog is expanded.</summary>
         </member>
-        <member name="T:WindowsFormsAero.Resources.ExceptionMessages">
+        <member name="T:WindowsFormsAero.SearchTextBox">
+            <summary>A standard WinForms text box presenting the common Vista "search" interface.
+            Reacts on user input by raising "SearchStarted" events.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.SearchTextBox.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:WindowsFormsAero.SearchTextBox.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:WindowsFormsAero.SearchTextBox.SetFocusWithoutSelection">
+            <summary>Puts the focus on the text box and moves the caret to the end of the text, without selecting it.</summary>
+        </member>
+        <member name="E:WindowsFormsAero.SearchTextBox.TextChanged">
+            <summary>
+            Raised when the Text of the search box has changed.
+            </summary>
+        </member>
+        <member name="E:WindowsFormsAero.SearchTextBox.SearchStarted">
+            <summary>
+            Raised after an interval after the last user input.
+            </summary>
+        </member>
+        <member name="E:WindowsFormsAero.SearchTextBox.SearchCancelled">
+            <summary>
+            Raised when the user clicks on the X to cancel the search.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.HoverButtonColor">
+            <summary>Gets or sets the background Color of the button when the mouse hovers on it.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.ActiveForeColor">
+            <summary>Gets or sets the ForeColor of the control when the search box is active.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.ActiveBackColor">
+            <summary>Gets or sets the BackColor of the control when the search box is active.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.InactiveForeColor">
+            <summary>Gets or sets the ForeColor of the control when the search box is inactive.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.InactiveBackColor">
+            <summary>Gets or sets the BackColor of the control when the search box is inactive.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.ForeColor">
+            <summary>Temporary ForeColor property of the control. You should use InactiveForeColor and ActiveForeColor instead.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.BackColor">
+            <summary>Temporary BackColor property of the control. You should use InactiveBackColor and ActiveBackColor instead.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.InactiveText">
+            <summary>Gets or sets the text that is shown on top of the text box when the user hasn't entered any text.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.ActiveFont">
+            <summary>Gets or sets the font used in the search text box.</summary>
+            <remarks>Equals to the Font property.</remarks>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.InactiveFont">
+            <summary>Gets or sets the font used to write the "inactivity label" on top of the control when the user hasn't entered any text.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.Font">
+            <summary>
+            Overall Font property of the control.
+            Property changes are forwarded to the ActiveFont and InactiveFont property.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.TextEntered">
+            <summary>Returns true if the user entered some text in the search textbox.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.SearchTimer">
+            <summary>
+            Gets or sets the delay in milliseconds between when the text is edited
+            and the search event is raised.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.StartSearchAfterDelay">
+            <summary>
+            Gets or sets whether the control raises a SearchStarted event after user input.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.SearchTextBox.StartSearchOnEnter">
+            <summary>
+            Gets or sets whether the control raises a SearchStarted event when the user hits the Enter key.
+            </summary>
+        </member>
+        <member name="T:WindowsFormsAero.Resources.Pictures">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
         </member>
-        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.ResourceManager">
+        <member name="P:WindowsFormsAero.Resources.Pictures.ResourceManager">
             <summary>
               Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
-        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.Culture">
+        <member name="P:WindowsFormsAero.Resources.Pictures.Culture">
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.CommonControlEntryPointNotFound">
-            <summary>
-              Looks up a localized string similar to Common Controls library version 6.0 not loaded. Must run on Vista and must provide a manifest..
-            </summary>
+        <member name="T:WindowsFormsAero.TaskDialog.CustomButton">
+            <summary>Represents a custom button shown on a Task Dialog.</summary>
         </member>
-        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.DwmNotEnabled">
-            <summary>
-              Looks up a localized string similar to Desktop composition is not enabled..
-            </summary>
+        <member name="M:WindowsFormsAero.TaskDialog.CustomButton.#ctor(System.Int32,System.String)">
+            <summary>Instantiates a new custom button with an ID and a text.</summary>
+            <param name="id">Unique ID that will be returned by the Task Dialog if the button is clicked.
+            Use values greater than 8 to prevent conflicts with common buttons.</param>
+            <param name="text">Text label shown on the button. If you enable Command Links, a newline here
+            separates the upper from the lower string on the button.</param>
         </member>
-        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.DwmOsNotSupported">
-            <summary>
-              Looks up a localized string similar to Desktop composition is not supported by operating system..
-            </summary>
+        <member name="M:WindowsFormsAero.TaskDialog.CustomButton.#ctor(WindowsFormsAero.TaskDialog.Result,System.String)">
+            <summary>Instantiates a new custom button with an ID and a text.</summary>
+            <param name="id">Common ID that will be returned by the Task Dialog if the button is clicked.</param>
+            <param name="text">Text label shown on the button. If you enable Command Links, a newline here
+            separates the upper from the lower string on the button.</param>
         </member>
-        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.DwmThumbnailQueryFailure">
-            <summary>
-              Looks up a localized string similar to Unable to get thumbnail&apos;s original size..
-            </summary>
+        <member name="P:WindowsFormsAero.TaskDialog.CustomButton.Id">
+            <summary>Unique ID that will be returned by the Task Dialog if the button is clicked.</summary>
         </member>
-        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.DwmThumbnailUpdateFailure">
-            <summary>
-              Looks up a localized string similar to Unable to update thumbnail properties..
-            </summary>
-        </member>
-        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.DwmWindowMatch">
-            <summary>
-              Looks up a localized string similar to Source and target windows cannot be the same..
-            </summary>
-        </member>
-        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.NativeCallFailure">
-            <summary>
-              Looks up a localized string similar to Native call to {0} failed..
-            </summary>
-        </member>
-        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.TaskDialogFailure">
-            <summary>
-              Looks up a localized string similar to Failed to create TaskDialog..
-            </summary>
-        </member>
-        <member name="T:WindowsFormsAero.OsSupport">
-            <summary>
-            Static class providing information about the current support for Vista-only features.
-            </summary>
-        </member>
-        <member name="P:WindowsFormsAero.OsSupport.IsVistaOrBetter">
-            <summary>
-            Gets whether the running operating system is Windows Vista or a more recent version.
-            </summary>
-        </member>
-        <member name="P:WindowsFormsAero.OsSupport.IsSevenOrBetter">
-            <summary>
-            Gets whether the running operating system is Windows Seven or a more recent version.
-            </summary>
-        </member>
-        <member name="P:WindowsFormsAero.OsSupport.IsCompositionEnabled">
-            <summary>Is true if the DWM composition engine is currently enabled.</summary>
-        </member>
-        <member name="T:WindowsFormsAero.VerticalPanel">
-            <summary>
-            A vertical panel which resembles what is used for information and navigation in the Control Panel of Windows 7 and Vista.  
-            </summary>
-            <remarks>
-            This control is meant to be used on the left hand side of a form, it creates a graphic border on the right hand side.  Also
-            I have VB code for this control if anyone needs it, just send me an e-mail at bpell@indiana.edu or blakepell@hotmail.com.
-            </remarks>
-        </member>
-        <member name="M:WindowsFormsAero.VerticalPanel.#ctor">
-            <summary>
-            Constructor
-            </summary>
-            <remarks>
-            We are by default setting the background color to Color.Transparent.  The reason for this is that a lot of controls that will
-            be used with this, namingly the Label and LinkLabel default their back color to the color of the panel and for those controls
-            to display properly on this panel, their BackColor will need to be Color.Transparent (otherwise, they'll display as a black
-            box).  This should help to isolate the developer from having to research this.
-            
-            To reduce flicker, especially when glass is enabled, I had to set all three of the below styles.
-            
-            </remarks>
-        </member>
-        <member name="M:WindowsFormsAero.VerticalPanel.OnControlAdded(System.Windows.Forms.ControlEventArgs)">
-            <summary>
-            When a control is added, we will check the type and if it meets certain criteria will change some default behaviors of
-            the control so that it fits our theme by default.  The developer can still change this as they desire after it's added.
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:WindowsFormsAero.VerticalPanel.OnPaint(System.Windows.Forms.PaintEventArgs)">
-            <summary>
-            The actual painting of the background of our control.
-            </summary>
-            <param name="e"></param>
-            <remarks>
-            The colors in use here were extracted from an image of the Control Panel taken from a Windows 7 RC1 installation.
-            </remarks>
-        </member>
-        <member name="M:WindowsFormsAero.VerticalPanel.RedrawControlAsBitmap(System.IntPtr)">
-            <summary>
-            This procedure will redraw any control, given it's handl as an image on the form.  This is necessary if you want to lay this
-            control on top of the glass surface of an Aero form.
-            </summary>
-            <param name="hwnd"></param>
-        </member>
-        <member name="M:WindowsFormsAero.VerticalPanel.WndProc(System.Windows.Forms.Message@)">
-            <summary>
-            Handles incoming Windows Messages.
-            </summary>
-            <param name="m"></param>
-            <remarks>
-            On the paint event and if the RenderOnGlass is set to true, we will redraw the control as an image directly on
-            the form.  This has a little extra overhead but also provides the ability to lay this control directly on the
-            glass and have it rendered correctly.
-            </remarks>
-        </member>
-        <member name="P:WindowsFormsAero.VerticalPanel.RenderOnGlass">
-            <summary>
-            Whether or not the control needs to be rendered on the Glass surface.
-            </summary>
-            <remarks>
-            This is false by default, it should only be toggled to true if the control needs to lay directly on
-            the glass surface of the form.
-            </remarks>
-        </member>
-        <member name="T:WindowsFormsAero.TaskDialog.Message">
-            <summary>Stores a Task Dialog message that will be sent to a dialog in order to update its state.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,System.Int32,System.Int32)">
-            <summary>Simple int, int message.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,System.Int32,System.Boolean)">
-            <summary>Simple int, bool message.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,System.Boolean,System.Boolean)">
-            <summary>Simple bool, bool message.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,System.Boolean,System.Int32)">
-            <summary>Simple bool, int message.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,System.Int32,System.Int32,System.Int32)">
-            <summary>Simple int, long (hi word and lo word) message.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,WindowsFormsAero.TaskDialog.Message.DialogElements,System.String)">
-            <summary>Text updating message.</summary>
-            <remarks>The string will be marshaled: the Message must be correctly disposed after use.</remarks>
-        </member>
-        <member name="M:WindowsFormsAero.TaskDialog.Message.#ctor(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages,System.Int32,WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogConfig)">
-            <summary>Navigation message.</summary>
-            <remarks>The config structure will be marshaled: must be correctly disposed after use.</remarks>
-        </member>
-        <member name="T:WindowsFormsAero.TaskDialog.Message.DialogElements">
-            <summary>Text values that can be updated.</summary>
-        </member>
-        <member name="T:WindowsFormsAero.AeroForm">
-            <summary>
-            Base form class that automatically sets its font according to the Windows UX guidelines.
-            </summary>
-        </member>
-        <member name="M:WindowsFormsAero.AeroForm.#ctor">
-            <summary>
-            Constructs a new Aero styled form.
-            </summary>
-        </member>
-        <member name="T:WindowsFormsAero.Dwm.Thumbnail">
-            <summary>Handle to a DWM Thumbnail.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.Thumbnail.Update(System.Drawing.Rectangle,System.Drawing.Rectangle,System.Byte,System.Boolean,System.Boolean)">
-            <summary>Updates the thumbnail's display settings.</summary>
-            <param name="destination">Drawing region on destination window.</param>
-            <param name="source">Origin region from source window.</param>
-            <param name="opacity">Opacity. 0 is transparent, 255 opaque.</param>
-            <param name="visible">Visibility flag.</param>
-            <param name="onlyClientArea">If true, only the client area of the window will be rendered. Otherwise, the borders will be be rendered as well.</param>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.Thumbnail.Update(System.Drawing.Rectangle,System.Byte,System.Boolean,System.Boolean)">
-            <summary>Updates the thumbnail's display settings.</summary>
-            <param name="destination">Drawing region on destination window.</param>
-            <param name="opacity">Opacity. 0 is transparent, 255 opaque.</param>
-            <param name="visible">Visibility flag.</param>
-            <param name="onlyClientArea">If true, only the client area of the window will be rendered. Otherwise, the borders will be be rendered as well.</param>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Thumbnail.IsInvalid">
-            <summary>Returns true if the handle is valid, false if the handle has been closed or hasn't been initialized.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Thumbnail.Opacity">
-            <summary>Sets the thumbnail opacity value, from 0 to 255 (opaque).</summary>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Thumbnail.ShowOnlyClientArea">
-            <summary>Sets whether only the client area of the thumbnailed window should be shown or
-            the entire window area.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Thumbnail.DestinationRectangle">
-            <summary>Area in the destination window on which the thumbnail should be drawn.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Thumbnail.SourceRectangle">
-            <summary>Region of the source window that should be drawn.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Thumbnail.Visible">
-            <summary>Sets whether the thumbnail should be drawn or not.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Thumbnail.SourceSize">
-            <summary>Gets the thumbnail's original size.</summary>
+        <member name="P:WindowsFormsAero.TaskDialog.CustomButton.Text">
+            <summary>Text label shown on the button. If you enable Command Links, a newline here
+            separates the upper from the lower string on the button.</summary>
         </member>
         <member name="T:WindowsFormsAero.ThemeText.ThemedLabel">
             <summary>
@@ -664,291 +553,6 @@
         </member>
         <member name="P:WindowsFormsAero.ThemeText.ThemedLabel.WordEllipsis">
             <summary>Gets or sets whether the text should be trimmed to the last word and an ellipse should be placed at the end of the line.</summary>
-        </member>
-        <member name="T:WindowsFormsAero.Dwm.Flip3DPolicy">
-            <summary>
-            Determines a window's Flip 3D policy.
-            </summary>
-        </member>
-        <member name="F:WindowsFormsAero.Dwm.Flip3DPolicy.Default">
-            <summary>
-            Default Flip 3D behavior.
-            </summary>
-        </member>
-        <member name="F:WindowsFormsAero.Dwm.Flip3DPolicy.ExcludeBelow">
-            <summary>
-            Excludes the window from Flip 3D and hides it behind the animation.
-            </summary>
-        </member>
-        <member name="F:WindowsFormsAero.Dwm.Flip3DPolicy.ExcludeAbove">
-            <summary>
-            Excludes the window from Flip 3D and shows it above the animation.
-            </summary>
-        </member>
-        <member name="T:WindowsFormsAero.LabeledDivider">
-            <summary>
-            The labeled divider provides a Aero styled divider with an optional caption,
-            similiar to what is seen in the Control Panel dialogs of Windows 7 and Vista.
-            </summary>
-        </member>
-        <member name="M:WindowsFormsAero.LabeledDivider.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:WindowsFormsAero.LabeledDivider.OnPaint(System.Windows.Forms.PaintEventArgs)">
-            <summary>
-            The actual painting of the background of our control.
-            </summary>
-            <param name="e"></param>
-            <remarks>
-            The colors in use here were extracted from an image of the Control Panel taken from a Windows 7 RC1 installation.
-            </remarks>
-        </member>
-        <member name="P:WindowsFormsAero.LabeledDivider.DividerPosition">
-            <summary>
-            The position of the divider line.
-            </summary>
-            <remarks>
-            The default value is the center position which is consistent on how this type of divider has been used throughout the Windows
-            7 and Vista UI's.
-            </remarks>
-        </member>
-        <member name="P:WindowsFormsAero.LabeledDivider.DividerColor">
-            <summary>
-            The color of the divider line.
-            </summary>
-        </member>
-        <member name="P:WindowsFormsAero.LabeledDivider.Text">
-            <summary>
-            The text that should be used for the caption.  If the caption is set to blank and the divider position is set to center then
-            a simple divider line will be drawn.
-            </summary>
-            <remarks>
-            After a change is made to the text property we want to invalidate the control so it triggers a new paint message being sent.
-            </remarks>
-        </member>
-        <member name="T:WindowsFormsAero.LabeledDivider.DividerPositions">
-            <summary>
-            The positions that the divider line can be drawn in
-            </summary>
-        </member>
-        <member name="F:WindowsFormsAero.LabeledDivider.DividerPositions.Center">
-            <summary>
-            The divider will be centered after the text caption and will begin drawing after the string.  This is the default behavior.
-            </summary>
-        </member>
-        <member name="F:WindowsFormsAero.LabeledDivider.DividerPositions.Below">
-            <summary>
-            The divider will be drawn below the text caption.
-            </summary>
-        </member>
-        <member name="T:WindowsFormsAero.TaskDialog.TaskDialogButton">
-            <summary>Common Task Dialog buttons. OK is the default button.</summary>
-        </member>
-        <member name="T:WindowsFormsAero.Dwm.DwmManager">
-            <summary>Main DWM class, provides Thumbnail registration, glass sheet effect and blur behind.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.Register(System.Windows.Forms.Form,System.IntPtr)">
-            <summary>Registers a thumbnail to be drawn on a Windows Form.</summary>
-            <remarks>The thumbnail will not be drawn until you update the thumbnail's properties calling Update().</remarks>
-            <param name="destination">The Windows Form instance on which to draw the thumbnail.</param>
-            <param name="source">The handle (HWND) of the window that has to be drawn.</param>
-            <returns>A Thumbnail instance, needed to unregister and to update properties.</returns>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.Register(System.IntPtr,System.IntPtr)">
-            <summary>Registers a thumbnail to be drawn on a window.</summary>
-            <remarks>The thumbnail will not be drawn until you update the thumbnail's properties calling Update().</remarks>
-            <param name="destination">The handle (HWND) of the window on which the thumbnail will be drawn.</param>
-            <param name="source">The handle (HWND) of the window that has to be drawn.</param>
-            <returns>A Thumbnail instance, needed to unregister and to update properties.</returns>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.Unregister(WindowsFormsAero.Dwm.Thumbnail)">
-            <summary>Unregisters the thumbnail handle.</summary>
-            <remarks>The handle is unvalid after the call and should not be used again.</remarks>
-            <param name="handle">A handle to a registered thumbnail.</param>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableBlurBehind(System.IntPtr)">
-            <summary>Enable the Aero "Blur Behind" effect on the whole client area. Background must be black.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableBlurBehind(System.Windows.Forms.Form)">
-            <summary>Enable the Aero "Blur Behind" effect on the whole client area. Background must be black.</summary>
-            <param name="form"></param>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableBlurBehind(System.IntPtr,System.IntPtr)">
-            <summary>Enable the Aero "Blur Behind" effect on a specific region. Background of the region must be black.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.DisableBlurBehind(System.IntPtr)">
-            <summary>Disables the Aero "Blur Behind" effect.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableGlassFrame(System.Windows.Forms.Form,WindowsFormsAero.Dwm.Margins)">
-            <summary>Extends the Aero "Glass Frame" into the client area. Background must be black.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableGlassFrame(System.IntPtr,WindowsFormsAero.Dwm.Margins)">
-            <summary>Extends the Aero "Glass Frame" into the client area. Background must be black.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableGlassSheet(System.Windows.Forms.Form)">
-            <summary>Extends the Aero "Glass Frame" to the whole client area ("Glass Sheet" effect). Background must be black.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableGlassSheet(System.IntPtr)">
-            <summary>Extends the Aero "Glass Frame" to the whole client area ("Glass Sheet" effect). Background must be black.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.DisableGlassFrame(System.Windows.Forms.Form)">
-            <summary>Disables the Aero "Glass Frame".</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.DisableGlassFrame(System.IntPtr)">
-            <summary>Disables the Aero "Glass Frame".</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.SetWindowFlip3dPolicy(System.Windows.Forms.Form,WindowsFormsAero.Dwm.Flip3DPolicy)">
-            <summary>
-            Sets a window's Flip 3D policy.
-            </summary>
-            <param name="form">Form whose policy is to be set.</param>
-            <param name="policy">Desired Flip 3D policy.</param>
-            <remarks>Is ignored on OSs that do not support Aero.</remarks>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.SetDisallowPeek(System.Windows.Forms.Form,System.Boolean)">
-            <summary>
-            Disallows Aero Peek on a window (or allows it).
-            </summary>
-            <param name="form">Form whose Aero Peek preview should be disabled.</param>
-            <param name="disallowPeek">True if Aero Peek should be disabled for the window.</param>
-            <remarks>Is ignored on OSs that do not support Aero Peek.</remarks>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.DwmManager.SetExludeFromPeek(System.Windows.Forms.Form,System.Boolean)">
-            <summary>
-            Sets a window's state in order to exclude (or include) it in Aero Peek.
-            </summary>
-            <param name="form">Form whose Aero Peek exclusion state is to be set.</param>
-            <param name="excluded">Set to true to exlude the window from Aero Peek.</param>
-            <remarks>Is ignored on OSs that do not support Aero Peek.</remarks>
-        </member>
-        <member name="T:WindowsFormsAero.Resources.Pictures">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:WindowsFormsAero.Resources.Pictures.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:WindowsFormsAero.Resources.Pictures.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="M:WindowsFormsAero.Native.Windows.GetActiveWindow">
-            <summary>Returns the active windows on the current thread.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.ThumbnailViewer.SetThumbnail(System.Windows.Forms.Form,System.Boolean)">
-            <summary>Sets the origin of the thumbnail and shows the thumbnail on the control.</summary>
-            <param name="originForm">The Form instance that will be thumbnailed.</param>
-            <param name="trackFormUpdates">True if the control should automatically update itself in case the thumbnailed
-            form changes size or is closed.</param>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.ThumbnailViewer.Update">
-            <summary>Forces and update of the thumbnail.</summary>
-            <remarks>Use this method if you know that the thumbnailed window has been resized and the thumbnail control should react to these changes.</remarks>
-        </member>
-        <member name="T:WindowsFormsAero.TaskDialog.CustomButton">
-            <summary>Represents a custom button shown on a Task Dialog.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.TaskDialog.CustomButton.#ctor(System.Int32,System.String)">
-            <summary>Instantiates a new custom button with an ID and a text.</summary>
-            <param name="id">Unique ID that will be returned by the Task Dialog if the button is clicked.
-            Use values greater than 8 to prevent conflicts with common buttons.</param>
-            <param name="text">Text label shown on the button. If you enable Command Links, a newline here
-            separates the upper from the lower string on the button.</param>
-        </member>
-        <member name="M:WindowsFormsAero.TaskDialog.CustomButton.#ctor(WindowsFormsAero.TaskDialog.Result,System.String)">
-            <summary>Instantiates a new custom button with an ID and a text.</summary>
-            <param name="id">Common ID that will be returned by the Task Dialog if the button is clicked.</param>
-            <param name="text">Text label shown on the button. If you enable Command Links, a newline here
-            separates the upper from the lower string on the button.</param>
-        </member>
-        <member name="P:WindowsFormsAero.TaskDialog.CustomButton.Id">
-            <summary>Unique ID that will be returned by the Task Dialog if the button is clicked.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.TaskDialog.CustomButton.Text">
-            <summary>Text label shown on the button. If you enable Command Links, a newline here
-            separates the upper from the lower string on the button.</summary>
-        </member>
-        <member name="T:WindowsFormsAero.ThemeText.Options.GlowOption">
-            <summary>
-            Applies a glow on the themed text.
-            </summary>
-        </member>
-        <member name="F:WindowsFormsAero.ThemeText.Options.GlowOption.DefaultSize">
-            <summary>
-            Default glow size.
-            </summary>
-        </member>
-        <member name="F:WindowsFormsAero.ThemeText.Options.GlowOption.Word2007Size">
-            <summary>
-            Glow size used commonly by Office 2007 in titles.
-            </summary>
-        </member>
-        <member name="F:WindowsFormsAero.ThemeText.Options.GlowOption.PreciseGlow">
-            <summary>
-            Precise glow effect.
-            </summary>
-        </member>
-        <member name="M:WindowsFormsAero.ThemeText.Options.GlowOption.#ctor(System.Int32)">
-            <summary>
-            Instantiates a new glow effect for themed text.
-            </summary>
-            <param name="size">Size of the glow effect.</param>
-        </member>
-        <member name="P:WindowsFormsAero.ThemeText.Options.GlowOption.Size">
-            <summary>
-            Gets or sets the size of the glow effect.
-            </summary>
-        </member>
-        <member name="T:WindowsFormsAero.TaskDialog.TaskDialogIcon">
-            <summary>Common Task Dialog icons. Determine the look of the main instruction.</summary>
-        </member>
-        <member name="T:WindowsFormsAero.Dwm.Helpers.GlassForm">
-            <summary>
-            Form that automatically handles glass margins and mouse dragging.
-            </summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.Helpers.GlassForm.#ctor">
-            <summary>
-            Construct a new form without glass margins.
-            </summary>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Helpers.GlassForm.GlassMargins">
-            <summary>Gets or sets the glass margins of the form.</summary>
-            <remarks>This property should be used when setting the margins from code.</remarks>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Helpers.GlassForm.GlassDesignerMargins">
-            <summary>Gets or sets the glass margins of the form.</summary>
-            <remarks>This property should be used when setting the margins through the designer.</remarks>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Helpers.GlassForm.HandleMouseMove">
-            <summary>Gets or sets whether mouse dragging should be handled automatically.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Helpers.GlassForm.GlassEnabled">
-            <summary>Gets or sets whether the extended glass margin is enabled or not.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Helpers.GlassForm.HideTitle">
-            <summary>
-            Gets or sets whether the window title and icon should be hidden.
-            </summary>
-            <remarks>
-            The window caption will still be visible, but title text and icon will not be.
-            A form with a hidden title will look like an Explorer window on Windows Vista or Windows 7.
-            </remarks>
-        </member>
-        <member name="P:WindowsFormsAero.Dwm.Helpers.GlassForm.HideCaption">
-            <summary>
-            Gets or sets whether the window caption should be hidden altogether.
-            </summary>
-            <remarks>
-            Should be set before handle creation.
-            </remarks>
         </member>
         <member name="T:WindowsFormsAero.HorizontalPanel">
             <summary>
@@ -1053,66 +657,475 @@
             As soon as the form is disposed, the handler will be disposed as well.
             </remarks>
         </member>
-        <member name="E:WindowsFormsAero.SplitButton.SplitClick">
-            <summary>Occurs when the split label is clicked.</summary>
-        </member>
-        <member name="E:WindowsFormsAero.SplitButton.SplitMenuOpening">
-            <summary>Occurs when the split label is clicked, but before the associated
-            context menu is displayed by the control.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SplitButton.SplitMenuStrip">
-            <summary>Gets or sets the associated context menu that is displayed when the split
-            glyph of the button is clicked.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SplitButton.SplitMenu">
-            <summary>Gets or sets the associated context menu that is displayed when the split
-            glyph of the button is clicked. Exposed for backward compatibility.</summary>
-        </member>
-        <member name="T:WindowsFormsAero.SplitButton.SplitMenuEventArgs">
-            <summary>Provides data for the clicking of split buttons and the opening
-            of context menus.</summary>
-        </member>
-        <member name="P:WindowsFormsAero.SplitButton.SplitMenuEventArgs.DrawArea">
-            <summary>Represents the bounding box of the clicked button.</summary>
-            <remarks>A menu should be opened, with top-left coordinates in the left-bottom point of
-            the rectangle and with width equal (or greater) than the width of the rectangle.</remarks>
-        </member>
-        <member name="P:WindowsFormsAero.SplitButton.SplitMenuEventArgs.PreventOpening">
-            <summary>Set to true if you want to prevent the menu from opening.</summary>
-        </member>
-        <member name="T:WindowsFormsAero.Dwm.Margins">
-            <summary>Margins structure for the Glass Sheet effect.</summary>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.Margins.IsOutsideMargins(System.Drawing.Point,System.Drawing.Size)">
+        <member name="T:WindowsFormsAero.LabeledDivider">
             <summary>
-            Returns whether a point in client coordinates is outside the margins defined by this instance.
-            </summary>
-            <param name="clientPoint">Point in client coordinates.</param>
-        </member>
-        <member name="M:WindowsFormsAero.Dwm.Margins.AsPadding">
-            <summary>
-            Gets the margins value as a padding instance.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="F:WindowsFormsAero.Dwm.Margins.Zero">
-            <summary>
-            Gets a static readonly 0-pixel margin.
-            This margin returns true on the IsNull property.
+            The labeled divider provides a Aero styled divider with an optional caption,
+            similiar to what is seen in the Control Panel dialogs of Windows 7 and Vista.
             </summary>
         </member>
-        <member name="P:WindowsFormsAero.Dwm.Margins.IsMarginless">
+        <member name="M:WindowsFormsAero.LabeledDivider.#ctor">
             <summary>
-            Gets whether this margin represents a negative measure on each side.
+            Constructor
             </summary>
+        </member>
+        <member name="M:WindowsFormsAero.LabeledDivider.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            The actual painting of the background of our control.
+            </summary>
+            <param name="e"></param>
             <remarks>
-            Used to specify non-existing margins on glass frames.
+            The colors in use here were extracted from an image of the Control Panel taken from a Windows 7 RC1 installation.
             </remarks>
         </member>
-        <member name="P:WindowsFormsAero.Dwm.Margins.IsNull">
+        <member name="P:WindowsFormsAero.LabeledDivider.DividerPosition">
             <summary>
-            Gets whether this margin measures 0 pixels on each side.
+            The position of the divider line.
             </summary>
+            <remarks>
+            The default value is the center position which is consistent on how this type of divider has been used throughout the Windows
+            7 and Vista UI's.
+            </remarks>
+        </member>
+        <member name="P:WindowsFormsAero.LabeledDivider.DividerColor">
+            <summary>
+            The color of the divider line.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.LabeledDivider.Text">
+            <summary>
+            The text that should be used for the caption.  If the caption is set to blank and the divider position is set to center then
+            a simple divider line will be drawn.
+            </summary>
+            <remarks>
+            After a change is made to the text property we want to invalidate the control so it triggers a new paint message being sent.
+            </remarks>
+        </member>
+        <member name="T:WindowsFormsAero.LabeledDivider.DividerPositions">
+            <summary>
+            The positions that the divider line can be drawn in
+            </summary>
+        </member>
+        <member name="F:WindowsFormsAero.LabeledDivider.DividerPositions.Center">
+            <summary>
+            The divider will be centered after the text caption and will begin drawing after the string.  This is the default behavior.
+            </summary>
+        </member>
+        <member name="F:WindowsFormsAero.LabeledDivider.DividerPositions.Below">
+            <summary>
+            The divider will be drawn below the text caption.
+            </summary>
+        </member>
+        <member name="T:WindowsFormsAero.VerticalPanel">
+            <summary>
+            A vertical panel which resembles what is used for information and navigation in the Control Panel of Windows 7 and Vista.  
+            </summary>
+            <remarks>
+            This control is meant to be used on the left hand side of a form, it creates a graphic border on the right hand side.  Also
+            I have VB code for this control if anyone needs it, just send me an e-mail at bpell@indiana.edu or blakepell@hotmail.com.
+            </remarks>
+        </member>
+        <member name="M:WindowsFormsAero.VerticalPanel.#ctor">
+            <summary>
+            Constructor
+            </summary>
+            <remarks>
+            We are by default setting the background color to Color.Transparent.  The reason for this is that a lot of controls that will
+            be used with this, namingly the Label and LinkLabel default their back color to the color of the panel and for those controls
+            to display properly on this panel, their BackColor will need to be Color.Transparent (otherwise, they'll display as a black
+            box).  This should help to isolate the developer from having to research this.
+            
+            To reduce flicker, especially when glass is enabled, I had to set all three of the below styles.
+            
+            </remarks>
+        </member>
+        <member name="M:WindowsFormsAero.VerticalPanel.OnControlAdded(System.Windows.Forms.ControlEventArgs)">
+            <summary>
+            When a control is added, we will check the type and if it meets certain criteria will change some default behaviors of
+            the control so that it fits our theme by default.  The developer can still change this as they desire after it's added.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:WindowsFormsAero.VerticalPanel.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            The actual painting of the background of our control.
+            </summary>
+            <param name="e"></param>
+            <remarks>
+            The colors in use here were extracted from an image of the Control Panel taken from a Windows 7 RC1 installation.
+            </remarks>
+        </member>
+        <member name="M:WindowsFormsAero.VerticalPanel.RedrawControlAsBitmap(System.IntPtr)">
+            <summary>
+            This procedure will redraw any control, given it's handl as an image on the form.  This is necessary if you want to lay this
+            control on top of the glass surface of an Aero form.
+            </summary>
+            <param name="hwnd"></param>
+        </member>
+        <member name="M:WindowsFormsAero.VerticalPanel.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            Handles incoming Windows Messages.
+            </summary>
+            <param name="m"></param>
+            <remarks>
+            On the paint event and if the RenderOnGlass is set to true, we will redraw the control as an image directly on
+            the form.  This has a little extra overhead but also provides the ability to lay this control directly on the
+            glass and have it rendered correctly.
+            </remarks>
+        </member>
+        <member name="P:WindowsFormsAero.VerticalPanel.RenderOnGlass">
+            <summary>
+            Whether or not the control needs to be rendered on the Glass surface.
+            </summary>
+            <remarks>
+            This is false by default, it should only be toggled to true if the control needs to lay directly on
+            the glass surface of the form.
+            </remarks>
+        </member>
+        <member name="T:WindowsFormsAero.Dwm.Thumbnail">
+            <summary>Handle to a DWM Thumbnail.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.Thumbnail.Update(System.Drawing.Rectangle,System.Drawing.Rectangle,System.Byte,System.Boolean,System.Boolean)">
+            <summary>Updates the thumbnail's display settings.</summary>
+            <param name="destination">Drawing region on destination window.</param>
+            <param name="source">Origin region from source window.</param>
+            <param name="opacity">Opacity. 0 is transparent, 255 opaque.</param>
+            <param name="visible">Visibility flag.</param>
+            <param name="onlyClientArea">If true, only the client area of the window will be rendered. Otherwise, the borders will be be rendered as well.</param>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.Thumbnail.Update(System.Drawing.Rectangle,System.Byte,System.Boolean,System.Boolean)">
+            <summary>Updates the thumbnail's display settings.</summary>
+            <param name="destination">Drawing region on destination window.</param>
+            <param name="opacity">Opacity. 0 is transparent, 255 opaque.</param>
+            <param name="visible">Visibility flag.</param>
+            <param name="onlyClientArea">If true, only the client area of the window will be rendered. Otherwise, the borders will be be rendered as well.</param>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Thumbnail.IsInvalid">
+            <summary>Returns true if the handle is valid, false if the handle has been closed or hasn't been initialized.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Thumbnail.Opacity">
+            <summary>Sets the thumbnail opacity value, from 0 to 255 (opaque).</summary>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Thumbnail.ShowOnlyClientArea">
+            <summary>Sets whether only the client area of the thumbnailed window should be shown or
+            the entire window area.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Thumbnail.DestinationRectangle">
+            <summary>Area in the destination window on which the thumbnail should be drawn.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Thumbnail.SourceRectangle">
+            <summary>Region of the source window that should be drawn.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Thumbnail.Visible">
+            <summary>Sets whether the thumbnail should be drawn or not.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Thumbnail.SourceSize">
+            <summary>Gets the thumbnail's original size.</summary>
+        </member>
+        <member name="T:WindowsFormsAero.Dwm.DwmManager">
+            <summary>Main DWM class, provides Thumbnail registration, glass sheet effect and blur behind.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.Register(System.Windows.Forms.Form,System.IntPtr)">
+            <summary>Registers a thumbnail to be drawn on a Windows Form.</summary>
+            <remarks>The thumbnail will not be drawn until you update the thumbnail's properties calling Update().</remarks>
+            <param name="destination">The Windows Form instance on which to draw the thumbnail.</param>
+            <param name="source">The handle (HWND) of the window that has to be drawn.</param>
+            <returns>A Thumbnail instance, needed to unregister and to update properties.</returns>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.Register(System.IntPtr,System.IntPtr)">
+            <summary>Registers a thumbnail to be drawn on a window.</summary>
+            <remarks>The thumbnail will not be drawn until you update the thumbnail's properties calling Update().</remarks>
+            <param name="destination">The handle (HWND) of the window on which the thumbnail will be drawn.</param>
+            <param name="source">The handle (HWND) of the window that has to be drawn.</param>
+            <returns>A Thumbnail instance, needed to unregister and to update properties.</returns>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.Unregister(WindowsFormsAero.Dwm.Thumbnail)">
+            <summary>Unregisters the thumbnail handle.</summary>
+            <remarks>The handle is unvalid after the call and should not be used again.</remarks>
+            <param name="handle">A handle to a registered thumbnail.</param>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableBlurBehind(System.IntPtr)">
+            <summary>Enable the Aero "Blur Behind" effect on the whole client area. Background must be black.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableBlurBehind(System.Windows.Forms.Form)">
+            <summary>Enable the Aero "Blur Behind" effect on the whole client area. Background must be black.</summary>
+            <param name="form"></param>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableBlurBehind(System.IntPtr,System.IntPtr)">
+            <summary>Enable the Aero "Blur Behind" effect on a specific region. Background of the region must be black.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.DisableBlurBehind(System.IntPtr)">
+            <summary>Disables the Aero "Blur Behind" effect.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableGlassFrame(System.Windows.Forms.Form,WindowsFormsAero.Dwm.Margins)">
+            <summary>Extends the Aero "Glass Frame" into the client area. Background must be black.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableGlassFrame(System.IntPtr,WindowsFormsAero.Dwm.Margins)">
+            <summary>Extends the Aero "Glass Frame" into the client area. Background must be black.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableGlassSheet(System.Windows.Forms.Form)">
+            <summary>Extends the Aero "Glass Frame" to the whole client area ("Glass Sheet" effect). Background must be black.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.EnableGlassSheet(System.IntPtr)">
+            <summary>Extends the Aero "Glass Frame" to the whole client area ("Glass Sheet" effect). Background must be black.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.DisableGlassFrame(System.Windows.Forms.Form)">
+            <summary>Disables the Aero "Glass Frame".</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.DisableGlassFrame(System.IntPtr)">
+            <summary>Disables the Aero "Glass Frame".</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.SetWindowFlip3dPolicy(System.Windows.Forms.Form,WindowsFormsAero.Dwm.Flip3DPolicy)">
+            <summary>
+            Sets a window's Flip 3D policy.
+            </summary>
+            <param name="form">Form whose policy is to be set.</param>
+            <param name="policy">Desired Flip 3D policy.</param>
+            <remarks>Is ignored on OSs that do not support Aero.</remarks>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.SetDisallowPeek(System.Windows.Forms.Form,System.Boolean)">
+            <summary>
+            Disallows Aero Peek on a window (or allows it).
+            </summary>
+            <param name="form">Form whose Aero Peek preview should be disabled.</param>
+            <param name="disallowPeek">True if Aero Peek should be disabled for the window.</param>
+            <remarks>Is ignored on OSs that do not support Aero Peek.</remarks>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.SetExcludeFromPeek(System.Windows.Forms.Form,System.Boolean)">
+            <summary>
+            Sets a window's state in order to exclude (or include) it in Aero Peek.
+            </summary>
+            <param name="form">Form whose Aero Peek exclusion state is to be set.</param>
+            <param name="excluded">Set to true to exlude the window from Aero Peek.</param>
+            <remarks>Is ignored on OSs that do not support Aero Peek.</remarks>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.DwmManager.SetExludeFromPeek(System.Windows.Forms.Form,System.Boolean)">
+            <summary>
+            Sets a window's state in order to exclude (or include) it in Aero Peek.
+            </summary>
+            <param name="form">Form whose Aero Peek exclusion state is to be set.</param>
+            <param name="excluded">Set to true to exlude the window from Aero Peek.</param>
+            <remarks>Is ignored on OSs that do not support Aero Peek.</remarks>
+        </member>
+        <member name="M:WindowsFormsAero.Native.Windows.GetActiveWindow">
+            <summary>Returns the active windows on the current thread.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.ThumbnailViewer.SetThumbnail(System.Windows.Forms.Form,System.Boolean)">
+            <summary>Sets the origin of the thumbnail and shows the thumbnail on the control.</summary>
+            <param name="originForm">The Form instance that will be thumbnailed.</param>
+            <param name="trackFormUpdates">True if the control should automatically update itself in case the thumbnailed
+            form changes size or is closed.</param>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.ThumbnailViewer.Update">
+            <summary>Forces and update of the thumbnail.</summary>
+            <remarks>Use this method if you know that the thumbnailed window has been resized and the thumbnail control should react to these changes.</remarks>
+        </member>
+        <member name="T:WindowsFormsAero.OsSupport">
+            <summary>
+            Static class providing information about the current support for Vista-only features.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.OsSupport.IsVistaOrBetter">
+            <summary>
+            Gets whether the running operating system is Windows Vista or a more recent version.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.OsSupport.IsSevenOrBetter">
+            <summary>
+            Gets whether the running operating system is Windows Seven or a more recent version.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.OsSupport.IsEightOrBetter">
+            <summary>
+            Gets whether the running operating system is Windows 8 or a more recent version.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.OsSupport.IsCompositionEnabled">
+            <summary>Is true if the DWM composition engine is currently enabled.</summary>
+        </member>
+        <member name="T:WindowsFormsAero.Dwm.Helpers.GlassForm">
+            <summary>
+            Form that automatically handles glass margins and mouse dragging.
+            </summary>
+        </member>
+        <member name="M:WindowsFormsAero.Dwm.Helpers.GlassForm.#ctor">
+            <summary>
+            Construct a new form without glass margins.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Helpers.GlassForm.GlassMargins">
+            <summary>Gets or sets the glass margins of the form.</summary>
+            <remarks>This property should be used when setting the margins from code.</remarks>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Helpers.GlassForm.GlassDesignerMargins">
+            <summary>Gets or sets the glass margins of the form.</summary>
+            <remarks>This property should be used when setting the margins through the designer.</remarks>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Helpers.GlassForm.HandleMouseMove">
+            <summary>Gets or sets whether mouse dragging should be handled automatically.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Helpers.GlassForm.GlassEnabled">
+            <summary>Gets or sets whether the extended glass margin is enabled or not.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Helpers.GlassForm.HideTitle">
+            <summary>
+            Gets or sets whether the window title and icon should be hidden.
+            </summary>
+            <remarks>
+            The window caption will still be visible, but title text and icon will not be.
+            A form with a hidden title will look like an Explorer window on Windows Vista or Windows 7.
+            </remarks>
+        </member>
+        <member name="P:WindowsFormsAero.Dwm.Helpers.GlassForm.HideCaption">
+            <summary>
+            Gets or sets whether the window caption should be hidden altogether.
+            </summary>
+            <remarks>
+            Should be set before handle creation.
+            </remarks>
+        </member>
+        <member name="T:WindowsFormsAero.ThemeText.Options.GlowOption">
+            <summary>
+            Applies a glow on the themed text.
+            </summary>
+        </member>
+        <member name="F:WindowsFormsAero.ThemeText.Options.GlowOption.DefaultSize">
+            <summary>
+            Default glow size.
+            </summary>
+        </member>
+        <member name="F:WindowsFormsAero.ThemeText.Options.GlowOption.Word2007Size">
+            <summary>
+            Glow size used commonly by Office 2007 in titles.
+            </summary>
+        </member>
+        <member name="F:WindowsFormsAero.ThemeText.Options.GlowOption.PreciseGlow">
+            <summary>
+            Precise glow effect.
+            </summary>
+        </member>
+        <member name="M:WindowsFormsAero.ThemeText.Options.GlowOption.#ctor(System.Int32)">
+            <summary>
+            Instantiates a new glow effect for themed text.
+            </summary>
+            <param name="size">Size of the glow effect.</param>
+        </member>
+        <member name="P:WindowsFormsAero.ThemeText.Options.GlowOption.Size">
+            <summary>
+            Gets or sets the size of the glow effect.
+            </summary>
+        </member>
+        <member name="M:WindowsFormsAero.TaskDialog.NativeMethods.TaskDialog(System.IntPtr,System.IntPtr,System.String,System.String,System.String,System.Int32,System.IntPtr,System.Int32@)">
+            <summary>Direct Task Dialog call.</summary>
+        </member>
+        <member name="M:WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogIndirect(WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogConfig@,System.Int32@,System.Int32@,System.Boolean@)">
+            <summary>Indirect Task Dialog call. Allows complex dialogs with interaction logic (via callback).</summary>
+        </member>
+        <member name="T:WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogConfig">
+            <summary>The Task Dialog config structure.</summary>
+        </member>
+        <member name="T:WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogFlags">
+            <summary>Flags used in TaskDialogConfig struct.</summary>
+            <remarks>From CommCtrl.h.</remarks>
+        </member>
+        <member name="T:WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogNotification">
+            <summary>Notifications returned by Task Dialogs to the callback.</summary>
+            <remarks>From CommCtrl.h.</remarks>
+        </member>
+        <member name="T:WindowsFormsAero.TaskDialog.NativeMethods.TaskDialogMessages">
+            <summary>Messages that can be sent to Task Dialogs.</summary>
+            <remarks>From CommCtrl.h.</remarks>
+        </member>
+        <member name="T:WindowsFormsAero.Dwm.Flip3DPolicy">
+            <summary>
+            Determines a window's Flip 3D policy.
+            </summary>
+        </member>
+        <member name="F:WindowsFormsAero.Dwm.Flip3DPolicy.Default">
+            <summary>
+            Default Flip 3D behavior.
+            </summary>
+        </member>
+        <member name="F:WindowsFormsAero.Dwm.Flip3DPolicy.ExcludeBelow">
+            <summary>
+            Excludes the window from Flip 3D and hides it behind the animation.
+            </summary>
+        </member>
+        <member name="F:WindowsFormsAero.Dwm.Flip3DPolicy.ExcludeAbove">
+            <summary>
+            Excludes the window from Flip 3D and shows it above the animation.
+            </summary>
+        </member>
+        <member name="T:WindowsFormsAero.TaskDialog.TaskDialogIcon">
+            <summary>Common Task Dialog icons. Determine the look of the main instruction.</summary>
+        </member>
+        <member name="T:WindowsFormsAero.TaskDialog.Results">
+            <summary>Class that aggregates the results of an "indirect" Task Dialog.</summary>
+        </member>
+        <member name="T:WindowsFormsAero.TaskDialog.Result">
+            <summary>Results returned by Task Dialogs when closed by the user.</summary>
+        </member>
+        <member name="T:WindowsFormsAero.Resources.ExceptionMessages">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.CommonControlEntryPointNotFound">
+            <summary>
+              Looks up a localized string similar to Common Controls library version 6.0 not loaded. Must run on Vista and must provide a manifest..
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.DwmNotEnabled">
+            <summary>
+              Looks up a localized string similar to Desktop composition is not enabled..
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.DwmOsNotSupported">
+            <summary>
+              Looks up a localized string similar to Desktop composition is not supported by operating system..
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.DwmThumbnailQueryFailure">
+            <summary>
+              Looks up a localized string similar to Unable to get thumbnail&apos;s original size..
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.DwmThumbnailUpdateFailure">
+            <summary>
+              Looks up a localized string similar to Unable to update thumbnail properties..
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.DwmWindowMatch">
+            <summary>
+              Looks up a localized string similar to Source and target windows cannot be the same..
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.NativeCallFailure">
+            <summary>
+              Looks up a localized string similar to Native call to {0} failed..
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.Resources.ExceptionMessages.TaskDialogFailure">
+            <summary>
+              Looks up a localized string similar to Failed to create TaskDialog..
+            </summary>
+        </member>
+        <member name="P:WindowsFormsAero.TextBox.CueBannerText">
+            <summary>Gets or sets the cue text that is displayed on the TextBox control.</summary>
+        </member>
+        <member name="P:WindowsFormsAero.TextBox.ShowCueFocused">
+            <summary>Gets or sets whether the Cue text should be displyed even when the control has keybord focus.</summary>
+            <remarks>If true, the Cue text will disappear as soon as the user starts typing.</remarks>
         </member>
     </members>
 </doc>
