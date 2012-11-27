@@ -25,7 +25,7 @@ namespace OnTopReplica.StartupOptions {
 
         public Point? StartLocation { get; set; }
 
-        public ScreenPosition? StartScreenPosition { get; set; }
+        public ScreenPosition? StartPositionLock { get; set; }
 
         public Size? StartSize { get; set; }
 
@@ -96,7 +96,7 @@ namespace OnTopReplica.StartupOptions {
             form.IsChromeVisible = !DisableChrome;
             form.Opacity = (double)Opacity / 255.0;
 
-            //Thumbnail cloning
+            //Seek handle for thumbnail cloning
             WindowHandle handle = null;
             if (WindowId.HasValue) {
                 handle = WindowHandle.FromHandle(WindowId.Value);
@@ -119,23 +119,30 @@ namespace OnTopReplica.StartupOptions {
 
                 handle = seeker.Windows.FirstOrDefault();
             }
-            
-            //Set any found handle
-            if (handle != null) {
-                form.SetThumbnail(handle, Region);
+
+            //Position lock
+            if (StartPositionLock.HasValue) {
+                form.PositionLock = StartPositionLock.Value;
             }
 
-            //Size
-            if (StartSize.HasValue) {
+            //Size and location start values
+            if (StartLocation.HasValue && StartSize.HasValue) {
+                form.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+                form.Location = StartLocation.Value;
                 form.ClientSize = StartSize.Value;
             }
-            
-            //Position
-            if (StartLocation.HasValue) {
+            else if (StartLocation.HasValue) {
+                form.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
                 form.Location = StartLocation.Value;
             }
-            else if (StartScreenPosition.HasValue) {
-                form.PositionLock = StartScreenPosition.Value;
+            else if (StartSize.HasValue) {
+                form.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
+                form.ClientSize = StartSize.Value;
+            }
+
+            //Clone any found handle
+            if (handle != null) {
+                form.SetThumbnail(handle, Region);
             }
 
             //Other features

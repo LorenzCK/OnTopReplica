@@ -33,6 +33,8 @@ namespace OnTopReplica.StartupOptions {
             if (Settings.Default.RestoreSizeAndPosition) {
                 options.StartLocation = Settings.Default.RestoreLastPosition;
                 options.StartSize = Settings.Default.RestoreLastSize;
+
+                System.Diagnostics.Trace.WriteLine(string.Format("Restoring window at {0} size {1}.", Settings.Default.RestoreLastPosition, Settings.Default.RestoreLastSize));
             }
 
             if (Settings.Default.RestoreLastWindow) {
@@ -74,11 +76,11 @@ namespace OnTopReplica.StartupOptions {
                 })
                 .Add<Size>("position=", "Target {X,Y} of the OnTopReplica window.", s => {
                     options.StartLocation = new Point(s.Width, s.Height);
-                    options.StartScreenPosition = null;
+                    options.StartPositionLock = null;
                 })
                 .Add<ScreenPosition>("screenPosition=", "Resolution independent window position on current screen, with locking. Values: {TR|TL|C|BR|BL}.", pos => {
                     options.StartLocation = null;
-                    options.StartScreenPosition = pos;
+                    options.StartPositionLock = pos;
                 })
                 .Add<Rectangle>("r|region=", "Region {X,Y,W,H} of the cloned window.", region => {
                     options.Region = new ThumbnailRegion(region);
