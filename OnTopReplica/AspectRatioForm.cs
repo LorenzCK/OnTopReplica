@@ -96,10 +96,11 @@ namespace OnTopReplica {
             ClientSize = new Size(newWidth, newHeight);
 
             //Move form vertically to adapt to new size
-            if (Location.Y + Size.Height > workingArea.Y + workingArea.Height) {
+            //REMOVED: allows the window to correctly be restored slightly off screen
+            /*if (Location.Y + Size.Height > workingArea.Y + workingArea.Height) {
                 int offsetY = (workingArea.Y + workingArea.Height) - (Location.Y + Size.Height);
                 Location = new Point(Location.X, Location.Y - offsetY);
-            }
+            }*/
         }
 
         /// <summary>

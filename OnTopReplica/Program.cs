@@ -60,7 +60,12 @@ namespace OnTopReplica {
                 //Enter GUI loop
                 Application.Run(_mainForm);
 
+                //HACK: re-enable chrome to fix position persistence (ideally, chrome status should be stored and restored - but this is not always possible)
+                if (!_mainForm.IsChromeVisible)
+                    _mainForm.IsChromeVisible = true;
+
                 //Persist settings
+                System.Diagnostics.Trace.WriteLine(string.Format("Persisting {0} size {1} to settings.", _mainForm.Location, _mainForm.ClientSize));
                 Settings.Default.RestoreLastPosition = _mainForm.Location;
                 Settings.Default.RestoreLastSize = _mainForm.ClientSize;
                 Settings.Default.Save();
