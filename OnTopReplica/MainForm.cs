@@ -227,6 +227,12 @@ namespace OnTopReplica {
                 }
             }
 
+            //F11 Fullscreen switch
+            else if (e.KeyCode == Keys.F11) {
+                e.Handled = true;
+                IsFullscreen = !IsFullscreen;
+            }
+
             //ESCAPE
             else if (e.KeyCode == Keys.Escape) {
                 //Disable click-through
