@@ -8,9 +8,5 @@ using OnTopReplica.Native;
 namespace OnTopReplica.Platforms {
     class WindowsEight : WindowsSeven {
 
-        public override void PostHandleFormInit(MainForm form) {
-            //Noop
-        }
-
     }
 }

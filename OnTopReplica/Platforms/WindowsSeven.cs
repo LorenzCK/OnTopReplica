@@ -14,7 +14,7 @@ namespace OnTopReplica.Platforms {
 
         public override void PostHandleFormInit(MainForm form) {
             DwmManager.SetWindowFlip3dPolicy(form, Flip3DPolicy.ExcludeAbove);
-            DwmManager.SetExludeFromPeek(form, true);
+            DwmManager.SetExcludeFromPeek(form, true);
             DwmManager.SetDisallowPeek(form, true);
         }
 
