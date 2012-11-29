@@ -67,7 +67,7 @@ Function RegisterApplication
 	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayIcon" "$\"$INSTDIR\OnTopReplica.exe$\""
 	WriteRegStr HKCU "${REG_UNINSTALL}" "Publisher" "Lorenz Cuno Klopfenstein"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayVersion" "3.4"
-	WriteRegDWord HKCU "${REG_UNINSTALL}" "EstimatedSize" 922 ;KB
+	WriteRegDWord HKCU "${REG_UNINSTALL}" "EstimatedSize" 992 ;KB
 	WriteRegStr HKCU "${REG_UNINSTALL}" "HelpLink" "${WEBSITE_LINK}"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "URLInfoAbout" "${WEBSITE_LINK}"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "InstallLocation" "$\"$INSTDIR$\""
@@ -105,6 +105,7 @@ Section "!OnTopReplica" OnTopReplica
 	
 	;Main installation
 	File "..\OnTopReplica\bin\Release\OnTopReplica.exe"
+	File "..\OnTopReplica\bin\Release\OnTopReplica.exe.config"
 	File "..\OnTopReplica\bin\Release\WindowsFormsAero.dll"
 	
 	;Text stuff
