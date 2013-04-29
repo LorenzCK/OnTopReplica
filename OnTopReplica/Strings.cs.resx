@@ -1,0 +1,655 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Vytvořil: %</value>
+    <comment>Link % is replaced by string AboutAuthorContent.</comment>
+  </data>
+  <data name="AboutButtonCancelTT" xml:space="preserve">
+    <value>Přerušit aktualizaci.</value>
+  </data>
+  <data name="AboutButtonExpanderTT" xml:space="preserve">
+    <value>Zobrazit podrobnosti o aplikaci OnTopReplica.</value>
+  </data>
+  <data name="AboutButtonResetTT" xml:space="preserve">
+    <value>Resetovat nastavení OnTopReplica.</value>
+  </data>
+  <data name="AboutButtonUpdateTT" xml:space="preserve">
+    <value>Aktualizovat OnTopReplica.</value>
+  </data>
+  <data name="AboutContribute" xml:space="preserve">
+    <value>Rádi byste přispěli k vývoji projektu? Jste vřele vítáni při spolupráci na stávajících nebo nových překladech, případně si můžete stáhnout % ze serveru CodePlex.</value>
+  </data>
+  <data name="AboutContributeContent" xml:space="preserve">
+    <value>zdrojové kódy</value>
+  </data>
+  <data name="AboutCreditsSources" xml:space="preserve">
+    <value>OnTopReplica je založena na knihovně WindowsFormsAero a několika dalších knihovnách a zdrojích. %.</value>
+    <comment>Link % is replaced by string AboutCreditsSourcesContent.</comment>
+  </data>
+  <data name="AboutCreditsSourcesContent" xml:space="preserve">
+    <value>Více informací</value>
+  </data>
+  <data name="AboutDividerContribute" xml:space="preserve">
+    <value>Spolupráce</value>
+  </data>
+  <data name="AboutDividerCredits" xml:space="preserve">
+    <value>Zásluhy</value>
+  </data>
+  <data name="AboutDividerLicense" xml:space="preserve">
+    <value>Licence</value>
+  </data>
+  <data name="AboutDividerUpdates" xml:space="preserve">
+    <value>Aktualizace</value>
+  </data>
+  <data name="AboutLicense" xml:space="preserve">
+    <value>Aplikace je vydána pod % licencí, která splňuje požadavky "open-source" definice dle OSI.</value>
+  </data>
+  <data name="AboutSlogan" xml:space="preserve">
+    <value>Nenáročný a instantní náhled libovolného otevřeného okna (nebo jeho výřezu) v systému.</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>O programu OnTopReplica</value>
+  </data>
+  <data name="AboutTranslators" xml:space="preserve">
+    <value>Překlady: %</value>
+    <comment>{0} translators (do not end with period)</comment>
+  </data>
+  <data name="AboutUpdatesCheckNow" xml:space="preserve">
+    <value>Aktualizuj!</value>
+  </data>
+  <data name="AboutUpdatesDisclaimer" xml:space="preserve">
+    <value>Aplikace OnTopReplica automaticky kontroluje dostupné aktualizace.</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Verze: %</value>
+  </data>
+  <data name="AskReset" xml:space="preserve">
+    <value>Resetovat nastavení okna?</value>
+  </data>
+  <data name="AskResetButtonOk" xml:space="preserve">
+    <value>&amp;Resetovat
+Všechna nastavení budou ztracena.</value>
+  </data>
+  <data name="AskResetContent" xml:space="preserve">
+    <value>Operace "Resetovat okno" je vhodná k inicializaci všech nastavení pokud jste například ztratili kontrolu nad oknem nebo jej přesunuli mimo viditelnou plochu obrazovky.</value>
+  </data>
+  <data name="AskResetTitle" xml:space="preserve">
+    <value>Resetovat</value>
+  </data>
+  <data name="AskSettingReset" xml:space="preserve">
+    <value>Resetovat nastavení?</value>
+  </data>
+  <data name="AskSettingResetContent" xml:space="preserve">
+    <value>Operace "Resetovat nastavení" smaže veškerá uživatelská nastavení aplikace OnTopReplica a vrátí nastavení do stejného stavu jako po instalaci (všechny uložené informace, jako například uložené výřezy oken, budou ztraceny).</value>
+  </data>
+  <data name="AskSettingResetTitle" xml:space="preserve">
+    <value>Resetovat nastavení</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>&amp;Storno</value>
+    <comment>&amp; marks the ALT+[] shortcut</comment>
+  </data>
+  <data name="DrawRegions" xml:space="preserve">
+    <value>Označte výřez pomocí myši.</value>
+  </data>
+  <data name="ErrorDetailButton" xml:space="preserve">
+    <value>Podrobnosti</value>
+  </data>
+  <data name="ErrorDetailsAero" xml:space="preserve">
+    <value>Podrobnosti k Windows Aero</value>
+  </data>
+  <data name="ErrorDetailsAeroInfo" xml:space="preserve">
+    <value>Windows Aero je k dispozici pouze na systémech Windows Vista Home Premium a vyšších.</value>
+  </data>
+  <data name="ErrorDwmOff" xml:space="preserve">
+    <value>Funkce 'Desktop Composition' není povolena.</value>
+  </data>
+  <data name="ErrorDwmOffContent" xml:space="preserve">
+    <value>Pro pokračování je nutné povolit funkci "Desktop Composition" výběrem tématu 'Windows Aero' v nastavení vzhledu Windows.
+
+Uvedené lze provést například kliknutním pravým tlačítkem myši na plochu a zvolením akce "Přizpůsobit".</value>
+  </data>
+  <data name="ErrorGenericInfoButton" xml:space="preserve">
+    <value>Podrobnosti k chybě</value>
+  </data>
+  <data name="ErrorGenericInfoText" xml:space="preserve">
+    <value>Chyba: </value>
+  </data>
+  <data name="ErrorGenericThumbnailHandleError" xml:space="preserve">
+    <value>Zvolené okno bylo zavřeno nebo již není platné z jiných důvodů.</value>
+  </data>
+  <data name="ErrorGenericTitle" xml:space="preserve">
+    <value>Chyba</value>
+  </data>
+  <data name="ErrorNoDwm" xml:space="preserve">
+    <value>Funkce 'Desktop Composition' není ve vašem systému podporována.
+Tuto aplikaci je možné spouštět pouze na systémech Windows Vista Home Premium a vyšších.</value>
+  </data>
+  <data name="ErrorNoDwmTitle" xml:space="preserve">
+    <value>Funkce Desktop Composition není podporována</value>
+  </data>
+  <data name="ErrorNoThumbnail" xml:space="preserve">
+    <value>Náhled nebyl nahrán.</value>
+  </data>
+  <data name="ErrorUnableToCreateThumbnail" xml:space="preserve">
+    <value>Nelze vytvořit náhled.</value>
+  </data>
+  <data name="ErrorUnableToFit" xml:space="preserve">
+    <value>Nelze vložit okno.</value>
+  </data>
+  <data name="ErrorUpdate" xml:space="preserve">
+    <value>Kontrola aktualizací se nezdařila.</value>
+  </data>
+  <data name="ErrorUpdateContent" xml:space="preserve">
+    <value>Zdá se, že aplikace OnTopReplica nebyla nainstalována pomocí 'ClickOnce'. Aktualizaci musíte provést ručně (navštivte &lt;a href="http://ontopreplica.codeplex.com"&gt;domácí stránku aplikace OnTopReplica&lt;/a&gt;).</value>
+  </data>
+  <data name="ErrorUpdateContentGeneric" xml:space="preserve">
+    <value>Aplikaci OnTopReplica se nepodařilo zjistit, zda existuje nová verze. Zkontrolujte, zda jste připojeni k síti Internet. Pokud ano, je možné, že webové stránky projektu jsou dočasně mimo provoz.</value>
+  </data>
+  <data name="FullscreenMode" xml:space="preserve">
+    <value>Režim</value>
+  </data>
+  <data name="FullscreenModeAlwaysOnTop" xml:space="preserve">
+    <value>Vždy na vrchu</value>
+  </data>
+  <data name="FullscreenModeAlwaysOnTopTT" xml:space="preserve">
+    <value>Nastaví aplikaci OnTopReplica, aby zůstávala vždy na vrchu.</value>
+  </data>
+  <data name="FullscreenModeClickThrough" xml:space="preserve">
+    <value>Proklikávání</value>
+  </data>
+  <data name="FullscreenModeClickThroughTT" xml:space="preserve">
+    <value>Aplikace OnTopReplica se bude chovat jako průhledná vrstva přes kterou bude možno proklikávat do podložených oken.</value>
+  </data>
+  <data name="FullscreenModeNormal" xml:space="preserve">
+    <value>Standardní</value>
+  </data>
+  <data name="FullscreenModeNormalTT" xml:space="preserve">
+    <value>Aplikace OnTopReplica se bude chovat jako běžné okno. Jiná okna mohou překrýt okno aplikace.</value>
+  </data>
+  <data name="FullscreenTitle" xml:space="preserve">
+    <value>Aplikace OnTopReplica přes celou obrazovku</value>
+  </data>
+  <data name="GroupSwitchModeDisableButton" xml:space="preserve">
+    <value>Zrušit</value>
+  </data>
+  <data name="GroupSwitchModeEnableButton" xml:space="preserve">
+    <value>Povolit seskupení</value>
+  </data>
+  <data name="GroupSwitchModeStatusDisabled" xml:space="preserve">
+    <value>Výběrem více položek aktivujete seskupení</value>
+  </data>
+  <data name="GroupSwitchModeStatusEnabled" xml:space="preserve">
+    <value>Seskupení je aktivní</value>
+  </data>
+  <data name="GroupSwitchModeTitle" xml:space="preserve">
+    <value>Seskupení</value>
+  </data>
+  <data name="GroupSwitchModeWindows" xml:space="preserve">
+    <value>Okna</value>
+    <comment>Column Header of list, simply refers to available windows to be cloned</comment>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Domácí stránka: www.codeplex.com/ontopreplica.</value>
+  </data>
+  <data name="InfoClickForwarding" xml:space="preserve">
+    <value>Přejete si povolit "přeposílání kliknutí"?</value>
+  </data>
+  <data name="InfoClickForwardingContent" xml:space="preserve">
+    <value>V tomto režimu aplikace OnTopReplica přeposílá kliknutí levého tlačítka myši do zdrojového okna (je tedy možné provádět základní ovládání zdrojového okna bez nutnosti jej aktivovat).
+
+Ukončit režim "přeposíání kliknutí" je možné opětovným vyvolání položky v menu.</value>
+  </data>
+  <data name="InfoClickForwardingTitle" xml:space="preserve">
+    <value>Přeposílání kliknutí</value>
+  </data>
+  <data name="InfoClickThrough" xml:space="preserve">
+    <value>Povolit "Proklikávání" v celoobrazovkovém režimu?</value>
+  </data>
+  <data name="InfoClickThroughDetails" xml:space="preserve">
+    <value>"Proklikávání" funguje pouze pokud je povoleno v menu a okno má nastavenou průhlednost.</value>
+  </data>
+  <data name="InfoClickThroughInformation" xml:space="preserve">
+    <value>V tomto režimu se bude okno roztažené přes celou obrazovku chovat jako poloprůhledná vrstva, přes kterou bude možné "proklikávat" na podložená okna.
+
+K návratu do standardního režimu je možné přejít kdykoli dvojklikem na ikonu v oznamovací oblasti (traye).</value>
+  </data>
+  <data name="InfoClickThroughNo" xml:space="preserve">
+    <value>Ne.
+Režim "Proklikávání" je možné zvolit později v menu</value>
+  </data>
+  <data name="InfoClickThroughOk" xml:space="preserve">
+    <value>Používat "Proklikávání"</value>
+  </data>
+  <data name="InfoClickThroughTitle" xml:space="preserve">
+    <value>Režim "Proklikávání"</value>
+  </data>
+  <data name="InfoUpdated" xml:space="preserve">
+    <value>Aplikace OnTopReplica byla aktualizována.</value>
+  </data>
+  <data name="InfoUpdatedContent" xml:space="preserve">
+    <value>Pro použití aktualizací je potřeba aplikaci OnTopReplica restartovat.</value>
+  </data>
+  <data name="InfoUpdatedTitle" xml:space="preserve">
+    <value>Aktualizace proběhla úspěšně</value>
+  </data>
+  <data name="InfoUpToDate" xml:space="preserve">
+    <value>OnTopReplica je aktuální.</value>
+  </data>
+  <data name="InfoUpToDateTitle" xml:space="preserve">
+    <value>Žádná aktualizace není k dispozici.</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Jazyk</value>
+  </data>
+  <data name="MenuAbout" xml:space="preserve">
+    <value>O aplikaci...</value>
+  </data>
+  <data name="MenuAboutTT" xml:space="preserve">
+    <value>Skryje hlavní okno a zobrazí informace "O aplikaci".</value>
+  </data>
+  <data name="MenuChrome" xml:space="preserve">
+    <value>Okraj</value>
+  </data>
+  <data name="MenuChromeTT" xml:space="preserve">
+    <value>Přepínač, který definuje, zda má aplikace OnTopReplica viditelný okraj okna.</value>
+  </data>
+  <data name="MenuClickForwarding" xml:space="preserve">
+    <value>Přeposílání kliknutí</value>
+  </data>
+  <data name="MenuClickForwardingTT" xml:space="preserve">
+    <value>Zapne "přeposílání kliknutí" do zdrojového okna.</value>
+  </data>
+  <data name="MenuClickThrough" xml:space="preserve">
+    <value>Proklikávání</value>
+  </data>
+  <data name="MenuClickThroughTT" xml:space="preserve">
+    <value>Aplikace OnTopReplica se bude chovat jako průhledná vrstva přes kterou bude možno proklikávat do podložených oken.</value>
+  </data>
+  <data name="MenuClose" xml:space="preserve">
+    <value>Zavřít</value>
+  </data>
+  <data name="MenuCloseTT" xml:space="preserve">
+    <value>Ukončí aplikaci OnTopReplica.</value>
+  </data>
+  <data name="MenuFitDouble" xml:space="preserve">
+    <value>2:1 Dvojnásobná</value>
+  </data>
+  <data name="MenuFitFullscreen" xml:space="preserve">
+    <value>Celá obrazovka</value>
+  </data>
+  <data name="MenuFitHalf" xml:space="preserve">
+    <value>1:2 Poloviční</value>
+  </data>
+  <data name="MenuFitOriginal" xml:space="preserve">
+    <value>1:1 Jako zdroj</value>
+  </data>
+  <data name="MenuFitQuarter" xml:space="preserve">
+    <value>1:4 Čtvrtinová</value>
+  </data>
+  <data name="MenuGroupSwitch" xml:space="preserve">
+    <value>Seskupení</value>
+  </data>
+  <data name="MenuGroupSwitchTT" xml:space="preserve">
+    <value>OnTopReplica bude automaticky přepínat mezi okny z uživatelsky definované skupiny tak, že zobrazeno bude vždy to naposledy deaktivované okno.</value>
+  </data>
+  <data name="MenuOp100" xml:space="preserve">
+    <value>100% (neprůhledné)</value>
+  </data>
+  <data name="MenuOp100TT" xml:space="preserve">
+    <value>Nastaví aplikaci OnTopReplica jako neprůhlednou.</value>
+  </data>
+  <data name="MenuOp25" xml:space="preserve">
+    <value>25%</value>
+  </data>
+  <data name="MenuOp25TT" xml:space="preserve">
+    <value>Nastaví průhlednost na 25%.</value>
+  </data>
+  <data name="MenuOp50" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="MenuOp50TT" xml:space="preserve">
+    <value>Nastaví průhlednost na 50%.</value>
+  </data>
+  <data name="MenuOp75" xml:space="preserve">
+    <value>75%</value>
+  </data>
+  <data name="MenuOp75TT" xml:space="preserve">
+    <value>Nastaví průhlednost na 75%.</value>
+  </data>
+  <data name="MenuOpacity" xml:space="preserve">
+    <value>Průhlednost</value>
+  </data>
+  <data name="MenuOpen" xml:space="preserve">
+    <value>Otevřít</value>
+  </data>
+  <data name="MenuOpenTT" xml:space="preserve">
+    <value>Zobrazí aplikaci OnTopReplica.</value>
+  </data>
+  <data name="MenuPosBottomLeft" xml:space="preserve">
+    <value>Dolní levý roh</value>
+  </data>
+  <data name="MenuPosBottomRight" xml:space="preserve">
+    <value>Dolní pravý roh</value>
+  </data>
+  <data name="MenuPosCenter" xml:space="preserve">
+    <value>Uprostřed</value>
+  </data>
+  <data name="MenuPosDisabled" xml:space="preserve">
+    <value>Vypnuto</value>
+  </data>
+  <data name="MenuPosition" xml:space="preserve">
+    <value>Umístění</value>
+  </data>
+  <data name="MenuPositionTT" xml:space="preserve">
+    <value>Automatická pozice aplikace OnTopReplica vzhledem k obrazovce.</value>
+  </data>
+  <data name="MenuPosTopLeft" xml:space="preserve">
+    <value>Horní levý roh</value>
+  </data>
+  <data name="MenuPosTopRight" xml:space="preserve">
+    <value>Horní pravý rok</value>
+  </data>
+  <data name="MenuQuitFullscreen" xml:space="preserve">
+    <value>Opustit celoobrazovkový režim</value>
+  </data>
+  <data name="MenuRecall" xml:space="preserve">
+    <value>Ukládat pozici a velikost okna</value>
+  </data>
+  <data name="MenuRecallTT" xml:space="preserve">
+    <value>Přepínač, který definuje, zda si má aplikace OnTopReplica ukládat poslední pozici a velikost okna a obnovovat tyto údaje po restartování aplikace.</value>
+  </data>
+  <data name="MenuReduce" xml:space="preserve">
+    <value>Minimalizovat do traye</value>
+  </data>
+  <data name="MenuReduceTT" xml:space="preserve">
+    <value>Minimalizuje aplikaci OnTopReplica jako ikonu v systémové oblasti.</value>
+  </data>
+  <data name="MenuRegion" xml:space="preserve">
+    <value>Vybrat výřez...</value>
+  </data>
+  <data name="MenuRegionTT" xml:space="preserve">
+    <value>Přepne do režimu "výřezu", který umožní zvolit pouze část okna jako náhled.</value>
+  </data>
+  <data name="MenuReset" xml:space="preserve">
+    <value>Resetovat nastavení okna</value>
+  </data>
+  <data name="MenuResetTT" xml:space="preserve">
+    <value>Resetuje nastavení a pozici okna aplikace OnTopReplica.</value>
+  </data>
+  <data name="MenuResize" xml:space="preserve">
+    <value>Velikost</value>
+  </data>
+  <data name="MenuRestoreLast" xml:space="preserve">
+    <value>Obnovit naposledy zobrazené okno</value>
+  </data>
+  <data name="MenuRestoreLastTT" xml:space="preserve">
+    <value>Pokud je zatrženo, OnTopReplica se pokusí po spuštění obnovit naposledy zobrazované okno.</value>
+  </data>
+  <data name="MenuSettings" xml:space="preserve">
+    <value>Nastavení...</value>
+  </data>
+  <data name="MenuSettingsTT" xml:space="preserve">
+    <value>Zobrazí okno s nastavením.</value>
+  </data>
+  <data name="MenuSwitch" xml:space="preserve">
+    <value>Přepnout do okna</value>
+  </data>
+  <data name="MenuSwitchTT" xml:space="preserve">
+    <value>Přepne do zdrojového okna a skryje aplikaci OnTopReplica.</value>
+  </data>
+  <data name="MenuWindows" xml:space="preserve">
+    <value>Vybrat okno</value>
+  </data>
+  <data name="MenuWindowsNone" xml:space="preserve">
+    <value>- žádné -</value>
+  </data>
+  <data name="MenuWindowsTT" xml:space="preserve">
+    <value>Zobrazí seznam oken, které je možné použít jako zdroj.</value>
+  </data>
+  <data name="MenuWindowsWholeRegion" xml:space="preserve">
+    <value>- celé okno -</value>
+  </data>
+  <data name="RegionsCurrentRegion" xml:space="preserve">
+    <value>Aktuální výřez:</value>
+  </data>
+  <data name="RegionsDeleteButton" xml:space="preserve">
+    <value>Smazat</value>
+  </data>
+  <data name="RegionsDoneButton" xml:space="preserve">
+    <value>Hotovo</value>
+  </data>
+  <data name="RegionsHeight" xml:space="preserve">
+    <value>Výška</value>
+  </data>
+  <data name="RegionsResetButton" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="RegionsSaveButton" xml:space="preserve">
+    <value>Uložit</value>
+  </data>
+  <data name="RegionsStoredRegions" xml:space="preserve">
+    <value>Uložené výřezy</value>
+  </data>
+  <data name="RegionsTitle" xml:space="preserve">
+    <value>Výřezy:</value>
+  </data>
+  <data name="RegionsWidth" xml:space="preserve">
+    <value>Šířka</value>
+  </data>
+  <data name="RightClick" xml:space="preserve">
+    <value>Začněte klepnutím sem pravým tlačítkem myši...</value>
+  </data>
+  <data name="SettingsHotKeyClone" xml:space="preserve">
+    <value>Zavřít toto okno</value>
+  </data>
+  <data name="SettingsHotKeyDescription" xml:space="preserve">
+    <value>Tyto klávesové zkratky jsou platné napříč systémem a je možné je použít i pokud OnTopReplica není aktivním oknem.</value>
+  </data>
+  <data name="SettingsHotKeyShowHide" xml:space="preserve">
+    <value>Zobrazit/Skrýt</value>
+  </data>
+  <data name="SettingsHotKeyTitle" xml:space="preserve">
+    <value>Klávesové zkratky:</value>
+  </data>
+  <data name="SettingsLanguageTitle" xml:space="preserve">
+    <value>Jazyk:</value>
+  </data>
+  <data name="SettingsRestartRequired" xml:space="preserve">
+    <value>Vyžaduje restart.</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Nastavení</value>
+  </data>
+  <data name="UpdateAvailableCommandCancel" xml:space="preserve">
+    <value>Zrušit aktualizaci
+Aplikace OnTopReplica vás vyzve k aktualizaci při dalším startu.</value>
+  </data>
+  <data name="UpdateAvailableCommandOk" xml:space="preserve">
+    <value>Pokračovat
+Instalovat OnTopReplica {0}.</value>
+  </data>
+  <data name="UpdateAvailableContent" xml:space="preserve">
+    <value>Nová verze bude automaticky stažena a nainstalována.</value>
+  </data>
+  <data name="UpdateAvailableExpanded" xml:space="preserve">
+    <value>Nainstalovaná verze: {0}
+Dostupná verze: {1}</value>
+  </data>
+  <data name="UpdateAvailableInstruction" xml:space="preserve">
+    <value>Verze {0} je k dispozici</value>
+  </data>
+  <data name="UpdateDownloadingContent" xml:space="preserve">
+    <value>staženo {0}/{1} bajtů.</value>
+    <comment>{0} downloaded bytes {1} total bytes
+{0}  bytes geladen von {1} bytes gesamt
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes
+{0} downloaded bytes {1} total bytes</comment>
+  </data>
+  <data name="UpdateDownloadingInstruction" xml:space="preserve">
+    <value>Stahování...</value>
+  </data>
+  <data name="UpdateInfoContent" xml:space="preserve">
+    <value>Poslední verze aplikace OnTopReplica je již nainstalována. Aktualizace se kontrolují automaticky při každém spuštění.
+
+Na &lt;a href="website"&gt;oficiálních stránkách&lt;/a&gt; můžete sledovat aktuální vývoj aplikace nebo hlásit chyby či navrhovat vylepšení.</value>
+    <comment>The website link should be enclosed in &lt;a href="website"&gt;&lt;/a&gt; tags.</comment>
+  </data>
+  <data name="UpdateInfoFooter" xml:space="preserve">
+    <value>Poslední stabilní verze byla vydána {0}.</value>
+    <comment>{0} last version release date</comment>
+  </data>
+  <data name="UpdateInfoInstruction" xml:space="preserve">
+    <value>OnTopReplica je aktuální</value>
+  </data>
+  <data name="UpdateReadyCommandOk" xml:space="preserve">
+    <value>Instalovat
+OnTopReplica bude nyní ukončena a spustí se aktualizace.</value>
+  </data>
+  <data name="UpdateReadyContent" xml:space="preserve">
+    <value>Nová verze {0} OnTopReplica je připravena k instalaci.</value>
+  </data>
+  <data name="UpdateReadyInstruction" xml:space="preserve">
+    <value>Aktualizace je připravena</value>
+  </data>
+  <data name="UpdateTitle" xml:space="preserve">
+    <value>Aktualizace OnTopReplica</value>
+  </data>
+  <data name="AboutAuthorContent" xml:space="preserve">
+    <value />
+    <comment>Must not be localized. Leave blank in non-default languages.</comment>
+  </data>
+  <data name="AboutLicenseContent" xml:space="preserve">
+    <value />
+    <comment>Can be left blank.</comment>
+  </data>
+  <data name="AboutTranslatorsContent" xml:space="preserve">
+    <value />
+    <comment>Must not be localized. Leave blank in non-default languages.</comment>
+  </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value />
+    <comment>Probably doesn't need localization. :)</comment>
+  </data>
+  <data name="MenuAdvanced" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+</root>
