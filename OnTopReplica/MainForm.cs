@@ -19,13 +19,16 @@ namespace OnTopReplica {
         ThumbnailPanel _thumbnailPanel;
 
         //Managers
-        MessagePumpManager _msgPumpManager = new MessagePumpManager();
+        readonly MessagePumpManager _msgPumpManager = new MessagePumpManager();
         WindowListMenuManager _windowListManager;
+        public FullscreenFormManager FullscreenManager { get; private set; }
 
         Options _startupOptions;
 
         public MainForm(Options startupOptions) {
             _startupOptions = startupOptions;
+
+            FullscreenManager = new FullscreenFormManager(this);
             
             //WinForms init pass
             InitializeComponent();
@@ -121,7 +124,7 @@ namespace OnTopReplica {
 
             //HACK: sometimes, even if TopMost is true, the window loses its "always on top" status.
             //  This is a fix attempt that probably won't work...
-            if (!IsFullscreen) { //fullscreen mode doesn't use TopMost
+            if (!FullscreenManager.IsFullscreen) { //fullscreen mode doesn't use TopMost
                 TopMost = false;
                 TopMost = true;
             }
@@ -130,7 +133,7 @@ namespace OnTopReplica {
         protected override void OnMouseWheel(MouseEventArgs e) {
             base.OnMouseWheel(e);
 
-            if (!IsFullscreen) {
+            if (!FullscreenManager.IsFullscreen) {
                 int change = (int)(e.Delta / 6.0); //assumes a mouse wheel "tick" is in the 80-120 range
                 AdjustSize(change);
                 RefreshScreenLock();
@@ -143,7 +146,7 @@ namespace OnTopReplica {
             //This is handled by the WM_NCLBUTTONDBLCLK msg handler usually (because the GlassForm translates
             //clicks on client to clicks on caption). But if fullscreen mode disables GlassForm dragging, we need
             //this auxiliary handler to switch mode.
-            IsFullscreen = !IsFullscreen;
+            FullscreenManager.Toggle();
         }
 
         protected override void OnMouseClick(MouseEventArgs e) {
@@ -176,7 +179,7 @@ namespace OnTopReplica {
                 case WM.NCLBUTTONDBLCLK:
                     //Toggle fullscreen mode if double click on caption (whole glass area)
                     if (m.WParam.ToInt32() == HT.CAPTION) {
-                        IsFullscreen = !IsFullscreen;
+                        FullscreenManager.Toggle();
 
                         m.Result = IntPtr.Zero;
                         return;
@@ -206,7 +209,7 @@ namespace OnTopReplica {
             if (e.Modifiers == Keys.Alt) {
                 if (e.KeyCode == Keys.Enter) {
                     e.Handled = true;
-                    IsFullscreen = !IsFullscreen;
+                    FullscreenManager.Toggle();
                 }
 
                 else if (e.KeyCode == Keys.D1 || e.KeyCode == Keys.NumPad1) {
@@ -230,7 +233,7 @@ namespace OnTopReplica {
             //F11 Fullscreen switch
             else if (e.KeyCode == Keys.F11) {
                 e.Handled = true;
-                IsFullscreen = !IsFullscreen;
+                FullscreenManager.Toggle();
             }
 
             //ESCAPE
@@ -240,63 +243,13 @@ namespace OnTopReplica {
                     ClickThroughEnabled = false;
                 }
                 //Toggle fullscreen
-                else if (IsFullscreen) {
-                    IsFullscreen = false;
+                else if (FullscreenManager.IsFullscreen) {
+                    FullscreenManager.SwitchBack();
                 }
                 //Disable click forwarding
                 else if (ClickForwardingEnabled) {
                     ClickForwardingEnabled = false;
                 }
-            }
-        }
-
-        #endregion
-
-        #region Fullscreen
-
-        bool _isFullscreen = false;
-        Point _preFullscreenLocation;
-        Size _preFullscreenSize;
-        FormBorderStyle _preFullscreenBorderStyle;
-
-        public bool IsFullscreen {
-            get {
-                return _isFullscreen;
-            }
-            set {
-                if (IsFullscreen == value)
-                    return;
-                if (value && !_thumbnailPanel.IsShowingThumbnail)
-                    return;
-
-                CloseSidePanel(); //on switch, always hide side panels
-
-                //Location and size
-                if (value) {
-                    _preFullscreenLocation = Location;
-                    _preFullscreenSize = ClientSize;
-                    _preFullscreenBorderStyle = FormBorderStyle;
-
-                    FormBorderStyle = FormBorderStyle.None;
-                    var currentScreen = Screen.FromControl(this);
-                    Size = currentScreen.WorkingArea.Size;
-                    Location = currentScreen.WorkingArea.Location;
-                }
-                else {
-                    FormBorderStyle = _preFullscreenBorderStyle;
-                    Location = _preFullscreenLocation;
-                    ClientSize = _preFullscreenSize;
-                    RefreshAspectRatio();
-                }
-
-                //Common
-                GlassEnabled = !value;
-                TopMost = !value;
-                HandleMouseMove = !value;
-
-                _isFullscreen = value;
-
-                Program.Platform.OnFormStateChange(this);
             }
         }
 
@@ -317,7 +270,7 @@ namespace OnTopReplica {
                 _thumbnailPanel.SetThumbnailHandle(handle, region);
 
                 //Set aspect ratio (this will resize the form), do not refresh if in fullscreen
-                SetAspectRatio(_thumbnailPanel.ThumbnailPixelSize, !IsFullscreen);
+                SetAspectRatio(_thumbnailPanel.ThumbnailPixelSize, !FullscreenManager.IsFullscreen);
             }
             catch (Exception ex) {
                 System.Diagnostics.Trace.Fail("Unable to set thumbnail.", ex.ToString());

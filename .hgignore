@@ -3,7 +3,7 @@ glob:bin/*
 glob:obj/*
 glob:publish/*
 glob:*Thumbs.db
-glob:*.psd
 glob:Installer/OnTopReplica-Setup.exe
 syntax: glob
 *.Designer.cs
+*.suo
