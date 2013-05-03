@@ -1,0 +1,7 @@
+OPTIONS
+
++ Language
+  Drop down list with icons
+  Restart notice
+  
++ Shortcuts
