@@ -7,3 +7,4 @@ glob:*.psd
 glob:Installer/OnTopReplica-Setup.exe
 syntax: glob
 *.Designer.cs
+*.suo
