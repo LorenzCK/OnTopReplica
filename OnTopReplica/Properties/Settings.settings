@@ -53,5 +53,8 @@
     <Setting Name="HotKeyShowHide" Type="System.String" Scope="User">
       <Value Profile="(Default)">[CTRL]+[SHIFT]+O</Value>
     </Setting>
+    <Setting Name="FullscreenMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Standard</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

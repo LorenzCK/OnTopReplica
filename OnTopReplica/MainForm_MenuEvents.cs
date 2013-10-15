@@ -11,7 +11,7 @@ namespace OnTopReplica {
 
         private void Menu_opening(object sender, CancelEventArgs e) {
             //Cancel if currently in "fullscreen" mode or a side panel is open
-            if (IsFullscreen || IsSidePanelOpen) {
+            if (FullscreenManager.IsFullscreen || IsSidePanelOpen) {
                 e.Cancel = true;
                 return;
             }
@@ -111,7 +111,7 @@ namespace OnTopReplica {
         }
 
         private void Menu_Resize_Fullscreen(object sender, EventArgs e) {
-            IsFullscreen = true;
+            FullscreenManager.SwitchFullscreen();
         }
 
         private void Menu_Resize_RecallPosition_click(object sender, EventArgs e) {
@@ -173,7 +173,30 @@ namespace OnTopReplica {
         }
 
         private void Menu_Fullscreen_ExitFullscreen_click(object sender, EventArgs e) {
-            IsFullscreen = false;
+            FullscreenManager.SwitchBack();
+        }
+
+        private void Menu_Fullscreen_Mode_opening(object sender, EventArgs e) {
+            var mode = Settings.Default.GetFullscreenMode();
+
+            menuModeStandardToolStripMenuItem.Checked = (mode == FullscreenMode.Standard);
+            menuModeFullscreenToolStripMenuItem.Checked = (mode == FullscreenMode.Fullscreen);
+            menuModeAllScreensToolStripMenuItem.Checked = (mode == FullscreenMode.AllScreens);
+        }
+
+        private void Menu_Fullscreen_Mode_Standard_click(object sender, EventArgs e) {
+            Settings.Default.SetFullscreenMode(FullscreenMode.Standard);
+            FullscreenManager.SwitchFullscreen(FullscreenMode.Standard);
+        }
+
+        private void Menu_Fullscreen_Mode_Fullscreen_click(object sender, EventArgs e) {
+            Settings.Default.SetFullscreenMode(FullscreenMode.Fullscreen);
+            FullscreenManager.SwitchFullscreen(FullscreenMode.Fullscreen);
+        }
+
+        private void Menu_Fullscreen_Mode_AllScreens_click(object sender, EventArgs e) {
+            Settings.Default.SetFullscreenMode(FullscreenMode.AllScreens);
+            FullscreenManager.SwitchFullscreen(FullscreenMode.AllScreens);
         }
 
     }

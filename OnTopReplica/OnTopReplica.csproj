@@ -106,6 +106,8 @@
     </Compile>
     <Compile Include="CloneClickEventArgs.cs" />
     <Compile Include="CloseRequestEventArgs.cs" />
+    <Compile Include="FullscreenFormManager.cs" />
+    <Compile Include="FullscreenMode.cs" />
     <Compile Include="GeometryExtensions.cs" />
     <Compile Include="HotKeyTextBox.cs">
       <SubType>Component</SubType>
@@ -367,6 +369,8 @@
     <None Include="Assets\reduce.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\help.png" />
+    <None Include="Resources\minimize.png" />
     <None Include="LICENSE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

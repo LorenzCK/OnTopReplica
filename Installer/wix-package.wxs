@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+	<Product
+		Name="OnTopReplica"
+		Id="c6982522-aa7f-476d-be20-f739c2111408"
+		UpgradeCode="eeaf5a3d-bc48-4fd6-8503-450afdead792"
+		Language="1033" Codepage="1252"
+		Version="1.0.0"
+		Manufacturer="Lorenz Cuno Klopfenstein"
+		>
+		
+		<Package
+			Id="*"
+			Keywords="Installer"
+			Description="OnTopReplica installer"
+			Manufacturer="Lorenz Cuno Klopfenstein"
+			InstallScope="perUser"
+			InstallerVersion="100"
+			Languages="1033"
+			Compressed="yes"
+			SummaryCodepage="1252"
+			/>
+		
+		<!--<UIRef Id="WixUI_Minimal" />-->
+		
+		<!--<Icon Id="Foobar10.exe" SourceFile="FoobarAppl10.exe" />-->
+		
+		<Media Id="1" Cabinet="OTR.cab" EmbedCab="yes" />
+		
+		<!-- Directories declaration -->
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="LocalAppDataFolder">
+				<Directory Id="APPLICATIONINSTALLDIR" Name="OnTopReplica-Test" />
+				<Directory Id="OldApplicationInstallDir" Name="Lorenz_Cuno_Klopfenstein2" />
+			</Directory>
+			
+			<!--<Directory Id="ProgramMenuFolder" Name="Programs">
+				<Directory Id="ProgramMenuDir" Name="OnTopReplica-MenuDir">
+					<Component Id="ProgramMenuDir" Guid="64c6a89e-9f2f-49cb-b742-c3503668c23d">
+						<RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+						<RegistryValue Root="HKCU" Key="Software\[ProductName]" Type="string" Value="" KeyPath="yes" />
+					</Component>
+				</Directory>
+			</Directory>
+
+			<Directory Id="DesktopFolder" Name="Desktop" />-->
+		</Directory>
+		
+		<!-- Components -->
+		<DirectoryRef Id="APPLICATIONINSTALLDIR">
+			<Component Id="OnTopReplica.exe" Guid="a0cd6179-95a5-4055-87bd-c326ee307f1b">
+				<File Id="OnTopReplica.exe" Name="OnTopReplica.exe" DiskId="1" Source="..\OnTopReplica\bin\Release\OnTopReplica.exe" Checksum="yes" />
+				<RemoveFolder Id="APPLICATIONINSTALLDIR" On="uninstall" />
+				<RegistryValue Root="HKCU" Key="Software\[ProductName]" Type="string" Value="" KeyPath="yes" />
+			</Component>
+			
+			<Component Id="OldOnTopReplicaRemoval" Guid="17692986-3678-4155-9ae6-155ab44d226b">
+				<RemoveFolder Id="OldApplicationInstallDir" On="install" />
+			</Component>
+		</DirectoryRef>
+		
+		<!-- Features -->
+		<Feature Id="FeatureMainApplication" Title="Application" Level="1">
+			<ComponentRef Id="OnTopReplica.exe" />
+			<ComponentRef Id="OldOnTopReplicaRemoval" />
+		</Feature>
+	
+	</Product>
+
+</Wix>

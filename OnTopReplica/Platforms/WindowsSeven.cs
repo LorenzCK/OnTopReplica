@@ -41,7 +41,7 @@ namespace OnTopReplica.Platforms {
         /// Used to alter the window style. Not used anymore.
         /// </summary>
         private void SetWindowStyle(MainForm form) {
-            if (!form.IsFullscreen) {
+            if (!form.FullscreenManager.IsFullscreen) {
                 //This hides the app from ALT+TAB
                 //Note that when minimized, it will be shown as an (ugly) minimized tool window
                 //thus we do not minimize, but set to transparent when hiding
