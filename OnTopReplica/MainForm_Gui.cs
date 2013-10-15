@@ -14,7 +14,7 @@ namespace OnTopReplica {
             if (position.HasValue)
                 menuPosition = position.Value;
 
-            if (IsFullscreen) {
+            if (FullscreenManager.IsFullscreen) {
                 menuFullscreenContext.Show(menuPosition);
             }
             else {
@@ -71,7 +71,7 @@ namespace OnTopReplica {
         /// </summary>
         public void EnsureMainFormVisible() {
             //Reset special modes
-            IsFullscreen = false;
+            FullscreenManager.SwitchBack();
             ClickThroughEnabled = false;
             Opacity = 1.0;
 

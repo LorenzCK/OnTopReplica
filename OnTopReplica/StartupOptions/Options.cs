@@ -152,7 +152,7 @@ namespace OnTopReplica.StartupOptions {
 
             //Fullscreen
             if (Fullscreen) {
-                form.IsFullscreen = true;
+                form.FullscreenManager.SwitchFullscreen();
             }
         }
 
