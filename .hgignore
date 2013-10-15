@@ -1,0 +1,8 @@
+glob:OnTopReplica.suo
+glob:bin/*
+glob:obj/*
+glob:publish/*
+glob:*Thumbs.db
+glob:Installer/OnTopReplica-Setup.exe
+syntax: glob
+*.suo
