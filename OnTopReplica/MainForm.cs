@@ -188,8 +188,10 @@ namespace OnTopReplica {
 
                 case WM.NCHITTEST:
                     //Make transparent to hit-testing if in click through mode
-                    if (ClickThroughEnabled && (ModifierKeys & Keys.Alt) != Keys.Alt) {
+                    if (ClickThroughEnabled) {
                         m.Result = (IntPtr)HT.TRANSPARENT;
+
+                        RefreshClickThroughComeBack();
                         return;
                     }
                     break;
