@@ -9,6 +9,22 @@ namespace OnTopReplica.Native {
     /// </summary>
     static class WindowMethods {
 
+        public static System.Drawing.Point GetCursorPos() {
+            NPoint ret;
+            if (GetCursorPosInternal(out ret))
+                return ret.ToPoint();
+            else {
+#if DEBUG
+                throw new InvalidOperationException("Unable to GetCursorPos");
+#else
+                return default(System.Drawing.Point);
+#endif
+            }
+        }
+
+        [DllImport("user32.dll", EntryPoint="GetCursorPos")]
+        private static extern bool GetCursorPosInternal(out NPoint point);
+
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool GetClientRect(IntPtr handle, out NRectangle rect);
 

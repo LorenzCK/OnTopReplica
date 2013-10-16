@@ -73,11 +73,10 @@ namespace OnTopReplica {
         }
 
         private void Menu_Opacity_click(object sender, EventArgs e) {
-            //Get clicked menu item
-            ToolStripMenuItem tsi = sender as ToolStripMenuItem;
+            ToolStripMenuItem tsi = (ToolStripMenuItem)sender;
 
-            if (tsi != null && this.Visible) {
-                //Get opacity from the tag
+            if (this.Visible) {
+                //Target opacity is stored in the item's tag
                 this.Opacity = (double)tsi.Tag;
                 Program.Platform.OnFormStateChange(this);
             }
