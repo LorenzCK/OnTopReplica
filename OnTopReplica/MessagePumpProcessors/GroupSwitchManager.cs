@@ -71,8 +71,6 @@ namespace OnTopReplica.MessagePumpProcessors {
         }
 
         private void HandleForegroundWindowChange(IntPtr activeWindow) {
-            System.Diagnostics.Trace.WriteLine(string.Format("New active window (h {0}). ", activeWindow));
-
             //Seek window in tracked handles
             WindowHandleWrapper activated = null;
             foreach (var i in _lruHandles) {
@@ -82,7 +80,6 @@ namespace OnTopReplica.MessagePumpProcessors {
 
             if (activated == null) {
                 //New foreground window is not tracked
-                System.Diagnostics.Trace.WriteLine("Active window is not tracked.");
                 return;
             }
 
@@ -93,7 +90,7 @@ namespace OnTopReplica.MessagePumpProcessors {
             //Get least recently used
             var next = _lruHandles[0];
 
-            System.Diagnostics.Trace.WriteLine(string.Format("Tracked. Switching to {0} (last use: {1}).", next.WindowHandle.Title, next.LastTimeUsed));
+            Log.Write("Switched to tracked window: switching to {0} (last use: {1})", next.WindowHandle.Title, next.LastTimeUsed);
 
             Form.SetThumbnail(next.WindowHandle, null);
         }
