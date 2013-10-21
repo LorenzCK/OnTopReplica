@@ -33,29 +33,6 @@ namespace OnTopReplica.Platforms {
             form.Show();
         }
 
-        /*public override void OnFormStateChange(MainForm form) {
-            //SetWindowStyle(form);
-        }*/
-
-        /// <summary>
-        /// Used to alter the window style. Not used anymore.
-        /// </summary>
-        private void SetWindowStyle(MainForm form) {
-            if (!form.FullscreenManager.IsFullscreen) {
-                //This hides the app from ALT+TAB
-                //Note that when minimized, it will be shown as an (ugly) minimized tool window
-                //thus we do not minimize, but set to transparent when hiding
-                long exStyle = WindowMethods.GetWindowLong(form.Handle, WindowMethods.WindowLong.ExStyle).ToInt64();
-
-                exStyle |= (long)(WindowMethods.WindowExStyles.ToolWindow);
-                //exStyle &= ~(long)(WindowMethods.WindowExStyles.AppWindow);
-
-                WindowMethods.SetWindowLong(form.Handle, WindowMethods.WindowLong.ExStyle, new IntPtr(exStyle));
-
-                //WindowMethods.SetWindowLong(form.Handle, WindowMethods.WindowLong.HwndParent, WindowManagerMethods.GetDesktopWindow());
-            }
-        }
-
     }
 
 }

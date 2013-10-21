@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Drawing;
 
 namespace OnTopReplica.Native {
+
     /// <summary>A native Rectangle Structure.</summary>
     [StructLayout(LayoutKind.Sequential)]
     struct NRectangle {
@@ -52,4 +54,13 @@ namespace OnTopReplica.Native {
         }
 
     }
+
+    static class NRectangleExtensions {
+
+        public static NRectangle ToNativeRectangle(this Size size) {
+            return new NRectangle(0, 0, size.Width, size.Height);
+        }
+
+    }
+
 }
