@@ -67,11 +67,17 @@ namespace OnTopReplica.StartupOptions {
             var cmdOptions = new NDesk.Options.OptionSet()
                 .Add<long>("windowId=", "Window handle ({HWND}) to be cloned.", id => {
                     options.WindowId = new IntPtr(id);
+                    options.WindowTitle = null;
+                    options.WindowClass = null;
                 })
                 .Add<string>("windowTitle=", "Partial {TITLE} of the window to be cloned.", s => {
+                    options.WindowId = null;
                     options.WindowTitle = s;
+                     options.WindowClass = null;
                 })
                 .Add<string>("windowClass=", "{CLASS} of the window to be cloned.", s => {
+                    options.WindowId = null;
+                    options.WindowTitle = null;
                     options.WindowClass = s;
                 })
                 .Add("v|visible", "If set, only clones windows that are visible.", s => {
