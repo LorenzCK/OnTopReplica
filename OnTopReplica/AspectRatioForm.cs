@@ -134,9 +134,7 @@ namespace OnTopReplica {
             AspectRatio = ((double)aspectRatioSource.Width / (double)aspectRatioSource.Height);
             _keepAspectRatio = true;
 
-#if DEBUG
-            System.Diagnostics.Trace.WriteLine(string.Format("Setting aspect ratio of {0} (for {1}).", AspectRatio, aspectRatioSource));
-#endif
+            Log.Write("Setting new aspect ratio {0} (for {1})", AspectRatio, aspectRatioSource);
             
             if (forceRefresh) {
                 RefreshAspectRatio();

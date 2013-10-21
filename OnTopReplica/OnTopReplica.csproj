@@ -101,6 +101,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppPaths.cs" />
     <Compile Include="AspectRatioForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +116,7 @@
     <Compile Include="ImageComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Log.cs" />
     <Compile Include="MainForm_Features.cs">
       <SubType>Form</SubType>
     </Compile>

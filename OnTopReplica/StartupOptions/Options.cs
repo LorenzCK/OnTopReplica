@@ -92,6 +92,8 @@ namespace OnTopReplica.StartupOptions {
         #region Application
 
         public void Apply(MainForm form) {
+            Log.Write("Applying command line launch parameters");
+
             form.Opacity = (double)Opacity / 255.0;
 
             //Seek handle for thumbnail cloning

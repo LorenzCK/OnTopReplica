@@ -194,7 +194,9 @@ namespace OnTopReplica {
         /// <param name="handle">Handle of the window to clone.</param>
         /// <param name="region">Optional region.</param>
 		public void SetThumbnailHandle(WindowHandle handle, ThumbnailRegion region) {
-            System.Diagnostics.Trace.WriteLine(string.Format("Setting thumbnail to handle {0}, with region {1}.", handle, region), "ThumbnailPanel");
+            Log.WriteDetails("Setting new thumbnail",
+                "HWND {0}, region {1}", handle, region
+            );
 
             if (_thumbnail != null && !_thumbnail.IsInvalid) {
                 _thumbnail.Close();
@@ -203,8 +205,8 @@ namespace OnTopReplica {
 
 			//Get form and register thumbnail on it
 			Form owner = this.TopLevelControl as Form;
-			if(owner == null)
-				throw new Exception("Internal error: ThumbnailPanel.TopLevelControl is not a Form.");
+            if (owner == null)
+                throw new Exception("Internal error: ThumbnailPanel.TopLevelControl is not a Form.");
 
             _labelGlass.Visible = false;
 
@@ -219,7 +221,7 @@ namespace OnTopReplica {
         /// Disposes current thumbnail and enters stand-by mode.
         /// </summary>
 		public void UnsetThumbnail() {
-            System.Diagnostics.Trace.WriteLine("Unsetting thumbnail.");
+            Log.Write("Unsetting thumbnail");
 
             if (_thumbnail != null && !_thumbnail.IsInvalid) {
                 _thumbnail.Close();
@@ -327,7 +329,7 @@ namespace OnTopReplica {
                 endPoint.Y - startPoint.Y
             );
 
-            System.Diagnostics.Trace.WriteLine(string.Format("Drawn from {0} to {1}, as region {2}.", start, end, final));
+            //System.Diagnostics.Trace.WriteLine(string.Format("Drawn from {0} to {1}, as region {2}.", start, end, final));
 
             //Signal
             OnRegionDrawn(final);

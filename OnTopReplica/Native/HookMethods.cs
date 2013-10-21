@@ -12,8 +12,9 @@ namespace OnTopReplica.Native {
 
         static HookMethods() {
             WM_SHELLHOOKMESSAGE = RegisterWindowMessage("SHELLHOOK");
-            if (WM_SHELLHOOKMESSAGE == 0)
-                Console.Error.WriteLine("Failed to register SHELLHOOK Windows message.");
+            if (WM_SHELLHOOKMESSAGE == 0) {
+                Log.Write("Failed to register SHELLHOOK window message");
+            }
         }
 
         public static int WM_SHELLHOOKMESSAGE {

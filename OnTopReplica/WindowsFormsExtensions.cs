@@ -53,8 +53,6 @@ namespace OnTopReplica {
         public static bool ContainsMousePointer(this Control ctrl, System.Drawing.Point screenCoordinates) {
             var bb = new System.Drawing.Rectangle(ctrl.Location, ctrl.Size);
 
-            //Console.Out.WriteLine("<{0},{1}> in {2}? {3}", screenCoordinates.X, screenCoordinates.Y, bb, bb.Contains(screenCoordinates));
-
             return bb.Contains(screenCoordinates);
         }
 

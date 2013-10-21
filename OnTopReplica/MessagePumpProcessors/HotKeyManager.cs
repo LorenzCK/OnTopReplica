@@ -46,7 +46,7 @@ namespace OnTopReplica.MessagePumpProcessors {
                 var key = ++_lastUsedKey;
 
                 if (!HotKeyMethods.RegisterHotKey(owner.Handle, key, modifiers, keyCode)) {
-                    Console.Error.WriteLine("Failed to create hotkey on keys {0}.", keyCode);
+                    Log.Write("Failed to create hotkey on key {0} with modifiers {1}", keyCode, modifiers);
                     return null;
                 }
 
@@ -59,7 +59,7 @@ namespace OnTopReplica.MessagePumpProcessors {
 
             public void Dispose() {
                 if (!HotKeyMethods.UnregisterHotKey(_hwnd, RegistrationKey)) {
-                    Console.Error.WriteLine("Failed to unregister hotkey #{0}.", RegistrationKey);
+                    Log.Write("Failed to unregister hotkey #{0}", RegistrationKey);
                 }
             }
         }
