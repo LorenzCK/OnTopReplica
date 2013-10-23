@@ -34,7 +34,7 @@ namespace OnTopReplica.StartupOptions {
                 options.StartLocation = Settings.Default.RestoreLastPosition;
                 options.StartSize = Settings.Default.RestoreLastSize;
 
-                System.Diagnostics.Trace.WriteLine(string.Format("Restoring window at {0} size {1}.", Settings.Default.RestoreLastPosition, Settings.Default.RestoreLastSize));
+                Log.Write("Restoring window at {0} size {1}", Settings.Default.RestoreLastPosition, Settings.Default.RestoreLastSize);
             }
 
             if (Settings.Default.RestoreLastWindow) {
@@ -45,14 +45,20 @@ namespace OnTopReplica.StartupOptions {
                 var seeker = new RestoreWindowSeeker(new IntPtr(handle), title, className);
                 seeker.SkipNotVisibleWindows = true;
                 seeker.Refresh();
+
                 var resultHandle = seeker.Windows.FirstOrDefault();
 
                 if (resultHandle != null) {
-                    //Load window
+                    //Found a window: load it!
                     options.WindowId = resultHandle.Handle;
                 }
                 else {
-                    System.Diagnostics.Trace.WriteLine("Couldn't find window to restore.");
+                    Log.WriteDetails("Failed to find window to restore from last use",
+                        "HWND {0}, Title '{1}', Class '{2}'",
+                        Settings.Default.RestoreLastWindowHwnd,
+                        Settings.Default.RestoreLastWindowTitle,
+                        Settings.Default.RestoreLastWindowClass
+                    );
                 }
             }
         }
@@ -61,11 +67,17 @@ namespace OnTopReplica.StartupOptions {
             var cmdOptions = new NDesk.Options.OptionSet()
                 .Add<long>("windowId=", "Window handle ({HWND}) to be cloned.", id => {
                     options.WindowId = new IntPtr(id);
+                    options.WindowTitle = null;
+                    options.WindowClass = null;
                 })
                 .Add<string>("windowTitle=", "Partial {TITLE} of the window to be cloned.", s => {
+                    options.WindowId = null;
                     options.WindowTitle = s;
+                     options.WindowClass = null;
                 })
                 .Add<string>("windowClass=", "{CLASS} of the window to be cloned.", s => {
+                    options.WindowId = null;
+                    options.WindowTitle = null;
                     options.WindowClass = s;
                 })
                 .Add("v|visible", "If set, only clones windows that are visible.", s => {

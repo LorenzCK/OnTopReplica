@@ -31,8 +31,6 @@ namespace OnTopReplica {
                 e.SuppressKeyPress = true;
             }
 
-            //Console.WriteLine("{0} ({1})", e.KeyCode, e.KeyValue);
-
             base.OnKeyUp(e);
 		}
 

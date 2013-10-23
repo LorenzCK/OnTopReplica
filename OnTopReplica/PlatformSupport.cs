@@ -13,7 +13,15 @@ namespace OnTopReplica {
         /// </summary>
         public static PlatformSupport Create() {
             var os = Environment.OSVersion;
+            var platform = CreateFromOperatingSystem(os);
 
+            Log.Write("{0} detected, using support class {1}",
+                os.VersionString, platform.GetType().FullName);
+
+            return platform;
+        }
+
+        private static PlatformSupport CreateFromOperatingSystem(OperatingSystem os) {
             if (os.Platform != PlatformID.Win32NT)
                 return new Other();
 

@@ -9,6 +9,22 @@ namespace OnTopReplica.Native {
     /// </summary>
     static class WindowMethods {
 
+        public static System.Drawing.Point GetCursorPos() {
+            NPoint ret;
+            if (GetCursorPosInternal(out ret))
+                return ret.ToPoint();
+            else {
+#if DEBUG
+                throw new InvalidOperationException("Unable to GetCursorPos");
+#else
+                return default(System.Drawing.Point);
+#endif
+            }
+        }
+
+        [DllImport("user32.dll", EntryPoint="GetCursorPos")]
+        private static extern bool GetCursorPosInternal(out NPoint point);
+
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool GetClientRect(IntPtr handle, out NRectangle rect);
 
@@ -40,17 +56,6 @@ namespace OnTopReplica.Native {
                 return String.Empty;
         }
 
-        const int MaxClassLength = 255;
-
-        public static string GetWindowClass(IntPtr hwnd) {
-            var sb = new StringBuilder(MaxClassLength + 1);
-            RealGetWindowClass(hwnd, sb, MaxClassLength);
-            return sb.ToString();
-        }
-
-        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        static extern uint RealGetWindowClass(IntPtr hwnd, [Out] StringBuilder lpString, uint maxCount);
-
         public enum WindowLong {
             WndProc = (-4),
             HInstance = (-6),
@@ -59,11 +64,6 @@ namespace OnTopReplica.Native {
             ExStyle = (-20),
             UserData = (-21),
             Id = (-12)
-        }
-
-        public enum ClassLong {
-            Icon = -14,
-            IconSmall = -34
         }
 
         [Flags]
@@ -115,7 +115,23 @@ namespace OnTopReplica.Native {
         [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr")]
         static extern IntPtr SetWindowLongPtr64(IntPtr hWnd, WindowLong nIndex, IntPtr dwNewLong);
 
-        #region Class styles
+        #region Window class
+
+        const int MaxClassLength = 255;
+
+        public static string GetWindowClass(IntPtr hwnd) {
+            var sb = new StringBuilder(MaxClassLength + 1);
+            RealGetWindowClass(hwnd, sb, MaxClassLength);
+            return sb.ToString();
+        }
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        static extern uint RealGetWindowClass(IntPtr hwnd, [Out] StringBuilder lpString, uint maxCount);
+
+        public enum ClassLong {
+            Icon = -14,
+            IconSmall = -34
+        }
 
         [DllImport("user32.dll", EntryPoint = "GetClassLongPtrW")]
         static extern IntPtr GetClassLong64(IntPtr hWnd, int nIndex);
@@ -136,6 +152,29 @@ namespace OnTopReplica.Native {
 
         [DllImport("user32.dll")]
         public static extern IntPtr GetMenu(IntPtr hwnd);
+
+        /// <summary>
+        /// Converts client size rectangle to window rectangle, according to window styles.
+        /// </summary>
+        /// <param name="clientRectangle">Client area bounding box.</param>
+        /// <param name="windowStyle">Style of window to compute.</param>
+        /// <param name="extendedWindowStyle">Extended style of window to compute.</param>
+        public static NRectangle ConvertClientToWindowRect(NRectangle clientRectangle, long windowStyle, long extendedWindowStyle) {
+            NRectangle tmp = clientRectangle;
+            if (AdjustWindowRectEx(ref tmp, windowStyle, false, extendedWindowStyle)) {
+                return tmp;
+            }
+            else {
+#if DEBUG
+                throw new InvalidOperationException("Failed to convert client rectangle to window rectangle");
+#else
+                return clientRectangle;
+#endif
+            }
+        }
+
+        [DllImport("user32.dll")]
+        private static extern bool AdjustWindowRectEx(ref NRectangle clientToWindowRect, long windowStyle, bool hasMenu, long extendedWindowStyle);
 
     }
 }

@@ -92,8 +92,8 @@ namespace OnTopReplica.StartupOptions {
         #region Application
 
         public void Apply(MainForm form) {
-            //GUI
-            form.IsChromeVisible = !DisableChrome;
+            Log.Write("Applying command line launch parameters");
+
             form.Opacity = (double)Opacity / 255.0;
 
             //Seek handle for thumbnail cloning
@@ -120,7 +120,6 @@ namespace OnTopReplica.StartupOptions {
                 handle = seeker.Windows.FirstOrDefault();
             }
 
-            //Position lock
             if (StartPositionLock.HasValue) {
                 form.PositionLock = StartPositionLock.Value;
             }
@@ -149,6 +148,8 @@ namespace OnTopReplica.StartupOptions {
             if (EnableClickForwarding) {
                 form.ClickForwardingEnabled = true;
             }
+
+            form.IsChromeVisible = !DisableChrome;
 
             //Fullscreen
             if (Fullscreen) {
