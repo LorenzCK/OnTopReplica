@@ -7,3 +7,5 @@ glob:*.psd
 glob:Installer/OnTopReplica-Setup.exe
 glob:*.Designer.cs
 glob:*.suo
+syntax: glob
+*.user
