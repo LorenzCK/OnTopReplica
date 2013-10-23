@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 namespace PostInstaller {
     class Program {
         static int Main(string[] args) {
-            return Run(args) ? 0 : 1;
+            var success = Run(args);
+
+            Console.Read();
+
+            return success ? 0 : 1;
         }
 
         private static bool Run(string[] args) {
@@ -40,22 +44,37 @@ namespace PostInstaller {
 
                 Console.WriteLine("AppUserModel.ID value: {0} (type {1})", oldValue, oldValue.GetType().AssemblyQualifiedName);
             }
-            catch (Exception) {
+            catch (Exception ex) {
 #if DEBUG
                 throw;
+#else
+                Console.WriteLine("Unable to get value of AppUserModel.ID property.");
+                Console.WriteLine(ex);
 #endif
-                return false;
             }
 
-            Console.WriteLine("Attempting to set property 'System.AppUserModel.ID' to {0}...", args[1]);
-            
-            propStore.SetValue(ref appUserModelKey, new BStrWrapper(args[1]));
-            propStore.Commit();
+            try {
+                Console.WriteLine("Attempting to set property 'System.AppUserModel.ID' to {0}...", args[1]);
 
-            //Store
-            ((IPersistFile)link).Save(args[0], false);
+                propStore.SetValue(ref appUserModelKey, new BStrWrapper(args[1]));
+                propStore.Commit();
+
+                //Store
+                ((IPersistFile)link).Save(args[0], false);
+            }
+            catch (Exception ex) {
+#if DEBUG
+                throw;
+#else
+                Console.WriteLine("Unable to set value of AppUserModel.ID property.");
+                Console.WriteLine(ex);
+                
+                return false;
+#endif
+            }
 
             Console.WriteLine("Done.");
+            
             return true;
         }
     }

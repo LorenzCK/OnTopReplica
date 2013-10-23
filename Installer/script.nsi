@@ -82,6 +82,10 @@ Function RegisterApplication
 	CreateDirectory "${START_LINK_DIR}"
 	CreateShortCut "${START_LINK_RUN}" "$INSTDIR\OnTopReplica.exe"
 	CreateShortCut "${START_LINK_UNINSTALLER}" "$INSTDIR\${UNINSTALLER_NAME}"
+	
+	;Fix link with AppID
+	ExecWait '"$INSTDIR\PostInstaller.exe" "${START_LINK_RUN}" "LorenzCunoKlopfenstein.OnTopReplica.MainForm"' $0
+	DetailPrint "Post installation shortcut fix (returned $0)."
 FunctionEnd
 
 Function un.DeregisterApplication
@@ -112,6 +116,10 @@ Section "!OnTopReplica" OnTopReplica
 	File "..\OnTopReplica\bin\Release\CREDITS.txt"
 	File "..\OnTopReplica\bin\Release\LICENSE.txt"
 	
+	;Post installer
+	File "PostInstaller\PostInstaller\bin\Release\PostInstaller.exe"
+	File "PostInstaller\PostInstaller\bin\Release\PostInstaller.exe.config"
+	
 	;Install localization files
 	SetOutPath "$INSTDIR\it"
 	File "..\OnTopReplica\bin\Release\it\OnTopReplica.resources.dll"
@@ -134,6 +142,9 @@ SectionEnd
 Section "Uninstall"
 	;Remove whole directory (no data is stored there anyway)
 	RMDir /r "$INSTDIR"
+	
+	;Remove roaming AppData folder (settings and logs)
+	RMDir /r "$APPDATA\OnTopReplica"
 	
 	;Remove uninstaller
 	Call un.DeregisterApplication
