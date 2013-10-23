@@ -116,7 +116,8 @@ namespace OnTopReplica {
                 MinimumSize.Width);
 
             //Determine new height while keeping aspect ratio
-            int newHeight = (int)((newWidth - ExtraPadding.Horizontal - clientSizeConversionWidth) / AspectRatio) + ExtraPadding.Vertical + clientSizeConversionHeight;
+            var clientConversionDifference = ClientWindowDifference;
+            int newHeight = (int)((newWidth - ExtraPadding.Horizontal - clientConversionDifference.Width) / AspectRatio) + ExtraPadding.Vertical + clientConversionDifference.Height;
 
             //Apply and move form to recenter
             Size = new Size(newWidth, newHeight);
@@ -134,9 +135,7 @@ namespace OnTopReplica {
             AspectRatio = ((double)aspectRatioSource.Width / (double)aspectRatioSource.Height);
             _keepAspectRatio = true;
 
-#if DEBUG
-            System.Diagnostics.Trace.WriteLine(string.Format("Setting aspect ratio of {0} (for {1}).", AspectRatio, aspectRatioSource));
-#endif
+            Log.Write("Setting new aspect ratio {0} (for {1})", AspectRatio, aspectRatioSource);
             
             if (forceRefresh) {
                 RefreshAspectRatio();
@@ -163,11 +162,13 @@ namespace OnTopReplica {
         /// </summary>
         protected override void WndProc(ref Message m) {
             if (KeepAspectRatio && m.Msg == WM.SIZING) {
+                var clientSizeConversion = ClientWindowDifference;
+
                 var rc = (Native.NRectangle)Marshal.PtrToStructure(m.LParam, typeof(Native.NRectangle));
                 int res = m.WParam.ToInt32();
 
-                int width = (rc.Right - rc.Left) - clientSizeConversionWidth - ExtraPadding.Horizontal;
-                int height = (rc.Bottom - rc.Top) - clientSizeConversionHeight - ExtraPadding.Vertical;
+                int width = (rc.Right - rc.Left) - clientSizeConversion.Width - ExtraPadding.Horizontal;
+                int height = (rc.Bottom - rc.Top) - clientSizeConversion.Height - ExtraPadding.Vertical;
 
                 if (res == WMSZ.LEFT || res == WMSZ.RIGHT) {
                     //Left or right resize, adjust top and bottom
@@ -175,7 +176,7 @@ namespace OnTopReplica {
                     int diffHeight = height - targetHeight;
 
                     rc.Top += (int)(diffHeight / 2.0);
-                    rc.Bottom = rc.Top + targetHeight + ExtraPadding.Vertical + clientSizeConversionHeight;
+                    rc.Bottom = rc.Top + targetHeight + ExtraPadding.Vertical + clientSizeConversion.Height;
                 }
                 else if (res == WMSZ.TOP || res == WMSZ.BOTTOM) {
                     //Up or down resize, adjust left and right
@@ -183,15 +184,15 @@ namespace OnTopReplica {
                     int diffWidth = width - targetWidth;
 
                     rc.Left += (int)(diffWidth / 2.0);
-                    rc.Right = rc.Left + targetWidth + ExtraPadding.Horizontal + clientSizeConversionWidth;
+                    rc.Right = rc.Left + targetWidth + ExtraPadding.Horizontal + clientSizeConversion.Width;
                 }
                 else if (res == WMSZ.RIGHT + WMSZ.BOTTOM || res == WMSZ.LEFT + WMSZ.BOTTOM) {
                     //Lower corner resize, adjust bottom
-                    rc.Bottom = rc.Top + (int)(width / AspectRatio) + ExtraPadding.Vertical + clientSizeConversionHeight;
+                    rc.Bottom = rc.Top + (int)(width / AspectRatio) + ExtraPadding.Vertical + clientSizeConversion.Height;
                 }
                 else if (res == WMSZ.LEFT + WMSZ.TOP || res == WMSZ.RIGHT + WMSZ.TOP) {
                     //Upper corner resize, adjust top
-                    rc.Top = rc.Bottom - (int)(width / AspectRatio) - ExtraPadding.Vertical - clientSizeConversionHeight;
+                    rc.Top = rc.Bottom - (int)(width / AspectRatio) - ExtraPadding.Vertical - clientSizeConversion.Height;
                 }
 
                 Marshal.StructureToPtr(rc, m.LParam, false);
@@ -204,15 +205,15 @@ namespace OnTopReplica {
 
         #region ClientSize/Size conversion helpers
 
-        int clientSizeConversionWidth, clientSizeConversionHeight;
-
         /// <summary>
         /// Converts a client size measurement to a window size measurement.
         /// </summary>
         /// <param name="clientSize">Size of the window's client area.</param>
         /// <returns>Size of the whole window.</returns>
         public Size FromClientSizeToSize(Size clientSize) {
-            return new Size(clientSize.Width + clientSizeConversionWidth, clientSize.Height + clientSizeConversionHeight);
+            var difference = ClientWindowDifference;
+
+            return new Size(clientSize.Width + difference.Width, clientSize.Height + difference.Height);
         }
 
         /// <summary>
@@ -221,17 +222,23 @@ namespace OnTopReplica {
         /// <param name="size">Size of the whole window.</param>
         /// <returns>Size of the window's client area.</returns>
         public Size FromSizeToClientSize(Size size) {
-            return new Size(size.Width - clientSizeConversionWidth, size.Height - clientSizeConversionHeight);
-        }
+            var difference = ClientWindowDifference;           
 
-        protected override void OnShown(EventArgs e) {
-            base.OnShown(e);
-
-            clientSizeConversionWidth = Size.Width - ClientSize.Width;
-            clientSizeConversionHeight = Size.Height - ClientSize.Height;
+            return new Size(size.Width - difference.Width, size.Height - difference.Height);
         }
 
         #endregion
+
+        /// <summary>
+        /// Gets the difference in pixels between a client size value and a window size value (depending on window decoration).
+        /// </summary>
+        protected Size ClientWindowDifference {
+            get {
+                long style = WindowMethods.GetWindowLong(this.Handle, WindowMethods.WindowLong.Style).ToInt64();
+                long exStyle = WindowMethods.GetWindowLong(this.Handle, WindowMethods.WindowLong.ExStyle).ToInt64();
+                return WindowMethods.ConvertClientToWindowRect(new NRectangle(0, 0, 0, 0), style, exStyle).Size;
+            }
+        }
 
     }
 

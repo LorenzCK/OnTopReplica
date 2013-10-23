@@ -22,6 +22,15 @@ namespace OnTopReplica {
         /// </summary>
         [STAThread]
         static void Main(string[] args) {
+            try {
+                AppPaths.SetupPaths();
+            }
+            catch (Exception ex) {
+                MessageBox.Show(string.Format("Unable to setup application folders: {0}", ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            Log.Write("Launching OnTopReplica v.{0}", Application.ProductVersion);
+
             //Hook fatal abort handler
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
@@ -30,6 +39,8 @@ namespace OnTopReplica {
             if (!Platform.CheckCompatibility())
                 return;
             Platform.PreHandleFormInit();
+
+            Log.Write("Platform support initialized");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -65,7 +76,7 @@ namespace OnTopReplica {
                     _mainForm.IsChromeVisible = true;
 
                 //Persist settings
-                System.Diagnostics.Trace.WriteLine(string.Format("Persisting {0} size {1} to settings.", _mainForm.Location, _mainForm.ClientSize));
+                Log.Write("Last position before shutdown: {0}, size: {1}", _mainForm.Location, _mainForm.Size);
                 Settings.Default.RestoreLastPosition = _mainForm.Location;
                 Settings.Default.RestoreLastSize = _mainForm.ClientSize;
                 Settings.Default.Save();
@@ -90,20 +101,21 @@ namespace OnTopReplica {
         /// </summary>
         static void UpdateManager_CheckCompleted(object sender, UpdateCheckCompletedEventArgs e) {
             if (e.Success && e.Information != null) {
+                Log.Write("Updated check successful (latest version is {0})", e.Information.LatestVersion);
+
                 if (e.Information.IsNewVersion) {
                     Update.ConfirmAndInstall();
                 }
             }
             else {
-                System.Diagnostics.Trace.WriteLine(string.Format("Failed to check updates. {0}", e.Error));
+                Log.WriteException("Unable to check for updates", e.Error);
             }
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
-            string dump = string.Format("OnTopReplica-dump-{0}{1}{2}-{3}{4}.txt",
-                DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
-                DateTime.Now.Hour, DateTime.Now.Minute);
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), dump);
+            Log.WriteException("Unhandled exception", e.ExceptionObject as Exception);
+
+            string path = AppPaths.GenerateCrashDumpPath();
 
             using (var s = new FileStream(path, FileMode.Create)) {
                 using (var sw = new StreamWriter(s)) {
@@ -114,14 +126,16 @@ namespace OnTopReplica {
                     sw.WriteLine("Last exception:");
                     sw.WriteLine(e.ExceptionObject.ToString());
                     sw.WriteLine();
-                    sw.WriteLine("OnTopReplica v.{0}", Assembly.GetEntryAssembly().GetName().Version);
+                    sw.WriteLine("OnTopReplica v.{0}", Application.ProductVersion);
                     sw.WriteLine("OS: {0}", Environment.OSVersion.ToString());
                     sw.WriteLine(".NET: {0}", Environment.Version.ToString());
-                    sw.WriteLine("Aero DWM: {0}", WindowsFormsAero.OsSupport.IsCompositionEnabled);
+                    sw.WriteLine("DWM: {0}", WindowsFormsAero.OsSupport.IsCompositionEnabled);
                     sw.WriteLine("Launch command: {0}", Environment.CommandLine);
                     sw.WriteLine("UTC time: {0} {1}", DateTime.UtcNow.ToShortDateString(), DateTime.UtcNow.ToShortTimeString());
                 }
             }
+
+            Log.Write("Crash dump written to {0}", path);
         }
 
     }

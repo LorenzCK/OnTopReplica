@@ -188,8 +188,10 @@ namespace OnTopReplica {
 
                 case WM.NCHITTEST:
                     //Make transparent to hit-testing if in click through mode
-                    if (ClickThroughEnabled && (ModifierKeys & Keys.Alt) != Keys.Alt) {
+                    if (ClickThroughEnabled) {
                         m.Result = (IntPtr)HT.TRANSPARENT;
+
+                        RefreshClickThroughComeBack();
                         return;
                     }
                     break;
@@ -264,7 +266,7 @@ namespace OnTopReplica {
         /// <param name="region">Region of the window to clone or null.</param>
         public void SetThumbnail(WindowHandle handle, ThumbnailRegion region) {
             try {
-                System.Diagnostics.Trace.WriteLine(string.Format("Cloning window HWND {0} of class {1}.", handle.Handle, handle.Class));
+                Log.Write("Cloning window HWND {0} of class {1}", handle.Handle, handle.Class);
 
                 CurrentThumbnailWindowHandle = handle;
                 _thumbnailPanel.SetThumbnailHandle(handle, region);
@@ -273,7 +275,7 @@ namespace OnTopReplica {
                 SetAspectRatio(_thumbnailPanel.ThumbnailPixelSize, !FullscreenManager.IsFullscreen);
             }
             catch (Exception ex) {
-                System.Diagnostics.Trace.Fail("Unable to set thumbnail.", ex.ToString());
+                Log.WriteException("Unable to set new thumbnail", ex);
 
                 ThumbnailError(ex, false, Strings.ErrorUnableToCreateThumbnail);
                 _thumbnailPanel.UnsetThumbnail();

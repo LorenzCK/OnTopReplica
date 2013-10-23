@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using OnTopReplica.Native;
 using OnTopReplica.Properties;
-using WindowsFormsAero.TaskDialog;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
+using WindowsFormsAero.TaskDialog;
 
 namespace OnTopReplica {
     //Contains some feature implementations of MainForm
@@ -36,6 +35,7 @@ namespace OnTopReplica {
         #region Click-through
 
         bool _clickThrough = false;
+
         readonly Color DefaultNonClickTransparencyKey;
 
         public bool ClickThroughEnabled {
@@ -43,18 +43,53 @@ namespace OnTopReplica {
                 return _clickThrough;
             }
             set {
-                //Adjust opacity if fully opaque
-                /*if (value && Opacity == 1.0)
-                    Opacity = 0.75;
-                if (!value)
-                    Opacity = 1.0;*/
-
-                //Enable transparency and force as top-most
                 TransparencyKey = (value) ? Color.Black : DefaultNonClickTransparencyKey;
-                if (value)
+                if (value) {
+                    //Re-force as top most (always helps in some cases)
                     TopMost = true;
+                }
 
                 _clickThrough = value;
+            }
+        }
+
+        //Must NOT be equal to any other valid opacity value
+        const double ClickThroughHoverOpacity = 0.6;
+
+        Timer _clickThroughComeBackTimer = null;
+        long _clickThroughComeBackTicks;
+        const int ClickThroughComeBackTimerInterval = 1000;
+
+        /// <summary>
+        /// When the mouse hovers over a fully opaque click-through form,
+        /// this fades the form to semi-transparency
+        /// and starts a timeout to get back to full opacity.
+        /// </summary>
+        private void RefreshClickThroughComeBack() {
+            if (this.Opacity == 1.0) {
+                this.Opacity = ClickThroughHoverOpacity;
+            }
+
+            if (_clickThroughComeBackTimer == null) {
+                _clickThroughComeBackTimer = new Timer();
+                _clickThroughComeBackTimer.Tick += _clickThroughComeBackTimer_Tick;
+                _clickThroughComeBackTimer.Interval = ClickThroughComeBackTimerInterval;
+            }
+            _clickThroughComeBackTicks = DateTime.UtcNow.Ticks;
+            _clickThroughComeBackTimer.Start();
+        }
+
+        void _clickThroughComeBackTimer_Tick(object sender, EventArgs e) {
+            var diff = DateTime.UtcNow.Subtract(new DateTime(_clickThroughComeBackTicks));
+            if (diff.TotalSeconds > 2) {
+                var mousePointer = WindowMethods.GetCursorPos();
+
+                if (!this.ContainsMousePointer(mousePointer)) {
+                    if (this.Opacity == ClickThroughHoverOpacity) {
+                        this.Opacity = 1.0;
+                    }
+                    _clickThroughComeBackTimer.Stop();
+                }
             }
         }
 
