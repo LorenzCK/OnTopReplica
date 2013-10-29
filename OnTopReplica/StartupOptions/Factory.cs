@@ -83,8 +83,18 @@ namespace OnTopReplica.StartupOptions {
                 .Add("v|visible", "If set, only clones windows that are visible.", s => {
                     options.MustBeVisible = true;
                 })
-                .Add<Size>("size=", "Target {WIDTH,HEIGHT} of the cloned thumbnail.", s => {
+                .Add<Size>("size=", "Target {WIDTH,HEIGHT} of the cloned thumbnail, or", s => {
                     options.StartSize = s;
+                })
+                .Add<int>("width=", "Target WIDTH of cloned thumbnail, or", i => {
+                    if (options.StartSize.HasValue || options.StartHeight.HasValue)
+                        return;
+                    options.StartWidth = i;
+                })
+                .Add<int>("height=", "Target HEIGHT of cloned thumbnail.", i => {
+                    if (options.StartSize.HasValue || options.StartWidth.HasValue)
+                        return;
+                    options.StartHeight = i;
                 })
                 .Add<Size>("position=", "Target {X,Y} of the OnTopReplica window.", s => {
                     options.StartLocation = new Point(s.Width, s.Height);

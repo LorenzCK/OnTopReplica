@@ -150,7 +150,7 @@ namespace OnTopReplica {
             //Ensure that the ClientSize of the form is always respected
             //(not ensured by the WM_SIZING message alone because of rounding errors and the chrome space)
             if (KeepAspectRatio) {
-                var newHeight = (int)Math.Round(((ClientSize.Width - ExtraPadding.Horizontal) / AspectRatio) + ExtraPadding.Vertical);
+                var newHeight = ComputeHeightFromWidth(ClientSize.Width);
                 ClientSize = new Size(ClientSize.Width, newHeight);
             }
         }
@@ -203,7 +203,7 @@ namespace OnTopReplica {
 
         #endregion
 
-        #region ClientSize/Size conversion helpers
+        #region Conversion helpers
 
         /// <summary>
         /// Converts a client size measurement to a window size measurement.
@@ -225,6 +225,20 @@ namespace OnTopReplica {
             var difference = ClientWindowDifference;           
 
             return new Size(size.Width - difference.Width, size.Height - difference.Height);
+        }
+
+        /// <summary>
+        /// Computes height from width value, according to aspect ratio of window.
+        /// </summary>
+        public int ComputeHeightFromWidth(int width) {
+            return (int)Math.Round(((width - ExtraPadding.Horizontal) / AspectRatio) + ExtraPadding.Vertical);
+        }
+
+        /// <summary>
+        /// Computes width from height value, according to aspect ratio of window.
+        /// </summary>
+        public int ComputeWidthFromHeight(int height) {
+            return (int)Math.Round(((height - ExtraPadding.Vertical) * AspectRatio) + ExtraPadding.Horizontal);
         }
 
         #endregion
