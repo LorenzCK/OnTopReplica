@@ -53,6 +53,8 @@ namespace OnTopReplica.StartupOptions {
 
         public bool EnableClickForwarding { get; set; }
 
+        public bool EnableClickThrough { get; set; }
+
         public byte Opacity { get; set; }
 
         public bool DisableChrome { get; set; }
@@ -161,6 +163,9 @@ namespace OnTopReplica.StartupOptions {
             //Other features
             if (EnableClickForwarding) {
                 form.ClickForwardingEnabled = true;
+            }
+            if (EnableClickThrough) {
+                form.ClickThroughEnabled = true;
             }
 
             form.IsChromeVisible = !DisableChrome;

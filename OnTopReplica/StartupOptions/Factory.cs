@@ -116,6 +116,9 @@ namespace OnTopReplica.StartupOptions {
                 .Add("clickForwarding", "Enables click forwarding.", s => {
                     options.EnableClickForwarding = true;
                 })
+                .Add("clickThrough", "Enables click through.", s => {
+                    options.EnableClickThrough = true;
+                })
                 .Add("chromeOff", "Disables the window's chrome (border).", s => {
                     options.DisableChrome = true;
                 })
