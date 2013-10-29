@@ -29,6 +29,10 @@ namespace OnTopReplica.StartupOptions {
 
         public Size? StartSize { get; set; }
 
+        public int? StartWidth { get; set; }
+
+        public int? StartHeight { get; set; }
+
         #endregion
 
         #region Window cloning
@@ -124,6 +128,21 @@ namespace OnTopReplica.StartupOptions {
                 form.PositionLock = StartPositionLock.Value;
             }
 
+            //Clone any found handle (this applies thumbnail and aspect ratio)
+            if (handle != null) {
+                form.SetThumbnail(handle, Region);
+            }
+
+            //Adaptive size handling
+            if (!StartSize.HasValue && (StartWidth.HasValue || StartHeight.HasValue)) {
+                if (StartWidth.HasValue) {
+                    StartSize = new Size(StartWidth.Value, form.ComputeHeightFromWidth(StartWidth.Value));
+                }
+                else {
+                    StartSize = new Size(form.ComputeWidthFromHeight(StartHeight.Value), StartHeight.Value);
+                }
+            }
+
             //Size and location start values
             if (StartLocation.HasValue && StartSize.HasValue) {
                 form.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -137,11 +156,6 @@ namespace OnTopReplica.StartupOptions {
             else if (StartSize.HasValue) {
                 form.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
                 form.ClientSize = StartSize.Value;
-            }
-
-            //Clone any found handle
-            if (handle != null) {
-                form.SetThumbnail(handle, Region);
             }
 
             //Other features
