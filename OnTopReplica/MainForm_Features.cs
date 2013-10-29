@@ -46,6 +46,8 @@ namespace OnTopReplica {
                 TransparencyKey = (value) ? Color.Black : DefaultNonClickTransparencyKey;
                 if (value) {
                     //Re-force as top most (always helps in some cases)
+                    TopMost = false;
+                    this.Activate();
                     TopMost = true;
                 }
 
