@@ -239,11 +239,10 @@ namespace OnTopReplica.SidePanels {
                 return;
 
             var origIndex = comboRegions.SelectedIndex;
+            comboRegions.SelectedIndex = -1;
+
 			Settings.Default.SavedRegions.RemoveAt(origIndex);
 			comboRegions.Items.RemoveAt(origIndex);
-
-            if (comboRegions.Items.Count > 0)
-                comboRegions.SelectedIndex = 0;
 		}
 
 		private void Save_click(object sender, EventArgs e) {
@@ -288,11 +287,11 @@ namespace OnTopReplica.SidePanels {
             buttonDelete.Enabled = (comboRegions.SelectedIndex >= 0);
 
             if (comboRegions.SelectedIndex >= 0) {
-                //Load region
                 var region = comboRegions.SelectedItem as StoredRegion;
-
-                if (region == null)
+                if (region == null) {
+                    Log.Write("Stored region at index {0} does not contain a valid StoredRegion instance (object is {2})", comboRegions.SelectedIndex, comboRegions.SelectedItem);
                     return;
+                }
 
                 SetRegion(region.Region);
             }

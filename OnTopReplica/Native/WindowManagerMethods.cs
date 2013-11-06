@@ -72,6 +72,9 @@ namespace OnTopReplica.Native {
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern IntPtr GetParent(IntPtr hWnd);
 
+        [DllImport("User32", CharSet = CharSet.Auto)]
+        public static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndParent);
+
         [DllImport("user32.dll", SetLastError = false)]
         public static extern bool SetForegroundWindow(IntPtr hwnd);
 
@@ -99,5 +102,7 @@ namespace OnTopReplica.Native {
             return (!hasParent && !hasOwner);
         }
 
+        [DllImport("user32.dll")]
+        public static extern IntPtr FindWindow(string className, string windowName);
     }
 }
