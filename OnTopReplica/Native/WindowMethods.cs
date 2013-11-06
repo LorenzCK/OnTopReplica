@@ -69,6 +69,7 @@ namespace OnTopReplica.Native {
         [Flags]
         public enum WindowStyles : long {
             None = 0,
+            Child = 0x40000000L,
             Disabled = 0x8000000L,
             Minimize = 0x20000000L,
             MinimizeBox = 0x20000L,
