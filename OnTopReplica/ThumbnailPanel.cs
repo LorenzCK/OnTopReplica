@@ -203,14 +203,14 @@ namespace OnTopReplica {
                 _thumbnail = null;
             }
 
-			//Get form and register thumbnail on it
+			//Attempt to get top level Form from Control
 			Form owner = this.TopLevelControl as Form;
             if (owner == null)
                 throw new Exception("Internal error: ThumbnailPanel.TopLevelControl is not a Form.");
 
             _labelGlass.Visible = false;
 
-            //Register new thumbnail, disable regioning directly and refresh
+            //Register new thumbnail, update regioning directly and refresh thumbnail
 			_thumbnail = DwmManager.Register(owner, handle.Handle);
             _currentRegion = region;
             _regionEnabled = (region != null);

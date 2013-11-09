@@ -130,6 +130,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MessagePumpManager.cs" />
+    <Compile Include="MessagePumpProcessors\FlashCloner.cs" />
     <Compile Include="MessagePumpProcessors\GroupSwitchManager.cs" />
     <Compile Include="IMessagePumpProcessor.cs" />
     <Compile Include="MessagePumpProcessors\BaseMessagePumpProcessor.cs" />

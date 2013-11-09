@@ -22,11 +22,14 @@ namespace OnTopReplica.Native {
             private set;
         }
 
-        public const int HSHELL_WINDOWACTIVATED = 4;
-        public const int HSHELL_RUDEAPPACTIVATED = HSHELL_WINDOWACTIVATED | HSHELL_HIGHBIT;
         const int HSHELL_HIGHBIT = 0x8000;
-        public const int HSHELL_WINDOWDESTROYED = 2;
+        
         public const int HSHELL_WINDOWCREATED = 1;
+        public const int HSHELL_WINDOWDESTROYED = 2;
+        public const int HSHELL_WINDOWACTIVATED = 4;
+        public const int HSHELL_REDRAW = 6;
+        public const int HSHELL_RUDEAPPACTIVATED = (HSHELL_WINDOWACTIVATED | HSHELL_HIGHBIT);
+        public const int HSHELL_FLASH = (HSHELL_REDRAW | HSHELL_HIGHBIT);
 
         /// <summary>
         /// Registers the WM_ID for a window message.

@@ -95,11 +95,33 @@ namespace OnTopReplica {
         #region Object override
 
         public override string ToString() {
+            var sb = new StringBuilder();
+            sb.AppendFormat("#{0}", _handle);
+
+            if (!string.IsNullOrWhiteSpace(_title) || !string.IsNullOrWhiteSpace(_class)) {
+                sb.Append(" (");
+                if (!string.IsNullOrWhiteSpace(_title)) {
+                    sb.AppendFormat("title '{0}'", _title);
+                    if (!string.IsNullOrWhiteSpace(_class)) {
+                        sb.Append(", ");
+                    }
+                }
+                if (!string.IsNullOrWhiteSpace(_class)) {
+                    sb.AppendFormat("class {0}", _class);
+                }
+                sb.Append(")");
+            }
+
+            return sb.ToString();
+
             if (string.IsNullOrWhiteSpace(_title)) {
                 return string.Format("#{0}", _handle.ToInt64());
             }
-            else {
+            else if (string.IsNullOrWhiteSpace(_class)) {
                 return string.Format("#{0} ({1})", _handle.ToInt64(), _title);
+            }
+            else {
+                return string.Format("#{0} ({1}, class {2})", _handle.ToInt64(), _title, _class);
             }
 		}
 
@@ -108,11 +130,10 @@ namespace OnTopReplica {
 				return true;
 
 			System.Windows.Forms.IWin32Window win = obj as System.Windows.Forms.IWin32Window;
-
 			if (win == null)
 				return false;
 
-			return (win.Handle == _handle);
+			return (_handle.Equals(win.Handle));
 		}
 
 		public override int GetHashCode() {
