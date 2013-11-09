@@ -15,7 +15,7 @@ namespace OnTopReplica {
             _processors[processor.GetType()] = processor;
             processor.Initialize(form);
 
-            Log.Write("Registered message pump processor: {0}", processor.GetType());
+            Log.Write("Registered message pump processor {0}", processor.GetType());
         }
 
         /// <summary>
@@ -37,6 +37,7 @@ namespace OnTopReplica {
             Register(new WindowKeeper(), form);
             Register(new HotKeyManager(), form);
             Register(new GroupSwitchManager(), form);
+            Register(new FlashCloner(), form);
         }
 
         /// <summary>
