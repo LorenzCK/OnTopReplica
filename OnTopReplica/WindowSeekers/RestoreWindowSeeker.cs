@@ -32,7 +32,7 @@ namespace OnTopReplica.WindowSeekers {
             //Class exact match
             if (!string.IsNullOrEmpty(Class)) {
                 string wndClass = handle.Class;
-                if (wndClass.StartsWith(Class, StringComparison.InvariantCulture)){
+                if (wndClass.Equals(Class, StringComparison.InvariantCulture)){
                     points += 10;
                 }
             }
@@ -40,10 +40,10 @@ namespace OnTopReplica.WindowSeekers {
             //Title match (may not be exact, but let's try)
             if (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(handle.Title)) {
                 if (handle.Title.StartsWith(Title, StringComparison.InvariantCultureIgnoreCase)) {
-                    points += 10;
+                    points += 5;
                 }
                 if (handle.Title.Equals(Title, StringComparison.InvariantCultureIgnoreCase)) {
-                    points += 5;
+                    points += 10;
                 }
             }
 

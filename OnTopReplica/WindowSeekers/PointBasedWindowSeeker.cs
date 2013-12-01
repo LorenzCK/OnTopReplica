@@ -26,6 +26,7 @@ namespace OnTopReplica.WindowSeekers {
 
             //Sort and store
             _currentWindowList = (from t in _sortingList
+                                  where t.Item1 > 0
                                   orderby t.Item1 descending
                                   select t.Item2).ToList();
 
