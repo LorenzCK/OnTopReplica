@@ -83,18 +83,6 @@ namespace OnTopReplica {
         }
 
         protected override void OnClosing(CancelEventArgs e) {
-            //Store last thumbnail, if any
-            if (_thumbnailPanel.IsShowingThumbnail && CurrentThumbnailWindowHandle != null) {
-                Settings.Default.RestoreLastWindowTitle = CurrentThumbnailWindowHandle.Title;
-                Settings.Default.RestoreLastWindowHwnd = CurrentThumbnailWindowHandle.Handle.ToInt64();
-                Settings.Default.RestoreLastWindowClass = CurrentThumbnailWindowHandle.Class;
-            }
-            else {
-                Settings.Default.RestoreLastWindowTitle = string.Empty;
-                Settings.Default.RestoreLastWindowHwnd = 0;
-                Settings.Default.RestoreLastWindowClass = string.Empty;
-            }
-
             _msgPumpManager.Dispose();
             Program.Platform.CloseForm(this);
 

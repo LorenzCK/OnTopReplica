@@ -71,7 +71,8 @@ namespace OnTopReplica {
                 //Enter GUI loop
                 Application.Run(_mainForm);
 
-                //HACK: re-enable chrome to fix position persistence (ideally, chrome status should be stored and restored - but this is not always possible)
+                //Re-enable chrome to store correct position (position is stored always WITH chrome: when restoring fails, the position stays ok)
+                Settings.Default.RestoreLastShowChrome = _mainForm.IsChromeVisible;
                 if (!_mainForm.IsChromeVisible)
                     _mainForm.IsChromeVisible = true;
 
@@ -80,6 +81,18 @@ namespace OnTopReplica {
                 Settings.Default.RestoreLastPosition = _mainForm.Location;
                 Settings.Default.RestoreLastSize = _mainForm.ClientSize;
                 Settings.Default.Save();
+
+                //Store last thumbnail, if any
+                if (_mainForm.ThumbnailPanel.IsShowingThumbnail && _mainForm.CurrentThumbnailWindowHandle != null) {
+                    Settings.Default.RestoreLastWindowTitle = _mainForm.CurrentThumbnailWindowHandle.Title;
+                    Settings.Default.RestoreLastWindowHwnd = _mainForm.CurrentThumbnailWindowHandle.Handle.ToInt64();
+                    Settings.Default.RestoreLastWindowClass = _mainForm.CurrentThumbnailWindowHandle.Class;
+                }
+                else {
+                    Settings.Default.RestoreLastWindowTitle = string.Empty;
+                    Settings.Default.RestoreLastWindowHwnd = 0;
+                    Settings.Default.RestoreLastWindowClass = string.Empty;
+                }
             }
         }
 
