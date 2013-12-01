@@ -56,5 +56,8 @@
     <Setting Name="FullscreenMode" Type="System.String" Scope="User">
       <Value Profile="(Default)">Standard</Value>
     </Setting>
+    <Setting Name="RestoreLastShowChrome" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

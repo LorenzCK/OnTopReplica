@@ -33,8 +33,10 @@ namespace OnTopReplica.StartupOptions {
             if (Settings.Default.RestoreSizeAndPosition) {
                 options.StartLocation = Settings.Default.RestoreLastPosition;
                 options.StartSize = Settings.Default.RestoreLastSize;
+                options.DisableChrome = !Settings.Default.RestoreLastShowChrome;
 
-                Log.Write("Restoring window at {0} size {1}", Settings.Default.RestoreLastPosition, Settings.Default.RestoreLastSize);
+                Log.Write("Restoring window at {0} size {1} {2}", Settings.Default.RestoreLastPosition, Settings.Default.RestoreLastSize,
+                    (Settings.Default.RestoreLastShowChrome) ? "with chrome" : "without chrome");
             }
 
             if (Settings.Default.RestoreLastWindow) {
