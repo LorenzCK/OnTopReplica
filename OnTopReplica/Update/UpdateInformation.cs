@@ -87,15 +87,6 @@ namespace OnTopReplica.Update {
             return info;
         }
 
-        public static string Serialize(UpdateInformation information) {
-            var serializer = new XmlSerializer(typeof(UpdateInformation));
-            var sb = new StringBuilder();
-            using(var writer = new StringWriter(sb)){
-                serializer.Serialize(writer, information);
-            }
-            return sb.ToString();
-        }
-
     }
 
 }

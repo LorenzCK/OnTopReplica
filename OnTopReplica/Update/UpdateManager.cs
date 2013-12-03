@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Cache;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using WindowsFormsAero.TaskDialog;
 
 namespace OnTopReplica.Update {
@@ -31,7 +34,7 @@ namespace OnTopReplica.Update {
 
         #region Checking
 
-        const string UpdateManifestUrl = "http://www.klopfenstein.net/public/Uploads/ontopreplica/update.xml";
+        const string UpdateFeedUrl = "https://ontopreplica.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2frelease%2fontopreplica";
 
         /// <summary>
         /// Gets the latest update information available.
@@ -50,7 +53,7 @@ namespace OnTopReplica.Update {
             }
 
             //Build web request
-            _checkRequest = (HttpWebRequest)HttpWebRequest.Create(UpdateManifestUrl);
+            _checkRequest = (HttpWebRequest)HttpWebRequest.Create(UpdateFeedUrl);
             _checkRequest.AllowAutoRedirect = true;
             _checkRequest.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             _checkRequest.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
@@ -67,7 +70,7 @@ namespace OnTopReplica.Update {
 
             try {
                 var response = _checkRequest.EndGetResponse(result);
-                LastInformation = UpdateInformation.Deserialize(response.GetResponseStream());
+                LastInformation = ParseUpdateCheckResponse(response.GetResponseStream());
 
                 OnUpdateCheckSuccess(LastInformation);
             }
@@ -76,6 +79,22 @@ namespace OnTopReplica.Update {
             }
 
             _checkRequest = null;
+        }
+
+        private Regex _versionExtractor = new Regex(@"^Released: Release (?<version>([0-9]\.){0,3}[0-9]?)", RegexOptions.Compiled | RegexOptions.Singleline);
+
+        private UpdateInformation ParseUpdateCheckResponse(Stream stream) {
+            var xdoc = XDocument.Load(stream);
+
+            var releases = from item in xdoc.Descendants("item")
+                           let title = item.Element("title").Value
+                           let match = _versionExtractor.Match(title)
+                           where match.Success
+                           let versionNumber = match.Groups["version"].Value
+                           orderby versionNumber descending
+                           select new { versionNumber, item.Element("link").Value };
+
+            return new UpdateInformation();
         }
 
         #endregion
