@@ -113,16 +113,6 @@ namespace OnTopReplica {
             }
 
             return sb.ToString();
-
-            if (string.IsNullOrWhiteSpace(_title)) {
-                return string.Format("#{0}", _handle.ToInt64());
-            }
-            else if (string.IsNullOrWhiteSpace(_class)) {
-                return string.Format("#{0} ({1})", _handle.ToInt64(), _title);
-            }
-            else {
-                return string.Format("#{0} ({1}, class {2})", _handle.ToInt64(), _title, _class);
-            }
 		}
 
 		public override bool Equals(object obj) {

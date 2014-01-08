@@ -116,7 +116,7 @@ namespace OnTopReplica {
             if (e.Success && e.Information != null) {
                 Log.Write("Updated check successful (latest version is {0})", e.Information.LatestVersion);
 
-                if (e.Information.IsNewVersion) {
+                if (e.Information.IsNewVersionAvailable) {
                     Update.ConfirmAndInstall();
                 }
             }

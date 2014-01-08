@@ -34,8 +34,6 @@ namespace OnTopReplica.Update {
 
         #region Checking
 
-        const string UpdateFeedUrl = "https://ontopreplica.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2frelease%2fontopreplica";
-
         /// <summary>
         /// Gets the latest update information available.
         /// </summary>
@@ -53,7 +51,7 @@ namespace OnTopReplica.Update {
             }
 
             //Build web request
-            _checkRequest = (HttpWebRequest)HttpWebRequest.Create(UpdateFeedUrl);
+            _checkRequest = (HttpWebRequest)HttpWebRequest.Create(AppStrings.UpdateFeed);
             _checkRequest.AllowAutoRedirect = true;
             _checkRequest.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             _checkRequest.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
@@ -90,11 +88,13 @@ namespace OnTopReplica.Update {
                            let title = item.Element("title").Value
                            let match = _versionExtractor.Match(title)
                            where match.Success
-                           let versionNumber = match.Groups["version"].Value
+                           let versionNumber = new Version(match.Groups["version"].Value)
                            orderby versionNumber descending
-                           select new { versionNumber, item.Element("link").Value };
+                           select new { Version = versionNumber, Link = item.Element("link").Value, Date = item.Element("pubDate").Value };
 
-            return new UpdateInformation();
+            var lastRelease = releases.FirstOrDefault();
+
+            return new UpdateInformation(lastRelease.Version, lastRelease.Link, lastRelease.Date);
         }
 
         #endregion
@@ -127,15 +127,11 @@ namespace OnTopReplica.Update {
 
         #region Updating
 
-        HttpWebRequest _downloadRequest;
-        TaskDialog _updateDialog;
-        bool _updateDownloaded = false;
-
         /// <summary>
-        /// Asks confirmation for an update and installs the update.
+        /// Asks confirmation for an update and installs the update (if available).
         /// </summary>
         public void ConfirmAndInstall() {
-            if (LastInformation == null || !LastInformation.IsNewVersion)
+            if (LastInformation == null || !LastInformation.IsNewVersionAvailable)
                 return;
 
             AttachedForm.SafeInvoke(new Action(ConfirmAndInstallCore));
@@ -145,7 +141,7 @@ namespace OnTopReplica.Update {
         /// Core delegate that asks for update confirmation and installs. Must be called from GUI thread.
         /// </summary>
         private void ConfirmAndInstallCore() {
-            _updateDialog = new TaskDialog {
+            var updateDialog = new TaskDialog {
                 Title = Strings.UpdateTitle,
                 Instruction = string.Format(Strings.UpdateAvailableInstruction, LastInformation.LatestVersion),
                 Content = Strings.UpdateAvailableContent,
@@ -157,109 +153,9 @@ namespace OnTopReplica.Update {
                 CommonIcon = TaskDialogIcon.Information,
                 ExpandedInformation = string.Format(Strings.UpdateAvailableExpanded, LastInformation.CurrentVersion, LastInformation.LatestVersion),
             };
-            _updateDialog.ButtonClick += delegate(object sender, ClickEventArgs args) {
-                if (args.ButtonID == (int)Result.OK) {
-                    args.PreventClosing = true;
-
-                    if (_updateDownloaded) {
-                        //Terminate application
-                        AttachedForm.Close();
-
-                        //Launch updater
-                        Process.Start(UpdateInstallerPath);
-                    }   
-                    else {
-                        var downDlg = new TaskDialog {
-                            Title = Strings.UpdateTitle,
-                            Instruction = Strings.UpdateDownloadingInstruction,
-                            ShowProgressBar = true,
-                            ProgressBarMinRange = 0,
-                            ProgressBarMaxRange = 100,
-                            ProgressBarPosition = 0,
-                            CommonButtons = TaskDialogButton.Cancel
-                        };
-                        _updateDialog.Navigate(downDlg);
-
-                        _downloadRequest = (HttpWebRequest)HttpWebRequest.Create(LastInformation.DownloadInstaller);
-                        _downloadRequest.BeginGetResponse(DownloadAsyncCallback, null);
-                    }
-                }
-            };
-
-            _updateDialog.Show(AttachedForm);
-        }
-
-        /// <summary>
-        /// Gets the target filename used when downloading the update from the Internet.
-        /// </summary>
-        private string UpdateInstallerPath {
-            get {
-                var downloadPath = Native.FilesystemMethods.DownloadsPath;
-
-                string versionName = (LastInformation != null) ?
-                    LastInformation.LatestVersion.ToString() : string.Empty;
-                string filename = string.Format("OnTopReplica-Update-{0}.exe", versionName);
-
-                return Path.Combine(downloadPath, filename);
+            if (updateDialog.Show(AttachedForm).CommonButton == Result.OK) {
+                Shell.Execute(LastInformation.DownloadPage);
             }
-        }
-
-        /// <summary>
-        /// Handles background downloading.
-        /// </summary>
-        private void DownloadAsyncCallback(IAsyncResult result) {
-            if (_downloadRequest == null || _updateDialog == null)
-                return;
-
-            try {
-                var response = _downloadRequest.EndGetResponse(result);
-                var responseStream = response.GetResponseStream();
-                long total = response.ContentLength;
-
-                byte[] buffer = new byte[1024];
-
-                using (var stream = new FileStream(UpdateInstallerPath, FileMode.Create)) {
-                    int readTotal = 0;
-                    while (true) {
-                        int read = responseStream.Read(buffer, 0, buffer.Length);
-                        readTotal += read;
-                        
-                        if (read <= 0) //EOF
-                            break;
-
-                        stream.Write(buffer, 0, read);
-
-                        _updateDialog.Content = string.Format(Strings.UpdateDownloadingContent, readTotal, total);
-                        _updateDialog.ProgressBarPosition = (int)((readTotal * 100.0) / total);
-                    }
-                }
-            }
-            catch (Exception ex) {
-                DownloadShowError(ex.Message);
-                return;
-            }
-
-            _updateDownloaded = true;
-
-            var okDlg = new TaskDialog {
-                Title = Strings.UpdateTitle,
-                Instruction = Strings.UpdateReadyInstruction,
-                Content = string.Format(Strings.UpdateReadyContent, LastInformation.LatestVersion),
-                UseCommandLinks = true,
-                CommonButtons = TaskDialogButton.Cancel,
-                CustomButtons = new CustomButton[] {
-                    new CustomButton(Result.OK, Strings.UpdateReadyCommandOk)
-                }
-            };
-            _updateDialog.Navigate(okDlg);
-        }
-
-        private void DownloadShowError(string msg) {
-            if (_updateDialog == null)
-                return;
-
-            _updateDialog.ProgressBarState = WindowsFormsAero.ProgressBar.States.Error;
-            _updateDialog.Content = msg;
         }
 
         /// <summary>
@@ -285,8 +181,9 @@ namespace OnTopReplica.Update {
                 Footer = string.Format(Strings.UpdateInfoFooter, LastInformation.LatestVersionRelease.ToLongDateString())
             };
             dlg.HyperlinkClick += delegate(object sender, HyperlinkEventArgs args) {
-                Process.Start("http://ontopreplica.codeplex.com");
+                Shell.Execute(AppStrings.ApplicationWebsite);
             };
+
             dlg.Show(AttachedForm);
         }
 

@@ -54,18 +54,18 @@ namespace OnTopReplica.SidePanels {
         }
 
         private void LinkHomepage_clicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start("http://ontopreplica.codeplex.com");
+            Shell.Execute(AppStrings.ApplicationWebsite);
         }
 
         private void LinkAuthor_clicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start("http://lorenz.klopfenstein.net");
+            Shell.Execute(AppStrings.AuthorWebsite);
         }
 
         private void LinkCredits_click(object sender, LinkLabelLinkClickedEventArgs e) {
             var exeDir = Path.GetDirectoryName(Application.ExecutablePath);
             var filePath = Path.Combine(exeDir, "CREDITS.txt");
 
-            Process.Start(filePath);
+            Shell.Execute(filePath);
         }
 
         void UpdateButton_click(object sender, System.EventArgs e) {
@@ -80,7 +80,7 @@ namespace OnTopReplica.SidePanels {
                     //TODO
                     MessageBox.Show("Failed to download update info.");
                 }
-                else if (!e.Information.IsNewVersion) {
+                else if (!e.Information.IsNewVersionAvailable) {
                     Program.Update.DisplayInfo();
                 }
 
@@ -89,11 +89,11 @@ namespace OnTopReplica.SidePanels {
         }
 
         private void LinkLicense_click(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start("http://opensource.org/licenses/ms-rl.html");
+            Shell.Execute(AppStrings.MsRlLicenseLink);
         }
 
         private void LinkContribute_clicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start("http://ontopreplica.codeplex.com/SourceControl/list/changesets");
+            Shell.Execute(AppStrings.LatestCommitsLink);
         }
     }
 }

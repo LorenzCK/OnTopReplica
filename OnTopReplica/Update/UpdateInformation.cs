@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
-using System.IO;
-using System.Xml;
+using System.Globalization;
 using System.Reflection;
 
 namespace OnTopReplica.Update {
@@ -13,79 +9,62 @@ namespace OnTopReplica.Update {
     /// </summary>
     public class UpdateInformation {
 
-        Version _latestVersion;
+        /// <summary>
+        /// Construct update information from raw data.
+        /// </summary>
+        /// <param name="latestVersion">Latest available version.</param>
+        /// <param name="downloadLink">Direct link to the download page (has URL form).</param>
+        /// <param name="publicationDate">Publication date of latest version, in standard RTF/RSS format.</param>
+        public UpdateInformation(Version latestVersion, string downloadLink, string publicationDate) {
+            LatestVersion = latestVersion;
+            DownloadPage = downloadLink;
+
+            //RSS date formatted as in: <pubDate>Thu, 29 Nov 2012 12:55:04 GMT</pubDate>
+            DateTime parsedPublicationDate;
+            if (DateTime.TryParseExact(publicationDate, "R", CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out parsedPublicationDate)) {
+                LatestVersionRelease = parsedPublicationDate;
+            }
+        }
 
         /// <summary>
-        /// Gets the latest available version of the software.
+        /// Gets or sets the latest available version of the software.
         /// </summary>
-        [XmlIgnore]
-        public Version LatestVersion {
-            get {
-                return _latestVersion;
-            }
-            set {
-                _latestVersion = value;
-            }
-        }
-
-        [XmlElement("latestVersion")]
-        public string LatestVersionInternal {
-            get {
-                return _latestVersion.ToString();
-            }
-            set {
-                _latestVersion = new Version(value);
-            }
-        }
+        public Version LatestVersion { get; private set; }
 
         /// <summary>
         /// Returns whether this update information instance represents data about
         /// a new available version.
         /// </summary>
-        public bool IsNewVersion {
+        public bool IsNewVersionAvailable {
             get {
-                var currentVersion = CurrentVersion;
-
-                return (LatestVersion > currentVersion);
+                return (LatestVersion > CurrentVersion);
             }
         }
+
+        private Version _currentVersion = null;
 
         /// <summary>
         /// Gets the currently installed version.
         /// </summary>
         public Version CurrentVersion {
             get {
-                return Assembly.GetExecutingAssembly().GetName().Version;
+                if (_currentVersion == null) {
+                    _currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
+                }
+                
+                return _currentVersion;
             }
         }
 
         /// <summary>
         /// Indicates when the latest version was released.
         /// </summary>
-        [XmlElement("latestVersionRelease")]
-        public DateTime LatestVersionRelease { get; set; }
+        public DateTime LatestVersionRelease { get; private set; }
 
         /// <summary>
         /// Gets the URL of the page that allows the user to download the updated installer.
         /// </summary>
-        [XmlElement("downloadPage")]
-        public string DownloadPage { get; set; }
-
-        /// <summary>
-        /// Gets the URL of the installer executable.
-        /// </summary>
-        /// <remarks>New after version 3.3.1.</remarks>
-        [XmlElement("downloadInstaller")]
-        public string DownloadInstaller { get; set; }
-
-        /// <summary>
-        /// Deserializes an UpdateInformation object from a stream.
-        /// </summary>
-        public static UpdateInformation Deserialize(Stream source) {
-            var serializer = new XmlSerializer(typeof(UpdateInformation));
-            var info = serializer.Deserialize(source) as UpdateInformation;
-            return info;
-        }
+        public string DownloadPage { get; private set; }
 
     }
 

@@ -217,7 +217,7 @@ namespace OnTopReplica.SidePanels {
         /// <param name="regionBounds">Region bounds.</param>
         protected virtual void OnRegionSet(ThumbnailRegion region) {
             //Forward region to thumbnail
-            ParentForm.SelectedThumbnailRegion = region;
+            ParentMainForm.SelectedThumbnailRegion = region;
 
             //Have region, allowed to save
             buttonSave.Enabled = true;
@@ -231,7 +231,7 @@ namespace OnTopReplica.SidePanels {
         
 		private void Reset_click(object sender, EventArgs e) {
 			Reset();
-            ParentForm.SelectedThumbnailRegion = null;
+            ParentMainForm.SelectedThumbnailRegion = null;
 		}
 
 		private void Delete_click(object sender, EventArgs e) {
@@ -305,9 +305,9 @@ namespace OnTopReplica.SidePanels {
             var region = ConstructCurrentRegion();
             region.Relative = !region.Relative; //this must be reversed because the GUI has already switched state when calling ConstructCurrentRegion()
             if (checkRelative.Checked)
-                region.SwitchToRelative(ParentForm.ThumbnailPanel.ThumbnailOriginalSize);
+                region.SwitchToRelative(ParentMainForm.ThumbnailPanel.ThumbnailOriginalSize);
             else
-                region.SwitchToAbsolute(ParentForm.ThumbnailPanel.ThumbnailOriginalSize);
+                region.SwitchToAbsolute(ParentMainForm.ThumbnailPanel.ThumbnailOriginalSize);
 
             //Update GUI
             SetRegion(region);

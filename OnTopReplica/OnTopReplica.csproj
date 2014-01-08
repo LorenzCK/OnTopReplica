@@ -102,6 +102,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppPaths.cs" />
+    <Compile Include="AppStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="AspectRatioForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +159,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Shell.cs" />
     <Compile Include="SidePanelContainer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,10 @@
     <Compile Include="WindowSeekers\RestoreWindowSeeker.cs" />
     <Compile Include="WindowSeekers\TaskWindowSeeker.cs" />
     <Compile Include="WindowsFormsExtensions.cs" />
+    <EmbeddedResource Include="AppStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="SidePanelContainer.resx">
       <DependentUpon>SidePanelContainer.cs</DependentUpon>
     </EmbeddedResource>
