@@ -23,7 +23,7 @@ namespace OnTopReplica {
         /// <summary>
         /// Gets the panel's parent form.
         /// </summary>
-        protected MainForm ParentForm { get; private set; }
+        protected MainForm ParentMainForm { get; private set; }
 
         /// <summary>
         /// Raised when the side panel requests to be closed.
@@ -41,7 +41,7 @@ namespace OnTopReplica {
         /// </summary>
         /// <param name="form">Parent form that is embedding the side panel.</param>
         public virtual void OnFirstShown(MainForm form) {
-            ParentForm = form;
+            ParentMainForm = form;
         }
 
         /// <summary>

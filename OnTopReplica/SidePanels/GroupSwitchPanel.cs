@@ -29,7 +29,7 @@ namespace OnTopReplica.SidePanels {
 
             LoadWindowList();
 
-            labelStatus.Text = (ParentForm.MessagePumpManager.Get<GroupSwitchManager>().IsActive) ?
+            labelStatus.Text = (ParentMainForm.MessagePumpManager.Get<GroupSwitchManager>().IsActive) ?
                 Strings.GroupSwitchModeStatusEnabled :
                 Strings.GroupSwitchModeStatusDisabled;
         }
