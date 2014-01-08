@@ -101,6 +101,13 @@ namespace OnTopReplica {
             RefreshScreenLock();
         }
 
+        protected override void OnResizing(EventArgs e) {
+            //Update aspect ratio from thumbnail while resizing (but do not refresh, resizing does that anyway)
+            if (_thumbnailPanel.IsShowingThumbnail) {
+                SetAspectRatio(_thumbnailPanel.ThumbnailPixelSize, false);
+            }
+        }
+
         protected override void OnActivated(EventArgs e) {
             base.OnActivated(e);
 
@@ -127,8 +134,13 @@ namespace OnTopReplica {
             base.OnMouseWheel(e);
 
             if (!FullscreenManager.IsFullscreen) {
+                if (_thumbnailPanel.IsShowingThumbnail) {
+                    SetAspectRatio(_thumbnailPanel.ThumbnailPixelSize, false);
+                }
+
                 int change = (int)(e.Delta / 6.0); //assumes a mouse wheel "tick" is in the 80-120 range
                 AdjustSize(change);
+
                 RefreshScreenLock();
             }
         }
