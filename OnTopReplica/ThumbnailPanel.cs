@@ -74,6 +74,19 @@ namespace OnTopReplica {
 			}
 		}
 
+        /// <summary>
+        /// Enables mouse regions drawing, simulating one first click on the panel at the current cursor's position.
+        /// </summary>
+        public void EnableMouseRegionsDrawingWithMouseDown() {
+            if (DrawMouseRegions)
+                return;
+
+            var localCursor = this.PointToClient(Cursor.Position);
+
+            DrawMouseRegions = true;
+            OnMouseDown(new MouseEventArgs(System.Windows.Forms.MouseButtons.Left, 1, localCursor.X, localCursor.Y, 0));
+        }
+
 		bool _drawMouseRegions = false;
 
         /// <summary>
@@ -178,7 +191,7 @@ namespace OnTopReplica {
             //Check whether this is a hit-test on "client" surface
             if (m.Msg == WM.NCHITTEST && m.Result.ToInt32() == HT.CLIENT) {
                 //Check whether clicks must be reported
-                if(!DrawMouseRegions && !ReportThumbnailClicks /*&& !InputMethods.IsKeyPressed(VirtualKeyState.VK_SHIFT)*/){
+                if(!DrawMouseRegions && !ReportThumbnailClicks){
                     m.Result = new IntPtr(HT.TRANSPARENT);
                 }
             }
