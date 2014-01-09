@@ -29,6 +29,7 @@ namespace OnTopReplica {
             _startupOptions = startupOptions;
 
             FullscreenManager = new FullscreenFormManager(this);
+            _quickRegionDrawingHandler = new ThumbnailPanel.RegionDrawnHandler(HandleQuickRegionDrawn);
             
             //WinForms init pass
             InitializeComponent();
@@ -163,6 +164,8 @@ namespace OnTopReplica {
             }
         }
 
+        private ThumbnailPanel.RegionDrawnHandler _quickRegionDrawingHandler;
+
         protected override void WndProc(ref Message m) {
             if (_msgPumpManager != null) {
                 if (_msgPumpManager.PumpMessage(ref m)) {
@@ -175,6 +178,19 @@ namespace OnTopReplica {
                     //Open context menu if right button clicked on caption (i.e. all of the window area because of glass)
                     if (m.WParam.ToInt32() == HT.CAPTION) {
                         OpenContextMenu(null);
+
+                        m.Result = IntPtr.Zero;
+                        return;
+                    }
+                    break;
+
+                case WM.NCLBUTTONDOWN:
+                    if ((ModifierKeys & Keys.Control) == Keys.Control &&
+                        ThumbnailPanel.IsShowingThumbnail &&
+                        !ThumbnailPanel.DrawMouseRegions) {
+
+                        ThumbnailPanel.EnableMouseRegionsDrawingWithMouseDown();
+                        ThumbnailPanel.RegionDrawn += _quickRegionDrawingHandler;
 
                         m.Result = IntPtr.Zero;
                         return;
@@ -203,6 +219,14 @@ namespace OnTopReplica {
             }
 
             base.WndProc(ref m);
+        }
+
+        private void HandleQuickRegionDrawn(object sender, ThumbnailRegion region) {
+            //Reset region drawing state
+            ThumbnailPanel.DrawMouseRegions = false;
+            ThumbnailPanel.RegionDrawn -= _quickRegionDrawingHandler;
+
+            SelectedThumbnailRegion = region;
         }
 
         #endregion
