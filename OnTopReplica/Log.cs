@@ -18,11 +18,8 @@ namespace OnTopReplica {
                 Writer.AutoFlush = true;
             }
             catch (Exception) {
+                //TODO: provide fallback logging mechanism?
                 Writer = null;
-
-#if DEBUG
-                throw;
-#endif
             }
         }
 
@@ -56,11 +53,17 @@ namespace OnTopReplica {
         }
 
         private static void WriteLine(string message) {
+            if (Writer == null)
+                return;
+
             var s = string.Format("{0,-8:HH:mm:ss} {1}", DateTime.Now, message);
             Writer.WriteLine(s);
         }
 
         private static void WriteLines(params string[] messages) {
+            if (Writer == null)
+                return;
+
             if (messages.Length > 0)
                 WriteLine(messages[0]);
             if (messages.Length > 1) {
