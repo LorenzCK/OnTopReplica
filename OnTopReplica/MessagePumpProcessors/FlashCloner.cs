@@ -12,7 +12,7 @@ namespace OnTopReplica.MessagePumpProcessors {
     class FlashCloner : BaseMessagePumpProcessor {
 
         public override bool Process(ref System.Windows.Forms.Message msg) {
-            if (true &&
+            if (false &&
                 msg.Msg == HookMethods.WM_SHELLHOOKMESSAGE) {
                 int hookCode = msg.WParam.ToInt32();
 
