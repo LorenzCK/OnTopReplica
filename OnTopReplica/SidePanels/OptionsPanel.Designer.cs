@@ -42,9 +42,9 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(189, 211);
+            this.btnClose.Location = new System.Drawing.Point(220, 243);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(87, 27);
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = global::OnTopReplica.Strings.MenuClose;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -52,129 +52,131 @@
             // 
             // panelMain
             // 
-            this.panelMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMain.AutoScroll = true;
             this.panelMain.Controls.Add(this.groupHotkeys);
             this.panelMain.Controls.Add(this.groupLanguage);
-            this.panelMain.Location = new System.Drawing.Point(6, 6);
+            this.panelMain.Location = new System.Drawing.Point(7, 7);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(258, 199);
+            this.panelMain.Size = new System.Drawing.Size(301, 230);
             this.panelMain.TabIndex = 1;
             // 
             // groupHotkeys
             // 
-            this.groupHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupHotkeys.Controls.Add(this.label1);
             this.groupHotkeys.Controls.Add(this.lblHotKeyShowHide);
             this.groupHotkeys.Controls.Add(this.txtHotKeyShowHide);
             this.groupHotkeys.Controls.Add(this.lblHotKeyClone);
             this.groupHotkeys.Controls.Add(this.txtHotKeyClone);
-            this.groupHotkeys.Location = new System.Drawing.Point(3, 77);
+            this.groupHotkeys.Location = new System.Drawing.Point(3, 89);
             this.groupHotkeys.Name = "groupHotkeys";
-            this.groupHotkeys.Size = new System.Drawing.Size(252, 113);
+            this.groupHotkeys.Size = new System.Drawing.Size(294, 130);
             this.groupHotkeys.TabIndex = 1;
             this.groupHotkeys.TabStop = false;
             this.groupHotkeys.Text = "Hot keys:";
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(6, 68);
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Location = new System.Drawing.Point(7, 78);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 43);
+            this.label1.Size = new System.Drawing.Size(182, 50);
             this.label1.TabIndex = 4;
             this.label1.Text = "These system-wide shortcuts can also be used when OnTopReplica is not in focus.";
             // 
             // lblHotKeyShowHide
             // 
             this.lblHotKeyShowHide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblHotKeyShowHide.Location = new System.Drawing.Point(168, 22);
+            this.lblHotKeyShowHide.BackColor = System.Drawing.Color.Transparent;
+            this.lblHotKeyShowHide.Location = new System.Drawing.Point(196, 25);
             this.lblHotKeyShowHide.Name = "lblHotKeyShowHide";
-            this.lblHotKeyShowHide.Size = new System.Drawing.Size(78, 17);
+            this.lblHotKeyShowHide.Size = new System.Drawing.Size(91, 20);
             this.lblHotKeyShowHide.TabIndex = 3;
             this.lblHotKeyShowHide.Text = "Show/Hide";
             // 
             // txtHotKeyShowHide
             // 
-            this.txtHotKeyShowHide.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtHotKeyShowHide.Location = new System.Drawing.Point(6, 19);
+            this.txtHotKeyShowHide.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtHotKeyShowHide.Location = new System.Drawing.Point(7, 22);
             this.txtHotKeyShowHide.Name = "txtHotKeyShowHide";
             this.txtHotKeyShowHide.ReadOnly = true;
-            this.txtHotKeyShowHide.Size = new System.Drawing.Size(156, 20);
+            this.txtHotKeyShowHide.Size = new System.Drawing.Size(181, 23);
             this.txtHotKeyShowHide.TabIndex = 2;
             // 
             // lblHotKeyClone
             // 
             this.lblHotKeyClone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblHotKeyClone.Location = new System.Drawing.Point(168, 48);
+            this.lblHotKeyClone.BackColor = System.Drawing.Color.Transparent;
+            this.lblHotKeyClone.Location = new System.Drawing.Point(196, 55);
             this.lblHotKeyClone.Name = "lblHotKeyClone";
-            this.lblHotKeyClone.Size = new System.Drawing.Size(78, 29);
+            this.lblHotKeyClone.Size = new System.Drawing.Size(91, 33);
             this.lblHotKeyClone.TabIndex = 1;
             this.lblHotKeyClone.Text = "Clone current window";
             // 
             // txtHotKeyClone
             // 
-            this.txtHotKeyClone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtHotKeyClone.Location = new System.Drawing.Point(6, 45);
+            this.txtHotKeyClone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtHotKeyClone.Location = new System.Drawing.Point(7, 52);
             this.txtHotKeyClone.Name = "txtHotKeyClone";
             this.txtHotKeyClone.ReadOnly = true;
-            this.txtHotKeyClone.Size = new System.Drawing.Size(156, 20);
+            this.txtHotKeyClone.Size = new System.Drawing.Size(181, 23);
             this.txtHotKeyClone.TabIndex = 0;
             // 
             // groupLanguage
             // 
-            this.groupLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupLanguage.Controls.Add(this.comboLanguage);
             this.groupLanguage.Controls.Add(this.lblLanguage);
             this.groupLanguage.Location = new System.Drawing.Point(3, 3);
             this.groupLanguage.Name = "groupLanguage";
-            this.groupLanguage.Size = new System.Drawing.Size(252, 68);
+            this.groupLanguage.Size = new System.Drawing.Size(294, 78);
             this.groupLanguage.TabIndex = 0;
             this.groupLanguage.TabStop = false;
             this.groupLanguage.Text = "Language:";
             // 
             // comboLanguage
             // 
-            this.comboLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboLanguage.FormattingEnabled = true;
             this.comboLanguage.IconList = null;
-            this.comboLanguage.Location = new System.Drawing.Point(9, 19);
+            this.comboLanguage.Location = new System.Drawing.Point(10, 22);
             this.comboLanguage.Name = "comboLanguage";
-            this.comboLanguage.Size = new System.Drawing.Size(237, 21);
+            this.comboLanguage.Size = new System.Drawing.Size(276, 24);
             this.comboLanguage.TabIndex = 2;
             this.comboLanguage.SelectedIndexChanged += new System.EventHandler(this.LanguageBox_IndexChange);
             // 
             // lblLanguage
             // 
-            this.lblLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblLanguage.Location = new System.Drawing.Point(6, 43);
+            this.lblLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLanguage.Location = new System.Drawing.Point(7, 50);
             this.lblLanguage.Name = "lblLanguage";
-            this.lblLanguage.Size = new System.Drawing.Size(240, 22);
+            this.lblLanguage.Size = new System.Drawing.Size(280, 25);
             this.lblLanguage.TabIndex = 1;
             this.lblLanguage.Text = "Requires a restart.";
             // 
             // OptionsPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.btnClose);
-            this.MinimumSize = new System.Drawing.Size(270, 240);
+            this.MinimumSize = new System.Drawing.Size(315, 277);
             this.Name = "OptionsPanel";
-            this.Padding = new System.Windows.Forms.Padding(6);
-            this.Size = new System.Drawing.Size(270, 240);
+            this.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.Size = new System.Drawing.Size(315, 277);
             this.panelMain.ResumeLayout(false);
             this.groupHotkeys.ResumeLayout(false);
             this.groupHotkeys.PerformLayout();

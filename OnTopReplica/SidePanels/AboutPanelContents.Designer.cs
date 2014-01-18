@@ -37,28 +37,30 @@
             this.linkLicense = new System.Windows.Forms.LinkLabel();
             this.labeledDivider4 = new WindowsFormsAero.LabeledDivider();
             this.linkContribute = new System.Windows.Forms.LinkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTranslators
             // 
-            this.labelTranslators.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTranslators.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTranslators.AutoEllipsis = true;
             this.labelTranslators.Location = new System.Drawing.Point(0, 289);
             this.labelTranslators.Name = "labelTranslators";
-            this.labelTranslators.Size = new System.Drawing.Size(240, 101);
+            this.labelTranslators.Size = new System.Drawing.Size(302, 101);
             this.labelTranslators.TabIndex = 31;
             this.labelTranslators.Text = "Translators:";
             // 
             // linkCredits
             // 
-            this.linkCredits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkCredits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.linkCredits.AutoEllipsis = true;
             this.linkCredits.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkCredits.Location = new System.Drawing.Point(0, 223);
             this.linkCredits.Name = "linkCredits";
-            this.linkCredits.Size = new System.Drawing.Size(240, 57);
+            this.linkCredits.Size = new System.Drawing.Size(302, 57);
             this.linkCredits.TabIndex = 30;
             this.linkCredits.TabStop = true;
             this.linkCredits.Text = "%CREDITS%";
@@ -66,11 +68,11 @@
             // 
             // progressUpdate
             // 
-            this.progressUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.progressUpdate.Location = new System.Drawing.Point(0, 155);
             this.progressUpdate.Name = "progressUpdate";
-            this.progressUpdate.Size = new System.Drawing.Size(132, 23);
+            this.progressUpdate.Size = new System.Drawing.Size(194, 23);
             this.progressUpdate.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressUpdate.TabIndex = 29;
             this.progressUpdate.Visible = false;
@@ -78,7 +80,7 @@
             // buttonUpdate
             // 
             this.buttonUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonUpdate.Location = new System.Drawing.Point(138, 155);
+            this.buttonUpdate.Location = new System.Drawing.Point(200, 155);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(102, 23);
             this.buttonUpdate.TabIndex = 28;
@@ -89,36 +91,38 @@
             // 
             // lblUpdateDisclaimer
             // 
-            this.lblUpdateDisclaimer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUpdateDisclaimer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUpdateDisclaimer.AutoEllipsis = true;
             this.lblUpdateDisclaimer.Location = new System.Drawing.Point(0, 108);
             this.lblUpdateDisclaimer.Name = "lblUpdateDisclaimer";
-            this.lblUpdateDisclaimer.Size = new System.Drawing.Size(240, 44);
+            this.lblUpdateDisclaimer.Size = new System.Drawing.Size(302, 44);
             this.lblUpdateDisclaimer.TabIndex = 27;
             this.lblUpdateDisclaimer.Text = "OnTopReplica automatically checks for updates at every start up.";
             // 
             // labeledDivider2
             // 
-            this.labeledDivider2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labeledDivider2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labeledDivider2.DividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(191)))), ((int)(((byte)(222)))));
+            this.labeledDivider2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.labeledDivider2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(170)))));
             this.labeledDivider2.Location = new System.Drawing.Point(0, 197);
             this.labeledDivider2.Name = "labeledDivider2";
-            this.labeledDivider2.Size = new System.Drawing.Size(240, 23);
+            this.labeledDivider2.Size = new System.Drawing.Size(302, 23);
             this.labeledDivider2.TabIndex = 26;
             this.labeledDivider2.Text = global::OnTopReplica.Strings.AboutDividerCredits;
             // 
             // labeledDivider1
             // 
-            this.labeledDivider1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labeledDivider1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labeledDivider1.DividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(191)))), ((int)(((byte)(222)))));
+            this.labeledDivider1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.labeledDivider1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(170)))));
             this.labeledDivider1.Location = new System.Drawing.Point(0, 82);
             this.labeledDivider1.Name = "labeledDivider1";
-            this.labeledDivider1.Size = new System.Drawing.Size(240, 23);
+            this.labeledDivider1.Size = new System.Drawing.Size(302, 23);
             this.labeledDivider1.TabIndex = 25;
             this.labeledDivider1.Text = global::OnTopReplica.Strings.AboutDividerUpdates;
             // 
@@ -127,7 +131,7 @@
             this.linkHomepage.AutoSize = true;
             this.linkHomepage.BackColor = System.Drawing.Color.Transparent;
             this.linkHomepage.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkHomepage.Location = new System.Drawing.Point(0, 54);
+            this.linkHomepage.Location = new System.Drawing.Point(67, 50);
             this.linkHomepage.Name = "linkHomepage";
             this.linkHomepage.Size = new System.Drawing.Size(167, 17);
             this.linkHomepage.TabIndex = 23;
@@ -143,7 +147,7 @@
             this.linkAuthor.BackColor = System.Drawing.Color.Transparent;
             this.linkAuthor.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkAuthor.LinkColor = System.Drawing.Color.Blue;
-            this.linkAuthor.Location = new System.Drawing.Point(0, 33);
+            this.linkAuthor.Location = new System.Drawing.Point(67, 33);
             this.linkAuthor.Name = "linkAuthor";
             this.linkAuthor.Size = new System.Drawing.Size(72, 17);
             this.linkAuthor.TabIndex = 22;
@@ -155,37 +159,37 @@
             // 
             // lblSlogan
             // 
-            this.lblSlogan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSlogan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSlogan.AutoEllipsis = true;
             this.lblSlogan.BackColor = System.Drawing.Color.Transparent;
-            this.lblSlogan.Location = new System.Drawing.Point(0, 0);
+            this.lblSlogan.Location = new System.Drawing.Point(67, 0);
             this.lblSlogan.Name = "lblSlogan";
-            this.lblSlogan.Size = new System.Drawing.Size(240, 33);
+            this.lblSlogan.Size = new System.Drawing.Size(235, 33);
             this.lblSlogan.TabIndex = 24;
             this.lblSlogan.Text = "A lightweight, real-time, always on top thumbnail of a window of your choice.";
             // 
             // labeledDivider3
             // 
-            this.labeledDivider3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labeledDivider3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labeledDivider3.DividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(191)))), ((int)(((byte)(222)))));
             this.labeledDivider3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(170)))));
             this.labeledDivider3.Location = new System.Drawing.Point(0, 393);
             this.labeledDivider3.Name = "labeledDivider3";
-            this.labeledDivider3.Size = new System.Drawing.Size(240, 23);
+            this.labeledDivider3.Size = new System.Drawing.Size(302, 23);
             this.labeledDivider3.TabIndex = 32;
             this.labeledDivider3.Text = "License";
             // 
             // linkLicense
             // 
-            this.linkLicense.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLicense.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLicense.AutoEllipsis = true;
             this.linkLicense.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLicense.Location = new System.Drawing.Point(0, 419);
             this.linkLicense.Name = "linkLicense";
-            this.linkLicense.Size = new System.Drawing.Size(240, 81);
+            this.linkLicense.Size = new System.Drawing.Size(302, 81);
             this.linkLicense.TabIndex = 33;
             this.linkLicense.TabStop = true;
             this.linkLicense.Text = "%LICENSE%";
@@ -193,35 +197,47 @@
             // 
             // labeledDivider4
             // 
-            this.labeledDivider4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labeledDivider4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labeledDivider4.DividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(191)))), ((int)(((byte)(222)))));
             this.labeledDivider4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(170)))));
             this.labeledDivider4.Location = new System.Drawing.Point(0, 503);
             this.labeledDivider4.Name = "labeledDivider4";
-            this.labeledDivider4.Size = new System.Drawing.Size(240, 23);
+            this.labeledDivider4.Size = new System.Drawing.Size(302, 23);
             this.labeledDivider4.TabIndex = 34;
             this.labeledDivider4.Text = "Contribute";
             // 
             // linkContribute
             // 
-            this.linkContribute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkContribute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.linkContribute.AutoEllipsis = true;
             this.linkContribute.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkContribute.Location = new System.Drawing.Point(0, 529);
             this.linkContribute.Name = "linkContribute";
-            this.linkContribute.Size = new System.Drawing.Size(240, 84);
+            this.linkContribute.Size = new System.Drawing.Size(302, 84);
             this.linkContribute.TabIndex = 35;
             this.linkContribute.TabStop = true;
             this.linkContribute.Text = "%CONTRIBUTE%";
             this.linkContribute.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkContribute_clicked);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::OnTopReplica.Properties.Resources.flat_logo_64;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 36;
+            this.pictureBox1.TabStop = false;
             // 
             // AboutPanelContents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.linkContribute);
             this.Controls.Add(this.labeledDivider4);
             this.Controls.Add(this.linkLicense);
@@ -236,9 +252,10 @@
             this.Controls.Add(this.linkHomepage);
             this.Controls.Add(this.linkAuthor);
             this.Controls.Add(this.lblSlogan);
-            this.Margin = new System.Windows.Forms.Padding(6);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AboutPanelContents";
-            this.Size = new System.Drawing.Size(243, 613);
+            this.Size = new System.Drawing.Size(305, 613);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,6 +277,7 @@
         private System.Windows.Forms.LinkLabel linkLicense;
         private WindowsFormsAero.LabeledDivider labeledDivider4;
         private System.Windows.Forms.LinkLabel linkContribute;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
     }
 }
