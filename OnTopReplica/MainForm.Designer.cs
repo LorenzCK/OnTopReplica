@@ -44,7 +44,6 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.fullOpacityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuResize = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.doubleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +67,7 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContextClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.fullOpacityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fullSelectWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFullscreenContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.modeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -117,6 +117,7 @@
             this.menuWindows.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.noneToolStripMenuItem});
             this.menuWindows.Name = "menuWindows";
+            this.menuWindows.OwnerItem = this.fullSelectWindowToolStripMenuItem;
             this.menuWindows.Size = new System.Drawing.Size(118, 26);
             // 
             // noneToolStripMenuItem
@@ -208,7 +209,7 @@
             this.toolStripMenuItem3,
             this.toolStripMenuItem4});
             this.menuOpacity.Name = "menuOpacity";
-            this.menuOpacity.OwnerItem = this.menuContextOpacity;
+            this.menuOpacity.OwnerItem = this.fullOpacityToolStripMenuItem;
             this.menuOpacity.ShowCheckMargin = true;
             this.menuOpacity.ShowImageMargin = false;
             this.menuOpacity.Size = new System.Drawing.Size(154, 92);
@@ -251,14 +252,6 @@
             this.toolStripMenuItem4.Text = global::OnTopReplica.Strings.MenuOp25;
             this.toolStripMenuItem4.ToolTipText = global::OnTopReplica.Strings.MenuOp25TT;
             this.toolStripMenuItem4.Click += new System.EventHandler(this.Menu_Opacity_click);
-            // 
-            // fullOpacityToolStripMenuItem
-            // 
-            this.fullOpacityToolStripMenuItem.DropDown = this.menuOpacity;
-            this.fullOpacityToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.window_opacity;
-            this.fullOpacityToolStripMenuItem.Name = "fullOpacityToolStripMenuItem";
-            this.fullOpacityToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.fullOpacityToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuOpacity;
             // 
             // resizeToolStripMenuItem
             // 
@@ -450,6 +443,14 @@
             this.menuContextClose.Text = global::OnTopReplica.Strings.MenuClose;
             this.menuContextClose.Click += new System.EventHandler(this.Menu_Close_click);
             // 
+            // fullOpacityToolStripMenuItem
+            // 
+            this.fullOpacityToolStripMenuItem.DropDown = this.menuOpacity;
+            this.fullOpacityToolStripMenuItem.Image = global::OnTopReplica.Properties.Resources.window_opacity;
+            this.fullOpacityToolStripMenuItem.Name = "fullOpacityToolStripMenuItem";
+            this.fullOpacityToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.fullOpacityToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuOpacity;
+            // 
             // fullSelectWindowToolStripMenuItem
             // 
             this.fullSelectWindowToolStripMenuItem.DropDown = this.menuWindows;
@@ -468,7 +469,7 @@
             this.enableClickthroughToolStripMenuItem,
             this.fullExitToolStripMenuItem});
             this.menuFullscreenContext.Name = "menuFullscreenContext";
-            this.menuFullscreenContext.Size = new System.Drawing.Size(190, 136);
+            this.menuFullscreenContext.Size = new System.Drawing.Size(190, 114);
             // 
             // modeToolStripMenuItem
             // 
@@ -484,21 +485,21 @@
             // menuModeStandardToolStripMenuItem
             // 
             this.menuModeStandardToolStripMenuItem.Name = "menuModeStandardToolStripMenuItem";
-            this.menuModeStandardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.menuModeStandardToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.menuModeStandardToolStripMenuItem.Text = "Standard";
             this.menuModeStandardToolStripMenuItem.Click += new System.EventHandler(this.Menu_Fullscreen_Mode_Standard_click);
             // 
             // menuModeFullscreenToolStripMenuItem
             // 
             this.menuModeFullscreenToolStripMenuItem.Name = "menuModeFullscreenToolStripMenuItem";
-            this.menuModeFullscreenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.menuModeFullscreenToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.menuModeFullscreenToolStripMenuItem.Text = "Fullscreen";
             this.menuModeFullscreenToolStripMenuItem.Click += new System.EventHandler(this.Menu_Fullscreen_Mode_Fullscreen_click);
             // 
             // menuModeAllScreensToolStripMenuItem
             // 
             this.menuModeAllScreensToolStripMenuItem.Name = "menuModeAllScreensToolStripMenuItem";
-            this.menuModeAllScreensToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.menuModeAllScreensToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.menuModeAllScreensToolStripMenuItem.Text = "All screens";
             this.menuModeAllScreensToolStripMenuItem.Click += new System.EventHandler(this.Menu_Fullscreen_Mode_AllScreens_click);
             // 
@@ -524,7 +525,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(324, 232);
+            this.ClientSize = new System.Drawing.Size(326, 234);
             this.ControlBox = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.HideCaption = true;

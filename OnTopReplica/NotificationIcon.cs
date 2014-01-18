@@ -41,7 +41,7 @@ namespace OnTopReplica {
 
             _taskIcon = new NotifyIcon {
                 Text = Strings.ApplicationName,
-                Icon = Resources.icon_new,
+                Icon = Resources.new_flat_icon,
                 Visible = true,
                 ContextMenuStrip = _contextMenu
             };

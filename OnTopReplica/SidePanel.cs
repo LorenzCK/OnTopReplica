@@ -12,6 +12,10 @@ namespace OnTopReplica {
     /// </summary>
     class SidePanel : UserControl {
 
+        public SidePanel() {
+            this.FixDefaultFont();
+        }
+
         protected override void OnCreateControl() {
             if (!DesignMode) {
                 Dock = DockStyle.Fill;

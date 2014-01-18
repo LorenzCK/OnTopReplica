@@ -8,6 +8,7 @@ using OnTopReplica.Update;
 using System.Diagnostics;
 using WindowsFormsAero.TaskDialog;
 using System.IO;
+using WindowsFormsAero;
 
 namespace OnTopReplica.SidePanels {
     public partial class AboutPanelContents : UserControl {
@@ -18,6 +19,8 @@ namespace OnTopReplica.SidePanels {
             InitializeComponent();
 
             LocalizePanel();
+
+            this.FixDefaultFont();
         }
 
         private void LocalizePanel() {

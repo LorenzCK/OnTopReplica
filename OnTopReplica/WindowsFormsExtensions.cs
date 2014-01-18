@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
@@ -54,6 +55,20 @@ namespace OnTopReplica {
             var bb = new System.Drawing.Rectangle(ctrl.Location, ctrl.Size);
 
             return bb.Contains(screenCoordinates);
+        }
+
+        public static void FixDefaultFont(this Control ctrl) {
+            ctrl.Font = SystemFonts.MessageBoxFont;
+            if (ctrl.Controls == null || ctrl.Controls.Count == 0)
+                return;
+
+            foreach (Control subCtrl in ctrl.Controls) {
+                subCtrl.Font = SystemFonts.MessageBoxFont;
+
+                if (subCtrl is GroupBox) {
+                    subCtrl.FixDefaultFont();
+                }
+            }
         }
 
     }
