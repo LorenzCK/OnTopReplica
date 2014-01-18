@@ -71,13 +71,6 @@ namespace OnTopReplica {
             }
         }
 
-        protected override void OnHandleCreated(EventArgs e) {
-            base.OnHandleCreated(e);
-
-            //When created, use first size of the window as aspect ratio
-            SetAspectRatio(ClientSize, false);
-        }
-
         /// <summary>
         /// Forces the form to update its height based on the current aspect ratio setting.
         /// </summary>
