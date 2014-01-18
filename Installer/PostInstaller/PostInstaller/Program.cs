@@ -10,13 +10,17 @@ namespace PostInstaller {
         static int Main(string[] args) {
             var success = Run(args);
 
+#if DEBUG
             Console.Read();
+#endif
 
             return success ? 0 : 1;
         }
 
         private static bool Run(string[] args) {
+#if DEBUG
             Console.WriteLine("Attempting to create IShellItem for file {0}...", args[0]);
+#endif
             IShellLink link = (IShellLink)new CShellLink();
 
             //Win32Shell.SHCreateItemFromParsingName(args[0], IntPtr.Zero, Win32Shell.IShellLinkId, out link);
@@ -33,29 +37,17 @@ namespace PostInstaller {
             link.SetArguments("");
             */
 
+#if DEBUG
             Console.WriteLine("Querying for IPropertyStore interface...");
+#endif
             IPropertyStore propStore = (IPropertyStore)link;
 
-            PropertyKey appUserModelKey = new PropertyKey(new Guid("9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3"), 5);
-
             try {
-                object oldValue;
-                propStore.GetValue(ref appUserModelKey, out oldValue);
-
-                Console.WriteLine("AppUserModel.ID value: {0} (type {1})", oldValue, oldValue.GetType().AssemblyQualifiedName);
-            }
-            catch (Exception ex) {
 #if DEBUG
-                throw;
-#else
-                Console.WriteLine("Unable to get value of AppUserModel.ID property.");
-                Console.WriteLine(ex);
-#endif
-            }
-
-            try {
                 Console.WriteLine("Attempting to set property 'System.AppUserModel.ID' to {0}...", args[1]);
+#endif
 
+                PropertyKey appUserModelKey = new PropertyKey(new Guid("9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3"), 5);
                 propStore.SetValue(ref appUserModelKey, new BStrWrapper(args[1]));
                 propStore.Commit();
 
@@ -72,8 +64,6 @@ namespace PostInstaller {
                 return false;
 #endif
             }
-
-            Console.WriteLine("Done.");
             
             return true;
         }

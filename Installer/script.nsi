@@ -18,8 +18,8 @@ RequestExecutionLevel user
 !define WEBSITE_LINK "http://www.klopfenstein.net/lorenz.aspx/ontopreplica"
 
 # GRAPHICS
-!define MUI_ICON "..\OnTopReplica\Assets\icon-new.ico"
-!define MUI_UNICON "..\OnTopReplica\Assets\icon-new-red.ico"
+!define MUI_ICON "..\OriginalAssets\new-flat-icon.ico"
+!define MUI_UNICON "..\OriginalAssets\new-flat-icon.ico"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
 !define MUI_HEADERIMAGE_BITMAP "header.bmp"

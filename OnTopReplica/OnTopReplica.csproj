@@ -50,7 +50,7 @@
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>3.4.0.%2a</ApplicationVersion>
+    <ApplicationVersion>3.5.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -192,10 +192,65 @@
     </Compile>
     <Compile Include="StartupOptions\FourValueTypeConverter.cs" />
     <Compile Include="StartupOptions\PaddingConverter.cs" />
+    <Compile Include="Strings.cs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.cs.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.da.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.da.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.de.resx</DependentUpon>
+    </Compile>
     <Compile Include="Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.fi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.fi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.it.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.it.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.no.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.no.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.pl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.pl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.pt-BR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.pt-BR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.pt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.pt.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.ru.resx</DependentUpon>
     </Compile>
     <Compile Include="ThumbnailRegion.cs" />
     <Compile Include="WindowListMenuManager.cs" />
