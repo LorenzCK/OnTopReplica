@@ -68,6 +68,8 @@ namespace OnTopReplica {
             using (_mainForm = new MainForm(options)) {
                 Application.Idle += _handlerIdleUpdater;
 
+                Log.Write("Entering application loop");
+
                 //Enter GUI loop
                 Application.Run(_mainForm);
 
@@ -80,7 +82,6 @@ namespace OnTopReplica {
                 Log.Write("Last position before shutdown: {0}, size: {1}", _mainForm.Location, _mainForm.Size);
                 Settings.Default.RestoreLastPosition = _mainForm.Location;
                 Settings.Default.RestoreLastSize = _mainForm.ClientSize;
-                Settings.Default.Save();
 
                 //Store last thumbnail, if any
                 if (_mainForm.ThumbnailPanel.IsShowingThumbnail && _mainForm.CurrentThumbnailWindowHandle != null) {
@@ -93,7 +94,12 @@ namespace OnTopReplica {
                     Settings.Default.RestoreLastWindowHwnd = 0;
                     Settings.Default.RestoreLastWindowClass = string.Empty;
                 }
+
+                Log.Write("Persisting settings");
+                Settings.Default.Save();
             }
+
+            Log.Write("Shutting down OnTopReplica");
         }
 
         private static EventHandler _handlerIdleUpdater = new EventHandler(Application_Idle);
@@ -136,14 +142,17 @@ namespace OnTopReplica {
                     sw.WriteLine("This file has been created because OnTopReplica crashed.");
                     sw.WriteLine("Please send it to lck@klopfenstein.net to help fix the bug that caused the crash.");
                     sw.WriteLine();
+
                     sw.WriteLine("Last exception:");
                     sw.WriteLine(e.ExceptionObject.ToString());
                     sw.WriteLine();
+
                     sw.WriteLine("Last log entries:");
                     foreach (var logEntry in Log.Queue) {
                         sw.WriteLine(logEntry);
                     }
                     sw.WriteLine();
+
                     sw.WriteLine("OnTopReplica v.{0}", Application.ProductVersion);
                     sw.WriteLine("OS: {0}", Environment.OSVersion.ToString());
                     sw.WriteLine(".NET: {0}", Environment.Version.ToString());
@@ -152,8 +161,6 @@ namespace OnTopReplica {
                     sw.WriteLine("UTC time: {0} {1}", DateTime.UtcNow.ToShortDateString(), DateTime.UtcNow.ToShortTimeString());
                 }
             }
-
-            Log.Write("Crash dump written to {0}", path);
         }
 
     }

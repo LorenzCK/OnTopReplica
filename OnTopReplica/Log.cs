@@ -8,6 +8,7 @@ namespace OnTopReplica {
     static class Log {
 
         const string LogFileName = "lastrun.log.txt";
+        const string ConflictLogFileName = "run-{0}.log.txt";
 
         private readonly static StreamWriter Writer;
 
@@ -18,8 +19,15 @@ namespace OnTopReplica {
                 Writer.AutoFlush = true;
             }
             catch (Exception) {
-                //TODO: provide fallback logging mechanism?
-                Writer = null;
+                try {
+                    var filepath = Path.Combine(AppPaths.PrivateRoamingFolderPath, string.Format(ConflictLogFileName, System.Diagnostics.Process.GetCurrentProcess().Id));
+                    Writer = new StreamWriter(new FileStream(filepath, FileMode.Create));
+                    Writer.AutoFlush = true;
+                }
+                catch (Exception) {
+                    //No fallback logging possible
+                    Writer = null;
+                }
             }
         }
 
