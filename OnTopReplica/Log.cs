@@ -48,28 +48,52 @@ namespace OnTopReplica {
                 WriteLines(message, exception.ToString());
             }
             else {
-                WriteLines(message, "(no last exception)");
+                WriteLines(message, "(No exception data.)");
             }
         }
 
         private static void WriteLine(string message) {
-            if (Writer == null)
-                return;
-
             var s = string.Format("{0,-8:HH:mm:ss} {1}", DateTime.Now, message);
-            Writer.WriteLine(s);
+            AddToQueue(s);
+
+            if (Writer != null) {
+                Writer.WriteLine(s);
+            }
         }
 
         private static void WriteLines(params string[] messages) {
-            if (Writer == null)
+            if (messages.Length <= 0)
                 return;
 
-            if (messages.Length > 0)
-                WriteLine(messages[0]);
-            if (messages.Length > 1) {
-                for (int i = 1; i < messages.Length; ++i) {
-                    Writer.WriteLine("         {0}", messages[i]);
-                }
+            var sb = new StringBuilder();
+            sb.AppendFormat("{0,-8:HH:mm:ss} {1}", DateTime.Now, messages[0]);
+            for (int i = 1; i < messages.Length; ++i) {
+                sb.AppendLine();
+                sb.AppendFormat("         {0}", messages[i]);
+            }
+
+            AddToQueue(sb.ToString());
+
+            if (Writer != null) {
+                Writer.WriteLine(sb.ToString());
+            }
+        }
+
+        const int MaxQueueCapacity = 30;
+
+        private static Queue<string> _entriesQueue = new Queue<string>(MaxQueueCapacity);
+
+        private static void AddToQueue(string entry){
+            _entriesQueue.Enqueue(entry);
+
+            while(_entriesQueue.Count > MaxQueueCapacity){
+                _entriesQueue.Dequeue();
+            }
+        }
+
+        public static IEnumerable<string> Queue {
+            get {
+                return _entriesQueue;
             }
         }
 

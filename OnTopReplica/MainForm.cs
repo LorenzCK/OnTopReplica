@@ -53,6 +53,8 @@ namespace OnTopReplica {
 
             //Set to Key event preview
             this.KeyPreview = true;
+
+            Log.Write("Main form constructed");
         }
 
         #region Event override
@@ -77,6 +79,7 @@ namespace OnTopReplica {
         }
 
         protected override void OnShown(EventArgs e) {
+            Log.Write("Main form shown");
             base.OnShown(e);
 
             //Apply startup options
@@ -84,10 +87,16 @@ namespace OnTopReplica {
         }
 
         protected override void OnClosing(CancelEventArgs e) {
+            Log.Write("Main form closing");
+            base.OnClosing(e);
+
             _msgPumpManager.Dispose();
             Program.Platform.CloseForm(this);
+        }
 
-            base.OnClosing(e);
+        protected override void OnClosed(EventArgs e) {
+            Log.Write("Main form closed");
+            base.OnClosed(e);
         }
 
         protected override void OnMove(EventArgs e) {
