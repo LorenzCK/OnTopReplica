@@ -114,7 +114,7 @@ namespace OnTopReplica {
         /// </summary>
         static void UpdateManager_CheckCompleted(object sender, UpdateCheckCompletedEventArgs e) {
             if (e.Success && e.Information != null) {
-                Log.Write("Updated check successful (latest version is {0})", e.Information.LatestVersion);
+                Log.Write("Update check successful (latest version is {0})", e.Information.LatestVersion);
 
                 if (e.Information.IsNewVersionAvailable) {
                     Update.ConfirmAndInstall();
@@ -138,6 +138,11 @@ namespace OnTopReplica {
                     sw.WriteLine();
                     sw.WriteLine("Last exception:");
                     sw.WriteLine(e.ExceptionObject.ToString());
+                    sw.WriteLine();
+                    sw.WriteLine("Last log entries:");
+                    foreach (var logEntry in Log.Queue) {
+                        sw.WriteLine(logEntry);
+                    }
                     sw.WriteLine();
                     sw.WriteLine("OnTopReplica v.{0}", Application.ProductVersion);
                     sw.WriteLine("OS: {0}", Environment.OSVersion.ToString());
