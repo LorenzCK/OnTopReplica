@@ -57,6 +57,14 @@ namespace OnTopReplica {
             return bb.Contains(screenCoordinates);
         }
 
+        /// <summary>
+        /// Fixes the Windows Forms default font for a control and its nested controls.
+        /// </summary>
+        /// <remarks>
+        /// Since Windows Forms defaults to Tahoma as the system font, this method is used
+        /// to fix the default font for a control and all its children controls, setting it
+        /// to the system message box font (Segoe on recent Windows releases).
+        /// </remarks>
         public static void FixDefaultFont(this Control ctrl) {
             ctrl.Font = SystemFonts.MessageBoxFont;
             if (ctrl.Controls == null || ctrl.Controls.Count == 0)
