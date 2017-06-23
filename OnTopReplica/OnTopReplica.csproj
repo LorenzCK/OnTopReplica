@@ -194,6 +194,11 @@
     </Compile>
     <Compile Include="StartupOptions\FourValueTypeConverter.cs" />
     <Compile Include="StartupOptions\PaddingConverter.cs" />
+    <Compile Include="Strings.zh.Designer.cs">
+      <DependentUpon>Strings.zh.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Strings.cs.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -276,6 +281,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SidePanels\AboutPanelContents.resx">
       <DependentUpon>AboutPanelContents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.zh.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.zh.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.pl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -440,6 +449,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="new-flat-icon.ico" />
+    <None Include="Assets\flag_china.png" />
     <None Include="Resources\new-flat-logo-64.png" />
     <None Include="Resources\new-flat-icon.ico" />
     <None Include="Resources\help.png" />
