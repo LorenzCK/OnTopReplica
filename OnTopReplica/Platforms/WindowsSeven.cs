@@ -7,6 +7,8 @@ namespace OnTopReplica.Platforms {
 
     class WindowsSeven : WindowsVista {
 
+        private double? PreviousOpacity { get; set; }
+
         public override void PreHandleFormInit() {
             //Set Application ID
             WindowsSevenMethods.SetCurrentProcessExplicitAppUserModelID("LorenzCunoKlopfenstein.OnTopReplica.MainForm");
@@ -19,6 +21,7 @@ namespace OnTopReplica.Platforms {
         }
 
         public override void HideForm(MainForm form) {
+            PreviousOpacity = form.Opacity;
             form.Opacity = 0;
         }
 
@@ -27,8 +30,10 @@ namespace OnTopReplica.Platforms {
         }
 
         public override void RestoreForm(MainForm form) {
-            if (form.Opacity == 0.0)
-                form.Opacity = 1.0;
+            if (form.Opacity == 0.0) {
+                form.Opacity = PreviousOpacity.GetValueOrDefault(1.0);
+                PreviousOpacity = null;
+            }
             
             form.Show();
         }
