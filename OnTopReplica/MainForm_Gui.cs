@@ -73,7 +73,6 @@ namespace OnTopReplica {
             //Reset special modes
             FullscreenManager.SwitchBack();
             ClickThroughEnabled = false;
-            Opacity = 1.0;
 
             //Restore main form in a platform-dependent method
             Program.Platform.RestoreForm(this);
