@@ -1,27 +1,49 @@
-A real-time, always on top, "replica" of a window of your choice, based on DWM Thumbnails.\
-Completely written in C# for .NET 4.0/4.5, makes use of the [Windows Forms Aero](https://github.com/LorenzCK/WindowsFormsAero) library.
+# OnTopReplica
 
-Requirements
-------------
+**A real-time always-on-top “replica” of a window of your choice, for Windows Vista, 7, 8, or 10.**
 
-You will need the .NET 4.0/4.5 framework and Windows Vista/7/8 with Aero enabled (also known as *Desktop Composition*, which is always enabled on Windows 8).
+This simple utility application shows a blank always-on-top window by default.
+Users can pick any other window of the system to have an always up-to-date clone of the original window shown always-on-top.
+Very useful for monitoring background processes, wrangling with complex multi-window games or tools, watching Youtube videos while working, and so on.
 
-Installation and User Guide
----------------------------
+**📢 Features:**
 
-Get the [latest version (v.3.5.1)](https://github.com/paulodeleo/OnTopReplica/releases/tag/v3.5.1) from the releases section, both as installer and as standalone portable executable.
+* Clone any of your windows and keep it *always-on-top* while working with other windows,
+* Select a subregion of the cloned window, which:
+  * Can be stored for future use,
+  * Can use *relative* coordinates from the target window’s borders.
+* *Auto-resizing* (fit the original window, half, quarter and fullscreen mode),
+* Position lock on any corner of your screen,
+* Adjustable opacity,
+* “*Click forwarding*”, allows to interact with the cloned window,
+* “*Click-through*”, makes the replica ignore any mouse interaction (turns **OnTopReplica** into an overlay if set together with partial opacity),
+* “*Group switch*”-mode automatically switches through a group of windows while you use them,
+* Non-invasive installation doesn’t require administrator elevation.
 
-Features of current version
----------------------------
+## Requirements
 
--   Clone any of your windows and keep it *always on top* while working with other windows,
--   Select a subregion of the cloned window:
-    -   Store the selected subregions for future use,
-    -   Now with *relative* subregions from the window's borders.
--   Auto-resizing (fit the original window, half, quarter and fullscreen mode),
--   Position lock on the screen's corners,
--   Adjustable opacity,
--   "Click forwarding" allows to interact with the cloned window,
--   "Click-through" allows to click through the cloned thumbnail (especially useful with partial opacity),
--   "Group switch" mode automatically switches through a group of windows while you use them,
--   Non invasive installation doesn't require administrator elevation.
+* Microsoft Windows Vista or greater (the application makes use of native DWM Thumbnails to create replicas),
+* Microsoft .NET Framework 4.0/4.5.
+* Desktop Composition (a.k.a. Windows *Aero*) enabled.
+
+## Installation
+
+Get the [latest version (v.3.5.1)](https://github.com/paulodeleo/OnTopReplica/releases/tag/v3.5.1) from the releases section, both as installer and as a standalone portable executable.
+
+## Contributions
+
+…are very welcome. Fork away! 🍽️
+
+Submitting [issues](https://github.com/LorenzCK/OnTopReplica/issues) and other feedback are also appreciated.
+
+### Roadmap
+
+1. Update to the newest [WindowsFormsAero](https://github.com/LorenzCK/WindowsFormsAero) version.
+1. Migrate to .NET 4.7.
+1. *High DPI* support!
+1. “Stored scenarios” that, just like stored regions, automatically clone a window (based on title or window class criteria), select a region, and set other options. Ideally to be used as task bar shortlinks.
+1. Move to the Windows Store, via Centennial. 🤞
+
+## License
+
+**OnTopReplica** is licensed under the [MS-RL (Microsoft Reciprocal License)](https://github.com/LorenzCK/OnTopReplica/blob/master/LICENSE).
