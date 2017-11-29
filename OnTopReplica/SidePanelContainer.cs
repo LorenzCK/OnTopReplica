@@ -4,13 +4,12 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using WindowsFormsAero.Dwm.Helpers;
 
 namespace OnTopReplica {
     /// <summary>
     /// Acts as a form that can contain a SidePanel instance.
     /// </summary>
-    partial class SidePanelContainer : GlassForm {
+    partial class SidePanelContainer : WindowsFormsAero.AeroForm {
         
         EventHandler RequestClosingHandler;
 
@@ -56,15 +55,7 @@ namespace OnTopReplica {
             var minSize = panel.MinimumSize.Expand(this.Padding);
             this.ClientSize = minSize;
             this.EnsureMinimumClientSize(minSize);
-
-            //Enable glass if needed
-            var margins = panel.GlassMargins;
-            if (margins.HasValue) {
-                this.GlassMargins = margins.Value;
-                this.GlassEnabled = true;
-            }
-            else
-                this.GlassEnabled = false;
+            this.GlassMargins = panel.GlassMargins;
 
             this.ResumeLayout();
         }

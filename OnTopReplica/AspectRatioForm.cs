@@ -4,14 +4,13 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using OnTopReplica.Native;
-using WindowsFormsAero.Dwm.Helpers;
 
 namespace OnTopReplica {
 
     /// <summary>
     /// Form that automatically keeps a certain aspect ratio and resizes without flickering.
     /// </summary>
-    public class AspectRatioForm : GlassForm {
+    public class AspectRatioForm : WindowsFormsAero.AeroForm {
 
         bool _keepAspectRatio = true;
 

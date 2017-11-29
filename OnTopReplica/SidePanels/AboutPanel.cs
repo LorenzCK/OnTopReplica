@@ -23,9 +23,9 @@ namespace OnTopReplica.SidePanels {
             }
         }
 
-        public override Margins? GlassMargins {
+        public override Padding GlassMargins {
             get {
-                return new Margins(0, 0, 0, labelVersion.Height);
+                return new Padding(0, 0, 0, labelVersion.Height);
             }
         }
 

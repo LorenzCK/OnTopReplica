@@ -146,14 +146,14 @@ namespace OnTopReplica.Update {
                 Instruction = string.Format(Strings.UpdateAvailableInstruction, LastInformation.LatestVersion),
                 Content = Strings.UpdateAvailableContent,
                 CustomButtons = new CustomButton[] {
-                    new CustomButton(Result.OK, string.Format(Strings.UpdateAvailableCommandOk, LastInformation.LatestVersion)),
-                    new CustomButton(Result.Cancel, Strings.UpdateAvailableCommandCancel)
+                    new CustomButton(CommonButtonResult.OK, string.Format(Strings.UpdateAvailableCommandOk, LastInformation.LatestVersion)),
+                    new CustomButton(CommonButtonResult.Cancel, Strings.UpdateAvailableCommandCancel)
                 },
                 UseCommandLinks = true,
-                CommonIcon = TaskDialogIcon.Information,
+                CommonIcon = CommonIcon.Information,
                 ExpandedInformation = string.Format(Strings.UpdateAvailableExpanded, LastInformation.CurrentVersion, LastInformation.LatestVersion),
             };
-            if (updateDialog.Show(AttachedForm).CommonButton == Result.OK) {
+            if (updateDialog.Show(AttachedForm).CommonButton == CommonButtonResult.OK) {
                 Shell.Execute(LastInformation.DownloadPage);
             }
         }
@@ -175,9 +175,9 @@ namespace OnTopReplica.Update {
                 Instruction = Strings.UpdateInfoInstruction,
                 Content = Strings.UpdateInfoContent,
                 EnableHyperlinks = true,
-                CommonButtons = TaskDialogButton.Close,
+                CommonButtons = CommonButton.Close,
                 AllowDialogCancellation = true,
-                CommonIcon = TaskDialogIcon.Information,
+                CommonIcon = CommonIcon.Information,
                 Footer = string.Format(Strings.UpdateInfoFooter, LastInformation.LatestVersionRelease.ToLongDateString())
             };
             dlg.HyperlinkClick += delegate(object sender, HyperlinkEventArgs args) {

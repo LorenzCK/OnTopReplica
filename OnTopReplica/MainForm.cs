@@ -64,8 +64,7 @@ namespace OnTopReplica {
 
             //Window init
             KeepAspectRatio = false;
-            GlassEnabled = true;
-            GlassMargins = new Margins(-1);
+            GlassMargins = new Padding(-1);
 
             //Managers
             _msgPumpManager.Initialize(this);

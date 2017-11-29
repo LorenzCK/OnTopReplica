@@ -97,9 +97,8 @@ namespace OnTopReplica {
 
         private void CommonCompleteSwitch(bool enabled) {
             //UI stuff switching
-            _mainForm.GlassEnabled = !enabled;
+            _mainForm.GlassMargins = (!enabled) ? new Padding(-1) : Padding.Empty;
             _mainForm.TopMost = !enabled;
-            _mainForm.HandleMouseMove = !enabled;
 
             IsFullscreen = enabled;
 

@@ -18,9 +18,9 @@ namespace OnTopReplica {
             set {
                 if (value && Settings.Default.FirstTimeClickForwarding) {
                     TaskDialog dlg = new TaskDialog(Strings.InfoClickForwarding, Strings.InfoClickForwardingTitle, Strings.InfoClickForwardingContent) {
-                        CommonButtons = TaskDialogButton.Yes | TaskDialogButton.No
+                        CommonButtons = CommonButton.Yes | CommonButton.No
                     };
-                    if (dlg.Show(this).CommonButton == Result.No)
+                    if (dlg.Show(this).CommonButton == CommonButtonResult.No)
                         return;
 
                     Settings.Default.FirstTimeClickForwarding = false;

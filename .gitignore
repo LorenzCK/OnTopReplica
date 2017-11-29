@@ -5,3 +5,4 @@
 Installer/OnTopReplica-Setup.exe
 *.user
 *.suo
+packages/

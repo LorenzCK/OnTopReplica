@@ -65,11 +65,11 @@ namespace OnTopReplica {
         }
 
         /// <summary>
-        /// Gets the panel's desired glass margins or null if no glass surface is required.
+        /// Gets the panel's desired glass margins.
         /// </summary>
-        public virtual Margins? GlassMargins {
+        public virtual Padding GlassMargins {
             get {
-                return null;
+                return Padding.Empty;
             }
         }
 

@@ -3,30 +3,29 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using WindowsFormsAero.Dwm;
-using WindowsFormsAero.ThemeText;
 using System.Drawing;
 using System.Windows.Forms.VisualStyles;
 using OnTopReplica.Native;
 
 namespace OnTopReplica {
 
-	class ThumbnailPanel : Panel {
+    class ThumbnailPanel : Panel {
 
-		//DWM Thumbnail stuff
-		Thumbnail _thumbnail = null;
+        //DWM Thumbnail stuff
+        Thumbnail _thumbnail = null;
 
-		//Labels
-		ThemedLabel _labelGlass;
+        //Labels
+        WindowsFormsAero.ThemeLabel _labelGlass;
 
-		public ThumbnailPanel() {
-			InitFormComponents();
-		}
+        public ThumbnailPanel() {
+            InitFormComponents();
+        }
 
-		private void InitFormComponents() {
+        private void InitFormComponents() {
             BackColor = Color.Black;
 
-			//Themed Label
-            _labelGlass = new ThemedLabel {
+            //Themed Label
+            _labelGlass = new WindowsFormsAero.ThemeLabel {
                 Dock = DockStyle.Fill,
                 ForeColor = SystemColors.ControlText,
                 Location = Point.Empty,
@@ -36,43 +35,43 @@ namespace OnTopReplica {
                 TextAlign = HorizontalAlignment.Center,
                 TextAlignVertical = VerticalAlignment.Center
             };
-			this.Controls.Add(_labelGlass);
-		}
+            this.Controls.Add(_labelGlass);
+        }
 
-		#region Properties and settings
+        #region Properties and settings
 
         ThumbnailRegion _currentRegion;
 
         /// <summary>
         /// Gets or sets the region that is currently shown on the thumbnail. When set, also enables region constrain.
         /// </summary>
-		public ThumbnailRegion SelectedRegion {
-			get {
+        public ThumbnailRegion SelectedRegion {
+            get {
                 return _currentRegion;
-			}
-			set {
+            }
+            set {
                 _currentRegion = value;
                 _regionEnabled = (value != null);
                 UpdateThubmnail();
-			}
-		}
+            }
+        }
 
         bool _regionEnabled = false;
 
         /// <summary>
         /// Gets or sets whether the thumbnail is constrained to a region or not.
         /// </summary>
-		public bool ConstrainToRegion {
-			get {
-				return _regionEnabled;
-			}
-			set {
+        public bool ConstrainToRegion {
+            get {
+                return _regionEnabled;
+            }
+            set {
                 if (_regionEnabled != value) {
                     _regionEnabled = value;
                     UpdateThubmnail();
                 }
-			}
-		}
+            }
+        }
 
         /// <summary>
         /// Enables mouse regions drawing, simulating one first click on the panel at the current cursor's position.
@@ -87,38 +86,38 @@ namespace OnTopReplica {
             OnMouseDown(new MouseEventArgs(System.Windows.Forms.MouseButtons.Left, 1, localCursor.X, localCursor.Y, 0));
         }
 
-		bool _drawMouseRegions = false;
+        bool _drawMouseRegions = false;
 
         /// <summary>
         /// Gets or sets whether the control is is "region drawing" mode and reports them via events.
         /// </summary>
-		public bool DrawMouseRegions {
-			get {
-				return _drawMouseRegions;
-			}
-			set {
-				//Set mode and reset region
-				_drawMouseRegions = value;
-				_drawingRegion = false;
+        public bool DrawMouseRegions {
+            get {
+                return _drawMouseRegions;
+            }
+            set {
+                //Set mode and reset region
+                _drawMouseRegions = value;
+                _drawingRegion = false;
 
-				//Cursor change
-				Cursor = (value) ? Cursors.Cross : Cursors.Default;
+                //Cursor change
+                Cursor = (value) ? Cursors.Cross : Cursors.Default;
 
                 //Refresh gui
-				UpdateThubmnail();
+                UpdateThubmnail();
                 _labelGlass.Visible = !value;
                 this.Invalidate();
-			}
-		}
+            }
+        }
 
         /// <summary>
         /// Gets the target opacity of the thumbnail, depending on the control's state.
         /// </summary>
-		protected byte ThumbnailOpacity {
-			get {
+        protected byte ThumbnailOpacity {
+            get {
                 return (_drawMouseRegions) ? (byte)130 : (byte)255;
-			}
-		}
+            }
+        }
 
         /// <summary>
         /// Gets or sets whether the control should report clicks made on the cloned thumbnail.
@@ -138,11 +137,11 @@ namespace OnTopReplica {
             get {
                 if (_thumbnail != null && !_thumbnail.IsInvalid) {
                     if (_regionEnabled) {
-                        return _currentRegion.ComputeRegionSize(_thumbnail.SourceSize);
+                        return _currentRegion.ComputeRegionSize(_thumbnail.GetSourceSize());
                     }
                     else {
                         //Thumbnail is not cropped, return full thumbnail source size
-                        return _thumbnail.SourceSize;
+                        return _thumbnail.GetSourceSize();
                     }
                 }
                 else {
@@ -164,7 +163,7 @@ namespace OnTopReplica {
         public Size ThumbnailOriginalSize {
             get {
                 if (_thumbnail != null && !_thumbnail.IsInvalid) {
-                    return _thumbnail.SourceSize;
+                    return _thumbnail.GetSourceSize();
                 }
                 else {
 #if DEBUG
@@ -176,7 +175,7 @@ namespace OnTopReplica {
             }
         }
 
-		#endregion
+        #endregion
 
         #region GUI event handling
 
@@ -206,7 +205,7 @@ namespace OnTopReplica {
         /// </summary>
         /// <param name="handle">Handle of the window to clone.</param>
         /// <param name="region">Optional region.</param>
-		public void SetThumbnailHandle(WindowHandle handle, ThumbnailRegion region) {
+        public void SetThumbnailHandle(WindowHandle handle, ThumbnailRegion region) {
             Log.WriteDetails("Setting new thumbnail",
                 "HWND {0}, region {1}", handle, region
             );
@@ -216,52 +215,52 @@ namespace OnTopReplica {
                 _thumbnail = null;
             }
 
-			//Attempt to get top level Form from Control
-			Form owner = this.TopLevelControl as Form;
+            //Attempt to get top level Form from Control
+            Form owner = this.TopLevelControl as Form;
             if (owner == null)
                 throw new Exception("Internal error: ThumbnailPanel.TopLevelControl is not a Form.");
 
             _labelGlass.Visible = false;
 
             //Register new thumbnail, update regioning directly and refresh thumbnail
-			_thumbnail = DwmManager.Register(owner, handle.Handle);
+            _thumbnail = DwmManager.Register(owner, handle.Handle);
             _currentRegion = region;
             _regionEnabled = (region != null);
             UpdateThubmnail();
-		}
+        }
 
         /// <summary>
         /// Disposes current thumbnail and enters stand-by mode.
         /// </summary>
-		public void UnsetThumbnail() {
+        public void UnsetThumbnail() {
             Log.Write("Unsetting thumbnail");
 
             if (_thumbnail != null && !_thumbnail.IsInvalid) {
                 _thumbnail.Close();
             }
 
-			_thumbnail = null;
+            _thumbnail = null;
             _labelGlass.Visible = true;
-		}
+        }
 
         /// <summary>
         /// Gets whether the control is currently displaying a thumbnail.
         /// </summary>
-		public bool IsShowingThumbnail {
-			get {
-				return (_thumbnail != null && !_thumbnail.IsInvalid);
-			}
-		}
+        public bool IsShowingThumbnail {
+            get {
+                return (_thumbnail != null && !_thumbnail.IsInvalid);
+            }
+        }
 
-		int _padWidth = 0;
-		int _padHeight = 0;
-		Size _thumbnailSize;
+        int _padWidth = 0;
+        int _padHeight = 0;
+        Size _thumbnailSize;
 
-		/// <summary>
+        /// <summary>
         /// Updates the thumbnail options and the right-click label.
         /// </summary>
-		private void UpdateThubmnail() {
-			if (_thumbnail != null && !_thumbnail.IsInvalid){
+        private void UpdateThubmnail() {
+            if (_thumbnail != null && !_thumbnail.IsInvalid){
                 try {
                     //Get thumbnail size and attempt to fit to control, with padding
                     Size sourceSize = ThumbnailPixelSize;
@@ -272,7 +271,7 @@ namespace OnTopReplica {
                     System.Diagnostics.Debug.WriteLine("Fitting {0} inside {1} as {2}. Padding {3},{4}.", sourceSize, Size, _thumbnailSize, _padWidth, _padHeight);
 
                     var target = new Rectangle(_padWidth, _padHeight, _thumbnailSize.Width, _thumbnailSize.Height);
-                    Rectangle source = (_regionEnabled) ? _currentRegion.ComputeRegionRectangle(_thumbnail.SourceSize) : new Rectangle(Point.Empty, _thumbnail.SourceSize);
+                    Rectangle source = (_regionEnabled) ? _currentRegion.ComputeRegionRectangle(_thumbnail.GetSourceSize()) : new Rectangle(Point.Empty, _thumbnail.GetSourceSize());
 
                     _thumbnail.Update(target, source, ThumbnailOpacity, true, true);
                 }
@@ -281,12 +280,12 @@ namespace OnTopReplica {
                     UnsetThumbnail();
                     return;
                 }
-			}
-		}
+            }
+        }
 
         #endregion
 
-		#region Region drawing
+        #region Region drawing
 
         const int MinimumRegionSize = 1;
 
@@ -348,39 +347,39 @@ namespace OnTopReplica {
             OnRegionDrawn(final);
         }
 
-		protected override void OnMouseDown(MouseEventArgs e) {
-			if (DrawMouseRegions && e.Button == MouseButtons.Left) {
+        protected override void OnMouseDown(MouseEventArgs e) {
+            if (DrawMouseRegions && e.Button == MouseButtons.Left) {
                 //Start new region drawing
-				_drawingRegion = true;
+                _drawingRegion = true;
                 _drawingSuspended = false;
-				_regionStartPoint = _regionLastPoint = e.Location;
+                _regionStartPoint = _regionLastPoint = e.Location;
 
-				this.Invalidate();
-			}
+                this.Invalidate();
+            }
 
-			base.OnMouseDown(e);
-		}
+            base.OnMouseDown(e);
+        }
 
-		protected override void OnMouseUp(MouseEventArgs e) {
-			if (DrawMouseRegions && e.Button == MouseButtons.Left) {
+        protected override void OnMouseUp(MouseEventArgs e) {
+            if (DrawMouseRegions && e.Button == MouseButtons.Left) {
                 //Region completed
-				_drawingRegion = false;
+                _drawingRegion = false;
                 _drawingSuspended = false;
-				RaiseRegionDrawn(_regionStartPoint, _regionLastPoint);
+                RaiseRegionDrawn(_regionStartPoint, _regionLastPoint);
 
-				this.Invalidate();
-			}
+                this.Invalidate();
+            }
 
-			base.OnMouseUp(e);
-		}
+            base.OnMouseUp(e);
+        }
 
-		protected override void OnMouseLeave(EventArgs e) {
+        protected override void OnMouseLeave(EventArgs e) {
             _drawingSuspended = true;
 
-			this.Invalidate();
+            this.Invalidate();
 
-			base.OnMouseLeave(e);
-		}
+            base.OnMouseLeave(e);
+        }
 
         protected override void OnMouseEnter(EventArgs e) {
             _drawingSuspended = false;
@@ -390,13 +389,13 @@ namespace OnTopReplica {
             base.OnMouseEnter(e);
         }
 
-		protected override void OnMouseMove(MouseEventArgs e) {
-			if (_drawingRegion && e.Button == MouseButtons.Left) {
+        protected override void OnMouseMove(MouseEventArgs e) {
+            if (_drawingRegion && e.Button == MouseButtons.Left) {
                 //Continue drawing
-				_regionLastPoint = e.Location;
+                _regionLastPoint = e.Location;
 
-				this.Invalidate();
-			}
+                this.Invalidate();
+            }
             else if(DrawMouseRegions && !_drawingRegion){
                 //Keep track of region start point
                 _regionLastPoint = e.Location;
@@ -404,31 +403,31 @@ namespace OnTopReplica {
                 this.Invalidate();
             }
 
-			base.OnMouseMove(e);
-		}
+            base.OnMouseMove(e);
+        }
 
-		readonly static Pen RedPen = new Pen(Color.FromArgb(255, Color.Red), 1.5f); //TODO: check width
+        readonly static Pen RedPen = new Pen(Color.FromArgb(255, Color.Red), 1.5f); //TODO: check width
 
-		protected override void OnPaint(PaintEventArgs e) {
-			if (_drawingRegion) {
+        protected override void OnPaint(PaintEventArgs e) {
+            if (_drawingRegion) {
                 //Is currently drawing, show rectangle
-				int left = Math.Min(_regionStartPoint.X, _regionLastPoint.X);
-				int right = Math.Max(_regionStartPoint.X, _regionLastPoint.X);
-				int top = Math.Min(_regionStartPoint.Y, _regionLastPoint.Y);
-				int bottom = Math.Max(_regionStartPoint.Y, _regionLastPoint.Y);
+                int left = Math.Min(_regionStartPoint.X, _regionLastPoint.X);
+                int right = Math.Max(_regionStartPoint.X, _regionLastPoint.X);
+                int top = Math.Min(_regionStartPoint.Y, _regionLastPoint.Y);
+                int bottom = Math.Max(_regionStartPoint.Y, _regionLastPoint.Y);
 
-				e.Graphics.DrawRectangle(RedPen, left, top, right - left, bottom - top);
-			}
+                e.Graphics.DrawRectangle(RedPen, left, top, right - left, bottom - top);
+            }
             else if (DrawMouseRegions && ! _drawingSuspended) {
                 //Show cursor coordinates
                 e.Graphics.DrawLine(RedPen, new Point(0, _regionLastPoint.Y), new Point(ClientSize.Width, _regionLastPoint.Y));
                 e.Graphics.DrawLine(RedPen, new Point(_regionLastPoint.X, 0), new Point(_regionLastPoint.X, ClientSize.Height));
             }
 
-			base.OnPaint(e);
-		}
+            base.OnPaint(e);
+        }
 
-		#endregion
+        #endregion
 
         #region Thumbnail clone click
 
@@ -459,12 +458,12 @@ namespace OnTopReplica {
         /// <summary>
         /// Is raised when the thumbnail clone is clicked.
         /// </summary>
-		public event EventHandler<CloneClickEventArgs> CloneClick;
+        public event EventHandler<CloneClickEventArgs> CloneClick;
 
-		protected virtual void OnCloneClick(Point location, MouseButtons buttons, bool doubleClick){
+        protected virtual void OnCloneClick(Point location, MouseButtons buttons, bool doubleClick){
             var evt = CloneClick;
-			if(evt != null)
-				evt(this, new CloneClickEventArgs(location, buttons, doubleClick));
+            if(evt != null)
+                evt(this, new CloneClickEventArgs(location, buttons, doubleClick));
         }
 
         #endregion

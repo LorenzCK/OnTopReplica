@@ -54,7 +54,7 @@ namespace OnTopReplica {
         /// <param name="errorMessage">Expanded error codes/messages.</param>
         private void ShowErrorDialog(string mainInstruction, string explanation, string errorMessage) {
             TaskDialog dlg = new TaskDialog(mainInstruction, Strings.ErrorGenericTitle, explanation) {
-                CommonIcon = TaskDialogIcon.Stop,
+                CommonIcon = CommonIcon.Stop,
                 IsExpanded = false
             };
 
@@ -85,12 +85,12 @@ namespace OnTopReplica {
             var dlg = new TaskDialog(Strings.AskReset, Strings.AskResetTitle, Strings.AskResetContent);
             dlg.UseCommandLinks = true;
             dlg.CustomButtons = new CustomButton[] {
-				new CustomButton(Result.OK, Strings.AskResetButtonOk),
-				new CustomButton(Result.Cancel, Strings.ButtonCancel)
-			};
-            dlg.CommonIcon = TaskDialogIcon.Information;
+                new CustomButton(CommonButtonResult.OK, Strings.AskResetButtonOk),
+                new CustomButton(CommonButtonResult.Cancel, Strings.ButtonCancel)
+            };
+            dlg.CommonIcon = CommonIcon.Information;
 
-            if (dlg.Show(this).CommonButton == Result.OK) {
+            if (dlg.Show(this).CommonButton == CommonButtonResult.OK) {
                 ResetMainForm();
             }
         }

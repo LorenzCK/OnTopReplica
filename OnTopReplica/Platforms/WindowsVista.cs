@@ -23,7 +23,7 @@ namespace OnTopReplica.Platforms {
             //NOTE: this also makes HotKey registration critically fail on Windows 7
             form.ShowInTaskbar = false;
 
-            DwmManager.SetWindowFlip3dPolicy(form, Flip3DPolicy.ExcludeAbove);
+            DwmManager.SetWindowFlip3dPolicy(form, WindowsFormsAero.Flip3DPolicy.ExcludeAbove);
             
             _icon = new NotificationIcon(form);
         }
