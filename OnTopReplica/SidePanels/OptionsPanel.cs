@@ -82,6 +82,7 @@ namespace OnTopReplica.SidePanels {
             new CultureWrapper("Italiano", new CultureInfo("it-IT"), Resources.flag_ita),
             new CultureWrapper("Polski", new CultureInfo("pl-PL"), Resources.flag_poland),
             new CultureWrapper("简体中文", new CultureInfo("zh-CN"), Resources.flag_china),
+            new CultureWrapper("繁體中文", new CultureInfo("zh-TW"), Resources.flag_taiwan),
         };
 
         private void PopulateLanguageComboBox() {
