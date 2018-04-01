@@ -28,7 +28,7 @@ Very useful for monitoring background processes, wrangling with complex multi-wi
 
 ## Installation
 
-Get the [latest version](/releases/) from the releases section, both as installer and as a standalone portable executable.
+Get the [latest version](/releases/) from the releases section.
 
 ## Contributions
 
