@@ -46,13 +46,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5A98ACA9BFEF014A2BEFE7AD916D99B6"
+        "OwnerKey" = "8:_FD2FE03164614192A11D674CB6FD870E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FD2FE03164614192A11D674CB6FD870E"
+        "OwnerKey" = "8:_5A98ACA9BFEF014A2BEFE7AD916D99B6"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -63,7 +63,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\Installer.msi"
+        "OutputFilename" = "8:OnTopReplica.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -73,13 +73,21 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\Installer.msi"
+        "OutputFilename" = "8:OnTopReplica.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -89,6 +97,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -277,7 +301,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:OnTopReplica"
         "ProductCode" = "8:{524E0F6C-A2D8-434C-A32D-3BCBF17FC5C6}"
-        "PackageCode" = "8:{F0F8F3D2-CDFD-4C21-AF48-6F46A3C7565B}"
+        "PackageCode" = "8:{3C780125-2FAD-405E-8D4B-7D81C77C98BE}"
         "UpgradeCode" = "8:{6EBB4E0A-1F0C-4302-AC60-45E05F641909}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

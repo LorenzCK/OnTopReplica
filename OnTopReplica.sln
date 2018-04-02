@@ -33,6 +33,7 @@ Global
 		{EA7C9C89-0CCF-41E3-A379-D593AAF7A941}.Debug|x64.ActiveCfg = Debug
 		{EA7C9C89-0CCF-41E3-A379-D593AAF7A941}.Debug|x86.ActiveCfg = Debug
 		{EA7C9C89-0CCF-41E3-A379-D593AAF7A941}.Release|Any CPU.ActiveCfg = Release
+		{EA7C9C89-0CCF-41E3-A379-D593AAF7A941}.Release|Any CPU.Build.0 = Release
 		{EA7C9C89-0CCF-41E3-A379-D593AAF7A941}.Release|x64.ActiveCfg = Release
 		{EA7C9C89-0CCF-41E3-A379-D593AAF7A941}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
