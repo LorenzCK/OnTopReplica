@@ -58,13 +58,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E544DEE7648C4E86937A8A746067D64C"
+        "OwnerKey" = "8:_FD08D480081E2A6C3D1A5EA9C82FC43F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FD08D480081E2A6C3D1A5EA9C82FC43F"
+        "OwnerKey" = "8:_E544DEE7648C4E86937A8A746067D64C"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -243,11 +243,6 @@
             "AssemblyAsmDisplayName" = "8:WindowsFormsAero, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_FD08D480081E2A6C3D1A5EA9C82FC43F"
-                    {
-                    "Name" = "8:WindowsFormsAero.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:WindowsFormsAero.dll"
             "TargetName" = "8:"
@@ -323,15 +318,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:OnTopReplica"
-        "ProductCode" = "8:{524E0F6C-A2D8-434C-A32D-3BCBF17FC5C6}"
-        "PackageCode" = "8:{4380D7A0-0222-4D27-964F-43FBFB59ACE6}"
+        "ProductCode" = "8:{F149C020-D121-45B2-A630-5DB052413244}"
+        "PackageCode" = "8:{26DD2132-FA97-4154-B46C-D92B25F16FED}"
         "UpgradeCode" = "8:{6EBB4E0A-1F0C-4302-AC60-45E05F641909}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:3.6.0"
+        "ProductVersion" = "8:3.5.1"
         "Manufacturer" = "8:OnTopReplica"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/LorenzCK/OnTopReplica/issues"
@@ -1049,7 +1044,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E544DEE7648C4E86937A8A746067D64C"
             {
-            "SourcePath" = "8:..\\PostInstaller\\obj\\Debug\\PostInstaller.exe"
+            "SourcePath" = "8:..\\PostInstaller\\obj\\Release\\PostInstaller.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_92458F5B5377456CB04EFACB28735CC9"
@@ -1077,7 +1072,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FD2FE03164614192A11D674CB6FD870E"
             {
-            "SourcePath" = "8:..\\OnTopReplica\\obj\\Debug\\OnTopReplica.exe"
+            "SourcePath" = "8:..\\OnTopReplica\\obj\\Release\\OnTopReplica.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_92458F5B5377456CB04EFACB28735CC9"
