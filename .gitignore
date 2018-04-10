@@ -1,8 +1,8 @@
-.vs/*
+**/.vs/*
 **/bin/*
 **/obj/*
 **/publish/*
 Installer/OnTopReplica-Setup.exe
 *.user
 *.suo
-packages/
+src/packages/*
