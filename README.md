@@ -28,7 +28,7 @@ Very useful for monitoring background processes, wrangling with complex multi-wi
 
 ## Installation
 
-Get the [latest version (v.3.5.1)](https://github.com/paulodeleo/OnTopReplica/releases/tag/v3.5.1) from the releases section, both as installer and as a standalone portable executable.
+Get the [latest version](/releases/) from the releases section.
 
 ## Contributions
 
