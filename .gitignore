@@ -3,6 +3,7 @@
 **/obj/*
 **/publish/*
 Installer/OnTopReplica-Setup.exe
+src/Installer/output/*
 *.user
 *.suo
 src/packages/*
