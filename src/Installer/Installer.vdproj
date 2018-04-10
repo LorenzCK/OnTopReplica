@@ -33,6 +33,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E544DEE7648C4E86937A8A746067D64C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_FD08D480081E2A6C3D1A5EA9C82FC43F"
         "OwnerKey" = "8:_FD2FE03164614192A11D674CB6FD870E"
         "MsmSig" = "8:_UNDEFINED"
@@ -47,6 +53,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_FD2FE03164614192A11D674CB6FD870E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E544DEE7648C4E86937A8A746067D64C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -127,6 +139,20 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_70B50EF584624E8CA01EA1C853DE2D27"
+            {
+            "Name" = "8:Primary output from PostInstaller (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_E544DEE7648C4E86937A8A746067D64C"
+            "FileType" = "3:2"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:\"[ProgramMenuFolder]OnTopReplica\\OnTopReplica.lnk\" \"LorenzCunoKlopfenstein.OnTopReplica.MainForm\""
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_FD81C6C3_6535_47C7_AD92_C0871E83103C"
+            "InstallerClass" = "11:FALSE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -247,17 +273,6 @@
         }
         "Folder"
         {
-            "{1525181F-901A-416C-8A58-119130FE478E}:_39F91DA891324B10BB3097F6C6192D17"
-            {
-            "Name" = "8:#1916"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:DesktopFolder"
-                "Folders"
-                {
-                }
-            }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_92458F5B5377456CB04EFACB28735CC9"
             {
             "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
@@ -309,11 +324,11 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:OnTopReplica"
         "ProductCode" = "8:{524E0F6C-A2D8-434C-A32D-3BCBF17FC5C6}"
-        "PackageCode" = "8:{CA4567E0-2134-40DD-AB06-06E910C7A253}"
+        "PackageCode" = "8:{4380D7A0-0222-4D27-964F-43FBFB59ACE6}"
         "UpgradeCode" = "8:{6EBB4E0A-1F0C-4302-AC60-45E05F641909}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:3.6.0"
@@ -439,20 +454,6 @@
             "Transitive" = "11:FALSE"
             "Target" = "8:_FD2FE03164614192A11D674CB6FD870E"
             "Folder" = "8:_EA7A7A42B4AB4CABAB8BC207D3B32817"
-            "WorkingFolder" = "8:_92458F5B5377456CB04EFACB28735CC9"
-            "Icon" = "8:_BB607179F88446409C91AC786E95410C"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_91FD25A1D4E9441B9BADF46738B5D411"
-            {
-            "Name" = "8:OnTopReplica"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_FD2FE03164614192A11D674CB6FD870E"
-            "Folder" = "8:_39F91DA891324B10BB3097F6C6192D17"
             "WorkingFolder" = "8:_92458F5B5377456CB04EFACB28735CC9"
             "Icon" = "8:_BB607179F88446409C91AC786E95410C"
             "Feature" = "8:"
@@ -1026,7 +1027,7 @@
             "Folder" = "8:_92458F5B5377456CB04EFACB28735CC9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
+            "Vital" = "11:FALSE"
             "ReadOnly" = "11:FALSE"
             "Hidden" = "11:FALSE"
             "System" = "11:FALSE"
@@ -1046,9 +1047,37 @@
                 {
                 }
             }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E544DEE7648C4E86937A8A746067D64C"
+            {
+            "SourcePath" = "8:..\\PostInstaller\\obj\\Debug\\PostInstaller.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_92458F5B5377456CB04EFACB28735CC9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{05F8E270-8B47-449B-8755-4599B3B3A565}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FD2FE03164614192A11D674CB6FD870E"
             {
-            "SourcePath" = "8:..\\OnTopReplica\\obj\\Release\\OnTopReplica.exe"
+            "SourcePath" = "8:..\\OnTopReplica\\obj\\Debug\\OnTopReplica.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_92458F5B5377456CB04EFACB28735CC9"
