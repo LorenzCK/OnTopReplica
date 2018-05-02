@@ -170,7 +170,7 @@
                 "Message" = "8:[VSDNETMSG]"
                 "FrameworkVersion" = "8:.NETFramework,Version=v4.7"
                 "AllowLaterVersions" = "11:FALSE"
-                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=671728"
+                "InstallUrl" = "8:https://go.microsoft.com/fwlink/?linkid=863262"
                 }
             }
         }
@@ -243,6 +243,11 @@
             "AssemblyAsmDisplayName" = "8:WindowsFormsAero, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_FD08D480081E2A6C3D1A5EA9C82FC43F"
+                    {
+                    "Name" = "8:WindowsFormsAero.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:WindowsFormsAero.dll"
             "TargetName" = "8:"
