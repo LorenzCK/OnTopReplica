@@ -4,7 +4,7 @@ using System.Text;
 using OnTopReplica.Platforms;
 using System.Windows.Forms;
 
-namespace OnTopReplica {
+namespace OnTopReplica.Platforms {
 
     abstract class PlatformSupport {
 
@@ -25,7 +25,10 @@ namespace OnTopReplica {
             if (os.Platform != PlatformID.Win32NT)
                 return new Other();
 
-            if (os.Version.Major == 6) {
+            if(os.Version.Major == 10) {
+                return new WindowsTen();
+            }
+            else if (os.Version.Major == 6) {
                 if (os.Version.Minor >= 2)
                     return new WindowsEight();
                 else if (os.Version.Minor == 1)
@@ -50,15 +53,21 @@ namespace OnTopReplica {
         public abstract bool CheckCompatibility();
 
         /// <summary>
-        /// Initializes a form before it is fully constructed and before the window handle has been created.
+        /// Initialization step to run before the form is constructed.
         /// </summary>
         public virtual void PreHandleFormInit() {
         }
 
         /// <summary>
+        /// Initialization step to run just after the form is constructed and WinForms
+        /// components have initialized.
+        /// </summary>
+        public virtual void PostFormInit(MainForm form) {
+        }
+
+        /// <summary>
         /// Initializes a form after its handle has been created.
         /// </summary>
-        /// <param name="form">Form to initialize.</param>
         public virtual void PostHandleFormInit(MainForm form) {
         }
 

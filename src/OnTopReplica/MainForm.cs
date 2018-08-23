@@ -33,6 +33,7 @@ namespace OnTopReplica {
 
             //WinForms init pass
             InitializeComponent();
+            Program.Platform.PostFormInit(this);
 
             //Store default values
             DefaultNonClickTransparencyKey = TransparencyKey;
