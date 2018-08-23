@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using OnTopReplica.Native;
+﻿using OnTopReplica.Native;
 using WindowsFormsAero.Dwm;
 
 namespace OnTopReplica.Platforms {
@@ -10,8 +8,7 @@ namespace OnTopReplica.Platforms {
         private double? PreviousOpacity { get; set; }
 
         public override void PreHandleFormInit() {
-            //Set Application ID
-            WindowsSevenMethods.SetCurrentProcessExplicitAppUserModelID("LorenzCunoKlopfenstein.OnTopReplica.MainForm");
+            WindowsSevenMethods.SetCurrentProcessExplicitAppUserModelID(Program.ApplicationId);
         }
 
         public override void PostHandleFormInit(MainForm form) {
@@ -34,7 +31,7 @@ namespace OnTopReplica.Platforms {
                 form.Opacity = PreviousOpacity.GetValueOrDefault(1.0);
                 PreviousOpacity = null;
             }
-            
+
             form.Show();
         }
 

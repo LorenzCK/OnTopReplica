@@ -3,13 +3,16 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using OnTopReplica.Platforms;
 using OnTopReplica.Properties;
 using OnTopReplica.StartupOptions;
 using OnTopReplica.Update;
 
 namespace OnTopReplica {
-    
+
     static class Program {
+
+        public const string ApplicationId = "LorenzCunoKlopfenstein.OnTopReplica.MainForm";
 
         public static PlatformSupport Platform { get; private set; }
 
@@ -60,7 +63,7 @@ namespace OnTopReplica {
             }
             if (options.Status == CliStatus.Information || options.Status == CliStatus.Error)
                 return;
-            
+
             //Load language
             Thread.CurrentThread.CurrentUICulture = Settings.Default.Language;
 

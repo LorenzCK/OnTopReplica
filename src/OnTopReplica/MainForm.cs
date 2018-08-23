@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -16,7 +16,7 @@ namespace OnTopReplica {
     partial class MainForm : AspectRatioForm {
 
         //GUI elements
-        ThumbnailPanel _thumbnailPanel;
+        private ThumbnailPanel _thumbnailPanel;
 
         //Managers
         readonly MessagePumpManager _msgPumpManager = new MessagePumpManager();
@@ -30,13 +30,13 @@ namespace OnTopReplica {
 
             FullscreenManager = new FullscreenFormManager(this);
             _quickRegionDrawingHandler = new ThumbnailPanel.RegionDrawnHandler(HandleQuickRegionDrawn);
-            
+
             //WinForms init pass
             InitializeComponent();
 
             //Store default values
-            DefaultNonClickTransparencyKey = this.TransparencyKey;
-            DefaultBorderStyle = this.FormBorderStyle;
+            DefaultNonClickTransparencyKey = TransparencyKey;
+            DefaultBorderStyle = FormBorderStyle;
 
             //Thumbnail panel
             _thumbnailPanel = new ThumbnailPanel {
@@ -52,7 +52,7 @@ namespace OnTopReplica {
             );
 
             //Set to Key event preview
-            this.KeyPreview = true;
+            KeyPreview = true;
 
             Log.Write("Main form constructed");
         }
@@ -456,6 +456,6 @@ namespace OnTopReplica {
         }
 
         #endregion
-        
+
     }
 }

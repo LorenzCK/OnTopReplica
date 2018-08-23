@@ -1,79 +1,77 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using OnTopReplica.Native;
 
 namespace OnTopReplica {
 
-	/// <summary>
+    /// <summary>
     /// Helper class that keeps a window handle (HWND),
     /// the title of the window and can load its icon.
     /// </summary>
-	public class WindowHandle : System.Windows.Forms.IWin32Window {
-		
+    public class WindowHandle : System.Windows.Forms.IWin32Window {
+
         IntPtr _handle;
-		string _title;
+        string _title;
 
         /// <summary>
         /// Creates a new WindowHandle instance. The handle pointer must be valid, the title
         /// may be null or empty and will be updated as requested.
         /// </summary>
-		public WindowHandle(IntPtr p, string title) {
-			_handle = p;
-			_title = title;
-		}
+        public WindowHandle(IntPtr p, string title) {
+            _handle = p;
+            _title = title;
+        }
 
         /// <summary>
         /// Creates a new WindowHandle instance. Additional features of the handle will be queried as needed.
         /// </summary>
-        /// <param name="p"></param>
         public WindowHandle(IntPtr p) {
             _handle = p;
             _title = null;
         }
 
-		public string Title {
-			get {
+        public string Title {
+            get {
                 if (_title == null) {
                     _title = WindowMethods.GetWindowText(_handle) ?? string.Empty;
                 }
 
-				return _title;
-			}
-		}
+                return _title;
+            }
+        }
 
-		Icon _icon = null;
-		bool _iconFetched = false;
-		public Icon Icon {
-			get {
-				if (!_iconFetched) {
-					//Fetch icon from window
-					IntPtr hIcon;
+        Icon _icon = null;
+        bool _iconFetched = false;
+        public Icon Icon {
+            get {
+                if (!_iconFetched) {
+                    //Fetch icon from window
+                    IntPtr hIcon;
 
                     if (MessagingMethods.SendMessageTimeout(_handle, WM.GETICON, new IntPtr(2), new IntPtr(0),
                         MessagingMethods.SendMessageTimeoutFlags.AbortIfHung | MessagingMethods.SendMessageTimeoutFlags.Block, 500, out hIcon) == IntPtr.Zero) {
                         hIcon = IntPtr.Zero;
                     }
 
-					if (hIcon != IntPtr.Zero) {
-						_icon = Icon.FromHandle(hIcon);
-					}
-					else {
-						//Fetch icon from window class
+                    if (hIcon != IntPtr.Zero) {
+                        _icon = Icon.FromHandle(hIcon);
+                    }
+                    else {
+                        //Fetch icon from window class
                         hIcon = (IntPtr)WindowMethods.GetClassLong(_handle, WindowMethods.ClassLong.IconSmall);
 
-						if (hIcon.ToInt64() != 0) {
-							_icon = Icon.FromHandle(hIcon);
-						}
-					}
-				}
+                        if (hIcon.ToInt64() != 0) {
+                            _icon = Icon.FromHandle(hIcon);
+                        }
+                    }
+                }
 
-				_iconFetched = true;
+                _iconFetched = true;
 
-				return _icon;
-			}
-		}
+                return _icon;
+            }
+        }
 
         string _class = null;
 
@@ -113,32 +111,32 @@ namespace OnTopReplica {
             }
 
             return sb.ToString();
-		}
+        }
 
-		public override bool Equals(object obj) {
-			if (ReferenceEquals(obj, this))
-				return true;
+        public override bool Equals(object obj) {
+            if (ReferenceEquals(obj, this))
+                return true;
 
-			System.Windows.Forms.IWin32Window win = obj as System.Windows.Forms.IWin32Window;
-			if (win == null)
-				return false;
+            System.Windows.Forms.IWin32Window win = obj as System.Windows.Forms.IWin32Window;
+            if (win == null)
+                return false;
 
-			return (_handle.Equals(win.Handle));
-		}
+            return (_handle.Equals(win.Handle));
+        }
 
-		public override int GetHashCode() {
-			return _handle.GetHashCode();
-		}
+        public override int GetHashCode() {
+            return _handle.GetHashCode();
+        }
 
         #endregion
 
         #region IWin32Window Members
 
         public IntPtr Handle {
-			get { return _handle; }
-		}
+            get { return _handle; }
+        }
 
-		#endregion
+        #endregion
 
         /// <summary>
         /// Creates a new windowHandle instance from a given IntPtr handle.
@@ -148,5 +146,5 @@ namespace OnTopReplica {
             return new WindowHandle(handle, null);
         }
 
-	}
+    }
 }

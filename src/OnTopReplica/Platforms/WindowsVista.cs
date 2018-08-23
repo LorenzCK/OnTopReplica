@@ -1,11 +1,10 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using WindowsFormsAero.Dwm;
 
 namespace OnTopReplica.Platforms {
 
     class WindowsVista : PlatformSupport {
-        
+
         public override bool CheckCompatibility() {
             if (!WindowsFormsAero.OsSupport.IsCompositionEnabled) {
                 MessageBox.Show(Strings.ErrorDwmOffContent, Strings.ErrorDwmOff, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -24,7 +23,7 @@ namespace OnTopReplica.Platforms {
             form.ShowInTaskbar = false;
 
             DwmManager.SetWindowFlip3dPolicy(form, WindowsFormsAero.Flip3DPolicy.ExcludeAbove);
-            
+
             _icon = new NotificationIcon(form);
         }
 

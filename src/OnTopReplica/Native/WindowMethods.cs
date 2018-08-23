@@ -78,12 +78,15 @@ namespace OnTopReplica.Native {
 
         [Flags]
         public enum WindowExStyles : long {
-            AppWindow = 0x40000,
+            AcceptFiles = 0x00000010L,
+            AppWindow = 0x00040000L,
             Layered = 0x80000,
             NoActivate = 0x8000000L,
+            NoRedirectionBitmap = 0x00200000L,
             ToolWindow = 0x80,
             TopMost = 8,
-            Transparent = 0x20
+            Transparent = 0x20,
+            WindowEdge = 0x00000100L
         }
 
         public static IntPtr GetWindowLong(IntPtr hWnd, WindowLong i) {

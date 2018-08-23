@@ -7,6 +7,7 @@ using WindowsFormsAero.TaskDialog;
 using OnTopReplica.SidePanels;
 
 namespace OnTopReplica {
+
     partial class MainForm {
 
         private void Menu_opening(object sender, CancelEventArgs e) {
@@ -58,11 +59,11 @@ namespace OnTopReplica {
 
         private void Menu_Opacity_opening(object sender, CancelEventArgs e) {
             ToolStripMenuItem[] items = {
-				toolStripMenuItem1,
-				toolStripMenuItem2,
-				toolStripMenuItem3,
-				toolStripMenuItem4
-			};
+                toolStripMenuItem1,
+                toolStripMenuItem2,
+                toolStripMenuItem3,
+                toolStripMenuItem4
+            };
 
             foreach (ToolStripMenuItem i in items) {
                 if (((double)i.Tag) == this.Opacity)
