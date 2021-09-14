@@ -67,6 +67,9 @@ namespace OnTopReplica.StartupOptions {
 
         private static void ParseCommandLine(string[] args, Options options) {
             var cmdOptions = new NDesk.Options.OptionSet()
+                .Add<int>("screen=", "ScreenIndex to display on.", id => {
+                    options.ScreenIndex = id;
+                })
                 .Add<long>("windowId=", "Window handle ({HWND}) to be cloned.", id => {
                     options.WindowId = new IntPtr(id);
                     options.WindowTitle = null;
