@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.IO;
 using OnTopReplica.WindowSeekers;
+using System.Windows.Forms;
 
 namespace OnTopReplica.StartupOptions {
 
@@ -20,6 +21,8 @@ namespace OnTopReplica.StartupOptions {
             MustBeVisible = false;
             Fullscreen = false;
         }
+
+        public int ScreenIndex = 0;
 
         #region Position and size
 
@@ -97,6 +100,12 @@ namespace OnTopReplica.StartupOptions {
 
         #region Application
 
+        private void setFormLocation(Form form, Screen screen) {
+            Point start = StartLocation ?? default(Point);
+            Point loc = new Point(start.X + screen.WorkingArea.Location.X, start.Y + screen.WorkingArea.Location.Y);
+            form.Location = loc;
+        }
+
         public void Apply(MainForm form) {
             Log.Write("Applying command line launch parameters");
 
@@ -160,6 +169,9 @@ namespace OnTopReplica.StartupOptions {
                 form.ClientSize = StartSize.Value;
             }
 
+            if (ScreenIndex != 0) {
+                setFormLocation(form, Screen.AllScreens[ScreenIndex]);
+            }
             //Other features
             if (EnableClickForwarding) {
                 form.ClickForwardingEnabled = true;
