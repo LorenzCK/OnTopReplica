@@ -617,6 +617,12 @@
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnTopReplica.AntiBrowserOcclusion\OnTopReplica.AntiBrowserOcclusion.csproj">
+      <Project>{314e4ef9-b9df-45ad-817a-351555cdee96}</Project>
+      <Name>OnTopReplica.AntiBrowserOcclusion</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

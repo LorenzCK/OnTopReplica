@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using OnTopReplica.AntiBrowserOcclusion;
 using OnTopReplica.Native;
 using OnTopReplica.Properties;
 using OnTopReplica.StartupOptions;
@@ -310,6 +311,8 @@ namespace OnTopReplica {
 
                 //Set aspect ratio (this will resize the form), do not refresh if in fullscreen
                 SetAspectRatio(_thumbnailPanel.ThumbnailPixelSize, !FullscreenManager.IsFullscreen);
+
+                AntiOcclusionTracker.Start();
             }
             catch (Exception ex) {
                 Log.WriteException("Unable to set new thumbnail", ex);
@@ -342,6 +345,8 @@ namespace OnTopReplica {
         /// Disables the cloned thumbnail.
         /// </summary>
         public void UnsetThumbnail() {
+            AntiOcclusionTracker.Stop();
+
             //Unset handle
             CurrentThumbnailWindowHandle = null;
             _thumbnailPanel.UnsetThumbnail();

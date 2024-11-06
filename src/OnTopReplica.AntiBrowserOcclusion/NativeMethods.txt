@@ -1,0 +1,7 @@
+﻿CreateWindowEx
+RegisterClass
+DefWindowProc
+GetModuleHandle
+NotifyWinEvent
+SetWinEventHook
+GetClassName
