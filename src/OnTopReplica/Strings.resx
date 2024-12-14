@@ -670,4 +670,10 @@ OnTopReplica will be closed and the update installed.</value>
   <data name="RegionsY" xml:space="preserve">
     <value>Y</value>
   </data>
+  <data name="MenuRestore" xml:space="preserve">
+    <value>Double-click to restore</value>
+  </data>
+  <data name="MenuRestoreTT" xml:space="preserve">
+    <value>When enabled, double-clicking the replica restores the window instead</value>
+  </data>
 </root>
