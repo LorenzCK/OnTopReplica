@@ -208,7 +208,15 @@ namespace OnTopReplica {
                 case WM.NCLBUTTONDBLCLK:
                     //Toggle fullscreen mode if double click on caption (whole glass area)
                     if (m.WParam.ToInt32() == HT.CAPTION) {
-                        FullscreenManager.Toggle();
+                        if(!IsRestoreEnabled) {
+                            FullscreenManager.Toggle();
+                        }
+                        else {
+                            if(CurrentThumbnailWindowHandle == null)
+                                return;
+                            Program.Platform.HideForm(this);
+                            Native.WindowManagerMethods.SetForegroundWindow(CurrentThumbnailWindowHandle.Handle);
+                        }
 
                         m.Result = IntPtr.Zero;
                         return;
@@ -456,6 +464,6 @@ namespace OnTopReplica {
         }
 
         #endregion
-        
+
     }
 }

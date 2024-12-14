@@ -22,6 +22,7 @@ namespace OnTopReplica {
             switchToWindowToolStripMenuItem.Enabled = showing;
             resizeToolStripMenuItem.Enabled = showing;
             chromeToolStripMenuItem.Checked = IsChromeVisible;
+            restoreToolStripMenuItem.Checked = IsRestoreEnabled;
             clickForwardingToolStripMenuItem.Checked = ClickForwardingEnabled;
             chromeToolStripMenuItem.Enabled = showing;
             clickThroughToolStripMenuItem.Enabled = showing;
@@ -157,6 +158,10 @@ namespace OnTopReplica {
 
         private void Menu_Chrome_click(object sender, EventArgs e) {
             IsChromeVisible = !IsChromeVisible;
+        }
+
+        private void Menu_Restore_click(object sender, EventArgs e) {
+            IsRestoreEnabled = !IsRestoreEnabled;
         }
 
         private void Menu_Settings_click(object sender, EventArgs e) {
