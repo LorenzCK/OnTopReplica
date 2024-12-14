@@ -62,6 +62,7 @@
             this.bottomLeftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bottomRightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reduceToIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,6 +95,7 @@
             this.resizeToolStripMenuItem,
             this.dockToolStripMenuItem,
             this.chromeToolStripMenuItem,
+            this.restoreToolStripMenuItem,
             this.reduceToIconToolStripMenuItem,
             this.toolStripSeparator1,
             this.settingsToolStripMenuItem,
@@ -403,6 +405,14 @@
             this.chromeToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuChrome;
             this.chromeToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuChromeTT;
             this.chromeToolStripMenuItem.Click += new System.EventHandler(this.Menu_Chrome_click);
+            //
+            // restoreToolStripMenuItem
+            // 
+            this.restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
+            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.restoreToolStripMenuItem.Text = global::OnTopReplica.Strings.MenuRestore;
+            this.restoreToolStripMenuItem.ToolTipText = global::OnTopReplica.Strings.MenuRestoreTT;
+            this.restoreToolStripMenuItem.Click += new System.EventHandler(this.Menu_Restore_click);
             // 
             // reduceToIconToolStripMenuItem
             // 
@@ -577,6 +587,7 @@
         private System.Windows.Forms.ToolStripMenuItem fullscreenToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem chromeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem restoreToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip menuFullscreenContext;
         private System.Windows.Forms.ToolStripMenuItem fullSelectWindowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fullOpacityToolStripMenuItem;

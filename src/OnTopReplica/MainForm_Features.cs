@@ -132,6 +132,19 @@ namespace OnTopReplica {
 
         #endregion
 
+        #region DoubleClickRestore
+
+        private bool _isRestoreEnabled;
+
+        public bool IsRestoreEnabled {
+            get { return _isRestoreEnabled; }
+            set {
+                _isRestoreEnabled = value;
+            }
+        }
+
+        #endregion
+
         #region Position lock
 
         ScreenPosition? _positionLock = null;
