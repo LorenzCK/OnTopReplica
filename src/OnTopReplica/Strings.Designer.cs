@@ -312,6 +312,105 @@ namespace OnTopReplica {
                 return ResourceManager.GetString("AskResetTitle", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Color Alert.
+        /// </summary>
+        internal static string ColorAlert_Title {
+            get {
+                return ResourceManager.GetString("ColorAlert_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Target Color:. 
+        /// </summary>
+        internal static string ColorAlert_TargetColor {
+            get {
+                return ResourceManager.GetString("ColorAlert_TargetColor", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Color Tolerance:. 
+        /// </summary>
+        internal static string ColorAlert_Tolerance {
+            get {
+                return ResourceManager.GetString("ColorAlert_Tolerance", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sample Interval (ms):.
+        /// </summary>
+        internal static string ColorAlert_Interval {
+            get {
+                return ResourceManager.GetString("ColorAlert_Interval", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Color Detection.
+        /// </summary>
+        internal static string ColorAlert_Enable {
+            get {
+                return ResourceManager.GetString("ColorAlert_Enable", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Choose....
+        /// </summary>
+        internal static string ColorAlert_Choose {
+            get {
+                return ResourceManager.GetString("ColorAlert_Choose", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Higher value = more colors match (0-255).
+        /// </summary>
+        internal static string ColorAlert_ToleranceTooltip {
+            get {
+                return ResourceManager.GetString("ColorAlert_ToleranceTooltip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Time between color checks in milliseconds.
+        /// </summary>
+        internal static string ColorAlert_IntervalTooltip {
+            get {
+                return ResourceManager.GetString("ColorAlert_IntervalTooltip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Monitor window for specific color and alert.
+        /// </summary>
+        internal static string ColorAlert_MenuTooltip {
+            get {
+                return ResourceManager.GetString("ColorAlert_MenuTooltip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Alarm Volume:.
+        /// </summary>
+        internal static string ColorAlert_Volume {
+            get {
+                return ResourceManager.GetString("ColorAlert_Volume", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sound file:.
+        /// </summary>
+        internal static string ColorAlert_SoundFile {
+            get {
+                return ResourceManager.GetString("ColorAlert_SoundFile", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   查詢類似 Reset settings? 的當地語系化字串。

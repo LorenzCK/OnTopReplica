@@ -204,6 +204,43 @@ namespace OnTopReplica.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float ColorAlertVolume {
+            get {
+                return ((float)(this["ColorAlertVolume"]));
+            }
+            set {
+                this["ColorAlertVolume"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ColorAlertSoundFile {
+            get {
+                return ((string)(this["ColorAlertSoundFile"]));
+            }
+            set {
+                this["ColorAlertSoundFile"] = value;
+            }
+        }
+        
+        // persisted comma-separated list of colors chosen by user
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("[\"#FF0000\",\"#00FF00\"]")]
+        public string ColorAlertTargetColors {
+            get {
+                return ((string)(this["ColorAlertTargetColors"]));
+            }
+            set {
+                this["ColorAlertTargetColors"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("[CTRL]+[SHIFT]+C")]
         public string HotKeyCloneCurrent {
             get {

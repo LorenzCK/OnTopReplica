@@ -199,6 +199,40 @@
   <data name="AskReset" xml:space="preserve">
     <value>Reset window completely?</value>
   </data>
+  <!-- Color alert panel strings -->
+  <data name="ColorAlert_Title" xml:space="preserve">
+    <value>Color Alert</value>
+  </data>
+  <data name="ColorAlert_TargetColor" xml:space="preserve">
+    <value>Target colors (comma-separated)</value>
+  </data>
+  <data name="ColorAlert_Tolerance" xml:space="preserve">
+    <value>Color Tolerance:</value>
+  </data>
+  <data name="ColorAlert_Interval" xml:space="preserve">
+    <value>Sample Interval (ms):</value>
+  </data>
+  <data name="ColorAlert_Enable" xml:space="preserve">
+    <value>Enable Color Detection</value>
+  </data>
+  <data name="ColorAlert_Choose" xml:space="preserve">
+    <value>Add color...</value>
+  </data>
+  <data name="ColorAlert_ToleranceTooltip" xml:space="preserve">
+    <value>Higher value = more colors match (0-255)</value>
+  </data>
+  <data name="ColorAlert_IntervalTooltip" xml:space="preserve">
+    <value>Time between color checks in milliseconds</value>
+  </data>
+  <data name="ColorAlert_MenuTooltip" xml:space="preserve">
+    <value>Monitor window for specific color and alert</value>
+  </data>
+  <data name="ColorAlert_Volume" xml:space="preserve">
+    <value>Alarm Volume:</value>
+  </data>
+  <data name="ColorAlert_SoundFile" xml:space="preserve">
+    <value>Sound file:</value>
+  </data>
   <data name="AskResetButtonOk" xml:space="preserve">
     <value>&amp;Reset
 All settings will be lost.</value>

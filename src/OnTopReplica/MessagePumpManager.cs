@@ -38,6 +38,7 @@ namespace OnTopReplica {
             Register(new HotKeyManager(), form);
             Register(new GroupSwitchManager(), form);
             Register(new FlashCloner(), form);
+            Register(new ColorDetectionProcessor(), form);
         }
 
         /// <summary>

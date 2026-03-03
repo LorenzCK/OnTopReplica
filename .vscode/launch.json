@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch OnTopReplica",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "Build OnTopReplica",
+      "program": "${workspaceFolder}\\src\\OnTopReplica\\bin\\Debug\\OnTopReplica.exe",
+      "args": [],
+      "cwd": "${workspaceFolder}\\src\\OnTopReplica\\bin\\Debug",
+      "stopAtEntry": false
+    }
+  ]
+}

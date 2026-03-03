@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace OnTopReplica {
         const string LogFileName = "lastrun.log.txt";
         const string ConflictLogFileName = "run-{0}.log.txt";
 
+#if DEBUG
         private readonly static StreamWriter Writer;
 
         static Log() {
@@ -30,27 +32,34 @@ namespace OnTopReplica {
                 }
             }
         }
+#endif
 
+        [Conditional("DEBUG")]
         public static void Write(string message) {
             WriteLine(message);
         }
 
+        [Conditional("DEBUG")]
         public static void Write(string format, object arg0) {
             WriteLine(string.Format(format, arg0));
         }
 
+        [Conditional("DEBUG")]
         public static void Write(string format, object arg0, object arg1) {
             WriteLine(string.Format(format, arg0, arg1));
         }
 
+        [Conditional("DEBUG")]
         public static void Write(string format, params object[] args) {
             WriteLine(string.Format(format, args));
         }
 
+        [Conditional("DEBUG")]
         public static void WriteDetails(string caption, string format, params object[] args) {
             WriteLines(caption, string.Format(format, args));
         }
 
+        [Conditional("DEBUG")]
         public static void WriteException(string message, Exception exception) {
             if (exception != null) {
                 WriteLines(message, exception.ToString());
@@ -61,15 +70,18 @@ namespace OnTopReplica {
         }
 
         private static void WriteLine(string message) {
+#if DEBUG
             var s = string.Format("{0,-8:HH:mm:ss} {1}", DateTime.Now, message);
             AddToQueue(s);
 
             if (Writer != null) {
                 Writer.WriteLine(s);
             }
+#endif
         }
 
         private static void WriteLines(params string[] messages) {
+#if DEBUG
             if (messages.Length <= 0)
                 return;
 
@@ -85,6 +97,7 @@ namespace OnTopReplica {
             if (Writer != null) {
                 Writer.WriteLine(sb.ToString());
             }
+#endif
         }
 
         const int MaxQueueCapacity = 30;

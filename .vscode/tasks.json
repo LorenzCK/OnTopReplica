@@ -1,0 +1,95 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build OnTopReplica",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"chcp 65001 & powershell -NoProfile -ExecutionPolicy Bypass -File ${workspaceFolder}\\build.ps1 -Configuration Debug"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Build OnTopReplica",
+			"type": "shell",
+			"command": "msbuild",
+			"args": [
+				"e:\\clo\\OnTopReplica\\src\\OnTopReplica\\OnTopReplica.csproj",
+				"/p:Configuration=Debug",
+				"/v:minimal"
+			],
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build OnTopReplica",
+			"type": "shell",
+			"command": "msbuild",
+			"args": [
+				"e:\\clo\\OnTopReplica\\src\\OnTopReplica\\OnTopReplica.csproj",
+				"/p:Configuration=Debug",
+				"/v:minimal"
+			],
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build OnTopReplica",
+			"type": "shell",
+			"command": "msbuild",
+			"args": [
+				"e:\\clo\\OnTopReplica\\src\\OnTopReplica\\OnTopReplica.csproj",
+				"/p:Configuration=Debug",
+				"/v:minimal"
+			],
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build OnTopReplica",
+			"type": "shell",
+			"command": "msbuild",
+			"args": [
+				"e:\\clo\\OnTopReplica\\src\\OnTopReplica\\OnTopReplica.csproj",
+				"/p:Configuration=Debug",
+				"/v:minimal"
+			],
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build OnTopReplica",
+			"type": "shell",
+			"command": "msbuild",
+			"args": [
+				"e:\\clo\\OnTopReplica\\src\\OnTopReplica\\OnTopReplica.csproj",
+				"/p:Configuration=Debug",
+				"/v:minimal"
+			],
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		}
+	]
+}

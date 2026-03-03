@@ -73,18 +73,10 @@ namespace OnTopReplica.SidePanels {
             public string Name { get; set; }
         }
 
+        // only Chinese languages are kept per requirements
         CultureWrapper[] _languageList = {
-            new CultureWrapper("English", new CultureInfo("en-US"), Resources.flag_usa),
-            new CultureWrapper("Čeština", new CultureInfo("cs-CZ"), Resources.flag_czech),
-            new CultureWrapper("Dansk", new CultureInfo("da-DK"), Resources.flag_danish),
-            new CultureWrapper("Deutsch", new CultureInfo("de-DE"), Resources.flag_germany),
-            new CultureWrapper("Español", new CultureInfo("es-ES"), Resources.flag_spanish),
-            new CultureWrapper("Italiano", new CultureInfo("it-IT"), Resources.flag_ita),
-            new CultureWrapper("Polski", new CultureInfo("pl-PL"), Resources.flag_poland),
             new CultureWrapper("简体中文", new CultureInfo("zh-CN"), Resources.flag_china),
             new CultureWrapper("繁體中文", new CultureInfo("zh-TW"), Resources.flag_taiwan),
-            new CultureWrapper("Português", new CultureInfo("pt-BR"), Resources.flag_taiwan),
-            new CultureWrapper("日本語", new CultureInfo("ja-JP"), Resources.help),
         };
 
         private void PopulateLanguageComboBox() {

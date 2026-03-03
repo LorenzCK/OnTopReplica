@@ -59,5 +59,17 @@
     <Setting Name="RestoreLastShowChrome" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="ColorAlertVolume" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="ColorAlertSoundFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ColorAlertTargetColors" Type="System.String" Scope="User">
+      <Value Profile="(Default)">["#FF0000","#00FF00"]</Value>
+    </Setting>
+    <Setting Name="ColorAlertTargetColors" Type="System.String" Scope="User">
+      <Value Profile="(Default)">["#FF0000","#00FF00"]</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

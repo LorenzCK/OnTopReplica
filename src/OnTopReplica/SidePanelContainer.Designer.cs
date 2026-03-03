@@ -36,7 +36,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Side Panel container";
-            this.TopMost = true;
+            this.TopMost = false;
             this.ResumeLayout(false);
 
         }

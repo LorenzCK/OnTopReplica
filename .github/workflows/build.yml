@@ -1,0 +1,67 @@
+name: Build and Package
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch: {}
+
+jobs:
+  build-and-package:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Visual Studio Build Tools
+        run: choco install visualstudio2022buildtools -y --ignore-checksums
+
+      - name: Restore NuGet packages
+        run: |
+          pushd src
+          nuget restore OnTopReplica.sln
+          popd
+
+      - name: Build solution (Release)
+        run: |
+          echo "Locating MSBuild using vswhere..."
+          $vsPath = & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+          echo "Visual Studio folder: $vsPath"
+          $msbuildPath = Join-Path $vsPath "MSBuild\Current\Bin\MSBuild.exe"
+          echo "Using MSBuild at $msbuildPath"
+          if (-Not (Test-Path $msbuildPath)) { Write-Error "MSBuild not found at $msbuildPath"; exit 1 }
+          & "$msbuildPath" src/OnTopReplica.sln /p:Configuration=Release /m
+
+      - name: List Release dir (debug)
+        run: |
+          dir src\OnTopReplica\bin\Release
+
+      - name: Upload Release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: OnTopReplica-release
+          path: src/OnTopReplica/bin/Release
+
+      - name: Install Inno Setup (for installer)
+        run: choco install innosetup -y
+
+      - name: Compile Inno Setup installer
+        env:
+          PROJECT_EXE_PATH: ${{ github.workspace }}\src\OnTopReplica\bin\Release
+        run: |
+          $inno = Join-Path ${env:ProgramFiles(x86)} 'Inno Setup 6\ISCC.exe'
+          if (-not (Test-Path $inno)) { Write-Error "ISCC.exe not found at $inno"; exit 1 }
+          Write-Host "Using ISCC: $inno"
+          & $inno 'Installer\OnTopReplica.iss' "/DProjectExePath=$env:PROJECT_EXE_PATH"
+
+      - name: List installer output directory
+        run: |
+          echo "Current directory: $(pwd)"
+          dir Installer
+          dir .
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: OnTopReplica-installer
+          path: Installer\OnTopReplica_Setup.exe

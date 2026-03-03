@@ -167,6 +167,10 @@ namespace OnTopReplica {
             this.SetSidePanel(new AboutPanel());
         }
 
+        private void Menu_ColorAlert_click(object sender, EventArgs e) {
+            this.SetSidePanel(new ColorAlertPanel());
+        }
+
         private void Menu_Close_click(object sender, EventArgs e) {
             this.Close();
         }

@@ -199,6 +199,40 @@
   <data name="AskReset" xml:space="preserve">
     <value>确认重置窗口？</value>
   </data>
+  <!-- 颜色报警面板字符串 -->
+  <data name="ColorAlert_Title" xml:space="preserve">
+    <value>颜色报警</value>
+  </data>
+  <data name="ColorAlert_TargetColor" xml:space="preserve">
+    <value>目标颜色：</value>
+  </data>
+  <data name="ColorAlert_Tolerance" xml:space="preserve">
+    <value>颜色容差：</value>
+  </data>
+  <data name="ColorAlert_Interval" xml:space="preserve">
+    <value>采样间隔 (毫秒)：</value>
+  </data>
+  <data name="ColorAlert_Enable" xml:space="preserve">
+    <value>启用颜色检测</value>
+  </data>
+  <data name="ColorAlert_Choose" xml:space="preserve">
+    <value>选择…</value>
+  </data>
+  <data name="ColorAlert_ToleranceTooltip" xml:space="preserve">
+    <value>数值越大 = 匹配更多颜色 (0-255)</value>
+  </data>
+  <data name="ColorAlert_IntervalTooltip" xml:space="preserve">
+    <value>颜色检查之间的时间 (毫秒)</value>
+  </data>
+  <data name="ColorAlert_MenuTooltip" xml:space="preserve">
+    <value>监视特定颜色并发出报警</value>
+  </data>
+  <data name="ColorAlert_Volume" xml:space="preserve">
+    <value>报警音量：</value>
+  </data>
+  <data name="ColorAlert_SoundFile" xml:space="preserve">
+    <value>声音文件：</value>
+  </data>
   <data name="AskResetButtonOk" xml:space="preserve">
     <value>重置 所有设置将会丢失。</value>
     <comment>&amp; marks the ALT+[] shortcut</comment>

@@ -6,4 +6,6 @@ Installer/OnTopReplica-Setup.exe
 src/Installer/output/*
 *.user
 *.suo
+build_log.txt
+nuget.exe
 src/packages/*

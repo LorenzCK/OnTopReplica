@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Drawing;
 
 namespace OnTopReplica.Native {
     /// <summary>
@@ -104,5 +105,28 @@ namespace OnTopReplica.Native {
 
         [DllImport("user32.dll")]
         public static extern IntPtr FindWindow(string className, string windowName);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetClientRect(IntPtr hWnd, out Rectangle lpRect);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetWindowRect(IntPtr hWnd, out Rectangle lpRect);
+
+        /// <summary>
+        /// Converts a client rectangle to screen coordinates.
+        /// </summary>
+        public static Rectangle ClientToScreenRect(IntPtr hwnd, Rectangle clientRect) {
+            NPoint topLeft = ClientToScreen(hwnd, new NPoint(clientRect.X, clientRect.Y));
+            NPoint bottomRight = ClientToScreen(hwnd, new NPoint(clientRect.Right, clientRect.Bottom));
+            
+            return new Rectangle(
+                topLeft.X, 
+                topLeft.Y, 
+                bottomRight.X - topLeft.X, 
+                bottomRight.Y - topLeft.Y
+            );
+        }
     }
 }

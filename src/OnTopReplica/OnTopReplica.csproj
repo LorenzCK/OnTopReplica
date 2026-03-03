@@ -98,9 +98,17 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsAero, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Windows-Forms-Aero.3.0.1\lib\net461\WindowsFormsAero.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sounds\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppPaths.cs" />
@@ -139,6 +147,7 @@
     <Compile Include="MessagePumpManager.cs" />
     <Compile Include="MessagePumpProcessors\FlashCloner.cs" />
     <Compile Include="MessagePumpProcessors\GroupSwitchManager.cs" />
+    <Compile Include="MessagePumpProcessors\ColorDetectionProcessor.cs" />
     <Compile Include="IMessagePumpProcessor.cs" />
     <Compile Include="MessagePumpProcessors\BaseMessagePumpProcessor.cs" />
     <Compile Include="MessagePumpProcessors\ShellInterceptProcessor.cs" />
@@ -179,6 +188,12 @@
     </Compile>
     <Compile Include="SidePanels\AboutPanelContents.Designer.cs">
       <DependentUpon>AboutPanelContents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SidePanels\ColorAlertPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SidePanels\ColorAlertPanel.Designer.cs">
+      <DependentUpon>ColorAlertPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="SidePanels\OptionsPanel.cs">
       <SubType>UserControl</SubType>
@@ -467,12 +482,6 @@
     <None Include="Resources\new-flat-icon.ico" />
     <None Include="Resources\help.png" />
     <None Include="Resources\minimize.png" />
-    <None Include="LICENSE.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="CREDITS.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Assets\fullscreen.png" />
     <None Include="Assets\clickforwarding.png" />
     <None Include="Assets\groupmode.png" />
@@ -618,9 +627,11 @@
     </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <PostBuildEvent>taskkill /F /IM OnTopReplica.exe 2&gt;nul 1&gt;nul
+ping -n 2 127.0.0.1 &gt;nul
+xcopy /Y /E /Q "$(TargetDir)*" "$(ProjectDir)bin\Release\" &gt;nul
+start "" "$(ProjectDir)bin\Release\OnTopReplica.exe"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

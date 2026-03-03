@@ -22,23 +22,39 @@ namespace OnTopReplica {
         /// </summary>
         [STAThread]
         static void Main(string[] args) {
+            // early diagnostics: record environment even before AppPaths
             try {
                 AppPaths.SetupPaths();
             }
             catch (Exception ex) {
                 MessageBox.Show(string.Format("Unable to setup application folders: {0}", ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // nothing we can do
             }
 
+            // log some basic environment info so we can diagnose silent failures
             Log.Write("Launching OnTopReplica v.{0}", Application.ProductVersion);
+            Log.Write("Command line: {0}", Environment.CommandLine);
+            Log.Write("Working directory: {0}", Environment.CurrentDirectory);
+            Log.Write("OS: {0}", Environment.OSVersion);
+            Log.Write("CLR version: {0}", Environment.Version);
+            Log.Write("Args: {0}", string.Join(" ", args));
 
             //Hook fatal abort handler
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
-            //Initialize and check for platform support
-            Platform = PlatformSupport.Create();
-            if (!Platform.CheckCompatibility())
+            try {
+                //Initialize and check for platform support
+                Platform = PlatformSupport.Create();
+                if (!Platform.CheckCompatibility())
+                    return;
+                Platform.PreHandleFormInit();
+            }
+            catch (Exception ex) {
+                // log startup failure and notify user
+                Log.WriteException("Fatal startup exception", ex);
+                MessageBox.Show("OnTopReplica failed to start. See log file in " + AppPaths.PrivateRoamingFolderPath + " for details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            Platform.PreHandleFormInit();
+            }
 
             Log.Write("Platform support initialized");
 
@@ -67,6 +83,11 @@ namespace OnTopReplica {
             //Show form
             using (_mainForm = new MainForm(options)) {
                 Application.Idle += _handlerIdleUpdater;
+
+                // if requested on command line, open the color alert panel immediately
+                if (args != null && Array.Exists(args, a => a.Equals("--showcoloralert", StringComparison.OrdinalIgnoreCase))) {
+                    _mainForm.SetSidePanel(new SidePanels.ColorAlertPanel());
+                }
 
                 Log.Write("Entering application loop");
 

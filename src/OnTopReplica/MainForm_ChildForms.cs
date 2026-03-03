@@ -23,7 +23,7 @@ namespace OnTopReplica {
             _sidePanelContainer = new SidePanelContainer(this);
             _sidePanelContainer.SetSidePanel(panel);
             _sidePanelContainer.Location = ComputeSidePanelLocation(_sidePanelContainer);
-            _sidePanelContainer.Show(this);
+            _sidePanelContainer.Show(); // 不再以主窗体为 owner
         }
 
         /// <summary>
