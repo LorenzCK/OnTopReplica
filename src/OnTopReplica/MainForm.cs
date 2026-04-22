@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using OnTopReplica.Native;
 using OnTopReplica.Properties;
+using OnTopReplica.SidePanels;
 using OnTopReplica.StartupOptions;
 using OnTopReplica.Update;
 using OnTopReplica.WindowSeekers;
@@ -327,8 +328,8 @@ namespace OnTopReplica {
             if (handles.Count == 0)
                 return;
 
-            //At last one thumbnail
-            SetThumbnail(handles[0], null);
+            //At last one thumbnail, preserving any crop selected before enabling group mode.
+            SetThumbnail(handles[0], SelectedThumbnailRegion);
 
             //Handle if no real group
             if (handles.Count == 1)
@@ -370,6 +371,56 @@ namespace OnTopReplica {
 
                 FixPositionAndSize();
             }
+        }
+
+        public bool CycleSavedRegion() {
+            if (!_thumbnailPanel.IsShowingThumbnail)
+                return false;
+
+            var regions = GetSavedRegions();
+            if (regions.Length == 0)
+                return false;
+
+            int nextIndex = 0;
+            var currentRegion = SelectedThumbnailRegion;
+            if (currentRegion != null) {
+                var currentIndex = Array.FindIndex(regions, x => AreRegionsEqual(x.Region, currentRegion));
+                if (currentIndex >= 0)
+                    nextIndex = (currentIndex + 1) % regions.Length;
+            }
+
+            var nextRegion = regions[nextIndex];
+            SelectedThumbnailRegion = nextRegion.Region;
+            _thumbnailPanel.ShowOverlayText(nextRegion.Name);
+
+            if (IsSidePanelOpen && _sidePanelContainer != null && _sidePanelContainer.CurrentSidePanel is RegionPanel) {
+                ((RegionPanel)_sidePanelContainer.CurrentSidePanel).SetRegion(nextRegion);
+            }
+
+            return true;
+        }
+
+        private StoredRegion[] GetSavedRegions() {
+            if (Settings.Default.SavedRegions == null || Settings.Default.SavedRegions.Count == 0)
+                return new StoredRegion[0];
+
+            var regions = new StoredRegion[Settings.Default.SavedRegions.Count];
+            Settings.Default.SavedRegions.CopyTo(regions);
+            Array.Sort(regions, (a, b) => string.Compare(a.Name, b.Name, StringComparison.CurrentCulture));
+
+            return regions;
+        }
+
+        private static bool AreRegionsEqual(ThumbnailRegion left, ThumbnailRegion right) {
+            if (left == null || right == null)
+                return left == right;
+            if (left.Relative != right.Relative)
+                return false;
+
+            if (left.Relative)
+                return left.BoundsAsPadding.Equals(right.BoundsAsPadding);
+
+            return left.Bounds.Equals(right.Bounds);
         }
 
         const int FixMargin = 10;

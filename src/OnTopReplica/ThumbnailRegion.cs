@@ -150,11 +150,15 @@ namespace OnTopReplica {
                 ret = _bounds;
             }
 
-            //Constrain to bounds
-            if (ret.X + ret.Width > sourceSize.Width)
-                ret.Width = sourceSize.Width - ret.X;
-            if (ret.Y + ret.Height > sourceSize.Height)
-                ret.Height = sourceSize.Height - ret.Y;
+            //Constrain to bounds. This keeps saved/group-switched regions valid
+            // even when the next source window is smaller than the original one.
+            ret.Width = Math.Min(Math.Max(MinimumRegionSize, ret.Width), sourceSize.Width);
+            ret.Height = Math.Min(Math.Max(MinimumRegionSize, ret.Height), sourceSize.Height);
+
+            if (ret.X < 0 || ret.X + ret.Width > sourceSize.Width)
+                ret.X = Math.Max(0, (sourceSize.Width - ret.Width) / 2);
+            if (ret.Y < 0 || ret.Y + ret.Height > sourceSize.Height)
+                ret.Y = Math.Max(0, (sourceSize.Height - ret.Height) / 2);
 
             return ret;
         }

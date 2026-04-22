@@ -98,6 +98,7 @@ namespace OnTopReplica.MessagePumpProcessors {
 
             RegisterHandler(Settings.Default.HotKeyCloneCurrent, HotKeyCloneHandler);
             RegisterHandler(Settings.Default.HotKeyShowHide, HotKeyShowHideHandler);
+            RegisterHandler(Settings.Default.HotKeyCycleSavedRegion, HotKeyCycleSavedRegionHandler);
         }
 
         private void RegisterHandler(string spec, HotKeyHandler handler) {
@@ -158,6 +159,13 @@ namespace OnTopReplica.MessagePumpProcessors {
                 return;
 
             Form.SetThumbnail(handle, null);
+        }
+
+        /// <summary>
+        /// Handles cycling through stored regions on the current thumbnail.
+        /// </summary>
+        void HotKeyCycleSavedRegionHandler() {
+            Form.CycleSavedRegion();
         }
 
         #endregion

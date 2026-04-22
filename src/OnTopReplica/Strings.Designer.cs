@@ -1474,6 +1474,15 @@ namespace OnTopReplica {
         }
         
         /// <summary>
+        ///   查詢類似 Cycle saved region 的當地語系化字串。
+        /// </summary>
+        internal static string SettingsHotKeyCycleRegion {
+            get {
+                return ResourceManager.GetString("SettingsHotKeyCycleRegion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Hot keys: 的當地語系化字串。
         /// </summary>
         internal static string SettingsHotKeyTitle {

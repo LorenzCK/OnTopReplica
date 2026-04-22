@@ -585,6 +585,9 @@ You can enable click-through later</value>
   <data name="SettingsHotKeyShowHide" xml:space="preserve">
     <value>Show/Hide</value>
   </data>
+  <data name="SettingsHotKeyCycleRegion" xml:space="preserve">
+    <value>Cycle regions</value>
+  </data>
   <data name="SettingsHotKeyTitle" xml:space="preserve">
     <value>Hot keys:</value>
   </data>

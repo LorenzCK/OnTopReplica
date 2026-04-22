@@ -16,6 +16,8 @@ namespace OnTopReplica {
 
         //Labels
         WindowsFormsAero.ThemeLabel _labelGlass;
+        readonly Timer _overlayTimer = new Timer();
+        string _overlayText;
 
         public ThumbnailPanel() {
             InitFormComponents();
@@ -36,6 +38,15 @@ namespace OnTopReplica {
                 TextAlignVertical = VerticalAlignment.Center
             };
             this.Controls.Add(_labelGlass);
+
+            _overlayTimer.Interval = 1200;
+            _overlayTimer.Tick += OverlayTimer_Tick;
+        }
+
+        void OverlayTimer_Tick(object sender, EventArgs e) {
+            _overlayTimer.Stop();
+            _overlayText = null;
+            Invalidate();
         }
 
         #region Properties and settings
@@ -240,7 +251,19 @@ namespace OnTopReplica {
             }
 
             _thumbnail = null;
+            _overlayTimer.Stop();
+            _overlayText = null;
             _labelGlass.Visible = true;
+        }
+
+        public void ShowOverlayText(string text) {
+            _overlayText = text;
+            _overlayTimer.Stop();
+
+            if (!string.IsNullOrEmpty(text))
+                _overlayTimer.Start();
+
+            Invalidate();
         }
 
         /// <summary>
@@ -422,6 +445,25 @@ namespace OnTopReplica {
                 //Show cursor coordinates
                 e.Graphics.DrawLine(RedPen, new Point(0, _regionLastPoint.Y), new Point(ClientSize.Width, _regionLastPoint.Y));
                 e.Graphics.DrawLine(RedPen, new Point(_regionLastPoint.X, 0), new Point(_regionLastPoint.X, ClientSize.Height));
+            }
+
+            if (!string.IsNullOrEmpty(_overlayText)) {
+                var flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter |
+                    TextFormatFlags.EndEllipsis | TextFormatFlags.SingleLine;
+                var maxWidth = Math.Max(80, ClientSize.Width - 24);
+                var textSize = TextRenderer.MeasureText(e.Graphics, _overlayText, Font, new Size(maxWidth, 0), flags);
+                var overlayBounds = new Rectangle(
+                    Math.Max(8, (ClientSize.Width - textSize.Width) / 2 - 10),
+                    8,
+                    Math.Min(maxWidth, textSize.Width + 20),
+                    textSize.Height + 12
+                );
+
+                using (var background = new SolidBrush(Color.FromArgb(180, Color.Black))) {
+                    e.Graphics.FillRectangle(background, overlayBounds);
+                }
+
+                TextRenderer.DrawText(e.Graphics, _overlayText, Font, overlayBounds, Color.White, flags);
             }
 
             base.OnPaint(e);

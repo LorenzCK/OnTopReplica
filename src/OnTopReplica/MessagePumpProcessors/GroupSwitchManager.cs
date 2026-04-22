@@ -92,7 +92,7 @@ namespace OnTopReplica.MessagePumpProcessors {
 
             Log.Write("Switched to tracked window: switching to {0} (last use: {1})", next.WindowHandle.Title, next.LastTimeUsed);
 
-            Form.SetThumbnail(next.WindowHandle, null);
+            Form.SetThumbnail(next.WindowHandle, Form.SelectedThumbnailRegion);
         }
 
         protected override void Shutdown() {

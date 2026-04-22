@@ -228,6 +228,18 @@ namespace OnTopReplica.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("[CTRL]+[SHIFT]+R")]
+        public string HotKeyCycleSavedRegion {
+            get {
+                return ((string)(this["HotKeyCycleSavedRegion"]));
+            }
+            set {
+                this["HotKeyCycleSavedRegion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Standard")]
         public string FullscreenMode {
             get {

@@ -27,6 +27,8 @@
             this.panelMain = new System.Windows.Forms.Panel();
             this.groupHotkeys = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblHotKeyCycleRegion = new System.Windows.Forms.Label();
+            this.txtHotKeyCycleRegion = new OnTopReplica.HotKeyTextBox();
             this.lblHotKeyShowHide = new System.Windows.Forms.Label();
             this.txtHotKeyShowHide = new OnTopReplica.HotKeyTextBox();
             this.lblHotKeyClone = new System.Windows.Forms.Label();
@@ -42,7 +44,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(220, 243);
+            this.btnClose.Location = new System.Drawing.Point(220, 273);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(87, 27);
             this.btnClose.TabIndex = 0;
@@ -60,7 +62,7 @@
             this.panelMain.Controls.Add(this.groupLanguage);
             this.panelMain.Location = new System.Drawing.Point(7, 7);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(301, 230);
+            this.panelMain.Size = new System.Drawing.Size(301, 260);
             this.panelMain.TabIndex = 1;
             // 
             // groupHotkeys
@@ -68,13 +70,15 @@
             this.groupHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupHotkeys.Controls.Add(this.label1);
+            this.groupHotkeys.Controls.Add(this.lblHotKeyCycleRegion);
+            this.groupHotkeys.Controls.Add(this.txtHotKeyCycleRegion);
             this.groupHotkeys.Controls.Add(this.lblHotKeyShowHide);
             this.groupHotkeys.Controls.Add(this.txtHotKeyShowHide);
             this.groupHotkeys.Controls.Add(this.lblHotKeyClone);
             this.groupHotkeys.Controls.Add(this.txtHotKeyClone);
             this.groupHotkeys.Location = new System.Drawing.Point(3, 89);
             this.groupHotkeys.Name = "groupHotkeys";
-            this.groupHotkeys.Size = new System.Drawing.Size(294, 130);
+            this.groupHotkeys.Size = new System.Drawing.Size(294, 160);
             this.groupHotkeys.TabIndex = 1;
             this.groupHotkeys.TabStop = false;
             this.groupHotkeys.Text = "Hot keys:";
@@ -83,11 +87,31 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(7, 78);
+            this.label1.Location = new System.Drawing.Point(7, 108);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 50);
-            this.label1.TabIndex = 4;
+            this.label1.Size = new System.Drawing.Size(280, 42);
+            this.label1.TabIndex = 6;
             this.label1.Text = "These system-wide shortcuts can also be used when OnTopReplica is not in focus.";
+            // 
+            // lblHotKeyCycleRegion
+            // 
+            this.lblHotKeyCycleRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblHotKeyCycleRegion.BackColor = System.Drawing.Color.Transparent;
+            this.lblHotKeyCycleRegion.Location = new System.Drawing.Point(196, 85);
+            this.lblHotKeyCycleRegion.Name = "lblHotKeyCycleRegion";
+            this.lblHotKeyCycleRegion.Size = new System.Drawing.Size(91, 33);
+            this.lblHotKeyCycleRegion.TabIndex = 5;
+            this.lblHotKeyCycleRegion.Text = "Cycle regions";
+            // 
+            // txtHotKeyCycleRegion
+            // 
+            this.txtHotKeyCycleRegion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtHotKeyCycleRegion.Location = new System.Drawing.Point(7, 82);
+            this.txtHotKeyCycleRegion.Name = "txtHotKeyCycleRegion";
+            this.txtHotKeyCycleRegion.ReadOnly = true;
+            this.txtHotKeyCycleRegion.Size = new System.Drawing.Size(181, 23);
+            this.txtHotKeyCycleRegion.TabIndex = 4;
             // 
             // lblHotKeyShowHide
             // 
@@ -173,10 +197,10 @@
             this.AutoScroll = true;
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.btnClose);
-            this.MinimumSize = new System.Drawing.Size(315, 277);
+            this.MinimumSize = new System.Drawing.Size(315, 307);
             this.Name = "OptionsPanel";
             this.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
-            this.Size = new System.Drawing.Size(315, 277);
+            this.Size = new System.Drawing.Size(315, 307);
             this.panelMain.ResumeLayout(false);
             this.groupHotkeys.ResumeLayout(false);
             this.groupHotkeys.PerformLayout();
@@ -197,6 +221,8 @@
         private System.Windows.Forms.Label lblHotKeyShowHide;
         private HotKeyTextBox txtHotKeyShowHide;
         private System.Windows.Forms.Label lblHotKeyClone;
+        private System.Windows.Forms.Label lblHotKeyCycleRegion;
+        private HotKeyTextBox txtHotKeyCycleRegion;
         private System.Windows.Forms.Label label1;
     }
 }
