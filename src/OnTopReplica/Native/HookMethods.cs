@@ -50,5 +50,22 @@ namespace OnTopReplica.Native {
         [DllImport("User32.dll")]
         public static extern bool DeregisterShellHookWindow(IntPtr hwnd);
 
+        public const uint EVENT_SYSTEM_FOREGROUND = 0x0003;
+        public const uint WINEVENT_OUTOFCONTEXT = 0x0000;
+        public const uint WINEVENT_SKIPOWNPROCESS = 0x0002;
+
+        public delegate void WinEventProc(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint idEventThread, uint dwmsEventTime);
+
+        /// <summary>
+        /// Sets an event hook function for a range of events.
+        /// The delegate passed in must be kept alive until the hook is removed.
+        /// </summary>
+        [DllImport("User32.dll")]
+        public static extern IntPtr SetWinEventHook(uint eventMin, uint eventMax, IntPtr hmodWinEventProc, WinEventProc lpfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
+
+        [DllImport("User32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool UnhookWinEvent(IntPtr hWinEventHook);
+
     }
 }

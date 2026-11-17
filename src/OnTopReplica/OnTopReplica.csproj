@@ -142,6 +142,7 @@
     <Compile Include="IMessagePumpProcessor.cs" />
     <Compile Include="MessagePumpProcessors\BaseMessagePumpProcessor.cs" />
     <Compile Include="MessagePumpProcessors\ShellInterceptProcessor.cs" />
+    <Compile Include="MessagePumpProcessors\TaskbarZOrderKeeper.cs" />
     <Compile Include="MessagePumpProcessors\WindowKeeper.cs" />
     <Compile Include="Native\ErrorMethods.cs" />
     <Compile Include="Native\FilesystemMethods.cs" />
