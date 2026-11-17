@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Reflection;
 
 namespace OnTopReplica.Update {
@@ -14,16 +13,11 @@ namespace OnTopReplica.Update {
         /// </summary>
         /// <param name="latestVersion">Latest available version.</param>
         /// <param name="downloadLink">Direct link to the download page (has URL form).</param>
-        /// <param name="publicationDate">Publication date of latest version, in standard RTF/RSS format.</param>
-        public UpdateInformation(Version latestVersion, string downloadLink, string publicationDate) {
+        /// <param name="publicationDate">Publication date of latest version, if known.</param>
+        public UpdateInformation(Version latestVersion, string downloadLink, DateTime? publicationDate) {
             LatestVersion = latestVersion;
             DownloadPage = downloadLink;
-
-            //RSS date formatted as in: <pubDate>Thu, 29 Nov 2012 12:55:04 GMT</pubDate>
-            DateTime parsedPublicationDate;
-            if (DateTime.TryParseExact(publicationDate, "R", CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out parsedPublicationDate)) {
-                LatestVersionRelease = parsedPublicationDate;
-            }
+            LatestVersionRelease = publicationDate.GetValueOrDefault();
         }
 
         /// <summary>
