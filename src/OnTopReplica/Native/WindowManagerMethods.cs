@@ -104,5 +104,18 @@ namespace OnTopReplica.Native {
 
         [DllImport("user32.dll")]
         public static extern IntPtr FindWindow(string className, string windowName);
+
+        public static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
+
+        [Flags]
+        public enum SetWindowPosFlags : uint {
+            SWP_NOSIZE = 0x0001,
+            SWP_NOMOVE = 0x0002,
+            SWP_NOACTIVATE = 0x0010
+        }
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, SetWindowPosFlags flags);
     }
 }

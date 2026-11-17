@@ -130,6 +130,6 @@
     <value>http://opensource.org/licenses/ms-rl.html</value>
   </data>
   <data name="UpdateFeed" xml:space="preserve">
-    <value>http://ontopreplica.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2frelease%2fontopreplica</value>
+    <value>https://github.com/LorenzCK/OnTopReplica/releases.atom</value>
   </data>
 </root>

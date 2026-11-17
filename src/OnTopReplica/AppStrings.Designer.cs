@@ -97,7 +97,7 @@ namespace OnTopReplica {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://ontopreplica.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2frelease%2fontopreplica.
+        ///   Looks up a localized string similar to https://github.com/LorenzCK/OnTopReplica/releases.atom.
         /// </summary>
         internal static string UpdateFeed {
             get {
